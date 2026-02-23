@@ -92,6 +92,18 @@ img { display: block; max-width: 100%; }
 }
 
 /* ===================================================
+   SIDEBAR SLOT (flex child that reserves space in layout)
+   =================================================== */
+.sidebar-slot {
+  flex-shrink: 0;
+  width: var(--sidebar-w);
+  transition: width var(--transition);
+}
+.sidebar-slot.mini {
+  width: var(--sidebar-mini-w);
+}
+
+/* ===================================================
    SIDEBAR
    =================================================== */
 .sidebar {
@@ -113,6 +125,39 @@ img { display: block; max-width: 100%; }
 }
 
 .sidebar.mini { width: var(--sidebar-mini-w); justify-content: center; }
+
+/* ===================================================
+   SIDEBAR PEEK (hover-expand overlay in mini mode)
+   Sidebar flies over content without pushing it
+   =================================================== */
+.sidebar.mini.peek {
+  position: fixed;
+  right: var(--sidebar-gap);
+  top: var(--sidebar-gap);
+  height: calc(100vh - calc(var(--sidebar-gap) * 2));
+  width: var(--sidebar-w);
+  z-index: 500;
+  justify-content: flex-start;
+  box-shadow: -8px 0 32px rgba(0,0,0,0.35);
+}
+
+/* Restore full nav appearance in peek */
+.sidebar.mini.peek .nav-text        { opacity: 1; max-width: 160px; }
+.sidebar.mini.peek .nav-item        { padding: 0 12px; justify-content: space-between; gap: 12px; min-width: unset; }
+.sidebar.mini.peek .nav-item-inner  { flex: 1; justify-content: flex-start; gap: 12px; }
+.sidebar.mini.peek .nav-chevron     { opacity: 1; width: 16px; }
+.sidebar.mini.peek .nav-badge       { opacity: 1; max-width: none; padding: 0 3px; min-width: 17px; overflow: visible; }
+.sidebar.mini.peek .sidebar-brand   { width: auto; overflow: visible; }
+.sidebar.mini.peek .sidebar-top     { justify-content: flex-start; }
+.sidebar.mini.peek .subscription-card { justify-content: flex-start; gap: 8px; }
+.sidebar.mini.peek .subscription-info { flex: 1; max-width: none; overflow: visible; opacity: 1; height: auto; }
+
+/* Toggle: back to normal position, arrow still outward (rotate 180deg) */
+.sidebar.mini.peek .sidebar-toggle {
+  left: var(--sidebar-gap);
+  top: var(--sidebar-gap);
+  transform: rotate(180deg);
+}
 
 /* BG topographic pattern */
 .sidebar-pattern {
@@ -1479,6 +1524,7 @@ img { display: block; max-width: 100%; }
   }
 
   .sidebar { display: none; }
+  .sidebar-slot { display: none; }
 
   /* Desktop header hidden; mobile app bar shown instead */
   .top-header { display: none; }

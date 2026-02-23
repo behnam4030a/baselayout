@@ -23,7 +23,7 @@ const state = {
 /* ===================================================
    DOM REFERENCES (set after DOMContentLoaded)
    =================================================== */
-let $sidebar, $sidebarToggle;
+let $sidebar, $sidebarToggle, $sidebarSlot;
 let $subDrawer, $subDrawerTitle, $subDrawerItems, $subDrawerClose;
 let $backdrop;
 let $bottomNav, $mobileMenuBtn;
@@ -57,16 +57,39 @@ function initMobileMenuNav() {
    =================================================== */
 function initSidebarToggle() {
   $sidebarToggle.addEventListener('click', () => {
-    state.sidebarMini = !state.sidebarMini;
-    $sidebar.classList.toggle('mini', state.sidebarMini);
-    // Update CSS variable so sub-drawer repositions correctly relative to sidebar
-    document.documentElement.style.setProperty(
-      '--current-sidebar-w',
-      state.sidebarMini ? '72px' : '280px'
-    );
-    // Close any open drawer when going mini
-    if (state.openDrawerId && state.sidebarMini) {
-      closeSubDrawer();
+    const isPeek = $sidebar.classList.contains('peek');
+
+    if (isPeek) {
+      // Clicking toggle in peek state → pin sidebar back to full open
+      state.sidebarMini = false;
+      $sidebar.classList.remove('mini', 'peek');
+      $sidebarSlot.classList.remove('mini');
+      document.documentElement.style.setProperty('--current-sidebar-w', '280px');
+    } else {
+      state.sidebarMini = !state.sidebarMini;
+      $sidebar.classList.toggle('mini', state.sidebarMini);
+      $sidebarSlot.classList.toggle('mini', state.sidebarMini);
+      document.documentElement.style.setProperty(
+        '--current-sidebar-w',
+        state.sidebarMini ? '72px' : '280px'
+      );
+      // Close any open drawer when going mini
+      if (state.openDrawerId && state.sidebarMini) {
+        closeSubDrawer();
+      }
+    }
+  });
+
+  // Hover: expand sidebar as overlay when in mini mode (peek)
+  $sidebar.addEventListener('mouseenter', () => {
+    if (state.sidebarMini) {
+      $sidebar.classList.add('peek');
+    }
+  });
+
+  $sidebar.addEventListener('mouseleave', () => {
+    if (state.sidebarMini) {
+      $sidebar.classList.remove('peek');
     }
   });
 }
@@ -686,6 +709,7 @@ const NotificationPanel = (() => {
 document.addEventListener('DOMContentLoaded', () => {
   // Cache DOM elements
   $sidebar         = document.getElementById('sidebar');
+  $sidebarSlot     = document.getElementById('sidebarSlot');
   $sidebarToggle   = document.getElementById('sidebarToggle');
   $subDrawer       = document.getElementById('subDrawer');
   $subDrawerTitle  = document.getElementById('subDrawerTitle');
