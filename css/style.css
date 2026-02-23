@@ -413,7 +413,7 @@ img { display: block; max-width: 100%; }
 .sidebar.mini .subscription-icon {
   background: rgba(255,255,255,0.05);
   border-radius: var(--radius-btn);
-  padding: 12px;
+  padding: 12px 12px 6px 12px;
 }
 .sidebar.mini .subscription-info {
   flex: 0;
