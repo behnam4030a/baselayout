@@ -149,7 +149,17 @@ img { display: block; max-width: 100%; }
 .sidebar.mini.peek .nav-badge       { position: static; opacity: 1; max-width: none; padding: 0 3px; min-width: 17px; height: 17px; font-size: 11px; overflow: visible; }
 .sidebar.mini.peek .sidebar-brand   { width: auto; overflow: visible; }
 .sidebar.mini.peek .sidebar-top     { justify-content: flex-start; }
-.sidebar.mini.peek .subscription-card { justify-content: flex-start; gap: 8px; }
+.sidebar.mini.peek .subscription-card {
+  justify-content: flex-start;
+  gap: 8px;
+  background: rgba(255,255,255,0.05);
+  padding: 12px;
+}
+.sidebar.mini.peek .subscription-icon {
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
+}
 .sidebar.mini.peek .subscription-info { flex: 1; max-width: none; overflow: visible; opacity: 1; height: auto; }
 
 /* Toggle: back to normal position, arrow still outward (rotate 180deg) */
