@@ -618,11 +618,11 @@ const NotificationPanel = (() => {
     document.getElementById('notifViewList').style.display  = hasItems ? '' : 'none';
     document.getElementById('notifViewEmpty').style.display = hasItems ? 'none' : 'flex';
 
-    // List item click → show detail
+    // List item click (anywhere on row) → show/close detail
     document.getElementById('notifList').addEventListener('click', e => {
-      const btn = e.target.closest('[data-show]');
-      if (!btn) return;
-      const id = parseInt(btn.dataset.show, 10);
+      const item = e.target.closest('.notif-item');
+      if (!item) return;
+      const id = parseInt(item.dataset.id, 10);
       if (_activeId === id) { _resetItemBtn(_activeId); Modal.closePanel('notif-detail'); _activeId = null; }
       else { _showDetail(id); }
     });
