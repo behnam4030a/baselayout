@@ -383,7 +383,7 @@ img { display: block; max-width: 100%; }
 
 /* --- Subscription Card --- */
 .subscription-card {
-  background: transparent;
+  background: rgba(255,255,255,0.05);
   border-radius: var(--radius-btn);
   padding: 12px;
   display: flex;
@@ -394,7 +394,17 @@ img { display: block; max-width: 100%; }
   transition: opacity var(--transition);
 }
 /* Mini mode: show card with only icon centered */
-.sidebar.mini .subscription-card { justify-content: center; gap: 0; padding: 0; }
+.sidebar.mini .subscription-card {
+  justify-content: center;
+  gap: 0;
+  background: transparent;
+  padding: 0;
+}
+.sidebar.mini .subscription-icon {
+  background: rgba(255,255,255,0.05);
+  border-radius: var(--radius-btn);
+  padding: 12px;
+}
 .sidebar.mini .subscription-info {
   flex: 0;
   max-width: 0;
@@ -406,13 +416,7 @@ img { display: block; max-width: 100%; }
               flex      0ms linear 250ms;
 }
 
-.subscription-icon {
-  color: #fff;
-  flex-shrink: 0;
-  background: rgba(255,255,255,0.05);
-  border-radius: var(--radius-btn);
-  padding: 12px;
-}
+.subscription-icon { color: #fff; flex-shrink: 0; }
 
 .subscription-info {
   flex: 1;
