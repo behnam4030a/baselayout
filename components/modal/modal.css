@@ -567,46 +567,25 @@
    ========================================== */
 
 @media (max-width: 767px) {
-  .modal__overlay {
-    background: linear-gradient(to bottom, var(--modal-overlay-start) 20%, var(--modal-overlay-end));
-  }
-
   .modal__container {
     top: 8px;
     right: 8px;
     bottom: 8px;
-    left: 8px;
-    width: auto;
-    border-radius: var(--modal-radius-container);
-    animation-name: modal-slide-in-bottom;
-  }
-
-  .modal--closing .modal__container {
-    animation-name: modal-slide-out-bottom;
-  }
-
-  .modal--sm .modal__container,
-  .modal--lg .modal__container {
-    width: auto;
+    max-width: calc(100vw - 16px);
   }
 
   .modal__expanded {
     top: 8px;
     right: 8px;
     bottom: 8px;
-    left: 8px;
-    width: auto;
     padding: 0;
     z-index: 2;
+    max-width: calc(100vw - 16px);
   }
 
   .modal__expanded-inner {
     border-radius: var(--modal-radius-container);
-    animation-name: modal-slide-in-bottom;
-  }
-
-  .modal__expanded--closing .modal__expanded-inner {
-    animation-name: modal-slide-out-bottom;
+    box-shadow: none;
   }
 
   .modal__header {
@@ -645,9 +624,6 @@
   .modal--centered.modal--closing .modal__container {
     animation-name: modal-center-out;
   }
-  .modal__container {
-    max-width: 100%;
-}
 }
 
 /* ==========================================

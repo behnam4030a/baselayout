@@ -12,11 +12,8 @@
 const state = {
   sidebarMini: false,
   activeNavId: 'dashboard',
-  openDrawerId: null,        // which desktop subdrawer is open
+  openDrawerId: null,        // which sub-drawer is open (desktop and mobile)
   mobileDrawerOpen: false,
-  mobileSubOpen: false,
-  mobileSubId: null,
-  userDropdownOpen: false,
   mobileProfileOpen: false,
 };
 
@@ -28,9 +25,8 @@ let $subDrawer, $subDrawerTitle, $subDrawerItems, $subDrawerClose;
 let $backdrop;
 let $bottomNav, $mobileMenuBtn;
 let $mobileDrawer, $mobileDrawerBack;
-let $mobileSubDrawer, $mobileSubTitle, $mobileSubItems, $mobileSubClose;
 let $mobileBackdrop;
-let $headerUser, $userDropdown;
+let $headerUser;
 let $mobileProfileSheet;
 
 /* ===================================================
@@ -46,8 +42,22 @@ function initSidebarNav() {
 }
 
 function initMobileMenuNav() {
-  document.getElementById('mobile-menu-list').addEventListener('click', e => {
-    const el = e.target.closest('.mobile-nav-item');
+  const $mobileMenu = document.getElementById('mobile-menu-list');
+
+  // Clone sidebar menu groups — single source of truth for nav items
+  ['sidebar-menu-1', 'sidebar-menu-2'].forEach(id => {
+    const group = document.getElementById(id);
+    if (!group) return;
+    const clone = group.cloneNode(true);
+    clone.removeAttribute('id'); // avoid duplicate IDs in DOM
+    // Dashboard is already in bottom-nav — remove it from mobile drawer
+    clone.querySelectorAll('.nav-item[data-id="dashboard"]').forEach(el => el.remove());
+    $mobileMenu.appendChild(clone);
+  });
+
+  // Delegate clicks on .nav-item (same structure as sidebar)
+  $mobileMenu.addEventListener('click', e => {
+    const el = e.target.closest('.nav-item');
     if (el) handleMobileNavClick(el);
   });
 }
@@ -80,17 +90,36 @@ function initSidebarToggle() {
     }
   });
 
+  function _closePeek() {
+    $sidebar.classList.remove('peek');
+    document.documentElement.style.setProperty('--current-sidebar-w', '72px');
+    $subDrawer.style.zIndex = '';
+    if (state.openDrawerId) closeSubDrawer();
+  }
+
   // Hover: expand sidebar as overlay when in mini mode (peek)
   $sidebar.addEventListener('mouseenter', () => {
     if (state.sidebarMini) {
       $sidebar.classList.add('peek');
+      // Reposition sub-drawer to the left of the full-width peek sidebar
+      document.documentElement.style.setProperty('--current-sidebar-w', '280px');
+      // Raise sub-drawer above peek sidebar (z-index 500)
+      $subDrawer.style.zIndex = '600';
     }
   });
 
-  $sidebar.addEventListener('mouseleave', () => {
-    if (state.sidebarMini) {
-      $sidebar.classList.remove('peek');
-    }
+  $sidebar.addEventListener('mouseleave', (e) => {
+    if (!state.sidebarMini) return;
+    // Don't close peek if mouse is moving to sub-drawer
+    if ($subDrawer.contains(e.relatedTarget)) return;
+    _closePeek();
+  });
+
+  // Close peek when mouse leaves sub-drawer (unless returning to sidebar)
+  $subDrawer.addEventListener('mouseleave', (e) => {
+    if (!state.sidebarMini || !$sidebar.classList.contains('peek')) return;
+    if ($sidebar.contains(e.relatedTarget)) return;
+    _closePeek();
   });
 }
 
@@ -102,7 +131,7 @@ function handleDesktopNavClick(el) {
   const title      = el.querySelector('.nav-text').textContent;
   const hasSubmenu = el.dataset.submenu === 'true';
 
-  setDesktopActiveItem(id);
+  setActiveNavItem(id);
 
   if (!hasSubmenu) {
     closeSubDrawer();
@@ -118,8 +147,9 @@ function handleDesktopNavClick(el) {
   openSubDrawer(id, title);
 }
 
-function setDesktopActiveItem(id) {
-  document.querySelectorAll('#sidebar-menu-1 .nav-item, #sidebar-menu-2 .nav-item').forEach(el => {
+function setActiveNavItem(id) {
+  // Update all .nav-item elements — covers both sidebar and mobile drawer clones
+  document.querySelectorAll('.nav-item').forEach(el => {
     el.classList.toggle('active', el.dataset.id === id);
   });
   state.activeNavId = id;
@@ -135,15 +165,23 @@ function openSubDrawer(id, title) {
     const clone = tpl.content.cloneNode(true);
     clone.querySelectorAll('.sub-drawer-item').forEach(item => {
       item.addEventListener('click', () => {
-        closeSubDrawer();
-        updatePageTitle(item.querySelector('.sub-drawer-item-name').textContent);
+        const itemTitle = item.querySelector('.sub-drawer-item-name').textContent;
+        if (state.mobileDrawerOpen) {
+          closeMobileDrawer(); // also closes sub-drawer on mobile
+        } else {
+          closeSubDrawer();
+        }
+        updatePageTitle(itemTitle);
       });
     });
     $subDrawerItems.appendChild(clone);
   }
 
   $subDrawer.classList.add('open');
-  $backdrop.classList.add('show');
+  // Desktop backdrop only (not on mobile — sub-drawer is already overlaid)
+  if (window.innerWidth >= 1024) {
+    $backdrop.classList.add('show');
+  }
 }
 
 function closeSubDrawer() {
@@ -171,7 +209,7 @@ function closeMobileDrawer() {
   $mobileDrawer.classList.remove('open');
   $mobileBackdrop.classList.remove('show');
   document.body.style.overflow = '';
-  closeMobileSubDrawer();
+  closeSubDrawer();
   // Restore active
   document.querySelectorAll('.bottom-nav-item').forEach(el => {
     el.classList.toggle('active', el.dataset.nav === state.activeNavId);
@@ -185,93 +223,26 @@ function handleMobileNavClick(el) {
 
   if (!hasSubmenu) {
     closeMobileDrawer();
-    setMobileActiveItem(id);
+    setActiveNavItem(id);
     updatePageTitle(title);
     return;
   }
-  openMobileSubDrawer(id, title);
+  openSubDrawer(id, title);
 }
 
-function setMobileActiveItem(id) {
-  document.querySelectorAll('#mobile-menu-list .mobile-nav-item').forEach(el => {
-    el.classList.toggle('active', el.dataset.id === id);
-  });
-  state.activeNavId = id;
-}
+
 
 /* ===================================================
-   MOBILE SUB-DRAWER
-   =================================================== */
-function openMobileSubDrawer(id, title) {
-  state.mobileSubOpen = true;
-  state.mobileSubId = id;
-  $mobileSubTitle.textContent = title;
-  $mobileSubItems.innerHTML = '';
-
-  const tpl = document.getElementById('submenu-mobile-' + id);
-  if (tpl) {
-    const clone = tpl.content.cloneNode(true);
-    clone.querySelectorAll('.mobile-sub-item').forEach(item => {
-      item.addEventListener('click', () => {
-        closeMobileDrawer();
-        updatePageTitle(item.querySelector('.mobile-sub-item-name').textContent);
-      });
-    });
-    $mobileSubItems.appendChild(clone);
-  }
-
-  $mobileSubDrawer.classList.add('open');
-}
-
-function closeMobileSubDrawer() {
-  state.mobileSubOpen = false;
-  state.mobileSubId = null;
-  $mobileSubDrawer.classList.remove('open');
-}
-
-/* ===================================================
-   DESKTOP USER DROPDOWN
-   =================================================== */
-function openUserDropdown() {
-  state.userDropdownOpen = true;
-  $userDropdown.classList.add('open');
-  $userDropdown.setAttribute('aria-hidden', 'false');
-}
-
-function closeUserDropdown() {
-  state.userDropdownOpen = false;
-  $userDropdown.classList.remove('open');
-  $userDropdown.setAttribute('aria-hidden', 'true');
-}
-
-function initUserDropdown() {
-  $headerUser.addEventListener('click', e => {
-    e.stopPropagation();
-    if (state.userDropdownOpen) {
-      closeUserDropdown();
-    } else {
-      closeSubDrawer();
-      openUserDropdown();
-    }
-  });
-
-  $userDropdown.addEventListener('click', e => {
-    e.stopPropagation();
-  });
-
-  document.addEventListener('click', () => {
-    if (state.userDropdownOpen) closeUserDropdown();
-  });
-}
-
-/* ===================================================
-   MOBILE PROFILE SHEET
+   PROFILE PANEL (unified: desktop dropdown + mobile sheet)
    =================================================== */
 function openMobileProfile() {
   state.mobileProfileOpen = true;
   $mobileProfileSheet.classList.add('open');
   $mobileProfileSheet.setAttribute('aria-hidden', 'false');
-  document.body.style.overflow = 'hidden';
+  // Lock scroll only on mobile (full-screen sheet)
+  if (window.innerWidth < 1024) {
+    document.body.style.overflow = 'hidden';
+  }
 }
 
 function closeMobileProfile() {
@@ -279,6 +250,29 @@ function closeMobileProfile() {
   $mobileProfileSheet.classList.remove('open');
   $mobileProfileSheet.setAttribute('aria-hidden', 'true');
   document.body.style.overflow = '';
+}
+
+function initUserDropdown() {
+  // Wire header avatar click → unified profile panel
+  $headerUser.addEventListener('click', e => {
+    e.stopPropagation();
+    if (state.mobileProfileOpen) {
+      closeMobileProfile();
+    } else {
+      closeSubDrawer();
+      openMobileProfile();
+    }
+  });
+
+  // Stop clicks inside the panel from closing it
+  $mobileProfileSheet.addEventListener('click', e => {
+    e.stopPropagation();
+  });
+
+  // Click outside → close (desktop dropdown behaviour)
+  document.addEventListener('click', () => {
+    if (state.mobileProfileOpen && window.innerWidth >= 1024) closeMobileProfile();
+  });
 }
 
 /* ===================================================
@@ -365,9 +359,6 @@ function initBackdrops() {
 
   // Mobile drawer back btn
   $mobileDrawerBack.addEventListener('click', () => closeMobileDrawer());
-
-  // Mobile sub drawer close btn
-  $mobileSubClose.addEventListener('click', () => closeMobileSubDrawer());
 }
 
 /* ===================================================
@@ -376,11 +367,9 @@ function initBackdrops() {
 function initKeyboard() {
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') {
-      if (state.userDropdownOpen) { closeUserDropdown(); return; }
       if (state.mobileProfileOpen) { closeMobileProfile(); return; }
-      if (state.mobileSubOpen) { closeMobileSubDrawer(); return; }
-      if (state.mobileDrawerOpen) { closeMobileDrawer(); return; }
       if (state.openDrawerId) { closeSubDrawer(); return; }
+      if (state.mobileDrawerOpen) { closeMobileDrawer(); return; }
     }
   });
 }
@@ -455,7 +444,12 @@ const SearchModal = (() => {
     });
 
     Modal.onOpen('search-modal', _onModalOpen);
-    Modal.onClose('search-modal', () => clearTimeout(_debounceTimer));
+    Modal.onClose('search-modal', () => {
+      clearTimeout(_debounceTimer);
+      if (!document.querySelector('.modal.modal--open') && !state.mobileDrawerOpen && !state.mobileProfileOpen) {
+        setBottomNavActive(state.activeNavId);
+      }
+    });
 
     /* Fill chips once — data never changes between opens */
     _RECENT.forEach(q  => _recentChips.appendChild(_makeChip(q)));
@@ -643,14 +637,35 @@ const NotificationPanel = (() => {
     if (containerClose) containerClose.addEventListener('click', () => Modal.close('notif-modal'));
 
     // Tab switching
+    const $notifViewList  = document.getElementById('notifViewList');
+    const $notifViewEmpty = document.getElementById('notifViewEmpty');
+    const $emptyText = $notifViewEmpty && $notifViewEmpty.querySelector('.notif-empty-text');
+    const $emptySub  = $notifViewEmpty && $notifViewEmpty.querySelector('.notif-empty-sub');
+
     document.querySelectorAll('#notifTabs .notif-tab').forEach(tab => {
       tab.addEventListener('click', () => {
         document.querySelectorAll('#notifTabs .notif-tab').forEach(t => t.classList.remove('active'));
         tab.classList.add('active');
+
+        if (tab.dataset.tab === 'notifications') {
+          if ($notifViewList)  $notifViewList.style.display  = 'none';
+          if ($emptyText)      $emptyText.textContent        = 'هیچ اعلانی وجود ندارد';
+          if ($emptySub)       $emptySub.textContent         = 'در حال حاضر اعلان جدیدی برای شما وجود ندارد';
+          if ($notifViewEmpty) $notifViewEmpty.style.display = '';
+        } else {
+          if ($notifViewEmpty) $notifViewEmpty.style.display = 'none';
+          if ($notifViewList)  $notifViewList.style.display  = '';
+        }
       });
     });
 
-    Modal.onClose('notif-modal', () => { if (_activeId !== null) _resetItemBtn(_activeId); _activeId = null; });
+    Modal.onClose('notif-modal', () => {
+      if (_activeId !== null) _resetItemBtn(_activeId);
+      _activeId = null;
+      if (!document.querySelector('.modal.modal--open') && !state.mobileDrawerOpen && !state.mobileProfileOpen) {
+        setBottomNavActive(state.activeNavId);
+      }
+    });
   }
 
   function _updateBadge() {
@@ -694,9 +709,7 @@ const NotificationPanel = (() => {
 
   function open() {
     _init();
-    const modal = document.getElementById('notif-modal');
-    if (modal && modal.classList.contains('modal--open')) { Modal.close('notif-modal'); }
-    else { Modal.open('notif-modal'); }
+    Modal.open('notif-modal');
   }
 
   function close() { Modal.close('notif-modal'); }
@@ -720,13 +733,8 @@ document.addEventListener('DOMContentLoaded', () => {
   $mobileMenuBtn   = document.getElementById('mobileMenuBtn');
   $mobileDrawer    = document.getElementById('mobileDrawer');
   $mobileDrawerBack = document.getElementById('mobileDrawerBack');
-  $mobileSubDrawer = document.getElementById('mobileSubDrawer');
-  $mobileSubTitle  = document.getElementById('mobileSubTitle');
-  $mobileSubItems  = document.getElementById('mobileSubItems');
-  $mobileSubClose  = document.getElementById('mobileSubClose');
   $mobileBackdrop  = document.getElementById('mobileBackdrop');
   $headerUser      = document.querySelector('.header-user');
-  $userDropdown    = document.getElementById('userDropdown');
   $mobileProfileSheet = document.getElementById('mobileProfileSheet');
 
   // Wire nav interactions

@@ -36,6 +36,7 @@
   /* --- State --- */
   var openModals = [];
   var previousActiveElement = null;
+  var closeTimeouts = {};
 
   /* ==========================================
      Helpers
@@ -123,6 +124,15 @@
   function open(id) {
     var modal = getModal(id);
     if (!modal) return;
+
+    /* اگر مودال در حال بسته شدن است، انیمیشن را لغو کن و باز نگه‌دار */
+    if (closeTimeouts[id]) {
+      clearTimeout(closeTimeouts[id]);
+      delete closeTimeouts[id];
+      modal.classList.remove('modal--closing');
+      return;
+    }
+
     if (modal.classList.contains('modal--open')) return;
 
     /* ذخیره المان فوکوس‌شده قبلی */
@@ -184,7 +194,8 @@
     modal.classList.add('modal--closing');
 
     /* صبر برای اتمام انیمیشن */
-    setTimeout(function () {
+    closeTimeouts[id] = setTimeout(function () {
+      delete closeTimeouts[id];
       modal.classList.remove('modal--open', 'modal--closing');
 
       /* حذف از لیست مودال‌های باز */
