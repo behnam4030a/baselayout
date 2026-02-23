@@ -293,6 +293,7 @@ img { display: block; max-width: 100%; }
   white-space: nowrap;
   overflow: hidden;
   position: relative;
+  text-decoration: none;
 }
 
 .nav-item:hover { background: rgba(255,255,255,0.05); color: #fff; }
@@ -1418,6 +1419,7 @@ img { display: block; max-width: 100%; }
   cursor: pointer;
   transition: background var(--transition), color var(--transition);
   gap: 12px;
+  text-decoration: none;
 }
 .mobile-nav-item:hover { background: rgba(255,255,255,0.06); color: #fff; }
 .mobile-nav-item.active {
