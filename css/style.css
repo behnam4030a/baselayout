@@ -144,9 +144,9 @@ img { display: block; max-width: 100%; }
 /* Restore full nav appearance in peek */
 .sidebar.mini.peek .nav-text        { opacity: 1; max-width: 160px; }
 .sidebar.mini.peek .nav-item        { padding: 0 12px; justify-content: space-between; gap: 12px; min-width: unset; }
-.sidebar.mini.peek .nav-item-inner  { flex: 1; justify-content: flex-start; gap: 12px; }
+.sidebar.mini.peek .nav-item-inner  { flex: 1; justify-content: flex-start; gap: 12px; position: static; }
 .sidebar.mini.peek .nav-chevron     { opacity: 1; width: 16px; }
-.sidebar.mini.peek .nav-badge       { opacity: 1; max-width: none; padding: 0 3px; min-width: 17px; overflow: visible; }
+.sidebar.mini.peek .nav-badge       { position: static; opacity: 1; max-width: none; padding: 0 3px; min-width: 17px; height: 17px; font-size: 11px; overflow: visible; }
 .sidebar.mini.peek .sidebar-brand   { width: auto; overflow: visible; }
 .sidebar.mini.peek .sidebar-top     { justify-content: flex-start; }
 .sidebar.mini.peek .subscription-card { justify-content: flex-start; gap: 8px; }
@@ -338,6 +338,7 @@ img { display: block; max-width: 100%; }
   flex: 0 0 auto;
   justify-content: center;
   gap: 0;
+  position: relative;
 }
 
 /* Chevron (arrow for submenu) */
@@ -366,7 +367,19 @@ img { display: block; max-width: 100%; }
   flex-shrink: 0;
   transition: opacity var(--transition);
 }
-.sidebar.mini .nav-badge { opacity: 0; max-width: 0; overflow: hidden; padding: 0; min-width: 0; }
+.sidebar.mini .nav-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  opacity: 1;
+  max-width: none;
+  overflow: visible;
+  padding: 0 2px;
+  min-width: 14px;
+  height: 14px;
+  font-size: 9px;
+  border-radius: 50%;
+}
 
 /* --- Subscription Card --- */
 .subscription-card {
@@ -381,13 +394,26 @@ img { display: block; max-width: 100%; }
   transition: opacity var(--transition);
 }
 /* Mini mode: show card with only icon centered */
-.sidebar.mini .subscription-card { justify-content: center; gap: 0; }
+.sidebar.mini .subscription-card {
+  justify-content: center;
+  gap: 0;
+  background: transparent;
+  padding: 0;
+}
+.sidebar.mini .subscription-icon {
+  background: rgba(255,255,255,0.05);
+  border-radius: var(--radius-btn);
+  padding: 12px;
+}
 .sidebar.mini .subscription-info {
   flex: 0;
   max-width: 0;
   overflow: hidden;
   opacity: 0;
-  height: 0;
+  /* Closing: fade out first, then collapse width so the snap is invisible */
+  transition: opacity 250ms ease-in-out,
+              max-width 0ms linear 250ms,
+              flex      0ms linear 250ms;
 }
 
 .subscription-icon { color: #fff; flex-shrink: 0; }
@@ -399,13 +425,18 @@ img { display: block; max-width: 100%; }
   align-items: flex-start; /* RTL column: flex-start = inline-start = RIGHT side */
   gap: 4px;
   min-width: 0;
-  max-width: 200px; /* explicit value enables CSS to animate 0→200px on open, mirroring 200px→0 on close */
+}
+/* Opening: dimensions snap instantly (invisible at that point), only opacity fades in.
+   Higher specificity (.sidebar .x = 0,2,0) overrides global .sidebar * (0,1,1) */
+.sidebar .subscription-info {
+  transition: opacity 250ms ease-in-out;
 }
 
 .subscription-label {
   color: var(--sidebar-text);
   font-size: 12px;
   font-weight: 400;
+  white-space: nowrap;
 }
 
 .subscription-details {
@@ -413,6 +444,7 @@ img { display: block; max-width: 100%; }
   align-items: center;
   gap: 6px;
   color: #fff;
+  white-space: nowrap;
 }
 
 .subscription-plan { font-size: 14px; font-weight: 500; }
