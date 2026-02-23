@@ -150,7 +150,7 @@ img { display: block; max-width: 100%; }
 .sidebar.mini.peek .sidebar-brand   { width: auto; overflow: visible; }
 .sidebar.mini.peek .sidebar-top     { justify-content: flex-start; }
 .sidebar.mini.peek .subscription-card { justify-content: flex-start; gap: 8px; }
-.sidebar.mini.peek .subscription-info { flex: 1; max-width: none; overflow: visible; opacity: 1; height: auto; }
+.sidebar.mini.peek .subscription-info { max-width: 200px; overflow: visible; opacity: 1; }
 
 /* Toggle: back to normal position, arrow still outward (rotate 180deg) */
 .sidebar.mini.peek .sidebar-toggle {
@@ -383,11 +383,9 @@ img { display: block; max-width: 100%; }
 /* Mini mode: show card with only icon centered */
 .sidebar.mini .subscription-card { justify-content: center; gap: 0; }
 .sidebar.mini .subscription-info {
-  flex: 0;
   max-width: 0;
   overflow: hidden;
   opacity: 0;
-  height: 0;
 }
 
 .subscription-icon { color: #fff; flex-shrink: 0; }
@@ -399,6 +397,7 @@ img { display: block; max-width: 100%; }
   align-items: flex-start; /* RTL column: flex-start = inline-start = RIGHT side */
   gap: 4px;
   min-width: 0;
+  max-width: 200px; /* explicit value so CSS can animate both open→mini and mini→open */
 }
 
 .subscription-label {
