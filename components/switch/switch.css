@@ -1,0 +1,292 @@
+/**
+ * Switch Component Styles
+ * کامپوننت سوئیچ - استایل‌ها
+ *
+ * این فایل شامل تمام استایل‌های کامپوننت Switch است
+ * مطابق با Design Tokens استخراج شده از Figma
+ *
+ * ساختار HTML:
+ * <label class="switch">
+ *   <input type="checkbox" class="switch__input" role="switch" />
+ *   <span class="switch__track">
+ *     <span class="switch__thumb">
+ *       <svg class="switch__icon switch__icon--check">...</svg>
+ *       <svg class="switch__icon switch__icon--close">...</svg>
+ *     </span>
+ *   </span>
+ * </label>
+ */
+
+/* ==========================================
+   CSS Custom Properties از Design Tokens
+   ========================================== */
+
+:root {
+  /* Brand Background (Checked Track) */
+  --switch-brand-bg-rest: var(--brand-400);
+  --switch-brand-bg-hover: var(--brand-500);
+  --switch-brand-bg-pressed: var(--brand-700);
+
+  /* Brand Stroke */
+  --switch-brand-stroke-primary: var(--brand-400);
+  --switch-brand-stroke-secondary: var(--brand-5);
+
+  /* Brand Foreground (Checked Icon) */
+  --switch-brand-fg-rest: var(--brand-400);
+
+  /* Neutral Background */
+  --switch-neutral-bg-primary: var(--neutral-20);
+  --switch-neutral-bg-rest: var(--neutral-0);
+  --switch-neutral-bg-hover: var(--neutral-20);
+  --switch-neutral-bg-pressed: var(--neutral-120);
+  --switch-neutral-bg-disabled: var(--neutral-80);
+
+  /* Neutral Stroke */
+  --switch-neutral-stroke-rest: var(--neutral-100);
+  --switch-neutral-stroke-disabled: var(--neutral-120);
+
+  /* Neutral Foreground */
+  --switch-neutral-fg-primary: var(--neutral-880);
+  --switch-neutral-fg-secondary: var(--neutral-660);
+  --switch-neutral-fg-disabled: var(--neutral-260);
+
+  /* Radius */
+  --switch-radius-full: 360px;
+  --switch-radius-container: 4px;
+
+  /* Size */
+  --switch-width: 56px;
+  --switch-height: 36px;
+  --switch-thumb-size: 22px;
+  --switch-icon-size: 14px;
+
+  /* Spacing */
+  --switch-padding: 8px;
+  --switch-track-padding: 4px;
+
+  /* Transition */
+  --switch-transition: 0.2s ease;
+}
+
+/* ==========================================
+   Base Component (ساختار پایه)
+   ========================================== */
+
+.switch {
+  display: inline-flex;
+  align-items: stretch;
+  width: var(--switch-width);
+  height: var(--switch-height);
+  padding: calc(var(--switch-padding) - 1px);
+  border: 1px solid transparent;
+  border-radius: var(--switch-radius-container);
+  cursor: pointer;
+  user-select: none;
+  box-sizing: border-box;
+}
+
+/* ==========================================
+   Hidden Native Input (مخفی‌سازی input)
+   ========================================== */
+
+.switch__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ==========================================
+   Track (نوار پس‌زمینه)
+   ========================================== */
+
+.switch__track {
+  flex: 1;
+  position: relative;
+  border: 1px solid var(--switch-neutral-stroke-rest);
+  border-radius: var(--switch-radius-full);
+  background-color: var(--switch-neutral-bg-rest);
+  box-sizing: border-box;
+  transition:
+    background-color var(--switch-transition),
+    border-color var(--switch-transition);
+}
+
+/* ==========================================
+   Thumb (دایره متحرک)
+   ========================================== */
+
+.switch__thumb {
+  position: absolute;
+  top: 50%;
+  right: -2px;
+  transform: translateY(-50%);
+  width: var(--switch-thumb-size);
+  height: var(--switch-thumb-size);
+  border: 1px solid var(--switch-neutral-stroke-rest);
+  border-radius: var(--switch-radius-full);
+  background-color: var(--switch-neutral-bg-rest);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  transition:
+    right var(--switch-transition),
+    left var(--switch-transition),
+    border-color var(--switch-transition),
+    background-color var(--switch-transition);
+}
+
+/* ==========================================
+   Icon (آیکن داخل Thumb)
+   ========================================== */
+
+.switch__icon {
+  width: var(--switch-icon-size);
+  height: var(--switch-icon-size);
+  flex-shrink: 0;
+  display: none;
+}
+
+.switch__icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* حالت پیش‌فرض: X نمایش، checkmark مخفی */
+.switch__icon--close {
+  display: block;
+  color: var(--switch-neutral-fg-secondary);
+}
+
+/* ==========================================
+   Status: Checked (وضعیت روشن)
+   ========================================== */
+
+/* Track — Checked */
+.switch__input:checked ~ .switch__track {
+  background-color: var(--switch-brand-bg-rest);
+  border-color: var(--switch-brand-stroke-secondary);
+}
+
+/* Thumb Position — Checked (سمت end) */
+.switch__input:checked ~ .switch__track .switch__thumb {
+  right: calc(100% - 20px);
+  border-color: var(--switch-brand-stroke-primary);
+}
+
+/* Icon — Checked: checkmark نمایش، X مخفی */
+.switch__input:checked ~ .switch__track .switch__icon--check {
+  display: block;
+  color: var(--switch-brand-fg-rest);
+}
+
+.switch__input:checked ~ .switch__track .switch__icon--close {
+  display: none;
+}
+
+/* ==========================================
+   State: Hover — Unchecked (هاور — خاموش)
+   ========================================== */
+
+.switch:hover .switch__input:not(:checked):not(:disabled) ~ .switch__track {
+  background-color: var(--switch-neutral-bg-hover);
+}
+
+/* ==========================================
+   State: Hover — Checked (هاور — روشن)
+   ========================================== */
+
+.switch:hover .switch__input:checked:not(:disabled) ~ .switch__track {
+  background-color: var(--switch-brand-bg-hover);
+}
+
+/* ==========================================
+   State: Pressed — Unchecked (فشرده — خاموش)
+   ========================================== */
+
+.switch:active .switch__input:not(:checked):not(:disabled) ~ .switch__track {
+  background-color: var(--switch-neutral-bg-pressed);
+}
+
+/* ==========================================
+   State: Pressed — Checked (فشرده — روشن)
+   ========================================== */
+
+.switch:active .switch__input:checked:not(:disabled) ~ .switch__track {
+  background-color: var(--switch-brand-bg-pressed);
+}
+
+/* ==========================================
+   State: Focus (فوکوس — ناوبری کیبورد)
+   ========================================== */
+
+.switch:has(.switch__input:focus-visible) {
+  border-color: var(--switch-neutral-fg-primary);
+}
+
+/* فال‌بک برای مرورگرهای بدون :has() */
+@supports not selector(:has(*)) {
+  .switch:focus-within {
+    border-color: var(--switch-neutral-fg-primary);
+  }
+}
+
+/* ==========================================
+   State: Disabled (غیرفعال)
+   ========================================== */
+
+/* Disabled — Track (هر دو checked و unchecked) */
+.switch__input:disabled ~ .switch__track {
+  background-color: var(--switch-neutral-bg-primary);
+  border-color: var(--switch-neutral-stroke-disabled);
+}
+
+/* Disabled — Thumb */
+.switch__input:disabled ~ .switch__track .switch__thumb {
+  background-color: var(--switch-neutral-bg-disabled);
+  border-color: var(--switch-neutral-stroke-disabled);
+}
+
+/* Disabled — Icon */
+.switch__input:disabled ~ .switch__track .switch__icon--close {
+  color: var(--switch-neutral-fg-disabled);
+}
+
+.switch__input:disabled:checked ~ .switch__track .switch__icon--check {
+  color: var(--switch-neutral-fg-disabled);
+}
+
+/* Disabled — Cursor */
+.switch:has(.switch__input:disabled) {
+  cursor: not-allowed;
+}
+
+@supports not selector(:has(*)) {
+  .switch--disabled {
+    cursor: not-allowed;
+  }
+}
+
+/* ==========================================
+   RTL / LTR Support (پشتیبانی راست‌به‌چپ)
+   ========================================== */
+
+/* LTR Override — Thumb Position */
+[dir="ltr"] .switch__thumb,
+.switch[dir="ltr"] .switch__thumb {
+  right: auto;
+  left: -2px;
+}
+
+[dir="ltr"] .switch__input:checked ~ .switch__track .switch__thumb,
+.switch[dir="ltr"] .switch__input:checked ~ .switch__track .switch__thumb {
+  right: auto;
+  left: calc(100% - 20px);
+}

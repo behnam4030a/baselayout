@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tag Component - دمو کامپوننت تگ</title>
+  <link rel="stylesheet" href="../colors/colors.css">
+  <link rel="stylesheet" href="../typography/typography.css">
+  <link rel="stylesheet" href="tag.css">
+  <script src="tag.js" defer></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Peyda(FaNum)', sans-serif;
+      background: #f6f8fa;
+      padding: 40px 20px;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: 32px;
+      margin-bottom: 16px;
+      color: #222323;
+    }
+
+    h2 {
+      font-size: 24px;
+      margin-top: 48px;
+      margin-bottom: 24px;
+      color: #222323;
+      border-bottom: 2px solid #e2e4e6;
+      padding-bottom: 8px;
+    }
+
+    h3 {
+      font-size: 18px;
+      margin-top: 32px;
+      margin-bottom: 16px;
+      color: #59595a;
+    }
+
+    .section-desc {
+      color: #59595a;
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+
+    .demo-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .demo-item {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .demo-label {
+      font-size: 11px;
+      color: #9a9b9d;
+      font-family: monospace;
+      direction: ltr;
+      text-align: left;
+    }
+
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .demo-card {
+      background: #ffffff;
+      border: 1px solid #e2e4e6;
+      border-radius: 8px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .demo-card__title {
+      font-size: 10px;
+      color: #9a9b9d;
+      font-family: monospace;
+      direction: ltr;
+      text-align: center;
+      border-bottom: 1px solid #f0f0f0;
+      padding-bottom: 4px;
+      width: 100%;
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 24px;
+      font-size: 14px;
+    }
+
+    .comparison-table th,
+    .comparison-table td {
+      padding: 12px 16px;
+      border: 1px solid #e2e4e6;
+      text-align: right;
+    }
+
+    .comparison-table th {
+      background: #f6f8fa;
+      font-weight: 500;
+      color: #222323;
+    }
+
+    .comparison-table td {
+      background: #ffffff;
+    }
+
+    .matrix-section {
+      overflow-x: auto;
+      margin-bottom: 32px;
+    }
+
+    .matrix-table {
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    .matrix-table th,
+    .matrix-table td {
+      padding: 10px 12px;
+      border: 1px solid #e2e4e6;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .matrix-table th {
+      background: #f6f8fa;
+      font-weight: 500;
+      color: #222323;
+      font-size: 11px;
+    }
+
+    .matrix-table td {
+      background: #ffffff;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <h1>Tag Component</h1>
+  <p class="section-desc">
+    یک تگ نمایانگر مقداری است که شخصی انتخاب کرده است، مانند گیرندگان یک ایمیل یا دسته‌بندی‌های یک برنامه‌ریزی.
+    برچسب‌ها یک الگوی بصری ایجاد می‌کنند که به افراد امکان می‌دهند بدانند می‌توانند انتخاب را تغییر دهند یا حذف کنند.
+  </p>
+
+  <!-- ==========================================
+       1. Filled Style — 4 رنگ × حالت‌ها
+       ========================================== -->
+
+  <h2>۱. Filled Style</h2>
+  <p class="section-desc">تگ با پس‌زمینه رنگی و border سفید</p>
+
+  <h3>Gray</h3>
+  <div class="demo-row">
+    <div class="demo-item">
+      <span class="demo-label">Rest</span>
+      <span class="tag tag--filled tag--gray tag--medium tag--rounded">
+        <span class="tag__text">متن تگ</span>
+      </span>
+    </div>
+    <div class="demo-item">
+      <span class="demo-label">Hover (mouse over)</span>
+      <span class="tag tag--filled tag--gray tag--medium tag--rounded">
+        <span class="tag__text">متن تگ</span>
+      </span>
+    </div>
+    <div class="demo-item">
+      <span class="demo-label">Focus</span>
+      <span class="tag tag--filled tag--gray tag--medium tag--rounded tag--focused" tabindex="0">
+        <span class="tag__text">متن تگ</span>
+      </span>
+    </div>
+    <div class="demo-item">
+      <span class="demo-label">Disabled</span>
+      <span class="tag tag--filled tag--gray tag--medium tag--rounded tag--disabled">
+        <span class="tag__text">متن تگ</span>
+      </span>
+    </div>
+  </div>
+
+  <h3>Green</h3>
+  <div class="demo-row">
+    <div class="demo-item">
+      <span class="demo-label">Rest</span>
+      <span class="tag tag--filled tag--green tag--medium tag--rounded">
+        <span class="tag__text">متن تگ</span>
+      </span>
+    </div>
+    <div class="demo-item">
+      <span class="demo-label">Hover (mouse over)</span>
+      <span class="tag tag--filled tag--green tag--medium tag--rounded">
+        <span class="tag__text">متن تگ</span>
+      </span>
+    </div>
+    <div class="demo-item">
+      <span class="demo-label">Focus</span>
+      <span class="tag tag--filled tag--green tag--medium tag--rounded tag--focused" tabindex="0">
+        <span class="tag__text">متن تگ</span>
+      </span>
+    </div>
+    <div class="demo-item">
+      <span class="demo-label">Disabled</span>
+      <span class="tag tag--filled tag--green tag--medium tag--rounded tag--disabled">
+        <span class="tag__text">متن تگ</span>
+      </span>
+    </div>
+  </div>
+
+  <h3>Orange</h3>
+  <div class="demo-row">
+    <div class="demo-item">
+      <span class="demo-label">Rest</span>
+      <span class="tag tag--filled tag--orange tag--medium tag--rounded">
+        <span class="tag__text">متن تگ</span>
+      </span>
+    </div>
+    <div class="demo-item">
+      <span class="demo-label">Hover (mouse over)</span>
+      <span class="tag tag--filled tag--orange tag--medium tag--rounded">
+        <span class="tag__text">متن تگ</span>
+      </span>
+    </div>
+    <div class="demo-item">
+      <span class="demo-label">Focus</span>
+      <span class="tag tag--filled tag--orange tag--medium tag--rounded tag--focused" tabindex="0">
+        <span class="tag__text">متن تگ</span>
+      </span>
+    </div>
+    <div class="demo-item">
+      <span class="demo-label">Disabled</span>
+      <span class="tag tag--filled tag--orange tag--medium tag--rounded tag--disabled">
+        <span class="tag__text">متن تگ</span>
+      </span>
+    </div>
+  </div>
+
+  <h3>Red</h3>
+  <div class="demo-row">
+    <div class="demo-item">
+      <span class="demo-label">Rest</span>
+      <span class="tag tag--filled tag--red tag--medium tag--rounded">
+        <span class="tag__text">متن تگ</span>
+      </span>
+    </div>
+    <div class="demo-item">
+      <span class="demo-label">Hover (mouse over)</span>
+      <span class="tag tag--filled tag--red tag--medium tag--rounded">
+        <span class="tag__text">متن تگ</span>
+      </span>
+    </div>
+    <div class="demo-item">
+      <span class="demo-label">Focus</span>
+      <span class="tag tag--filled tag--red tag--medium tag--rounded tag--focused" tabindex="0">
+        <span class="tag__text">متن تگ</span>
+      </span>
+    </div>
+    <div class="demo-item">
+      <span class="demo-label">Disabled</span>
+      <span class="tag tag--filled tag--red tag--medium tag--rounded tag--disabled">
+        <span class="tag__text">متن تگ</span>
+      </span>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       2. Outline Style — 4 رنگ × حالت‌ها
+       ========================================== -->
+
+  <h2>۲. Outline Style</h2>
+  <p class="section-desc">تگ بدون پس‌زمینه با border رنگی</p>
+
+  <h3>Gray</h3>
+  <div class="demo-row">
+    <div class="demo-item">
+      <span class="demo-label">Rest</span>
+      <span class="tag tag--outline tag--gray tag--medium tag--rounded">
+        <span class="tag__text">متن تگ</span>
+      </span>
+    </div>
+    <div class="demo-item">
+      <span class="demo-label">Hover (mouse over)</span>
+      <span class="tag tag--outline tag--gray tag--medium tag--rounded">
+        <span class="tag__text">متن تگ</span>
+      </span>
+    </div>
+    <div class="demo-item">
+      <span class="demo-label">Focus</span>
+      <span class="tag tag--outline tag--gray tag--medium tag--rounded tag--focused" tabindex="0">
+        <span class="tag__text">متن تگ</span>
+      </span>
+    </div>
+    <div class="demo-item">
+      <span class="demo-label">Disabled</span>
+      <span class="tag tag--outline tag--gray tag--medium tag--rounded tag--disabled">
+        <span class="tag__text">متن تگ</span>
+      </span>
+    </div>
+  </div>
+
+  <h3>Green</h3>
+  <div class="demo-row">
+    <div class="demo-item">
+      <span class="demo-label">Rest</span>
+      <span class="tag tag--outline tag--green tag--medium tag--rounded">
+        <span class="tag__text">متن تگ</span>
+      </span>
+    </div>
+    <div class="demo-item">
+      <span class="demo-label">Hover (mouse over)</span>
+      <span class="tag tag--outline tag--green tag--medium tag--rounded">
+        <span class="tag__text">متن تگ</span>
+      </span>
+    </div>
+    <div class="demo-item">
+      <span class="demo-label">Focus</span>
+      <span class="tag tag--outline tag--green tag--medium tag--rounded tag--focused" tabindex="0">
+        <span class="tag__text">متن تگ</span>
+      </span>
+    </div>
+    <div class="demo-item">
+      <span class="demo-label">Disabled</span>
+      <span class="tag tag--outline tag--green tag--medium tag--rounded tag--disabled">
+        <span class="tag__text">متن تگ</span>
+      </span>
+    </div>
+  </div>
+
+  <h3>Orange</h3>
+  <div class="demo-row">
+    <div class="demo-item">
+      <span class="demo-label">Rest</span>
+      <span class="tag tag--outline tag--orange tag--medium tag--rounded">
+        <span class="tag__text">متن تگ</span>
+      </span>
+    </div>
+    <div class="demo-item">
+      <span class="demo-label">Hover (mouse over)</span>
+      <span class="tag tag--outline tag--orange tag--medium tag--rounded">
+        <span class="tag__text">متن تگ</span>
+      </span>
+    </div>
+    <div class="demo-item">
+      <span class="demo-label">Focus</span>
+      <span class="tag tag--outline tag--orange tag--medium tag--rounded tag--focused" tabindex="0">
+        <span class="tag__text">متن تگ</span>
+      </span>
+    </div>
+    <div class="demo-item">
+      <span class="demo-label">Disabled</span>
+      <span class="tag tag--outline tag--orange tag--medium tag--rounded tag--disabled">
+        <span class="tag__text">متن تگ</span>
+      </span>
+    </div>
+  </div>
+
+  <h3>Red</h3>
+  <div class="demo-row">
+    <div class="demo-item">
+      <span class="demo-label">Rest</span>
+      <span class="tag tag--outline tag--red tag--medium tag--rounded">
+        <span class="tag__text">متن تگ</span>
+      </span>
+    </div>
+    <div class="demo-item">
+      <span class="demo-label">Hover (mouse over)</span>
+      <span class="tag tag--outline tag--red tag--medium tag--rounded">
+        <span class="tag__text">متن تگ</span>
+      </span>
+    </div>
+    <div class="demo-item">
+      <span class="demo-label">Focus</span>
+      <span class="tag tag--outline tag--red tag--medium tag--rounded tag--focused" tabindex="0">
+        <span class="tag__text">متن تگ</span>
+      </span>
+    </div>
+    <div class="demo-item">
+      <span class="demo-label">Disabled</span>
+      <span class="tag tag--outline tag--red tag--medium tag--rounded tag--disabled">
+        <span class="tag__text">متن تگ</span>
+      </span>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       3. سایزها
+       ========================================== -->
+
+  <h2>۳. سایزها</h2>
+  <p class="section-desc">سه سایز: Large (37px)، Medium (32px)، Small (24px)</p>
+
+  <div class="demo-row">
+    <div class="demo-item">
+      <span class="demo-label">Large</span>
+      <span class="tag tag--filled tag--gray tag--large tag--rounded">
+        <span class="tag__text">متن تگ</span>
+      </span>
+    </div>
+    <div class="demo-item">
+      <span class="demo-label">Medium</span>
+      <span class="tag tag--filled tag--gray tag--medium tag--rounded">
+        <span class="tag__text">متن تگ</span>
+      </span>
+    </div>
+    <div class="demo-item">
+      <span class="demo-label">Small</span>
+      <span class="tag tag--filled tag--gray tag--small tag--rounded">
+        <span class="tag__text">متن تگ</span>
+      </span>
+    </div>
+  </div>
+
+  <div class="demo-row" style="margin-top: 16px;">
+    <div class="demo-item">
+      <span class="demo-label">Large (Outline)</span>
+      <span class="tag tag--outline tag--green tag--large tag--rounded">
+        <span class="tag__text">متن تگ</span>
+      </span>
+    </div>
+    <div class="demo-item">
+      <span class="demo-label">Medium (Outline)</span>
+      <span class="tag tag--outline tag--green tag--medium tag--rounded">
+        <span class="tag__text">متن تگ</span>
+      </span>
+    </div>
+    <div class="demo-item">
+      <span class="demo-label">Small (Outline)</span>
+      <span class="tag tag--outline tag--green tag--small tag--rounded">
+        <span class="tag__text">متن تگ</span>
+      </span>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       4. شکل گوشه‌ها (Radius)
+       ========================================== -->
+
+  <h2>۴. شکل گوشه‌ها</h2>
+  <p class="section-desc">دو شکل: Rounded (8px) و Circular (360px / pill)</p>
+
+  <div class="demo-row">
+    <div class="demo-item">
+      <span class="demo-label">Rounded</span>
+      <span class="tag tag--filled tag--gray tag--medium tag--rounded">
+        <span class="tag__text">متن تگ</span>
+      </span>
+    </div>
+    <div class="demo-item">
+      <span class="demo-label">Circular</span>
+      <span class="tag tag--filled tag--gray tag--medium tag--circular">
+        <span class="tag__text">متن تگ</span>
+      </span>
+    </div>
+    <div class="demo-item">
+      <span class="demo-label">Rounded (Outline)</span>
+      <span class="tag tag--outline tag--orange tag--medium tag--rounded">
+        <span class="tag__text">متن تگ</span>
+      </span>
+    </div>
+    <div class="demo-item">
+      <span class="demo-label">Circular (Outline)</span>
+      <span class="tag tag--outline tag--orange tag--medium tag--circular">
+        <span class="tag__text">متن تگ</span>
+      </span>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       5. Dismiss Icon
+       ========================================== -->
+
+  <h2>۵. Dismiss Icon (دکمه حذف)</h2>
+  <p class="section-desc">نمایش آیکن × برای حذف تگ</p>
+
+  <div class="demo-row">
+    <div class="demo-item">
+      <span class="demo-label">Filled Gray + Dismiss</span>
+      <span class="tag tag--filled tag--gray tag--medium tag--rounded">
+        <span class="tag__text">متن تگ</span>
+        <button class="tag__dismiss" aria-label="حذف تگ">
+          <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M4.25 4.25L9.75 9.75M9.75 4.25L4.25 9.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+      </span>
+    </div>
+    <div class="demo-item">
+      <span class="demo-label">Filled Green + Dismiss</span>
+      <span class="tag tag--filled tag--green tag--medium tag--rounded">
+        <span class="tag__text">متن تگ</span>
+        <button class="tag__dismiss" aria-label="حذف تگ">
+          <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M4.25 4.25L9.75 9.75M9.75 4.25L4.25 9.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+      </span>
+    </div>
+    <div class="demo-item">
+      <span class="demo-label">Outline Orange + Dismiss</span>
+      <span class="tag tag--outline tag--orange tag--medium tag--rounded">
+        <span class="tag__text">متن تگ</span>
+        <button class="tag__dismiss" aria-label="حذف تگ">
+          <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M4.25 4.25L9.75 9.75M9.75 4.25L4.25 9.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+      </span>
+    </div>
+    <div class="demo-item">
+      <span class="demo-label">Disabled + Dismiss</span>
+      <span class="tag tag--filled tag--gray tag--medium tag--rounded tag--disabled">
+        <span class="tag__text">متن تگ</span>
+        <button class="tag__dismiss" aria-label="حذف تگ">
+          <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M4.25 4.25L9.75 9.75M9.75 4.25L4.25 9.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+      </span>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       6. Trailing Icon
+       ========================================== -->
+
+  <h2>۶. Trailing Icon (آیکن کنار متن)</h2>
+  <p class="section-desc">نمایش آیکن در سمت start (قبل از متن)</p>
+
+  <div class="demo-row">
+    <div class="demo-item">
+      <span class="demo-label">Filled Gray + Icon</span>
+      <span class="tag tag--filled tag--gray tag--medium tag--rounded">
+        <span class="tag__text">متن تگ</span>
+        <span class="tag__icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M19.5 3.75H4.5C4.08579 3.75 3.75 4.08579 3.75 4.5V19.5C3.75 19.9142 4.08579 20.25 4.5 20.25H19.5C19.9142 20.25 20.25 19.9142 20.25 19.5V4.5C20.25 4.08579 19.9142 3.75 19.5 3.75Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M8.25 10.5H15.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M8.25 14.25H12.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </span>
+      </span>
+    </div>
+    <div class="demo-item">
+      <span class="demo-label">Filled Green + Icon</span>
+      <span class="tag tag--filled tag--green tag--medium tag--rounded">
+        <span class="tag__text">متن تگ</span>
+        <span class="tag__icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M19.5 3.75H4.5C4.08579 3.75 3.75 4.08579 3.75 4.5V19.5C3.75 19.9142 4.08579 20.25 4.5 20.25H19.5C19.9142 20.25 20.25 19.9142 20.25 19.5V4.5C20.25 4.08579 19.9142 3.75 19.5 3.75Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M8.25 10.5H15.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M8.25 14.25H12.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </span>
+      </span>
+    </div>
+    <div class="demo-item">
+      <span class="demo-label">Outline Red + Icon</span>
+      <span class="tag tag--outline tag--red tag--medium tag--rounded">
+        <span class="tag__text">متن تگ</span>
+        <span class="tag__icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M19.5 3.75H4.5C4.08579 3.75 3.75 4.08579 3.75 4.5V19.5C3.75 19.9142 4.08579 20.25 4.5 20.25H19.5C19.9142 20.25 20.25 19.9142 20.25 19.5V4.5C20.25 4.08579 19.9142 3.75 19.5 3.75Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M8.25 10.5H15.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M8.25 14.25H12.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </span>
+      </span>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       7. ترکیبی: Icon + Dismiss
+       ========================================== -->
+
+  <h2>۷. ترکیبی (Icon + Dismiss)</h2>
+  <p class="section-desc">تگ با آیکن و دکمه حذف همزمان</p>
+
+  <div class="demo-row">
+    <div class="demo-item">
+      <span class="demo-label">Filled Gray — Large</span>
+      <span class="tag tag--filled tag--gray tag--large tag--rounded">
+        <span class="tag__icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M19.5 3.75H4.5C4.08579 3.75 3.75 4.08579 3.75 4.5V19.5C3.75 19.9142 4.08579 20.25 4.5 20.25H19.5C19.9142 20.25 20.25 19.9142 20.25 19.5V4.5C20.25 4.08579 19.9142 3.75 19.5 3.75Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M8.25 10.5H15.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M8.25 14.25H12.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </span>
+        <span class="tag__text">متن تگ</span>
+        <button class="tag__dismiss" aria-label="حذف تگ">
+          <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M4.25 4.25L9.75 9.75M9.75 4.25L4.25 9.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+      </span>
+    </div>
+    <div class="demo-item">
+      <span class="demo-label">Outline Green — Medium</span>
+      <span class="tag tag--outline tag--green tag--medium tag--circular">
+        <span class="tag__icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M19.5 3.75H4.5C4.08579 3.75 3.75 4.08579 3.75 4.5V19.5C3.75 19.9142 4.08579 20.25 4.5 20.25H19.5C19.9142 20.25 20.25 19.9142 20.25 19.5V4.5C20.25 4.08579 19.9142 3.75 19.5 3.75Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M8.25 10.5H15.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M8.25 14.25H12.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </span>
+        <span class="tag__text">متن تگ</span>
+        <button class="tag__dismiss" aria-label="حذف تگ">
+          <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M4.25 4.25L9.75 9.75M9.75 4.25L4.25 9.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+      </span>
+    </div>
+    <div class="demo-item">
+      <span class="demo-label">Filled Red — Small</span>
+      <span class="tag tag--filled tag--red tag--small tag--rounded">
+        <span class="tag__icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M19.5 3.75H4.5C4.08579 3.75 3.75 4.08579 3.75 4.5V19.5C3.75 19.9142 4.08579 20.25 4.5 20.25H19.5C19.9142 20.25 20.25 19.9142 20.25 19.5V4.5C20.25 4.08579 19.9142 3.75 19.5 3.75Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M8.25 10.5H15.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M8.25 14.25H12.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </span>
+        <span class="tag__text">متن تگ</span>
+        <button class="tag__dismiss" aria-label="حذف تگ">
+          <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M4.25 4.25L9.75 9.75M9.75 4.25L4.25 9.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+      </span>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       8. ماتریس کامل: Filled × Rounded
+       ========================================== -->
+
+  <h2>۸. ماتریس Filled × Rounded</h2>
+  <p class="section-desc">همه ترکیبات رنگ × سایز × حالت — استایل Filled با Rounded</p>
+
+  <div class="matrix-section">
+    <table class="matrix-table">
+      <thead>
+        <tr>
+          <th></th>
+          <th colspan="4">Gray</th>
+          <th colspan="4">Green</th>
+          <th colspan="4">Orange</th>
+          <th colspan="4">Red</th>
+        </tr>
+        <tr>
+          <th>Size</th>
+          <th>Rest</th><th>Hover</th><th>Focus</th><th>Disabled</th>
+          <th>Rest</th><th>Hover</th><th>Focus</th><th>Disabled</th>
+          <th>Rest</th><th>Hover</th><th>Focus</th><th>Disabled</th>
+          <th>Rest</th><th>Hover</th><th>Focus</th><th>Disabled</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>Large</th>
+          <td><span class="tag tag--filled tag--gray tag--large tag--rounded"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--filled tag--gray tag--large tag--rounded" style="background-color: var(--tag-neutral-bg-hover);"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--filled tag--gray tag--large tag--rounded tag--focused"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--filled tag--gray tag--large tag--rounded tag--disabled"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--filled tag--green tag--large tag--rounded"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--filled tag--green tag--large tag--rounded" style="background-color: var(--tag-success-bg-hover);"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--filled tag--green tag--large tag--rounded tag--focused"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--filled tag--green tag--large tag--rounded tag--disabled"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--filled tag--orange tag--large tag--rounded"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--filled tag--orange tag--large tag--rounded" style="background-color: var(--tag-warning-bg-hover);"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--filled tag--orange tag--large tag--rounded tag--focused"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--filled tag--orange tag--large tag--rounded tag--disabled"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--filled tag--red tag--large tag--rounded"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--filled tag--red tag--large tag--rounded" style="background-color: var(--tag-danger-bg-hover);"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--filled tag--red tag--large tag--rounded tag--focused"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--filled tag--red tag--large tag--rounded tag--disabled"><span class="tag__text">متن تگ</span></span></td>
+        </tr>
+        <tr>
+          <th>Medium</th>
+          <td><span class="tag tag--filled tag--gray tag--medium tag--rounded"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--filled tag--gray tag--medium tag--rounded" style="background-color: var(--tag-neutral-bg-hover);"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--filled tag--gray tag--medium tag--rounded tag--focused"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--filled tag--gray tag--medium tag--rounded tag--disabled"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--filled tag--green tag--medium tag--rounded"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--filled tag--green tag--medium tag--rounded" style="background-color: var(--tag-success-bg-hover);"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--filled tag--green tag--medium tag--rounded tag--focused"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--filled tag--green tag--medium tag--rounded tag--disabled"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--filled tag--orange tag--medium tag--rounded"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--filled tag--orange tag--medium tag--rounded" style="background-color: var(--tag-warning-bg-hover);"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--filled tag--orange tag--medium tag--rounded tag--focused"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--filled tag--orange tag--medium tag--rounded tag--disabled"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--filled tag--red tag--medium tag--rounded"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--filled tag--red tag--medium tag--rounded" style="background-color: var(--tag-danger-bg-hover);"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--filled tag--red tag--medium tag--rounded tag--focused"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--filled tag--red tag--medium tag--rounded tag--disabled"><span class="tag__text">متن تگ</span></span></td>
+        </tr>
+        <tr>
+          <th>Small</th>
+          <td><span class="tag tag--filled tag--gray tag--small tag--rounded"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--filled tag--gray tag--small tag--rounded" style="background-color: var(--tag-neutral-bg-hover);"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--filled tag--gray tag--small tag--rounded tag--focused"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--filled tag--gray tag--small tag--rounded tag--disabled"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--filled tag--green tag--small tag--rounded"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--filled tag--green tag--small tag--rounded" style="background-color: var(--tag-success-bg-hover);"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--filled tag--green tag--small tag--rounded tag--focused"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--filled tag--green tag--small tag--rounded tag--disabled"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--filled tag--orange tag--small tag--rounded"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--filled tag--orange tag--small tag--rounded" style="background-color: var(--tag-warning-bg-hover);"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--filled tag--orange tag--small tag--rounded tag--focused"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--filled tag--orange tag--small tag--rounded tag--disabled"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--filled tag--red tag--small tag--rounded"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--filled tag--red tag--small tag--rounded" style="background-color: var(--tag-danger-bg-hover);"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--filled tag--red tag--small tag--rounded tag--focused"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--filled tag--red tag--small tag--rounded tag--disabled"><span class="tag__text">متن تگ</span></span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ==========================================
+       9. ماتریس کامل: Outline × Rounded
+       ========================================== -->
+
+  <h2>۹. ماتریس Outline × Rounded</h2>
+
+  <div class="matrix-section">
+    <table class="matrix-table">
+      <thead>
+        <tr>
+          <th></th>
+          <th colspan="4">Gray</th>
+          <th colspan="4">Green</th>
+          <th colspan="4">Orange</th>
+          <th colspan="4">Red</th>
+        </tr>
+        <tr>
+          <th>Size</th>
+          <th>Rest</th><th>Hover</th><th>Focus</th><th>Disabled</th>
+          <th>Rest</th><th>Hover</th><th>Focus</th><th>Disabled</th>
+          <th>Rest</th><th>Hover</th><th>Focus</th><th>Disabled</th>
+          <th>Rest</th><th>Hover</th><th>Focus</th><th>Disabled</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>Large</th>
+          <td><span class="tag tag--outline tag--gray tag--large tag--rounded"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--outline tag--gray tag--large tag--rounded" style="border-color: var(--tag-neutral-stroke-rest);"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--outline tag--gray tag--large tag--rounded tag--focused"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--outline tag--gray tag--large tag--rounded tag--disabled"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--outline tag--green tag--large tag--rounded"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--outline tag--green tag--large tag--rounded" style="border-color: var(--tag-success-stroke-secondary); color: var(--tag-success-fg-hover);"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--outline tag--green tag--large tag--rounded tag--focused"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--outline tag--green tag--large tag--rounded tag--disabled"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--outline tag--orange tag--large tag--rounded"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--outline tag--orange tag--large tag--rounded" style="border-color: var(--tag-warning-stroke-secondary); color: var(--tag-warning-fg-hover);"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--outline tag--orange tag--large tag--rounded tag--focused"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--outline tag--orange tag--large tag--rounded tag--disabled"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--outline tag--red tag--large tag--rounded"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--outline tag--red tag--large tag--rounded" style="border-color: var(--tag-danger-stroke-secondary); color: var(--tag-danger-fg-hover);"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--outline tag--red tag--large tag--rounded tag--focused"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--outline tag--red tag--large tag--rounded tag--disabled"><span class="tag__text">متن تگ</span></span></td>
+        </tr>
+        <tr>
+          <th>Medium</th>
+          <td><span class="tag tag--outline tag--gray tag--medium tag--rounded"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--outline tag--gray tag--medium tag--rounded" style="border-color: var(--tag-neutral-stroke-rest);"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--outline tag--gray tag--medium tag--rounded tag--focused"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--outline tag--gray tag--medium tag--rounded tag--disabled"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--outline tag--green tag--medium tag--rounded"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--outline tag--green tag--medium tag--rounded" style="border-color: var(--tag-success-stroke-secondary); color: var(--tag-success-fg-hover);"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--outline tag--green tag--medium tag--rounded tag--focused"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--outline tag--green tag--medium tag--rounded tag--disabled"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--outline tag--orange tag--medium tag--rounded"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--outline tag--orange tag--medium tag--rounded" style="border-color: var(--tag-warning-stroke-secondary); color: var(--tag-warning-fg-hover);"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--outline tag--orange tag--medium tag--rounded tag--focused"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--outline tag--orange tag--medium tag--rounded tag--disabled"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--outline tag--red tag--medium tag--rounded"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--outline tag--red tag--medium tag--rounded" style="border-color: var(--tag-danger-stroke-secondary); color: var(--tag-danger-fg-hover);"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--outline tag--red tag--medium tag--rounded tag--focused"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--outline tag--red tag--medium tag--rounded tag--disabled"><span class="tag__text">متن تگ</span></span></td>
+        </tr>
+        <tr>
+          <th>Small</th>
+          <td><span class="tag tag--outline tag--gray tag--small tag--rounded"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--outline tag--gray tag--small tag--rounded" style="border-color: var(--tag-neutral-stroke-rest);"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--outline tag--gray tag--small tag--rounded tag--focused"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--outline tag--gray tag--small tag--rounded tag--disabled"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--outline tag--green tag--small tag--rounded"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--outline tag--green tag--small tag--rounded" style="border-color: var(--tag-success-stroke-secondary); color: var(--tag-success-fg-hover);"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--outline tag--green tag--small tag--rounded tag--focused"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--outline tag--green tag--small tag--rounded tag--disabled"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--outline tag--orange tag--small tag--rounded"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--outline tag--orange tag--small tag--rounded" style="border-color: var(--tag-warning-stroke-secondary); color: var(--tag-warning-fg-hover);"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--outline tag--orange tag--small tag--rounded tag--focused"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--outline tag--orange tag--small tag--rounded tag--disabled"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--outline tag--red tag--small tag--rounded"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--outline tag--red tag--small tag--rounded" style="border-color: var(--tag-danger-stroke-secondary); color: var(--tag-danger-fg-hover);"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--outline tag--red tag--small tag--rounded tag--focused"><span class="tag__text">متن تگ</span></span></td>
+          <td><span class="tag tag--outline tag--red tag--small tag--rounded tag--disabled"><span class="tag__text">متن تگ</span></span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ==========================================
+       10. پشتیبانی LTR
+       ========================================== -->
+
+  <h2>۱۰. پشتیبانی LTR</h2>
+  <p class="section-desc">نمایش در جهت چپ‌به‌راست</p>
+
+  <div dir="ltr" style="margin-bottom: 24px;">
+    <div class="demo-row">
+      <div class="demo-item">
+        <span class="demo-label">Filled Gray (LTR)</span>
+        <span class="tag tag--filled tag--gray tag--medium tag--rounded">
+          <span class="tag__icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M19.5 3.75H4.5C4.08579 3.75 3.75 4.08579 3.75 4.5V19.5C3.75 19.9142 4.08579 20.25 4.5 20.25H19.5C19.9142 20.25 20.25 19.9142 20.25 19.5V4.5C20.25 4.08579 19.9142 3.75 19.5 3.75Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M8.25 10.5H15.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M8.25 14.25H12.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </span>
+          <span class="tag__text">Tag text</span>
+          <button class="tag__dismiss" aria-label="Remove tag">
+            <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M4.25 4.25L9.75 9.75M9.75 4.25L4.25 9.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+        </span>
+      </div>
+      <div class="demo-item">
+        <span class="demo-label">Outline Green (LTR)</span>
+        <span class="tag tag--outline tag--green tag--medium tag--circular">
+          <span class="tag__text">Tag text</span>
+        </span>
+      </div>
+      <div class="demo-item">
+        <span class="demo-label">Filled Red (LTR)</span>
+        <span class="tag tag--filled tag--red tag--large tag--circular">
+          <span class="tag__text">Tag text</span>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       11. نحوه استفاده
+       ========================================== -->
+
+  <h2>۱۱. نحوه استفاده</h2>
+
+  <h3>تگ ساده</h3>
+  <pre dir="ltr" style="background:#fff;border:1px solid #e2e4e6;border-radius:8px;padding:16px;overflow-x:auto;font-size:13px;line-height:1.6;margin-bottom:16px;"><code>&lt;span class="tag tag--filled tag--gray tag--medium tag--rounded"&gt;
+  &lt;span class="tag__text"&gt;متن تگ&lt;/span&gt;
+&lt;/span&gt;</code></pre>
+
+  <h3>تگ با Dismiss</h3>
+  <pre dir="ltr" style="background:#fff;border:1px solid #e2e4e6;border-radius:8px;padding:16px;overflow-x:auto;font-size:13px;line-height:1.6;margin-bottom:16px;"><code>&lt;span class="tag tag--outline tag--green tag--large tag--circular"&gt;
+  &lt;span class="tag__text"&gt;متن تگ&lt;/span&gt;
+  &lt;button class="tag__dismiss" aria-label="حذف تگ"&gt;
+    &lt;svg width="13" height="13" viewBox="0 0 14 14" fill="none"&gt;
+      &lt;path d="M4.25 4.25L9.75 9.75M9.75 4.25L4.25 9.75"
+        stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/&gt;
+    &lt;/svg&gt;
+  &lt;/button&gt;
+&lt;/span&gt;</code></pre>
+
+  <h3>تگ با Icon</h3>
+  <pre dir="ltr" style="background:#fff;border:1px solid #e2e4e6;border-radius:8px;padding:16px;overflow-x:auto;font-size:13px;line-height:1.6;margin-bottom:16px;"><code>&lt;span class="tag tag--filled tag--orange tag--medium tag--rounded"&gt;
+  &lt;span class="tag__text"&gt;متن تگ&lt;/span&gt;
+  &lt;span class="tag__icon"&gt;
+    &lt;svg width="14" height="14" viewBox="0 0 24 24"&gt;...&lt;/svg&gt;
+  &lt;/span&gt;
+&lt;/span&gt;</code></pre>
+
+</div>
+
+</body>
+</html>

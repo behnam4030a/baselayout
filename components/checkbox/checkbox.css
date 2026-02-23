@@ -1,0 +1,306 @@
+/**
+ * Checkbox Component Styles
+ * کامپوننت چک‌باکس - استایل‌ها
+ *
+ * این فایل شامل تمام استایل‌های کامپوننت Checkbox است
+ * مطابق با Design Tokens استخراج شده از Figma
+ *
+ * ساختار HTML:
+ * <label class="checkbox checkbox--large">
+ *   <input type="checkbox" class="checkbox__input" />
+ *   <span class="checkbox__label">برچسب</span>
+ *   <span class="checkbox__box">
+ *     <span class="checkbox__inner">
+ *       <svg class="checkbox__icon checkbox__icon--check">...</svg>
+ *       <svg class="checkbox__icon checkbox__icon--indeterminate">...</svg>
+ *     </span>
+ *   </span>
+ * </label>
+ */
+
+/* ==========================================
+   CSS Custom Properties از Design Tokens
+   ========================================== */
+
+:root {
+  /* Brand Colors */
+  --checkbox-color-brand-bg-rest: var(--brand-400);
+  --checkbox-color-brand-bg-hover: var(--brand-500);
+  --checkbox-color-brand-bg-pressed: var(--brand-700);
+
+  /* Neutral Foreground */
+  --checkbox-color-neutral-fg-rest: var(--neutral-880);
+  --checkbox-color-neutral-fg-disabled: var(--neutral-260);
+  --checkbox-color-neutral-fg-inverted-rest: var(--neutral-0);
+
+  /* Neutral Stroke */
+  --checkbox-color-neutral-stroke-accessible-rest: var(--neutral-620);
+  --checkbox-color-neutral-stroke-accessible-hover: var(--neutral-660);
+  --checkbox-color-neutral-stroke-accessible-pressed: var(--neutral-700);
+  --checkbox-color-neutral-stroke-disabled-rest: var(--neutral-120);
+
+  /* Radius */
+  --checkbox-radius-inner: 3px;
+  --checkbox-radius-container: 4px;
+
+  /* Spacing */
+  --checkbox-spacing-label-padding: 8px;
+  --checkbox-spacing-container-gap: 2px;
+
+  /* Size */
+  --checkbox-size-boxholder-large: 28px;
+  --checkbox-size-boxholder-medium: 24px;
+  --checkbox-size-box-padding-large: 6px;
+  --checkbox-size-box-padding-medium: 4px;
+  --checkbox-size-icon: 10px;
+
+  /* Transition */
+  --checkbox-transition: 0.15s ease;
+}
+
+/* ==========================================
+   Base Component (ساختار پایه)
+   ========================================== */
+
+.checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--checkbox-spacing-container-gap);
+  border-radius: var(--checkbox-radius-container);
+  border: 1px solid transparent;
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+  font-family: var(--typo-font-family);
+  box-sizing: border-box;
+}
+
+/* ==========================================
+   Hidden Native Input (مخفی‌سازی input)
+   ========================================== */
+
+.checkbox__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ==========================================
+   Label (برچسب)
+   ========================================== */
+
+.checkbox__label {
+  color: var(--checkbox-color-neutral-fg-rest);
+  font-family: var(--typo-font-family);
+  letter-spacing: 0;
+  text-align: right;
+  padding-inline-end: var(--checkbox-spacing-label-padding);
+}
+
+/* ==========================================
+   Box - Boxholder (باکس بیرونی)
+   ========================================== */
+
+.checkbox__box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+/* ==========================================
+   Inner Box (باکس داخلی)
+   ========================================== */
+
+.checkbox__inner {
+  width: 100%;
+  height: 100%;
+  border-radius: var(--checkbox-radius-inner);
+  border: 1px solid var(--checkbox-color-neutral-stroke-accessible-rest);
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+  transition:
+    border-color var(--checkbox-transition),
+    background-color var(--checkbox-transition);
+}
+
+/* ==========================================
+   Icons (آیکون‌ها)
+   ========================================== */
+
+.checkbox__icon {
+  width: var(--checkbox-size-icon);
+  height: var(--checkbox-size-icon);
+  flex-shrink: 0;
+  color: var(--checkbox-color-neutral-fg-inverted-rest);
+  display: none;
+}
+
+.checkbox__icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* ==========================================
+   Size: Large (سایز بزرگ)
+   ========================================== */
+
+.checkbox--large .checkbox__box {
+  width: var(--checkbox-size-boxholder-large);
+  height: var(--checkbox-size-boxholder-large);
+  padding: var(--checkbox-size-box-padding-large);
+}
+
+.checkbox--large .checkbox__label {
+  font-size: var(--typo-body-medium-150-size);
+  font-weight: var(--typo-body-medium-150-weight);
+  line-height: var(--typo-body-medium-150-line-height);
+}
+
+/* ==========================================
+   Size: Medium (سایز متوسط)
+   ========================================== */
+
+.checkbox--medium .checkbox__box {
+  width: var(--checkbox-size-boxholder-medium);
+  height: var(--checkbox-size-boxholder-medium);
+  padding: var(--checkbox-size-box-padding-medium);
+}
+
+.checkbox--medium .checkbox__label {
+  font-size: var(--typo-body-small-150-size);
+  font-weight: var(--typo-body-small-150-weight);
+  line-height: var(--typo-body-small-150-line-height);
+}
+
+/* ==========================================
+   Status: Checked (وضعیت انتخاب شده)
+   ========================================== */
+
+.checkbox__input:checked ~ .checkbox__box .checkbox__inner {
+  border-color: transparent;
+  background-color: var(--checkbox-color-brand-bg-rest);
+}
+
+.checkbox__input:checked ~ .checkbox__box .checkbox__icon--check {
+  display: block;
+}
+
+/* ==========================================
+   Status: Indeterminate (وضعیت نامعین)
+   ========================================== */
+
+.checkbox__input:indeterminate ~ .checkbox__box .checkbox__inner {
+  border-color: transparent;
+  background-color: var(--checkbox-color-brand-bg-rest);
+}
+
+.checkbox__input:indeterminate ~ .checkbox__box .checkbox__icon--indeterminate {
+  display: block;
+}
+
+.checkbox__input:indeterminate ~ .checkbox__box .checkbox__icon--check {
+  display: none;
+}
+
+/* ==========================================
+   State: Hover - Unchecked (هاور - خالی)
+   ========================================== */
+
+.checkbox:hover .checkbox__input:not(:checked):not(:indeterminate):not(:disabled) ~ .checkbox__box .checkbox__inner {
+  border-color: var(--checkbox-color-neutral-stroke-accessible-hover);
+}
+
+/* ==========================================
+   State: Hover - Checked/Indeterminate
+   ========================================== */
+
+.checkbox:hover .checkbox__input:checked:not(:disabled) ~ .checkbox__box .checkbox__inner,
+.checkbox:hover .checkbox__input:indeterminate:not(:disabled) ~ .checkbox__box .checkbox__inner {
+  background-color: var(--checkbox-color-brand-bg-hover);
+}
+
+/* ==========================================
+   State: Pressed - Unchecked (فشرده - خالی)
+   ========================================== */
+
+.checkbox:active .checkbox__input:not(:checked):not(:indeterminate):not(:disabled) ~ .checkbox__box .checkbox__inner {
+  border-color: var(--checkbox-color-neutral-stroke-accessible-pressed);
+}
+
+/* ==========================================
+   State: Pressed - Checked/Indeterminate
+   ========================================== */
+
+.checkbox:active .checkbox__input:checked:not(:disabled) ~ .checkbox__box .checkbox__inner,
+.checkbox:active .checkbox__input:indeterminate:not(:disabled) ~ .checkbox__box .checkbox__inner {
+  background-color: var(--checkbox-color-brand-bg-pressed);
+}
+
+/* ==========================================
+   State: Focused (فوکوس - ناوبری کیبورد)
+   ========================================== */
+
+/* حلقه فوکوس روی کل کامپوننت - مرورگرهای مدرن */
+.checkbox:has(.checkbox__input:focus-visible) {
+  border-color: var(--checkbox-color-neutral-fg-rest);
+}
+
+/* فال‌بک برای مرورگرهای بدون :has() */
+@supports not selector(:has(*)) {
+  .checkbox:focus-within {
+    border-color: var(--checkbox-color-neutral-fg-rest);
+  }
+}
+
+/* ==========================================
+   State: Disabled (غیرفعال)
+   ========================================== */
+
+.checkbox.checkbox--disabled {
+  cursor: not-allowed;
+}
+
+/* Disabled - Unchecked: border خاکستری */
+.checkbox__input:disabled ~ .checkbox__box .checkbox__inner {
+  border-color: var(--checkbox-color-neutral-stroke-disabled-rest);
+  background-color: transparent;
+}
+
+/* Disabled - Checked/Indeterminate: بدون background، فقط border */
+.checkbox__input:disabled:checked ~ .checkbox__box .checkbox__inner,
+.checkbox__input:disabled:indeterminate ~ .checkbox__box .checkbox__inner {
+  background-color: transparent;
+  border-color: var(--checkbox-color-neutral-stroke-disabled-rest);
+}
+
+/* Disabled - آیکون خاکستری */
+.checkbox__input:disabled ~ .checkbox__box .checkbox__icon {
+  color: var(--checkbox-color-neutral-fg-disabled);
+}
+
+/* Disabled - لیبل خاکستری */
+.checkbox__input:disabled ~ .checkbox__label {
+  color: var(--checkbox-color-neutral-fg-disabled);
+}
+
+/* ==========================================
+   RTL Support (پشتیبانی راست‌به‌چپ)
+   ========================================== */
+
+[dir="ltr"] .checkbox__label,
+.checkbox[dir="ltr"] .checkbox__label {
+  text-align: left;
+}

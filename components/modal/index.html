@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modal Component — کامپوننت مودال</title>
+    <link rel="stylesheet" href="../colors/colors.css">
+    <link rel="stylesheet" href="../typography/typography.css">
+    <link rel="stylesheet" href="modal.css">
+    <link rel="stylesheet" href="../button/button.css">
+    <link rel="stylesheet" href="../input/input.css">
+    <link rel="stylesheet" href="../label/label.css">
+    <link rel="stylesheet" href="../select/select.css">
+    <script src="modal.js" defer></script>
+    <script src="../select/select.js" defer></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Peyda(FaNum)', sans-serif;
+            background: #f6f8fa;
+            padding: 40px 24px;
+        }
+        .demo-section {
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+        .demo-section h2 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #222323;
+            margin-bottom: 12px;
+        }
+        .demo-section p {
+            font-size: 14px;
+            color: #59595a;
+            margin-bottom: 16px;
+            line-height: 1.8;
+        }
+        .demo-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- ===========================
+         عنوان صفحه
+         =========================== -->
+
+    <div class="demo-section">
+        <h2>کامپوننت مودال (Modal)</h2>
+        <p>
+            مودال برای نمایش فرم‌ها و محتوایی که نیاز به تمرکز کاربر دارد استفاده می‌شود.
+            در دسکتاپ از سمت راست و در موبایل از پایین صفحه وارد می‌شود.
+        </p>
+    </div>
+
+    <!-- ===========================
+         سایز متوسط (پیش‌فرض) — فرم افزودن کاربر
+         =========================== -->
+
+    <div class="demo-section">
+        <h2>سایز متوسط (Medium — پیش‌فرض)</h2>
+        <div class="demo-buttons">
+            <button class="btn btn--primary btn--large" onclick="Modal.open('modal-medium')">
+                باز کردن مودال متوسط
+            </button>
+        </div>
+    </div>
+
+    <div class="modal" id="modal-medium">
+        <div class="modal__overlay"></div>
+        <!-- Expanded Panel — آزمون -->
+        <div class="modal__expanded" id="panel-exam">
+            <div class="modal__expanded-inner">
+                <div class="modal__expanded-header">
+                    <h3 class="modal__expanded-title">افزودن آزمون</h3>
+                    <div class="modal-field">
+                        <input class="modal-field__input" type="text" placeholder="جستجوی آزمون..." />
+                    </div>
+                    <div class="modal-divider">
+                        <div class="modal-divider__line"></div>
+                    </div>
+                </div>
+                <div class="modal__expanded-content">
+                    <div class="expanded-item">
+                        <span class="expanded-item__name">آزمون ریاضی پایه دهم</span>
+                    </div>
+                    <div class="expanded-item">
+                        <span class="expanded-item__name">آزمون فیزیک پایه یازدهم</span>
+                    </div>
+                    <div class="expanded-item expanded-item--selected">
+                        <span class="expanded-item__name">آزمون شیمی پایه دوازدهم</span>
+                        <svg class="expanded-item__check" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="#26a88c" stroke-width="1.5"/><path d="M6 10.5L9 13L14 7" stroke="#26a88c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                    <div class="expanded-item">
+                        <span class="expanded-item__name">آزمون زبان انگلیسی</span>
+                    </div>
+                    <div class="expanded-item">
+                        <span class="expanded-item__name">آزمون ادبیات فارسی</span>
+                    </div>
+                    <div class="expanded-item">
+                        <span class="expanded-item__name">آزمون عربی عمومی</span>
+                    </div>
+                    <div class="expanded-item">
+                        <span class="expanded-item__name">آزمون زیست‌شناسی</span>
+                    </div>
+                </div>
+                <div class="modal__expanded-footer">
+                    <button class="btn btn--outline btn--large" style="width:100%" onclick="Modal.closePanel('panel-exam')">
+                        ذخیره و بازگشت
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Expanded Panel — گروه -->
+        <div class="modal__expanded" id="panel-group">
+            <div class="modal__expanded-inner">
+                <div class="modal__expanded-header">
+                    <h3 class="modal__expanded-title">انتخاب گروه</h3>
+                    <div class="modal-field">
+                        <input class="modal-field__input" type="text" placeholder="جستجوی گروه..." />
+                    </div>
+                    <div class="modal-divider">
+                        <div class="modal-divider__line"></div>
+                    </div>
+                </div>
+                <div class="modal__expanded-content">
+                    <div class="expanded-item">
+                        <span class="expanded-item__name">گروه الف</span>
+                    </div>
+                    <div class="expanded-item expanded-item--selected">
+                        <span class="expanded-item__name">گروه ب</span>
+                        <svg class="expanded-item__check" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="#26a88c" stroke-width="1.5"/><path d="M6 10.5L9 13L14 7" stroke="#26a88c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                    <div class="expanded-item">
+                        <span class="expanded-item__name">گروه ج</span>
+                    </div>
+                    <div class="expanded-item">
+                        <span class="expanded-item__name">گروه د</span>
+                    </div>
+                </div>
+                <div class="modal__expanded-footer">
+                    <button class="btn btn--outline btn--large" style="width:100%" onclick="Modal.closePanel('panel-group')">
+                        ذخیره و بازگشت
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="modal__container">
+            <div class="modal__header">
+                <div class="modal__title-block">
+                    <div class="modal__icon-holder">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <path d="M15.5 7.5C15.5 9.433 13.933 11 12 11C10.067 11 8.5 9.433 8.5 7.5C8.5 5.567 10.067 4 12 4C13.933 4 15.5 5.567 15.5 7.5Z" stroke="currentColor" stroke-width="1.5"/>
+                            <path d="M19.5 20C19.5 16.134 16.142 13 12 13C7.858 13 4.5 16.134 4.5 20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M19 8V12M21 10H17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h2 class="modal__title">افزودن کاربر جدید</h2>
+                </div>
+                <button class="modal__close" type="button" aria-label="بستن">
+                    <svg viewBox="0 0 24 24" fill="none"><path d="M5.25 5.25L18.75 18.75M18.75 5.25L5.25 18.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </button>
+            </div>
+            <div class="modal__body">
+                <div class="modal__content">
+                    <!-- کد اختصاصی — input با آیکن قبل -->
+                    <div class="modal-field">
+                        <label class="label label--large label--required" for="modal-code">
+                            <span class="label__text">کد اختصاصی</span>
+                            <span class="label__required">*</span>
+                        </label>
+                        <div class="input input--large input--full-width">
+                            <div class="input__container">
+                                <span class="input__icon input__icon--before">
+                                    <svg viewBox="0 0 20 20" fill="none"><path d="M4 7h12M4 13h12M8 3L6.5 17M13.5 3L12 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                                </span>
+                                <span class="input__divider"></span>
+                                <input id="modal-code" type="text" class="input__field" placeholder="کد اختصاصی کاربر" />
+                            </div>
+                            <span class="input__indicator"></span>
+                        </div>
+                    </div>
+
+                    <!-- جداکننده -->
+                    <div class="modal-divider">
+                        <div class="modal-divider__line"></div>
+                        <span class="modal-divider__text">اطلاعات اختیاری</span>
+                        <div class="modal-divider__line" style="width: 8px; flex: none;"></div>
+                    </div>
+
+                    <!-- نام و نام خانوادگی — input با آیکن قبل -->
+                    <div class="modal-field">
+                        <label class="label label--large" for="modal-name">
+                            <span class="label__text">نام و نام خانوادگی</span>
+                        </label>
+                        <div class="input input--large input--full-width">
+                            <div class="input__container">
+                                <span class="input__icon input__icon--before">
+                                    <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="7" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M4 17c0-3.31 2.69-6 6-6s6 2.69 6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                                </span>
+                                <span class="input__divider"></span>
+                                <input id="modal-name" type="text" class="input__field" placeholder="مانند علی میرهادی" />
+                            </div>
+                            <span class="input__indicator"></span>
+                        </div>
+                    </div>
+
+                    <!-- شماره تماس — input با آیکن قبل -->
+                    <div class="modal-field">
+                        <label class="label label--large" for="modal-phone">
+                            <span class="label__text">شماره تماس</span>
+                        </label>
+                        <div class="input input--large input--full-width">
+                            <div class="input__container">
+                                <span class="input__icon input__icon--before">
+                                    <svg viewBox="0 0 20 20" fill="none"><path d="M3 5c0-1.1.9-2 2-2h2l1.5 3.5L7 8c1 2 3 4 5 5l1.5-1.5L17 13v2c0 1.1-.9 2-2 2A13 13 0 013 5z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                </span>
+                                <span class="input__divider"></span>
+                                <input id="modal-phone" type="text" class="input__field" placeholder="مانند 09215863622" />
+                            </div>
+                            <span class="input__indicator"></span>
+                        </div>
+                    </div>
+
+                    <!-- آزمون — input دو آیکن (کلیک باز می‌کند پنل جانبی) -->
+                    <div class="modal-field">
+                        <label class="label label--large" for="modal-exam">
+                            <span class="label__text">آزمون</span>
+                        </label>
+                        <div class="input input--large input--full-width" onclick="Modal.openPanel('panel-exam')" style="cursor: pointer;">
+                            <div class="input__container">
+                                <span class="input__icon input__icon--before">
+                                    <svg viewBox="0 0 20 20" fill="none"><path d="M6 2h5l5 5v9a2 2 0 01-2 2H6a2 2 0 01-2-2V4a2 2 0 012-2z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M11 2v5h5M8 10h4M8 14h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                                </span>
+                                <span class="input__divider"></span>
+                                <input id="modal-exam" type="text" class="input__field" placeholder="آزمون مورد نظر را انتخاب کنید" readonly />
+                                <span class="input__icon input__icon--after">
+                                    <svg viewBox="0 0 20 20" fill="none"><path d="M12.5 15L7.5 10L12.5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                </span>
+                            </div>
+                            <span class="input__indicator"></span>
+                        </div>
+                    </div>
+
+                    <!-- گروه — input دو آیکن (کلیک باز می‌کند پنل جانبی) -->
+                    <div class="modal-field">
+                        <label class="label label--large" for="modal-group">
+                            <span class="label__text">گروه</span>
+                        </label>
+                        <div class="input input--large input--full-width" onclick="Modal.openPanel('panel-group')" style="cursor: pointer;">
+                            <div class="input__container">
+                                <span class="input__icon input__icon--before">
+                                    <svg viewBox="0 0 20 20" fill="none"><circle cx="7" cy="7" r="2.5" stroke="currentColor" stroke-width="1.5"/><circle cx="14" cy="7" r="2.5" stroke="currentColor" stroke-width="1.5"/><path d="M1.5 17c0-2.76 2.46-5 5.5-5 1.1 0 2.13.27 3 .73M14 12c3.04 0 5.5 2.24 5.5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                                </span>
+                                <span class="input__divider"></span>
+                                <input id="modal-group" type="text" class="input__field" placeholder="گروه‌بندی را انتخاب کنید" readonly />
+                                <span class="input__icon input__icon--after">
+                                    <svg viewBox="0 0 20 20" fill="none"><path d="M12.5 15L7.5 10L12.5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                </span>
+                            </div>
+                            <span class="input__indicator"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal__actions">
+                    <button class="btn btn--primary btn--large" style="width:100%" onclick="Modal.close('modal-medium')">
+                        تایید و افزودن کاربر
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===========================
+         سایز کوچک (Small)
+         =========================== -->
+
+    <div class="demo-section">
+        <h2>سایز کوچک (Small)</h2>
+        <div class="demo-buttons">
+            <button class="btn btn--outline btn--large" onclick="Modal.open('modal-small')">
+                باز کردن مودال کوچک
+            </button>
+        </div>
+    </div>
+
+    <div class="modal modal--sm" id="modal-small">
+        <div class="modal__overlay"></div>
+        <div class="modal__container">
+            <div class="modal__header">
+                <div class="modal__title-block">
+                    <div class="modal__icon-holder">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <path d="M12 8V16M8 12H16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                            <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/>
+                        </svg>
+                    </div>
+                    <h2 class="modal__title">تایید عملیات</h2>
+                </div>
+                <button class="modal__close" type="button" aria-label="بستن">
+                    <svg viewBox="0 0 24 24" fill="none"><path d="M5.25 5.25L18.75 18.75M18.75 5.25L5.25 18.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </button>
+            </div>
+            <div class="modal__body">
+                <div class="modal__content">
+                    <div class="modal-field">
+                        <span class="modal-field__label">توضیحات</span>
+                        <input class="modal-field__input" type="text" placeholder="توضیحات را وارد کنید" />
+                    </div>
+                </div>
+                <div class="modal__actions">
+                    <button class="btn btn--primary btn--large" style="width:100%" onclick="Modal.close('modal-small')">
+                        تایید
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===========================
+         سایز بزرگ (Large) — محتوای طولانی
+         =========================== -->
+
+    <div class="demo-section">
+        <h2>سایز بزرگ (Large) — محتوای طولانی</h2>
+        <div class="demo-buttons">
+            <button class="btn btn--outline btn--large" onclick="Modal.open('modal-large')">
+                باز کردن مودال بزرگ
+            </button>
+        </div>
+    </div>
+
+    <div class="modal modal--lg" id="modal-large">
+        <div class="modal__overlay"></div>
+        <div class="modal__container">
+            <div class="modal__header">
+                <div class="modal__title-block">
+                    <div class="modal__icon-holder">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <path d="M4 6H20M4 12H20M4 18H12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h2 class="modal__title">فرم ثبت‌نام کامل</h2>
+                </div>
+                <button class="modal__close" type="button" aria-label="بستن">
+                    <svg viewBox="0 0 24 24" fill="none"><path d="M5.25 5.25L18.75 18.75M18.75 5.25L5.25 18.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </button>
+            </div>
+            <div class="modal__body">
+                <div class="modal__content">
+                    <div class="modal-field">
+                        <span class="modal-field__label modal-field__label--required">نام</span>
+                        <input class="modal-field__input" type="text" placeholder="نام خود را وارد کنید" />
+                    </div>
+                    <div class="modal-field">
+                        <span class="modal-field__label modal-field__label--required">نام خانوادگی</span>
+                        <input class="modal-field__input" type="text" placeholder="نام خانوادگی خود را وارد کنید" />
+                    </div>
+                    <div class="modal-field">
+                        <span class="modal-field__label modal-field__label--required">ایمیل</span>
+                        <input class="modal-field__input" type="email" placeholder="example@domain.com" />
+                    </div>
+
+                    <div class="modal-divider">
+                        <div class="modal-divider__line"></div>
+                        <span class="modal-divider__text">اطلاعات تکمیلی</span>
+                        <div class="modal-divider__line" style="width: 8px; flex: none;"></div>
+                    </div>
+
+                    <div class="modal-field">
+                        <span class="modal-field__label">شماره تماس</span>
+                        <input class="modal-field__input" type="text" placeholder="مانند 09215863622" />
+                    </div>
+                    <div class="modal-field">
+                        <span class="modal-field__label">آدرس</span>
+                        <input class="modal-field__input" type="text" placeholder="آدرس خود را وارد کنید" />
+                    </div>
+                    <div class="modal-field">
+                        <span class="modal-field__label">کد پستی</span>
+                        <input class="modal-field__input" type="text" placeholder="کد پستی 10 رقمی" />
+                    </div>
+                    <div class="modal-field">
+                        <span class="modal-field__label">شغل</span>
+                        <input class="modal-field__input" type="text" placeholder="شغل خود را وارد کنید" />
+                    </div>
+                    <div class="modal-field">
+                        <span class="modal-field__label">سازمان</span>
+                        <input class="modal-field__input" type="text" placeholder="نام سازمان" />
+                    </div>
+                </div>
+                <div class="modal__actions">
+                    <button class="btn btn--primary btn--large" style="width:100%" onclick="Modal.close('modal-large')">
+                        ثبت‌نام
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===========================
+         بدون آیکن‌هولدر
+         =========================== -->
+
+    <div class="demo-section">
+        <h2>بدون آیکن‌هولدر</h2>
+        <div class="demo-buttons">
+            <button class="btn btn--outline btn--large" onclick="Modal.open('modal-no-icon')">
+                باز کردن مودال بدون آیکن
+            </button>
+        </div>
+    </div>
+
+    <div class="modal" id="modal-no-icon">
+        <div class="modal__overlay"></div>
+        <div class="modal__container">
+            <div class="modal__header">
+                <div class="modal__title-block">
+                    <h2 class="modal__title">ویرایش اطلاعات</h2>
+                </div>
+                <button class="modal__close" type="button" aria-label="بستن">
+                    <svg viewBox="0 0 24 24" fill="none"><path d="M5.25 5.25L18.75 18.75M18.75 5.25L5.25 18.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </button>
+            </div>
+            <div class="modal__body">
+                <div class="modal__content">
+                    <div class="modal-field">
+                        <span class="modal-field__label">نام</span>
+                        <input class="modal-field__input" type="text" value="علی میرهادی" />
+                    </div>
+                    <div class="modal-field">
+                        <span class="modal-field__label">ایمیل</span>
+                        <input class="modal-field__input" type="email" value="ali@example.com" />
+                    </div>
+                </div>
+                <div class="modal__actions">
+                    <button class="btn btn--primary btn--large" style="width:100%" onclick="Modal.close('modal-no-icon')">
+                        ذخیره تغییرات
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===========================
+         مودال وسط صفحه (Centered)
+         =========================== -->
+
+    <div class="demo-section">
+        <h2>مودال وسط صفحه (Centered)</h2>
+        <p>
+            این مودال در وسط صفحه ظاهر می‌شود. ارتفاع بر اساس حجم محتوا تعیین می‌شود.
+            با کلاس <code>modal--centered</code> فعال می‌شود.
+        </p>
+        <div class="demo-buttons">
+            <button class="btn btn--primary btn--large" onclick="Modal.open('modal-centered')">
+                باز کردن مودال وسط صفحه
+            </button>
+        </div>
+    </div>
+
+    <div class="modal modal--centered" id="modal-centered">
+        <div class="modal__overlay"></div>
+        <div class="modal__container">
+            <div class="modal__header">
+                <div class="modal__title-block">
+                    <div class="modal__icon-holder">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/>
+                            <path d="M12 2v3M12 19v3M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M2 12h3M19 12h3M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="modal__title-wrap">
+                        <h2 class="modal__title">تغییر وضعیت کاربران</h2>
+                        <p class="modal__subtitle">۳ کاربر انتخاب شده</p>
+                    </div>
+                </div>
+                <button class="modal__close" type="button" aria-label="بستن">
+                    <svg viewBox="0 0 24 24" fill="none"><path d="M5.25 5.25L18.75 18.75M18.75 5.25L5.25 18.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </button>
+            </div>
+            <div class="modal__body">
+                <div class="modal__content">
+                    <div class="modal-field">
+                        <label class="label label--large" for="centered-status">
+                            <span class="label__text">وضعیت</span>
+                        </label>
+                        <div class="input input--large input--full-width">
+                            <div class="input__container">
+                                <span class="input__icon input__icon--before">
+                                    <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M10 2v3M10 15v3M3.52 3.52l2.12 2.12M14.36 14.36l2.12 2.12M2 10h3M15 10h3M3.52 16.48l2.12-2.12M14.36 5.64l2.12-2.12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                                </span>
+                                <span class="input__divider"></span>
+                                <input id="centered-status" type="text" class="input__field" value="فعال" readonly />
+                                <span class="input__icon input__icon--after">
+                                    <svg viewBox="0 0 20 20" fill="none"><path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                </span>
+                            </div>
+                            <span class="input__indicator"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal__actions">
+                    <button class="btn btn--primary btn--large" style="width:100%" onclick="Modal.close('modal-centered')">
+                        تایید و ذخیره
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

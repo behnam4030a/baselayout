@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Message Bar Component Demo</title>
+  <link rel="stylesheet" href="../colors/colors.css">
+  <link rel="stylesheet" href="../typography/typography.css">
+  <link rel="stylesheet" href="message-bar.css">
+  <style>
+    body {
+      font-family: 'Peyda(FaNum)', Tahoma, sans-serif;
+      background-color: #f0f2f4;
+      padding: 40px;
+      direction: rtl;
+    }
+    h1 { font-size: 28px; color: #222323; margin-bottom: 8px; }
+    h2 { font-size: 20px; color: #222323; margin-top: 40px; margin-bottom: 16px; border-bottom: 2px solid #e2e4e6; padding-bottom: 8px; }
+    h3 { font-size: 16px; color: #59595a; margin-top: 24px; margin-bottom: 12px; }
+    p.desc { font-size: 14px; color: #59595a; margin-bottom: 24px; }
+    .demo-section { margin-bottom: 48px; }
+    .demo-row { display: flex; flex-direction: column; gap: 20px; margin-bottom: 24px; }
+    .demo-label { font-size: 13px; color: #888; margin-bottom: 4px; }
+
+    /* Buttons for interactive demo */
+    .demo-buttons { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+    .demo-btn {
+      font-family: inherit;
+      padding: 8px 16px;
+      border: 1px solid #e2e4e6;
+      border-radius: 6px;
+      background: #fff;
+      cursor: pointer;
+      font-size: 14px;
+      color: #222323;
+      transition: background 0.15s;
+    }
+    .demo-btn:hover { background: #f6f8fa; }
+    .demo-btn--info { border-color: #0078d4; color: #1a86d9; }
+    .demo-btn--success { border-color: #107c10; color: #107c10; }
+    .demo-btn--warning { border-color: #f7630c; color: #f7630c; }
+    .demo-btn--danger { border-color: #c50f1f; color: #c50f1f; }
+
+    /* Code block */
+    pre {
+      background: #1e1e1e;
+      color: #d4d4d4;
+      padding: 16px;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-size: 13px;
+      line-height: 1.5;
+      direction: ltr;
+      text-align: left;
+      margin: 12px 0 24px;
+    }
+    code { font-family: 'Fira Code', 'Consolas', monospace; }
+
+    @media (max-width: 767px) {
+      body { padding: 24px; }
+      h1 { font-size: 24px; }
+    }
+    @media (max-width: 479px) {
+      body { padding: 16px; }
+      h1 { font-size: 20px; }
+      h2 { font-size: 17px; }
+      pre { font-size: 11px; padding: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Message Bar Component</h1>
+  <p class="desc">
+    کامپوننت Message Bar از سه حالت Dismissible و Actionable و Detailed تشکیل شده است.
+    موقعیت نمایش پیام‌ها به صورت پیشفرض در حالت دسکتاپ در پایین صفحه سمت راست و در حالت موبایل در پایین صفحه قرار می‌گیرد.
+    رنگ message barها کاملا نسبت به موضوع پیام قابل تغییر است.
+    امکان بسته شدن خودکار پیام پس از طی زمان مشخص فراهم شده و این ویژگی به صورت آپشنال قابل تنظیم است.
+  </p>
+
+  <!-- ========================================
+       بخش 1: نوع Actionable — واریانت Info
+       ======================================== -->
+  <div class="demo-section">
+    <h2>1. نوع Actionable (واریانت Info)</h2>
+    <p class="desc">پیام اطلاع‌رسانی با لینک «بیشتر بدانید» که به صفحه دیگر لینک می‌شود. متن پیشفرض لینک قابل تغییر است.</p>
+
+    <div class="demo-row">
+      <div class="message-bar message-bar--info" data-message-bar role="status">
+        <div class="message-bar__content">
+          <span class="message-bar__icon">
+            <svg viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M12 8V8.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M12 11V16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <p class="message-bar__text">
+            این یک پیام اطلاع رسانی است. در صورت نیاز، جزئیات بیشتری در اینجا آمده است.
+          </p>
+        </div>
+        <a href="#" class="message-bar__link">
+          <span class="message-bar__link-text">بیشتر بدانید</span>
+          <span class="message-bar__link-icon">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M15 19l-7-7 7-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================
+       بخش 2: نوع Dismissible — واریانت Success
+       ======================================== -->
+  <div class="demo-section">
+    <h2>2. نوع Dismissible (واریانت Success)</h2>
+    <p class="desc">پیام موفقیت با دکمه بستن (X). فقط یک پیام نمایش داده می‌شود و امکان بستن با ضربدر وجود دارد.</p>
+
+    <div class="demo-row">
+      <div class="message-bar message-bar--success" data-message-bar role="status">
+        <div class="message-bar__content">
+          <span class="message-bar__icon">
+            <svg viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M8 12.5L10.5 15L16 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <p class="message-bar__text">
+            موفقیت آمیز بود. در صورت نیاز، جزئیات بیشتری در اینجا آمده است.
+          </p>
+        </div>
+        <button class="message-bar__close" aria-label="بستن">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M6 6L18 18M18 6L6 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================
+       بخش 3: نوع Dismissible — واریانت Warning
+       ======================================== -->
+  <div class="demo-section">
+    <h2>3. نوع Dismissible (واریانت Warning)</h2>
+    <p class="desc">پیام هشدار با دکمه بستن.</p>
+
+    <div class="demo-row">
+      <div class="message-bar message-bar--warning" data-message-bar role="status">
+        <div class="message-bar__content">
+          <span class="message-bar__icon">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M12 9V13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M12 16V16.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <p class="message-bar__text">
+            هشدار. اشتراک شما در حال اتمام است. اطلاعات صورتحساب خود را به روزرسانی کنید.
+          </p>
+        </div>
+        <button class="message-bar__close" aria-label="بستن">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M6 6L18 18M18 6L6 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================
+       بخش 4: نوع Dismissible — واریانت Danger
+       ======================================== -->
+  <div class="demo-section">
+    <h2>4. نوع Dismissible (واریانت Danger)</h2>
+    <p class="desc">پیام خطا با دکمه بستن.</p>
+
+    <div class="demo-row">
+      <div class="message-bar message-bar--danger" data-message-bar role="status">
+        <div class="message-bar__content">
+          <span class="message-bar__icon">
+            <svg viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M12 8V8.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M12 11V16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <p class="message-bar__text">
+            خطا. اتصال به دیتابیس امکان پذیر نیست.
+          </p>
+        </div>
+        <button class="message-bar__close" aria-label="بستن">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M6 6L18 18M18 6L6 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================
+       بخش 5: نوع Detailed — واریانت Danger
+       ======================================== -->
+  <div class="demo-section">
+    <h2>5. نوع Detailed (واریانت Danger)</h2>
+    <p class="desc">پیام با عنوان و توضیحات کامل‌تر در دو خط. یک عنوان و یک متن توضیحات نمایش داده می‌شود و برای بستن از دکمه ضربدر استفاده می‌کنیم.</p>
+
+    <div class="demo-row">
+      <div class="message-bar message-bar--danger message-bar--detailed" data-message-bar role="status">
+        <div class="message-bar__content">
+          <span class="message-bar__icon">
+            <svg viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M12 8V8.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M12 11V16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <div class="message-bar__text-wrap">
+            <p class="message-bar__text">خطا. اتصال به دیتابیس امکان پذیر نیست.</p>
+            <p class="message-bar__description">توضیحات مرتبط با خطای بالا در اینجا آورده می شود ، این متن به صورت نمونه می باشد و هیچ کاربردی ندارد در صورت توضیحات مرتبط با خطای بالا در اینجا آورده می شود ، این متن به صورت نمونه می باشد و هیچ کاربردی ندارد در صورت</p>
+          </div>
+        </div>
+        <button class="message-bar__close" aria-label="بستن">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M6 6L18 18M18 6L6 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================
+       بخش 6: Auto-Dismiss دمو
+       ======================================== -->
+  <div class="demo-section">
+    <h2>6. بسته شدن خودکار (Auto-Dismiss)</h2>
+    <p class="desc">این message bar پس از ۵ ثانیه به صورت خودکار بسته می‌شود. با دکمه «نمایش مجدد» می‌توانید دوباره آن را ببینید.</p>
+
+    <div class="demo-row">
+      <div class="message-bar message-bar--success" id="demo-auto" data-message-bar data-auto-dismiss="5000" role="status">
+        <div class="message-bar__content">
+          <span class="message-bar__icon">
+            <svg viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M8 12.5L10.5 15L16 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <p class="message-bar__text">
+            این پیام پس از ۵ ثانیه خودکار بسته می‌شود.
+          </p>
+        </div>
+        <button class="message-bar__close" aria-label="بستن">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M6 6L18 18M18 6L6 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="demo-buttons">
+      <button class="demo-btn demo-btn--success" onclick="MessageBar.show('demo-auto')">نمایش مجدد</button>
+    </div>
+  </div>
+
+  <!-- ========================================
+       بخش 7: دمو تعاملی
+       ======================================== -->
+  <div class="demo-section">
+    <h2>7. دمو تعاملی (Interactive)</h2>
+    <p class="desc">پیام‌ها را ببندید، سپس با دکمه‌ها مدیریت کنید.</p>
+
+    <div class="demo-row">
+      <div class="message-bar message-bar--success" id="demo-success" data-message-bar role="status">
+        <div class="message-bar__content">
+          <span class="message-bar__icon">
+            <svg viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M8 12.5L10.5 15L16 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <p class="message-bar__text">
+            عملیات ذخیره‌سازی موفق بود. تغییرات شما با موفقیت در سیستم ثبت شد.
+          </p>
+        </div>
+        <button class="message-bar__close" aria-label="بستن">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M6 6L18 18M18 6L6 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="message-bar message-bar--warning" id="demo-warning" data-message-bar role="status">
+        <div class="message-bar__content">
+          <span class="message-bar__icon">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M12 9V13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M12 16V16.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <p class="message-bar__text">
+            هشدار. اشتراک شما تا ۵ روز دیگر منقضی می‌شود.
+          </p>
+        </div>
+        <button class="message-bar__close" aria-label="بستن">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M6 6L18 18M18 6L6 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="message-bar message-bar--danger" id="demo-danger" data-message-bar role="status">
+        <div class="message-bar__content">
+          <span class="message-bar__icon">
+            <svg viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M12 8V8.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M12 11V16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <p class="message-bar__text">
+            خطا. ارتباط با سرور قطع شده است.
+          </p>
+        </div>
+        <button class="message-bar__close" aria-label="بستن">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M6 6L18 18M18 6L6 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="demo-buttons">
+      <button class="demo-btn demo-btn--success" onclick="MessageBar.show('demo-success')">نمایش Success</button>
+      <button class="demo-btn demo-btn--warning" onclick="MessageBar.show('demo-warning')">نمایش Warning</button>
+      <button class="demo-btn demo-btn--danger" onclick="MessageBar.show('demo-danger')">نمایش Danger</button>
+      <button class="demo-btn" onclick="MessageBar.hide('demo-success');MessageBar.hide('demo-warning');MessageBar.hide('demo-danger')">مخفی کردن همه</button>
+    </div>
+  </div>
+
+  <!-- ========================================
+       بخش 8: ساخت از طریق JS (Programmatic)
+       ======================================== -->
+  <div class="demo-section">
+    <h2>8. ساخت از طریق JavaScript</h2>
+    <p class="desc">
+      با <code>MessageBar.create()</code> پیام ساخته می‌شود.
+      بدون <code>container</code> → نمایش ثابت (پیش‌فرض: پایین-راست دسکتاپ، پایین تمام‌عرض موبایل).
+      با <code>container</code> → نمایش inline در المان مشخص.
+      با <code>position</code> → تنظیم موقعیت نمایش ثابت.
+    </p>
+
+    <h3>نمایش ثابت (Fixed — پیش‌فرض)</h3>
+    <p class="desc">بدون container، پیام در موقعیت ثابت نمایش داده می‌شود.</p>
+    <div class="demo-buttons">
+      <button class="demo-btn demo-btn--success" onclick="MessageBar.create({type:'success', title:'موفقیت آمیز بود. در صورت نیاز، جزئیات بیشتری در اینجا آمده است.', autoDismiss:3000})">پایین-راست (پیش‌فرض)</button>
+      <button class="demo-btn demo-btn--warning" onclick="MessageBar.create({type:'warning', title:'هشدار سیستمی', autoDismiss:3000, position:'top-right'})">بالا-راست</button>
+      <button class="demo-btn demo-btn--info" onclick="MessageBar.create({type:'info', title:'اطلاع‌رسانی', link:{text:'بیشتر بدانید', href:'#'}, position:'top-center', autoDismiss:3000})">بالا-وسط</button>
+      <button class="demo-btn demo-btn--danger" onclick="MessageBar.create({type:'danger', title:'خطای سیستمی', description:'لطفا مجددا تلاش کنید یا با پشتیبانی تماس بگیرید.', position:'bottom-left',autoDismiss:3000})">پایین-چپ Detailed</button>
+    </div>
+
+    <h3>نمایش inline (در المان مشخص)</h3>
+    <p class="desc">با <code>container</code> پیام داخل یک المان خاص نمایش داده می‌شود.</p>
+    <div id="js-container" class="demo-row"></div>
+    <div class="demo-buttons">
+      <button class="demo-btn demo-btn--info" onclick="MessageBar.create({type:'info', title:'پیام اطلاع‌رسانی', link:{text:'بیشتر بدانید', href:'#'}, container:'js-container'})">ساخت Info (inline)</button>
+      <button class="demo-btn demo-btn--success" onclick="MessageBar.create({type:'success', title:'عملیات موفق بود', autoDismiss:3000, container:'js-container'})">ساخت Success (inline 3s)</button>
+      <button class="demo-btn demo-btn--danger" onclick="MessageBar.create({type:'danger', title:'خطای سیستمی', description:'لطفا مجددا تلاش کنید یا با پشتیبانی تماس بگیرید.', container:'js-container'})">ساخت Detailed (inline)</button>
+    </div>
+
+    <h3>کد نمونه:</h3>
+    <pre><code>// پیش‌فرض: نمایش ثابت پایین-راست
+MessageBar.create({
+  type: 'success',
+  title: 'ذخیره شد'
+});
+
+// تنظیم موقعیت: بالا-راست
+MessageBar.create({
+  type: 'warning',
+  title: 'هشدار',
+  position: 'top-right'
+});
+
+// موقعیت‌های موجود:
+// 'bottom-right' (پیش‌فرض) | 'bottom-left'
+// 'top-right' | 'top-left'
+// 'bottom-center' | 'top-center'
+
+// نمایش inline در یک المان خاص
+MessageBar.create({
+  type: 'danger',
+  title: 'خطا',
+  description: 'توضیحات...',
+  container: 'my-element-id'
+});</code></pre>
+  </div>
+
+  <script src="message-bar.js"></script>
+
+</body>
+</html>

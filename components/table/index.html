@@ -1,0 +1,1743 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table Component — کامپوننت جدول</title>
+    <link rel="stylesheet" href="../colors/colors.css">
+    <link rel="stylesheet" href="../typography/typography.css">
+    <link rel="stylesheet" href="../button/button.css">
+    <link rel="stylesheet" href="../switch/switch.css">
+    <link rel="stylesheet" href="../modal/modal.css">
+    <link rel="stylesheet" href="../input/input.css">
+    <link rel="stylesheet" href="table.css">
+    <script src="../modal/modal.js" defer></script>
+    <script src="table.js" defer></script>
+    <script src="demo.js" defer></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Peyda(FaNum)', sans-serif;
+            background: #f6f8fa;
+            padding: 40px 24px;
+        }
+        .demo-wrapper {
+            max-width: 1140px;
+            margin: 0 auto;
+        }
+        .demo-section {
+            margin-bottom: 48px;
+        }
+        .demo-desc{
+            margin-bottom: 24px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="demo-wrapper">
+        <h1>Table Component</h1>
+        <p class="demo-desc">
+            جدول یعنی نمایش داده‌ی ساخت‌یافته در قالب ردیف و ستون؛ ابزار اصلی برای مقایسه، اسکن سریع و انجام عملیات روی داده‌ها.
+        </p>
+
+        <!-- ========================================
+             Full Table Demo
+             ======================================== -->
+        <div class="demo-section">
+            <h2>جدول کامل — لیست کاربران</h2>
+            <p class="demo-desc">شامل نوار عنوان، جستجو، فیلتر، سرستون، ردیف‌های داده، صفحه‌بندی و نوار عملیات دسته‌ای.</p>
+
+            <div class="table-container" data-table="users-table" data-page-size="10">
+
+                <!-- Row Action Menu -->
+                <div class="table__row-menu">
+                    <button class="table__row-menu-item" type="button" data-action="edit">ویرایش</button>
+                    <button class="table__row-menu-item" type="button" data-action="report">گزارشات</button>
+                    <button class="table__row-menu-item" type="button" data-action="delete">حذف</button>
+                </div>
+
+                <!-- Tile Header -->
+                <div class="table__header">
+                    <div class="table__title-section">
+                        <h2 class="table__title">لیست کاربران</h2>
+                        <span class="table__dot"></span>
+                        <span class="table__count">تعداد: ۹ نفر</span>
+                    </div>
+                    <div class="table__actions">
+                        <button class="table__btn table__btn--filter" data-modal-open="users-table-filter">
+                            <span class="table__btn-icon">
+                                <svg viewBox="0 0 24 24" fill="none"><path d="M4 4h16l-6 7.5V18l-4 2V11.5L4 4z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </span>
+                            <span class="table__btn-text">فیلتر</span>
+                        </button>
+                        <span class="table__divider"></span>
+                        <button class="table__btn table__btn--secondary">
+                            <span class="table__btn-icon">
+                                <svg viewBox="0 0 24 24" fill="none"><path d="M12 16V2m0 0l4 4m-4-4L8 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 17l.621 2.485A2 2 0 004.561 21h14.878a2 2 0 001.94-1.515L22 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </span>
+                            <span class="table__btn-text">بارگذاری گروهی</span>
+                        </button>
+                        <button class="table__btn table__btn--primary">
+                            <span class="table__btn-icon">
+                                <svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                            </span>
+                            <span class="table__btn-text">افزودن کاربر جدید</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Search Box -->
+                <div class="table__search">
+                    <span class="table__search-icon">
+                        <svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.5"/><path d="M20 20l-3.5-3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                    </span>
+                    <span class="table__search-divider"></span>
+                    <input type="text" class="table__search-input" placeholder="جستجو...">
+                    <button type="button" class="table__search-clear" aria-label="پاک کردن">
+                        <svg viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </button>
+                </div>
+
+                <!-- Active Filters Bar -->
+                 <!-- for show used class"table__active-filters--visible" -->
+                <div class="table__active-filters ">
+                    <span class="table__active-filters-label">فیلترهای فعال</span>
+                    <div class="table__active-filters-chips">
+                        <span class="table__active-filter-tag">
+                            +۳ آزمون انجام شده
+                            <button type="button" class="table__active-filter-close" aria-label="حذف فیلتر">
+                                <svg viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </button>
+                        </span>
+                        <span class="table__active-filter-tag">
+                            وضعیت فعال
+                            <button type="button" class="table__active-filter-close" aria-label="حذف فیلتر">
+                                <svg viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </button>
+                        </span>
+                    </div>
+                    <button type="button" class="table__active-filters-reset">
+                        <svg viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        بازنشانی همه فیلترها
+                    </button>
+                </div>
+
+                <!-- Select All Row (mobile) -->
+                <div class="table__select-all">
+                    <div class="table__select-all-right">
+                        <label class="table__checkbox-wrapper">
+                            <input type="checkbox" class="table__checkbox-input table__select-all-checkbox">
+                            <span class="table__checkbox-box">
+                                <svg class="table__icon--check" viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                <svg class="table__icon--indeterminate" viewBox="0 0 10 10" fill="none" style="display:none"><path d="M2.5 5H7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                            </span>
+                        </label>
+                        <span class="table__select-all-text">انتخاب همه</span>
+                    </div>
+                    <button class="table__btn table__btn--secondary table__select-all-bulk" disabled>
+                        <span class="table__btn-text">فعالیت گروهی</span>
+                    </button>
+                </div>
+
+                <!-- Table -->
+                <div class="table__scroll-wrapper">
+                <table class="table__grid">
+                    <thead class="table__thead">
+                        <tr class="table__row">
+                            <th class="table__cell table__cell--checkbox">
+                                <label class="table__checkbox-wrapper">
+                                    <input type="checkbox" class="table__checkbox-input">
+                                    <span class="table__checkbox-box">
+                                        <svg class="table__icon--check" viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                        <svg class="table__icon--indeterminate" viewBox="0 0 10 10" fill="none" style="display:none"><path d="M2.5 5H7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                                    </span>
+                                </label>
+                            </th>
+                            <th class="table__cell">
+                                <div class="table__cell-inner">
+                                    <span class="table__cell-icon">
+                                        <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M5 20c0-3.314 3.134-6 7-6s7 2.686 7 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                                    </span>
+                                    <span class="table__cell-text">نام و نام خانوادگی</span>
+                                </div>
+                            </th>
+                            <th class="table__cell">
+                                <div class="table__cell-inner">
+                                    <span class="table__cell-icon">
+                                        <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M7 8h2M7 12h2M7 16h2M11 8h6M11 12h6M11 16h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                                    </span>
+                                    <span class="table__cell-text">کد اختصاصی</span>
+                                </div>
+                            </th>
+                            <th class="table__cell">
+                                <div class="table__cell-inner">
+                                    <span class="table__cell-icon">
+                                        <svg viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                    </span>
+                                    <span class="table__cell-text">شماره تماس</span>
+                                </div>
+                            </th>
+                            <th class="table__cell">
+                                <div class="table__cell-inner">
+                                    <span class="table__cell-icon">
+                                        <svg viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                    </span>
+                                    <span class="table__cell-text">وضعیت آزمون</span>
+                                </div>
+                            </th>
+                            <th class="table__cell">
+                                <div class="table__cell-inner">
+                                    <span class="table__cell-icon">
+                                        <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 01-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                    </span>
+                                    <span class="table__cell-text">وضعیت</span>
+                                </div>
+                            </th>
+                            <th class="table__cell table__cell--action"></th>
+                        </tr>
+                    </thead>
+                    <tbody class="table__tbody">
+                        <!-- Row 1 -->
+                        <tr class="table__row">
+                            <td class="table__cell table__cell--checkbox">
+                                <label class="table__checkbox-wrapper">
+                                    <input type="checkbox" class="table__checkbox-input">
+                                    <span class="table__checkbox-box">
+                                        <svg class="table__icon--check" viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                    </span>
+                                </label>
+                            </td>
+                            <td class="table__cell" data-label="نام و نام خانوادگی">علی میرهادی</td>
+                            <td class="table__cell table__cell--code" data-label="کد اختصاصی">۱۲۵۴۹۸۵۳۱۶</td>
+                            <td class="table__cell" data-label="شماره تماس">۰۹۲۱۵۸۶۳۶۲۲</td>
+                            <td class="table__cell" data-label="وضعیت آزمون">
+                                <div class="table__progress">
+                                    <span class="table__progress-text">۳ از ۴ انجام شده</span>
+                                    <div class="table__progress-bar">
+                                        <div class="table__progress-fill" style="width:75%"></div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="table__cell" data-label="وضعیت"><span class="table__tag table__tag--success">فعال</span></td>
+                            <td class="table__cell table__cell--action">
+                                <button class="table__row-action">&#8942;</button>
+                            </td>
+                        </tr>
+                        <!-- Row 2 -->
+                        <tr class="table__row">
+                            <td class="table__cell table__cell--checkbox">
+                                <label class="table__checkbox-wrapper">
+                                    <input type="checkbox" class="table__checkbox-input">
+                                    <span class="table__checkbox-box">
+                                        <svg class="table__icon--check" viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                    </span>
+                                </label>
+                            </td>
+                            <td class="table__cell" data-label="نام و نام خانوادگی">اختر شریعتمداری</td>
+                            <td class="table__cell table__cell--code" data-label="کد اختصاصی">۵۸۹۴۶۳۳۲۱۸</td>
+                            <td class="table__cell" data-label="شماره تماس">۰۹۱۲۱۲۳۵۸۴۶</td>
+                            <td class="table__cell" data-label="وضعیت آزمون">
+                                <div class="table__progress">
+                                    <span class="table__progress-text">۱ از ۵ انجام شده</span>
+                                    <div class="table__progress-bar">
+                                        <div class="table__progress-fill" style="width:20%"></div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="table__cell" data-label="وضعیت"><span class="table__tag table__tag--success">فعال</span></td>
+                            <td class="table__cell table__cell--action">
+                                <button class="table__row-action">&#8942;</button>
+                            </td>
+                        </tr>
+                        <!-- Row 3 -->
+                        <tr class="table__row">
+                            <td class="table__cell table__cell--checkbox">
+                                <label class="table__checkbox-wrapper">
+                                    <input type="checkbox" class="table__checkbox-input">
+                                    <span class="table__checkbox-box">
+                                        <svg class="table__icon--check" viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                    </span>
+                                </label>
+                            </td>
+                            <td class="table__cell" data-label="نام و نام خانوادگی">یزدان مهر دهقان</td>
+                            <td class="table__cell table__cell--code" data-label="کد اختصاصی">۲۵۴۹۶۵۵۱۸۷</td>
+                            <td class="table__cell" data-label="شماره تماس">۰۹۱۲۱۶۵۸۸۴۲</td>
+                            <td class="table__cell" data-label="وضعیت آزمون">
+                                <div class="table__progress">
+                                    <span class="table__progress-text">۲ از ۷ انجام شده</span>
+                                    <div class="table__progress-bar">
+                                        <div class="table__progress-fill" style="width:29%"></div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="table__cell" data-label="وضعیت"><span class="table__tag table__tag--success">فعال</span></td>
+                            <td class="table__cell table__cell--action">
+                                <button class="table__row-action">&#8942;</button>
+                            </td>
+                        </tr>
+                        <!-- Row 4 -->
+                        <tr class="table__row">
+                            <td class="table__cell table__cell--checkbox">
+                                <label class="table__checkbox-wrapper">
+                                    <input type="checkbox" class="table__checkbox-input">
+                                    <span class="table__checkbox-box">
+                                        <svg class="table__icon--check" viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                    </span>
+                                </label>
+                            </td>
+                            <td class="table__cell" data-label="نام و نام خانوادگی">ایراندخت عبدالکریمی</td>
+                            <td class="table__cell table__cell--code" data-label="کد اختصاصی">۳۵۴۹۱۶۲۵۴۹</td>
+                            <td class="table__cell" data-label="شماره تماس">۰۹۱۲۵۹۱۸۵۴۴</td>
+                            <td class="table__cell" data-label="وضعیت آزمون">
+                                <div class="table__progress">
+                                    <span class="table__progress-text">۴ از ۹ انجام شده</span>
+                                    <div class="table__progress-bar">
+                                        <div class="table__progress-fill" style="width:44%"></div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="table__cell" data-label="وضعیت"><span class="table__tag table__tag--danger">غیرفعال</span></td>
+                            <td class="table__cell table__cell--action">
+                                <button class="table__row-action">&#8942;</button>
+                            </td>
+                        </tr>
+                        <!-- Row 5 -->
+                        <tr class="table__row">
+                            <td class="table__cell table__cell--checkbox">
+                                <label class="table__checkbox-wrapper">
+                                    <input type="checkbox" class="table__checkbox-input">
+                                    <span class="table__checkbox-box">
+                                        <svg class="table__icon--check" viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                    </span>
+                                </label>
+                            </td>
+                            <td class="table__cell" data-label="نام و نام خانوادگی">هاونی جعفریان</td>
+                            <td class="table__cell table__cell--code" data-label="کد اختصاصی">۱۵۴۶۷۹۱۸۳۵</td>
+                            <td class="table__cell" data-label="شماره تماس">۰۹۱۲۱۴۹۶۵۷۷</td>
+                            <td class="table__cell" data-label="وضعیت آزمون">
+                                <div class="table__progress">
+                                    <span class="table__progress-text">۱۲ از ۱۳ انجام شده</span>
+                                    <div class="table__progress-bar">
+                                        <div class="table__progress-fill" style="width:92%"></div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="table__cell" data-label="وضعیت"><span class="table__tag table__tag--success">فعال</span></td>
+                            <td class="table__cell table__cell--action">
+                                <button class="table__row-action">&#8942;</button>
+                            </td>
+                        </tr>
+                        <!-- Row 6 -->
+                        <tr class="table__row">
+                            <td class="table__cell table__cell--checkbox">
+                                <label class="table__checkbox-wrapper">
+                                    <input type="checkbox" class="table__checkbox-input">
+                                    <span class="table__checkbox-box">
+                                        <svg class="table__icon--check" viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                    </span>
+                                </label>
+                            </td>
+                            <td class="table__cell" data-label="نام و نام خانوادگی">ارشین رسولی</td>
+                            <td class="table__cell table__cell--code" data-label="کد اختصاصی">۸۵۴۳۴۵۶۹۱۷۳</td>
+                            <td class="table__cell" data-label="شماره تماس">۰۹۱۲۳۵۸۴۶۹۸</td>
+                            <td class="table__cell" data-label="وضعیت آزمون">
+                                <div class="table__progress">
+                                    <span class="table__progress-text">۵ از ۶ انجام شده</span>
+                                    <div class="table__progress-bar">
+                                        <div class="table__progress-fill" style="width:83%"></div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="table__cell" data-label="وضعیت"><span class="table__tag table__tag--danger">غیرفعال</span></td>
+                            <td class="table__cell table__cell--action">
+                                <button class="table__row-action">&#8942;</button>
+                            </td>
+                        </tr>
+                        <!-- Row 7 -->
+                        <tr class="table__row">
+                            <td class="table__cell table__cell--checkbox">
+                                <label class="table__checkbox-wrapper">
+                                    <input type="checkbox" class="table__checkbox-input">
+                                    <span class="table__checkbox-box">
+                                        <svg class="table__icon--check" viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                    </span>
+                                </label>
+                            </td>
+                            <td class="table__cell" data-label="نام و نام خانوادگی">یزدان مهر دهقان</td>
+                            <td class="table__cell table__cell--code" data-label="کد اختصاصی">۲۵۴۹۶۵۵۱۸۷</td>
+                            <td class="table__cell" data-label="شماره تماس">۰۹۱۲۱۶۵۸۸۴۲</td>
+                            <td class="table__cell" data-label="وضعیت آزمون">
+                                <div class="table__progress">
+                                    <span class="table__progress-text">۱ از ۸ انجام شده</span>
+                                    <div class="table__progress-bar">
+                                        <div class="table__progress-fill" style="width:13%"></div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="table__cell" data-label="وضعیت"><span class="table__tag table__tag--success">فعال</span></td>
+                            <td class="table__cell table__cell--action">
+                                <button class="table__row-action">&#8942;</button>
+                            </td>
+                        </tr>
+                        <!-- Row 8 -->
+                        <tr class="table__row">
+                            <td class="table__cell table__cell--checkbox">
+                                <label class="table__checkbox-wrapper">
+                                    <input type="checkbox" class="table__checkbox-input">
+                                    <span class="table__checkbox-box">
+                                        <svg class="table__icon--check" viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                    </span>
+                                </label>
+                            </td>
+                            <td class="table__cell" data-label="نام و نام خانوادگی">آفتاب سبزواری</td>
+                            <td class="table__cell table__cell--code" data-label="کد اختصاصی">۲۵۸۷۴۱۳۶۹۸</td>
+                            <td class="table__cell" data-label="شماره تماس">۰۹۱۲۹۸۴۶۵۳۷۲</td>
+                            <td class="table__cell" data-label="وضعیت آزمون">
+                                <div class="table__progress">
+                                    <span class="table__progress-text">۳ از ۵ انجام شده</span>
+                                    <div class="table__progress-bar">
+                                        <div class="table__progress-fill" style="width:60%"></div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="table__cell" data-label="وضعیت"><span class="table__tag table__tag--success">فعال</span></td>
+                            <td class="table__cell table__cell--action">
+                                <button class="table__row-action">&#8942;</button>
+                            </td>
+                        </tr>
+                        <!-- Row 9 -->
+                        <tr class="table__row">
+                            <td class="table__cell table__cell--checkbox">
+                                <label class="table__checkbox-wrapper">
+                                    <input type="checkbox" class="table__checkbox-input">
+                                    <span class="table__checkbox-box">
+                                        <svg class="table__icon--check" viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                    </span>
+                                </label>
+                            </td>
+                            <td class="table__cell" data-label="نام و نام خانوادگی">ارشین رسولی</td>
+                            <td class="table__cell table__cell--code" data-label="کد اختصاصی">۸۵۴۳۴۵۶۹۱۷۳</td>
+                            <td class="table__cell" data-label="شماره تماس">۰۹۱۲۳۵۸۴۶۹۸</td>
+                            <td class="table__cell" data-label="وضعیت آزمون">
+                                <div class="table__progress">
+                                    <span class="table__progress-text">۶ از ۷ انجام شده</span>
+                                    <div class="table__progress-bar">
+                                        <div class="table__progress-fill" style="width:86%"></div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="table__cell" data-label="وضعیت"><span class="table__tag table__tag--success">فعال</span></td>
+                            <td class="table__cell table__cell--action">
+                                <button class="table__row-action">&#8942;</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- No Results Message -->
+                <div class="table__no-results">
+                    <div class="table__no-results__rings">
+                        <div class="table__no-results__ring table__no-results__ring--lg"></div>
+                        <div class="table__no-results__ring table__no-results__ring--md"></div>
+                        <div class="table__no-results__ring table__no-results__ring--sm"></div>
+                        <div class="table__no-results__icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z"/>
+                                <path d="M14 2v6h6"/>
+                                <circle cx="10.5" cy="14.5" r="2.5"/>
+                                <path d="M16 20l-2-2"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <p class="table__no-results__title">نتیجه‌ای برای جستجوی شما پیدا نشد.</p>
+                    <p class="table__no-results__subtitle">لطفاً عبارت جستجو را اصلاح کرده یا فیلترهای اعمال‌شده را تغییر دهید.</p>
+                </div>
+
+                <!-- Processing Overlay -->
+                <div class="table__search-processing-overlay ">
+                    <div class="table__search-processing">
+                        <span class="table__search-processing-icon">
+                            <svg viewBox="0 0 24 24" fill="none"><path d="M21 11V8.5C21 5.46 18.54 3 15.5 3H8.5C5.46 3 3 5.46 3 8.5V15.5C3 18.54 5.46 21 8.5 21H11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 10h2M8 14h2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M17.5 15.5l1.5 1.5M20.5 21a2.5 2.5 0 100-5 2.5 2.5 0 000 5z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </span>
+                        <span>جستجو در حال پردازش ....</span>
+                    </div>
+                </div>
+
+                </div>
+
+                <!-- Pagination -->
+                <div class="table__pagination">
+                    <div class="table__page-size">
+                        <button class="table__page-size-btn">
+                            <span class="table__page-size-text">۱۰ ردیف در هر صفحه</span>
+                            <span class="table__page-size-arrow"><svg viewBox="0 0 16 16" fill="none"><path d="M10 4L6 8L10 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                        </button>
+                        <div class="table__page-size-dropdown">
+                            <button class="table__page-size-option table__page-size-option--active" data-size="10">۱۰ ردیف</button>
+                            <button class="table__page-size-option" data-size="25">۲۵ ردیف</button>
+                            <button class="table__page-size-option" data-size="50">۵۰ ردیف</button>
+                            <button class="table__page-size-option" data-size="100">۱۰۰ ردیف</button>
+                        </div>
+                    </div>
+                    <div class="table__page-numbers">
+                        <!-- JS will render pagination buttons -->
+                    </div>
+                </div>
+
+                <!-- Action Bar -->
+                <div class="table__action-bar">
+                    <div class="table__action-count">
+                        <span class="table__action-count-icon">
+                            <svg viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </span>
+                        <span class="table__action-count-text">۰ ردیف انتخاب شده</span>
+                    </div>
+                    <div class="table__action-buttons">
+                        <button class="table__action-btn">
+                            <span class="table__action-btn-icon">
+                                <svg viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 2v6h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </span>
+                            <span>افزودن آزمون</span>
+                        </button>
+                        <button class="table__action-btn">
+                            <span class="table__action-btn-icon">
+                                <svg viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </span>
+                            <span>افزودن به گروه</span>
+                        </button>
+                        <button class="table__action-btn">
+                            <span class="table__action-btn-icon">
+                                <svg viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </span>
+                            <span>اعطای دسترسی به مدیران</span>
+                        </button>
+                        <button data-modal-open="modal-centered" class="table__action-btn">
+                            <span class="table__action-btn-icon">
+                                <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 01-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </span>
+                            <span>تغییر وضعیت</span>
+                        </button>
+                        <button class="table__action-btn" data-bulk-action="delete">
+                            <span class="table__action-btn-icon">
+                                <svg viewBox="0 0 24 24" fill="none"><path d="M3 6h18M8 6V4a2 2 0 012-2h4a2 2 0 012 2v2m3 0v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6h14z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </span>
+                            <span>حذف کاربران</span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Filter Modal -->
+        <div class="modal" id="users-table-filter">
+            <div class="modal__overlay"></div>
+            <div class="modal__container">
+                <div class="modal__header">
+                    <div class="modal__title-block">
+                        <div class="modal__icon-holder">
+                            <svg viewBox="0 0 24 24" fill="none"><path d="M3.75 3.75h16.5l-5.78 7.16c-.3.37-.47.84-.47 1.32v4.52l-4 2V12.23c0-.48-.17-.95-.47-1.32L3.75 3.75z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </div>
+                        <div class="modal__title-wrap">
+                            <h2 class="modal__title">فیلتر کاربران</h2>
+                            <p class="modal__subtitle">برای مدیریت بهتر میتوانید از فیلتر‌های ترکیبی استفاده کنید</p>
+                        </div>
+                    </div>
+                    <button class="modal__close" type="button" aria-label="بستن">
+                        <svg viewBox="0 0 24 24" fill="none"><path d="M5.25 5.25L18.75 18.75M18.75 5.25L5.25 18.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                    </button>
+                </div>
+                <div class="modal__body">
+                    <div class="modal__content">
+
+                        <!-- Group: بر اساس آزمون‌ها -->
+                        <div class="table__filter-group">
+                            <div class="table__filter-section">
+                                <span class="table__filter-section-text">بر اساس آزمون‌ها</span>
+                                <span class="table__filter-section-line"></span>
+                            </div>
+
+                            <!-- دارای آزمون — switch OFF (default) -->
+                            <div class="table__filter-row">
+                                <span class="table__filter-row-label">دارای آزمون</span>
+                                <span class="table__filter-row-value">
+                                    <label class="switch">
+                                        <input type="checkbox" class="switch__input" role="switch">
+                                        <span class="switch__track">
+                                            <span class="switch__thumb">
+                                                <svg class="switch__icon switch__icon--check" viewBox="0 0 14 14" fill="none"><path d="M3.75 7.5L5.75 9.75L10.25 4.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                                <svg class="switch__icon switch__icon--close" viewBox="0 0 14 14" fill="none"><path d="M4.25 4.25L9.75 9.75M9.75 4.25L4.25 9.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                                            </span>
+                                        </span>
+                                    </label>
+                                </span>
+                            </div>
+
+                            <!-- بدون آزمون — switch ON (active) -->
+                            <div class="table__filter-row table__filter-row--active">
+                                <span class="table__filter-row-label">بدون آزمون</span>
+                                <span class="table__filter-row-value">
+                                    <label class="switch">
+                                        <input type="checkbox" class="switch__input" role="switch" checked>
+                                        <span class="switch__track">
+                                            <span class="switch__thumb">
+                                                <svg class="switch__icon switch__icon--check" viewBox="0 0 14 14" fill="none"><path d="M3.75 7.5L5.75 9.75L10.25 4.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                                <svg class="switch__icon switch__icon--close" viewBox="0 0 14 14" fill="none"><path d="M4.25 4.25L9.75 9.75M9.75 4.25L4.25 9.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                                            </span>
+                                        </span>
+                                    </label>
+                                </span>
+                            </div>
+
+                            <!-- آزمون انجام شده — chevron right, focused state -->
+                            <div class="table__filter-row table__filter-row--focused">
+                                <span class="table__filter-row-label">آزمون انجام شده</span>
+                                <span class="table__filter-row-value">
+                                    <span class="table__filter-row-chevron"><svg viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                                </span>
+                            </div>
+
+                            <!-- آزمون انجام نشده — chevron left + selected count, active -->
+                            <div class="table__filter-row table__filter-row--active">
+                                <span class="table__filter-row-label">آزمون انجام نشده</span>
+                                <span class="table__filter-row-value">
+                                    +۲ گزینه انتخاب شده
+                                    <span class="table__filter-row-chevron"><svg viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Group: بر اساس مشخصات کاربر -->
+                        <div class="table__filter-group">
+                            <div class="table__filter-section">
+                                <span class="table__filter-section-text">بر اساس مشخصات کاربر</span>
+                                <span class="table__filter-section-line"></span>
+                            </div>
+
+                            <!-- گروه -->
+                            <div class="table__filter-row">
+                                <span class="table__filter-row-label">گروه</span>
+                                <span class="table__filter-row-value">
+                                    <span class="table__filter-row-chevron"><svg viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                                </span>
+                            </div>
+
+                            <!-- وضعیت -->
+                            <div class="table__filter-row">
+                                <span class="table__filter-row-label">وضعیت</span>
+                                <span class="table__filter-row-value">
+                                    <span class="table__filter-row-chevron"><svg viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                                </span>
+                            </div>
+
+                            <!-- دسترسی -->
+                            <div class="table__filter-row">
+                                <span class="table__filter-row-label">دسترسی</span>
+                                <span class="table__filter-row-value">
+                                    <span class="table__filter-row-chevron"><svg viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                                </span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal__actions">
+                        <div class="table__filter-actions">
+                            <button class="btn btn--outline btn--large" type="button">بازنشانی همه</button>
+                            <button class="btn btn--primary btn--large" type="button" data-modal-close="users-table-filter">اعمال فیلتر</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal modal--centered" id="modal-centered">
+            <div class="modal__overlay"></div>
+            <div class="modal__container">
+                <div class="modal__header">
+                    <div class="modal__title-block">
+                        <div class="modal__icon-holder">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/>
+                                <path d="M12 2v3M12 19v3M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M2 12h3M19 12h3M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <div class="modal__title-wrap">
+                            <h2 class="modal__title">تغییر وضعیت کاربران</h2>
+                            <p class="modal__subtitle">۳ کاربر انتخاب شده</p>
+                        </div>
+                    </div>
+                    <button class="modal__close" type="button" aria-label="بستن">
+                        <svg viewBox="0 0 24 24" fill="none"><path d="M5.25 5.25L18.75 18.75M18.75 5.25L5.25 18.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                    </button>
+                </div>
+                <div class="modal__body">
+                    <div class="modal__content">
+                        <div class="modal-field">
+                            <label class="label label--large" for="centered-status">
+                                <span class="label__text">وضعیت</span>
+                            </label>
+                            <div class="input input--large input--full-width">
+                                <div class="input__container">
+                                    <span class="input__icon input__icon--before">
+                                        <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M10 2v3M10 15v3M3.52 3.52l2.12 2.12M14.36 14.36l2.12 2.12M2 10h3M15 10h3M3.52 16.48l2.12-2.12M14.36 5.64l2.12-2.12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                                    </span>
+                                    <span class="input__divider"></span>
+                                    <input id="centered-status" type="text" class="input__field" value="فعال"  />
+                                    <span class="input__icon input__icon--after">
+                                        <svg viewBox="0 0 20 20" fill="none"><path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                    </span>
+                                </div>
+                                <span class="input__indicator"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal__actions">
+                        <button class="btn btn--primary btn--large" style="width:100%" data-modal-close="modal-centered">
+                            تایید و ذخیره
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="demo-wrapper">
+        <!-- ========================================
+             Server-Side Mode Demo
+             ======================================== -->
+        <div class="demo-section">
+            <h2>جدول Server-Side — لیست کاربران</h2>
+            <p class="demo-desc">داده‌ها از <code>demo-data.json</code> بارگذاری می‌شوند. جستجو و صفحه‌بندی server-side هستند.</p>
+
+            <div class="table-container" data-table="server-table" data-page-size="10" data-mode="server">
+
+                <!-- Row Action Menu -->
+                <div class="table__row-menu">
+                    <button class="table__row-menu-item" type="button" data-action="edit">ویرایش</button>
+                    <button class="table__row-menu-item" type="button" data-action="report">گزارشات</button>
+                    <button class="table__row-menu-item" type="button" data-action="delete">حذف</button>
+                </div>
+
+                <!-- Tile Header -->
+                <div class="table__header">
+                    <div class="table__title-section">
+                        <h2 class="table__title">لیست کاربران</h2>
+                        <span class="table__dot"></span>
+                        <span class="table__count" id="server-table-count">در حال بارگذاری...</span>
+                    </div>
+                    <div class="table__actions">
+                        <button class="table__btn table__btn--filter" data-modal-open="server-table-filter">
+                            <span class="table__btn-icon">
+                                <svg viewBox="0 0 24 24" fill="none"><path d="M4 4h16l-6 7.5V18l-4 2V11.5L4 4z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </span>
+                            <span class="table__btn-text">فیلتر</span>
+                        </button>
+                        <span class="table__divider"></span>
+                        <button class="table__btn table__btn--secondary">
+                            <span class="table__btn-icon">
+                                <svg viewBox="0 0 24 24" fill="none"><path d="M12 16V2m0 0l4 4m-4-4L8 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 17l.621 2.485A2 2 0 004.561 21h14.878a2 2 0 001.94-1.515L22 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </span>
+                            <span class="table__btn-text">بارگذاری گروهی</span>
+                        </button>
+                        <button class="table__btn table__btn--primary">
+                            <span class="table__btn-icon">
+                                <svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                            </span>
+                            <span class="table__btn-text">افزودن کاربر جدید</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Search Box -->
+                <div class="table__search">
+                    <span class="table__search-icon">
+                        <svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.5"/><path d="M20 20l-3.5-3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                    </span>
+                    <span class="table__search-divider"></span>
+                    <input type="text" class="table__search-input" placeholder="جستجو...">
+                    <button type="button" class="table__search-clear" aria-label="پاک کردن">
+                        <svg viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </button>
+                </div>
+
+                <!-- Active Filters Bar -->
+                <div class="table__active-filters">
+                    <span class="table__active-filters-label">فیلترهای فعال</span>
+                    <div class="table__active-filters-chips"></div>
+                    <button type="button" class="table__active-filters-reset">
+                        <svg viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        بازنشانی همه فیلترها
+                    </button>
+                </div>
+
+                <!-- Select All Row (mobile) -->
+                <div class="table__select-all">
+                    <div class="table__select-all-right">
+                        <label class="table__checkbox-wrapper">
+                            <input type="checkbox" class="table__checkbox-input table__select-all-checkbox">
+                            <span class="table__checkbox-box">
+                                <svg class="table__icon--check" viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                <svg class="table__icon--indeterminate" viewBox="0 0 10 10" fill="none" style="display:none"><path d="M2.5 5H7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                            </span>
+                        </label>
+                        <span class="table__select-all-text">انتخاب همه</span>
+                    </div>
+                    <button class="table__btn table__btn--secondary table__select-all-bulk" disabled>
+                        <span class="table__btn-text">فعالیت گروهی</span>
+                    </button>
+                </div>
+
+                <!-- Table -->
+                <div class="table__scroll-wrapper">
+                <table class="table__grid">
+                    <thead class="table__thead">
+                        <tr class="table__row">
+                            <th class="table__cell table__cell--checkbox">
+                                <label class="table__checkbox-wrapper">
+                                    <input type="checkbox" class="table__checkbox-input">
+                                    <span class="table__checkbox-box">
+                                        <svg class="table__icon--check" viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                        <svg class="table__icon--indeterminate" viewBox="0 0 10 10" fill="none" style="display:none"><path d="M2.5 5H7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                                    </span>
+                                </label>
+                            </th>
+                            <th class="table__cell">
+                                <div class="table__cell-inner">
+                                    <span class="table__cell-icon"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M5 20c0-3.314 3.134-6 7-6s7 2.686 7 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+                                    <span class="table__cell-text">نام و نام خانوادگی</span>
+                                </div>
+                            </th>
+                            <th class="table__cell">
+                                <div class="table__cell-inner">
+                                    <span class="table__cell-icon"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M7 8h2M7 12h2M7 16h2M11 8h6M11 12h6M11 16h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+                                    <span class="table__cell-text">کد اختصاصی</span>
+                                </div>
+                            </th>
+                            <th class="table__cell">
+                                <div class="table__cell-inner">
+                                    <span class="table__cell-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                                    <span class="table__cell-text">شماره تماس</span>
+                                </div>
+                            </th>
+                            <th class="table__cell">
+                                <div class="table__cell-inner">
+                                    <span class="table__cell-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                                    <span class="table__cell-text">وضعیت آزمون</span>
+                                </div>
+                            </th>
+                            <th class="table__cell">
+                                <div class="table__cell-inner">
+                                    <span class="table__cell-icon"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 01-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                                    <span class="table__cell-text">وضعیت</span>
+                                </div>
+                            </th>
+                            <th class="table__cell table__cell--action"></th>
+                        </tr>
+                    </thead>
+                    <tbody class="table__tbody">
+                        <!-- rows injected by JS -->
+                    </tbody>
+                </table>
+
+                <!-- Processing Overlay -->
+                <div class="table__search-processing-overlay ">
+                    <div class="table__search-processing">
+                        <span class="table__search-processing-icon">
+                            <svg viewBox="0 0 24 24" fill="none"><path d="M21 11V8.5C21 5.46 18.54 3 15.5 3H8.5C5.46 3 3 5.46 3 8.5V15.5C3 18.54 5.46 21 8.5 21H11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 10h2M8 14h2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M17.5 15.5l1.5 1.5M20.5 21a2.5 2.5 0 100-5 2.5 2.5 0 000 5z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </span>
+                        <span>جستجو در حال پردازش ....</span>
+                    </div>
+                </div>
+
+                </div>
+
+                <!-- No Results Message -->
+                <div class="table__no-results">
+                    <div class="table__no-results__rings">
+                        <div class="table__no-results__ring table__no-results__ring--lg"></div>
+                        <div class="table__no-results__ring table__no-results__ring--md"></div>
+                        <div class="table__no-results__ring table__no-results__ring--sm"></div>
+                        <div class="table__no-results__icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z"/>
+                                <path d="M14 2v6h6"/>
+                                <circle cx="10.5" cy="14.5" r="2.5"/>
+                                <path d="M16 20l-2-2"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <p class="table__no-results__title">نتیجه‌ای برای جستجوی شما پیدا نشد.</p>
+                    <p class="table__no-results__subtitle">لطفاً عبارت جستجو را اصلاح کرده یا فیلترهای اعمال‌شده را تغییر دهید.</p>
+                </div>
+
+                <!-- Pagination -->
+                <div class="table__pagination">
+                    <div class="table__page-size">
+                        <button class="table__page-size-btn">
+                            <span class="table__page-size-text">۱۰ ردیف در هر صفحه</span>
+                            <span class="table__page-size-arrow"><svg viewBox="0 0 16 16" fill="none"><path d="M10 4L6 8L10 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                        </button>
+                        <div class="table__page-size-dropdown">
+                            <button class="table__page-size-option table__page-size-option--active" data-size="10">۱۰ ردیف</button>
+                            <button class="table__page-size-option" data-size="25">۲۵ ردیف</button>
+                            <button class="table__page-size-option" data-size="50">۵۰ ردیف</button>
+                            <button class="table__page-size-option" data-size="100">۱۰۰ ردیف</button>
+                        </div>
+                    </div>
+                    <div class="table__page-numbers"></div>
+                </div>
+
+                <!-- Action Bar -->
+                <div class="table__action-bar">
+                    <div class="table__action-count">
+                        <span class="table__action-count-icon">
+                            <svg viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </span>
+                        <span class="table__action-count-text">۰ ردیف انتخاب شده</span>
+                    </div>
+                    <div class="table__action-buttons">
+                        <button class="table__action-btn">
+                            <span class="table__action-btn-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 2v6h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                            <span>افزودن آزمون</span>
+                        </button>
+                        <button class="table__action-btn">
+                            <span class="table__action-btn-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                            <span>افزودن به گروه</span>
+                        </button>
+                        <button class="table__action-btn">
+                            <span class="table__action-btn-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                            <span>اعطای دسترسی به مدیران</span>
+                        </button>
+                        <button class="table__action-btn">
+                            <span class="table__action-btn-icon"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 01-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                            <span>تغییر وضعیت</span>
+                        </button>
+                        <button class="table__action-btn" data-bulk-action="delete">
+                            <span class="table__action-btn-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M3 6h18M8 6V4a2 2 0 012-2h4a2 2 0 012 2v2m3 0v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6h14z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                            <span>حذف کاربران</span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Filter Modal — server-table -->
+        <div class="modal" id="server-table-filter">
+            <div class="modal__overlay"></div>
+            <div class="modal__container">
+                <div class="modal__header">
+                    <div class="modal__title-block">
+                        <div class="modal__icon-holder">
+                            <svg viewBox="0 0 24 24" fill="none"><path d="M3.75 3.75h16.5l-5.78 7.16c-.3.37-.47.84-.47 1.32v4.52l-4 2V12.23c0-.48-.17-.95-.47-1.32L3.75 3.75z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </div>
+                        <div class="modal__title-wrap">
+                            <h2 class="modal__title">فیلتر کاربران</h2>
+                            <p class="modal__subtitle">برای مدیریت بهتر میتوانید از فیلتر‌های ترکیبی استفاده کنید</p>
+                        </div>
+                    </div>
+                    <button class="modal__close" type="button" aria-label="بستن">
+                        <svg viewBox="0 0 24 24" fill="none"><path d="M5.25 5.25L18.75 18.75M18.75 5.25L5.25 18.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                    </button>
+                </div>
+                <div class="modal__body">
+                    <div class="modal__content">
+                        <div class="table__filter-group">
+                            <div class="table__filter-section">
+                                <span class="table__filter-section-text">بر اساس آزمون‌ها</span>
+                                <span class="table__filter-section-line"></span>
+                            </div>
+                            <div class="table__filter-row">
+                                <span class="table__filter-row-label">دارای آزمون</span>
+                                <span class="table__filter-row-value">
+                                    <label class="switch"><input type="checkbox" class="switch__input" role="switch"><span class="switch__track"><span class="switch__thumb"><svg class="switch__icon switch__icon--check" viewBox="0 0 14 14" fill="none"><path d="M3.75 7.5L5.75 9.75L10.25 4.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><svg class="switch__icon switch__icon--close" viewBox="0 0 14 14" fill="none"><path d="M4.25 4.25L9.75 9.75M9.75 4.25L4.25 9.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></span></label>
+                                </span>
+                            </div>
+                            <div class="table__filter-row">
+                                <span class="table__filter-row-label">بدون آزمون</span>
+                                <span class="table__filter-row-value">
+                                    <label class="switch"><input type="checkbox" class="switch__input" role="switch"><span class="switch__track"><span class="switch__thumb"><svg class="switch__icon switch__icon--check" viewBox="0 0 14 14" fill="none"><path d="M3.75 7.5L5.75 9.75L10.25 4.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><svg class="switch__icon switch__icon--close" viewBox="0 0 14 14" fill="none"><path d="M4.25 4.25L9.75 9.75M9.75 4.25L4.25 9.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></span></label>
+                                </span>
+                            </div>
+                            <div class="table__filter-row">
+                                <span class="table__filter-row-label">آزمون انجام شده</span>
+                                <span class="table__filter-row-value"><span class="table__filter-row-chevron"><svg viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
+                            </div>
+                        </div>
+                        <div class="table__filter-group">
+                            <div class="table__filter-section">
+                                <span class="table__filter-section-text">بر اساس مشخصات کاربر</span>
+                                <span class="table__filter-section-line"></span>
+                            </div>
+                            <div class="table__filter-row">
+                                <span class="table__filter-row-label">وضعیت</span>
+                                <span class="table__filter-row-value"><span class="table__filter-row-chevron"><svg viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
+                            </div>
+                            <div class="table__filter-row">
+                                <span class="table__filter-row-label">دسترسی</span>
+                                <span class="table__filter-row-value"><span class="table__filter-row-chevron"><svg viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal__actions">
+                        <div class="table__filter-actions">
+                            <button class="btn btn--outline btn--large" type="button">بازنشانی همه</button>
+                            <button class="btn btn--primary btn--large" type="button" data-modal-close="server-table-filter">اعمال فیلتر</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ========================================
+         Active Filters Table Demo
+         ======================================== -->
+    <div class="demo-wrapper">
+        <div class="demo-section">
+            <h2>جدول با فیلترهای فعال</h2>
+            <p class="demo-desc">نوار فیلترهای فعال با چند تگ فیلتر نمایش داده شده است. کلاس <code>table__active-filters--visible</code> آن را نمایان می‌کند.</p>
+
+            <div class="table-container" data-table="active-filters-table" data-page-size="10">
+
+                <!-- Row Action Menu -->
+                <div class="table__row-menu">
+                    <button class="table__row-menu-item" type="button" data-action="edit">ویرایش</button>
+                    <button class="table__row-menu-item" type="button" data-action="report">گزارشات</button>
+                    <button class="table__row-menu-item" type="button" data-action="delete">حذف</button>
+                </div>
+
+                <!-- Tile Header -->
+                <div class="table__header">
+                    <div class="table__title-section">
+                        <h2 class="table__title">لیست کاربران</h2>
+                        <span class="table__dot"></span>
+                        <span class="table__count">تعداد: ۵ نفر</span>
+                    </div>
+                    <div class="table__actions">
+                        <button class="table__btn table__btn--filter" data-modal-open="active-filters-table-filter">
+                            <span class="table__btn-icon">
+                                <svg viewBox="0 0 24 24" fill="none"><path d="M4 4h16l-6 7.5V18l-4 2V11.5L4 4z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </span>
+                            <span class="table__btn-text">فیلتر</span>
+                        </button>
+                        <span class="table__divider"></span>
+                        <button class="table__btn table__btn--secondary">
+                            <span class="table__btn-icon">
+                                <svg viewBox="0 0 24 24" fill="none"><path d="M12 16V2m0 0l4 4m-4-4L8 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 17l.621 2.485A2 2 0 004.561 21h14.878a2 2 0 001.94-1.515L22 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </span>
+                            <span class="table__btn-text">بارگذاری گروهی</span>
+                        </button>
+                        <button class="table__btn table__btn--primary">
+                            <span class="table__btn-icon">
+                                <svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                            </span>
+                            <span class="table__btn-text">افزودن کاربر جدید</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Search Box -->
+                <div class="table__search">
+                    <span class="table__search-icon">
+                        <svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.5"/><path d="M20 20l-3.5-3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                    </span>
+                    <span class="table__search-divider"></span>
+                    <input type="text" class="table__search-input" placeholder="جستجو...">
+                    <button type="button" class="table__search-clear" aria-label="پاک کردن">
+                        <svg viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </button>
+                </div>
+
+                <!-- Active Filters Bar — visible -->
+                <div class="table__active-filters table__active-filters--visible">
+                    <span class="table__active-filters-label">فیلترهای فعال</span>
+                    <div class="table__active-filters-chips">
+                        <span class="table__active-filter-tag">
+                            +۳ آزمون انجام شده
+                            <button type="button" class="table__active-filter-close" aria-label="حذف فیلتر">
+                                <svg viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </button>
+                        </span>
+                        <span class="table__active-filter-tag">
+                            وضعیت: فعال
+                            <button type="button" class="table__active-filter-close" aria-label="حذف فیلتر">
+                                <svg viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </button>
+                        </span>
+                        <span class="table__active-filter-tag">
+                            دارای آزمون
+                            <button type="button" class="table__active-filter-close" aria-label="حذف فیلتر">
+                                <svg viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </button>
+                        </span>
+                    </div>
+                    <button type="button" class="table__active-filters-reset">
+                        <svg viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        بازنشانی همه فیلترها
+                    </button>
+                </div>
+
+                <!-- Select All Row (mobile) -->
+                <div class="table__select-all">
+                    <div class="table__select-all-right">
+                        <label class="table__checkbox-wrapper">
+                            <input type="checkbox" class="table__checkbox-input table__select-all-checkbox">
+                            <span class="table__checkbox-box">
+                                <svg class="table__icon--check" viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                <svg class="table__icon--indeterminate" viewBox="0 0 10 10" fill="none" style="display:none"><path d="M2.5 5H7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                            </span>
+                        </label>
+                        <span class="table__select-all-text">انتخاب همه</span>
+                    </div>
+                    <button class="table__btn table__btn--secondary table__select-all-bulk" disabled>
+                        <span class="table__btn-text">فعالیت گروهی</span>
+                    </button>
+                </div>
+
+                <!-- Table -->
+                <div class="table__scroll-wrapper">
+                <table class="table__grid">
+                    <thead class="table__thead">
+                        <tr class="table__row">
+                            <th class="table__cell table__cell--checkbox">
+                                <label class="table__checkbox-wrapper">
+                                    <input type="checkbox" class="table__checkbox-input">
+                                    <span class="table__checkbox-box">
+                                        <svg class="table__icon--check" viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                        <svg class="table__icon--indeterminate" viewBox="0 0 10 10" fill="none" style="display:none"><path d="M2.5 5H7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                                    </span>
+                                </label>
+                            </th>
+                            <th class="table__cell">
+                                <div class="table__cell-inner">
+                                    <span class="table__cell-icon"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M5 20c0-3.314 3.134-6 7-6s7 2.686 7 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+                                    <span class="table__cell-text">نام و نام خانوادگی</span>
+                                </div>
+                            </th>
+                            <th class="table__cell">
+                                <div class="table__cell-inner">
+                                    <span class="table__cell-icon"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M7 8h2M7 12h2M7 16h2M11 8h6M11 12h6M11 16h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+                                    <span class="table__cell-text">کد اختصاصی</span>
+                                </div>
+                            </th>
+                            <th class="table__cell">
+                                <div class="table__cell-inner">
+                                    <span class="table__cell-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                                    <span class="table__cell-text">شماره تماس</span>
+                                </div>
+                            </th>
+                            <th class="table__cell">
+                                <div class="table__cell-inner">
+                                    <span class="table__cell-icon"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 01-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                                    <span class="table__cell-text">وضعیت</span>
+                                </div>
+                            </th>
+                            <th class="table__cell table__cell--action"></th>
+                        </tr>
+                    </thead>
+                    <tbody class="table__tbody">
+                        <tr class="table__row">
+                            <td class="table__cell table__cell--checkbox"><label class="table__checkbox-wrapper"><input type="checkbox" class="table__checkbox-input"><span class="table__checkbox-box"><svg class="table__icon--check" viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label></td>
+                            <td class="table__cell" data-label="نام و نام خانوادگی">علی میرهادی</td>
+                            <td class="table__cell table__cell--code" data-label="کد اختصاصی">۱۲۵۴۹۸۵۳۱۶</td>
+                            <td class="table__cell" data-label="شماره تماس">۰۹۲۱۵۸۶۳۶۲۲</td>
+                            <td class="table__cell" data-label="وضعیت"><span class="table__tag table__tag--success">فعال</span></td>
+                            <td class="table__cell table__cell--action"><button class="table__row-action">&#8942;</button></td>
+                        </tr>
+                        <tr class="table__row">
+                            <td class="table__cell table__cell--checkbox"><label class="table__checkbox-wrapper"><input type="checkbox" class="table__checkbox-input"><span class="table__checkbox-box"><svg class="table__icon--check" viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label></td>
+                            <td class="table__cell" data-label="نام و نام خانوادگی">اختر شریعتمداری</td>
+                            <td class="table__cell table__cell--code" data-label="کد اختصاصی">۵۸۹۴۶۳۳۲۱۸</td>
+                            <td class="table__cell" data-label="شماره تماس">۰۹۱۲۱۲۳۵۸۴۶</td>
+                            <td class="table__cell" data-label="وضعیت"><span class="table__tag table__tag--success">فعال</span></td>
+                            <td class="table__cell table__cell--action"><button class="table__row-action">&#8942;</button></td>
+                        </tr>
+                        <tr class="table__row">
+                            <td class="table__cell table__cell--checkbox"><label class="table__checkbox-wrapper"><input type="checkbox" class="table__checkbox-input"><span class="table__checkbox-box"><svg class="table__icon--check" viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label></td>
+                            <td class="table__cell" data-label="نام و نام خانوادگی">یزدان مهر دهقان</td>
+                            <td class="table__cell table__cell--code" data-label="کد اختصاصی">۲۵۴۹۶۵۵۱۸۷</td>
+                            <td class="table__cell" data-label="شماره تماس">۰۹۱۲۱۶۵۸۸۴۲</td>
+                            <td class="table__cell" data-label="وضعیت"><span class="table__tag table__tag--success">فعال</span></td>
+                            <td class="table__cell table__cell--action"><button class="table__row-action">&#8942;</button></td>
+                        </tr>
+                        <tr class="table__row">
+                            <td class="table__cell table__cell--checkbox"><label class="table__checkbox-wrapper"><input type="checkbox" class="table__checkbox-input"><span class="table__checkbox-box"><svg class="table__icon--check" viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label></td>
+                            <td class="table__cell" data-label="نام و نام خانوادگی">ایراندخت عبدالکریمی</td>
+                            <td class="table__cell table__cell--code" data-label="کد اختصاصی">۳۵۴۹۱۶۲۵۴۹</td>
+                            <td class="table__cell" data-label="شماره تماس">۰۹۱۲۵۹۱۸۵۴۴</td>
+                            <td class="table__cell" data-label="وضعیت"><span class="table__tag table__tag--danger">غیرفعال</span></td>
+                            <td class="table__cell table__cell--action"><button class="table__row-action">&#8942;</button></td>
+                        </tr>
+                        <tr class="table__row">
+                            <td class="table__cell table__cell--checkbox"><label class="table__checkbox-wrapper"><input type="checkbox" class="table__checkbox-input"><span class="table__checkbox-box"><svg class="table__icon--check" viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label></td>
+                            <td class="table__cell" data-label="نام و نام خانوادگی">هاونی جعفریان</td>
+                            <td class="table__cell table__cell--code" data-label="کد اختصاصی">۱۵۴۶۷۹۱۸۳۵</td>
+                            <td class="table__cell" data-label="شماره تماس">۰۹۱۲۱۴۹۶۵۷۷</td>
+                            <td class="table__cell" data-label="وضعیت"><span class="table__tag table__tag--success">فعال</span></td>
+                            <td class="table__cell table__cell--action"><button class="table__row-action">&#8942;</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- No Results Message -->
+                <div class="table__no-results">
+                    <div class="table__no-results__rings">
+                        <div class="table__no-results__ring table__no-results__ring--lg"></div>
+                        <div class="table__no-results__ring table__no-results__ring--md"></div>
+                        <div class="table__no-results__ring table__no-results__ring--sm"></div>
+                        <div class="table__no-results__icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z"/><path d="M14 2v6h6"/><circle cx="10.5" cy="14.5" r="2.5"/><path d="M16 20l-2-2"/></svg>
+                        </div>
+                    </div>
+                    <p class="table__no-results__title">نتیجه‌ای برای جستجوی شما پیدا نشد.</p>
+                    <p class="table__no-results__subtitle">لطفاً عبارت جستجو را اصلاح کرده یا فیلترهای اعمال‌شده را تغییر دهید.</p>
+                </div>
+                </div>
+
+                <!-- Pagination -->
+                <div class="table__pagination">
+                    <div class="table__page-size">
+                        <button class="table__page-size-btn">
+                            <span class="table__page-size-text">۱۰ ردیف در هر صفحه</span>
+                            <span class="table__page-size-arrow"><svg viewBox="0 0 16 16" fill="none"><path d="M10 4L6 8L10 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                        </button>
+                        <div class="table__page-size-dropdown">
+                            <button class="table__page-size-option table__page-size-option--active" data-size="10">۱۰ ردیف</button>
+                            <button class="table__page-size-option" data-size="25">۲۵ ردیف</button>
+                            <button class="table__page-size-option" data-size="50">۵۰ ردیف</button>
+                        </div>
+                    </div>
+                    <div class="table__page-numbers"></div>
+                </div>
+
+                <!-- Action Bar -->
+                <div class="table__action-bar">
+                    <div class="table__action-count">
+                        <span class="table__action-count-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                        <span class="table__action-count-text">۰ ردیف انتخاب شده</span>
+                    </div>
+                    <div class="table__action-buttons">
+                        <button class="table__action-btn" data-bulk-action="delete">
+                            <span class="table__action-btn-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M3 6h18M8 6V4a2 2 0 012-2h4a2 2 0 012 2v2m3 0v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6h14z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                            <span>حذف کاربران</span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Filter Modal — active-filters-table -->
+        <div class="modal" id="active-filters-table-filter">
+            <div class="modal__overlay"></div>
+            <div class="modal__container">
+                <div class="modal__header">
+                    <div class="modal__title-block">
+                        <div class="modal__icon-holder">
+                            <svg viewBox="0 0 24 24" fill="none"><path d="M3.75 3.75h16.5l-5.78 7.16c-.3.37-.47.84-.47 1.32v4.52l-4 2V12.23c0-.48-.17-.95-.47-1.32L3.75 3.75z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </div>
+                        <div class="modal__title-wrap">
+                            <h2 class="modal__title">فیلتر کاربران</h2>
+                            <p class="modal__subtitle">برای مدیریت بهتر میتوانید از فیلتر‌های ترکیبی استفاده کنید</p>
+                        </div>
+                    </div>
+                    <button class="modal__close" type="button" aria-label="بستن">
+                        <svg viewBox="0 0 24 24" fill="none"><path d="M5.25 5.25L18.75 18.75M18.75 5.25L5.25 18.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                    </button>
+                </div>
+                <div class="modal__body">
+                    <div class="modal__content">
+                        <div class="table__filter-group">
+                            <div class="table__filter-section">
+                                <span class="table__filter-section-text">بر اساس آزمون‌ها</span>
+                                <span class="table__filter-section-line"></span>
+                            </div>
+                            <div class="table__filter-row table__filter-row--active">
+                                <span class="table__filter-row-label">دارای آزمون</span>
+                                <span class="table__filter-row-value">
+                                    <label class="switch"><input type="checkbox" class="switch__input" role="switch" checked><span class="switch__track"><span class="switch__thumb"><svg class="switch__icon switch__icon--check" viewBox="0 0 14 14" fill="none"><path d="M3.75 7.5L5.75 9.75L10.25 4.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><svg class="switch__icon switch__icon--close" viewBox="0 0 14 14" fill="none"><path d="M4.25 4.25L9.75 9.75M9.75 4.25L4.25 9.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></span></label>
+                                </span>
+                            </div>
+                            <div class="table__filter-row table__filter-row--active">
+                                <span class="table__filter-row-label">آزمون انجام شده</span>
+                                <span class="table__filter-row-value">
+                                    +۳ گزینه انتخاب شده
+                                    <span class="table__filter-row-chevron"><svg viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="table__filter-group">
+                            <div class="table__filter-section">
+                                <span class="table__filter-section-text">بر اساس مشخصات کاربر</span>
+                                <span class="table__filter-section-line"></span>
+                            </div>
+                            <div class="table__filter-row table__filter-row--active">
+                                <span class="table__filter-row-label">وضعیت</span>
+                                <span class="table__filter-row-value">
+                                    فعال
+                                    <span class="table__filter-row-chevron"><svg viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                                </span>
+                            </div>
+                            <div class="table__filter-row">
+                                <span class="table__filter-row-label">دسترسی</span>
+                                <span class="table__filter-row-value"><span class="table__filter-row-chevron"><svg viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal__actions">
+                        <div class="table__filter-actions">
+                            <button class="btn btn--outline btn--large" type="button">بازنشانی همه</button>
+                            <button class="btn btn--primary btn--large" type="button" data-modal-close="active-filters-table-filter">اعمال فیلتر</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================
+         No-Search Table Demo
+         ======================================== -->
+    <div class="demo-wrapper">
+        <div class="demo-section">
+            <h2>جدول بدون جستجو</h2>
+            <p class="demo-desc">این حالت هدر، فیلتر، دکمه‌های عملیات و صفحه‌بندی دارد اما باکس جستجو ندارد.</p>
+
+            <div class="table-container" data-table="no-search-table" data-page-size="10">
+
+                <!-- Row Action Menu -->
+                <div class="table__row-menu">
+                    <button class="table__row-menu-item" type="button" data-action="edit">ویرایش</button>
+                    <button class="table__row-menu-item" type="button" data-action="report">گزارشات</button>
+                    <button class="table__row-menu-item" type="button" data-action="delete">حذف</button>
+                </div>
+
+                <!-- Tile Header -->
+                <div class="table__header">
+                    <div class="table__title-section">
+                        <h2 class="table__title">لیست کاربران</h2>
+                        <span class="table__dot"></span>
+                        <span class="table__count">تعداد: ۵ نفر</span>
+                    </div>
+                    <div class="table__actions">
+                        <button class="table__btn table__btn--filter" data-modal-open="no-search-table-filter">
+                            <span class="table__btn-icon">
+                                <svg viewBox="0 0 24 24" fill="none"><path d="M4 4h16l-6 7.5V18l-4 2V11.5L4 4z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </span>
+                            <span class="table__btn-text">فیلتر</span>
+                        </button>
+                        <span class="table__divider"></span>
+                        <button class="table__btn table__btn--secondary">
+                            <span class="table__btn-icon">
+                                <svg viewBox="0 0 24 24" fill="none"><path d="M12 16V2m0 0l4 4m-4-4L8 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 17l.621 2.485A2 2 0 004.561 21h14.878a2 2 0 001.94-1.515L22 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </span>
+                            <span class="table__btn-text">بارگذاری گروهی</span>
+                        </button>
+                        <button class="table__btn table__btn--primary">
+                            <span class="table__btn-icon">
+                                <svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                            </span>
+                            <span class="table__btn-text">افزودن کاربر جدید</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Active Filters Bar -->
+                <div class="table__active-filters">
+                    <span class="table__active-filters-label">فیلترهای فعال</span>
+                    <div class="table__active-filters-chips"></div>
+                    <button type="button" class="table__active-filters-reset">
+                        <svg viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        بازنشانی همه فیلترها
+                    </button>
+                </div>
+
+                <!-- Select All Row (mobile) -->
+                <div class="table__select-all">
+                    <div class="table__select-all-right">
+                        <label class="table__checkbox-wrapper">
+                            <input type="checkbox" class="table__checkbox-input table__select-all-checkbox">
+                            <span class="table__checkbox-box">
+                                <svg class="table__icon--check" viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                <svg class="table__icon--indeterminate" viewBox="0 0 10 10" fill="none" style="display:none"><path d="M2.5 5H7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                            </span>
+                        </label>
+                        <span class="table__select-all-text">انتخاب همه</span>
+                    </div>
+                    <button class="table__btn table__btn--secondary table__select-all-bulk" disabled>
+                        <span class="table__btn-text">فعالیت گروهی</span>
+                    </button>
+                </div>
+
+                <!-- Table -->
+                <div class="table__scroll-wrapper">
+                <table class="table__grid">
+                    <thead class="table__thead">
+                        <tr class="table__row">
+                            <th class="table__cell table__cell--checkbox">
+                                <label class="table__checkbox-wrapper">
+                                    <input type="checkbox" class="table__checkbox-input">
+                                    <span class="table__checkbox-box">
+                                        <svg class="table__icon--check" viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                        <svg class="table__icon--indeterminate" viewBox="0 0 10 10" fill="none" style="display:none"><path d="M2.5 5H7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                                    </span>
+                                </label>
+                            </th>
+                            <th class="table__cell">
+                                <div class="table__cell-inner">
+                                    <span class="table__cell-icon"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M5 20c0-3.314 3.134-6 7-6s7 2.686 7 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+                                    <span class="table__cell-text">نام و نام خانوادگی</span>
+                                </div>
+                            </th>
+                            <th class="table__cell">
+                                <div class="table__cell-inner">
+                                    <span class="table__cell-icon"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M7 8h2M7 12h2M7 16h2M11 8h6M11 12h6M11 16h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+                                    <span class="table__cell-text">کد اختصاصی</span>
+                                </div>
+                            </th>
+                            <th class="table__cell">
+                                <div class="table__cell-inner">
+                                    <span class="table__cell-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                                    <span class="table__cell-text">شماره تماس</span>
+                                </div>
+                            </th>
+                            <th class="table__cell">
+                                <div class="table__cell-inner">
+                                    <span class="table__cell-icon"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 01-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                                    <span class="table__cell-text">وضعیت</span>
+                                </div>
+                            </th>
+                            <th class="table__cell table__cell--action"></th>
+                        </tr>
+                    </thead>
+                    <tbody class="table__tbody">
+                        <tr class="table__row">
+                            <td class="table__cell table__cell--checkbox"><label class="table__checkbox-wrapper"><input type="checkbox" class="table__checkbox-input"><span class="table__checkbox-box"><svg class="table__icon--check" viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label></td>
+                            <td class="table__cell" data-label="نام و نام خانوادگی">علی میرهادی</td>
+                            <td class="table__cell table__cell--code" data-label="کد اختصاصی">۱۲۵۴۹۸۵۳۱۶</td>
+                            <td class="table__cell" data-label="شماره تماس">۰۹۲۱۵۸۶۳۶۲۲</td>
+                            <td class="table__cell" data-label="وضعیت"><span class="table__tag table__tag--success">فعال</span></td>
+                            <td class="table__cell table__cell--action"><button class="table__row-action">&#8942;</button></td>
+                        </tr>
+                        <tr class="table__row">
+                            <td class="table__cell table__cell--checkbox"><label class="table__checkbox-wrapper"><input type="checkbox" class="table__checkbox-input"><span class="table__checkbox-box"><svg class="table__icon--check" viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label></td>
+                            <td class="table__cell" data-label="نام و نام خانوادگی">اختر شریعتمداری</td>
+                            <td class="table__cell table__cell--code" data-label="کد اختصاصی">۵۸۹۴۶۳۳۲۱۸</td>
+                            <td class="table__cell" data-label="شماره تماس">۰۹۱۲۱۲۳۵۸۴۶</td>
+                            <td class="table__cell" data-label="وضعیت"><span class="table__tag table__tag--success">فعال</span></td>
+                            <td class="table__cell table__cell--action"><button class="table__row-action">&#8942;</button></td>
+                        </tr>
+                        <tr class="table__row">
+                            <td class="table__cell table__cell--checkbox"><label class="table__checkbox-wrapper"><input type="checkbox" class="table__checkbox-input"><span class="table__checkbox-box"><svg class="table__icon--check" viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label></td>
+                            <td class="table__cell" data-label="نام و نام خانوادگی">یزدان مهر دهقان</td>
+                            <td class="table__cell table__cell--code" data-label="کد اختصاصی">۲۵۴۹۶۵۵۱۸۷</td>
+                            <td class="table__cell" data-label="شماره تماس">۰۹۱۲۱۶۵۸۸۴۲</td>
+                            <td class="table__cell" data-label="وضعیت"><span class="table__tag table__tag--success">فعال</span></td>
+                            <td class="table__cell table__cell--action"><button class="table__row-action">&#8942;</button></td>
+                        </tr>
+                        <tr class="table__row">
+                            <td class="table__cell table__cell--checkbox"><label class="table__checkbox-wrapper"><input type="checkbox" class="table__checkbox-input"><span class="table__checkbox-box"><svg class="table__icon--check" viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label></td>
+                            <td class="table__cell" data-label="نام و نام خانوادگی">ایراندخت عبدالکریمی</td>
+                            <td class="table__cell table__cell--code" data-label="کد اختصاصی">۳۵۴۹۱۶۲۵۴۹</td>
+                            <td class="table__cell" data-label="شماره تماس">۰۹۱۲۵۹۱۸۵۴۴</td>
+                            <td class="table__cell" data-label="وضعیت"><span class="table__tag table__tag--danger">غیرفعال</span></td>
+                            <td class="table__cell table__cell--action"><button class="table__row-action">&#8942;</button></td>
+                        </tr>
+                        <tr class="table__row">
+                            <td class="table__cell table__cell--checkbox"><label class="table__checkbox-wrapper"><input type="checkbox" class="table__checkbox-input"><span class="table__checkbox-box"><svg class="table__icon--check" viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label></td>
+                            <td class="table__cell" data-label="نام و نام خانوادگی">هاونی جعفریان</td>
+                            <td class="table__cell table__cell--code" data-label="کد اختصاصی">۱۵۴۶۷۹۱۸۳۵</td>
+                            <td class="table__cell" data-label="شماره تماس">۰۹۱۲۱۴۹۶۵۷۷</td>
+                            <td class="table__cell" data-label="وضعیت"><span class="table__tag table__tag--success">فعال</span></td>
+                            <td class="table__cell table__cell--action"><button class="table__row-action">&#8942;</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- No Results Message -->
+                <div class="table__no-results">
+                    <div class="table__no-results__rings">
+                        <div class="table__no-results__ring table__no-results__ring--lg"></div>
+                        <div class="table__no-results__ring table__no-results__ring--md"></div>
+                        <div class="table__no-results__ring table__no-results__ring--sm"></div>
+                        <div class="table__no-results__icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z"/><path d="M14 2v6h6"/><circle cx="10.5" cy="14.5" r="2.5"/><path d="M16 20l-2-2"/></svg>
+                        </div>
+                    </div>
+                    <p class="table__no-results__title">نتیجه‌ای پیدا نشد.</p>
+                    <p class="table__no-results__subtitle">فیلترهای اعمال‌شده را تغییر دهید.</p>
+                </div>
+                </div>
+
+                <!-- Pagination -->
+                <div class="table__pagination">
+                    <div class="table__page-size">
+                        <button class="table__page-size-btn">
+                            <span class="table__page-size-text">۱۰ ردیف در هر صفحه</span>
+                            <span class="table__page-size-arrow"><svg viewBox="0 0 16 16" fill="none"><path d="M10 4L6 8L10 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                        </button>
+                        <div class="table__page-size-dropdown">
+                            <button class="table__page-size-option table__page-size-option--active" data-size="10">۱۰ ردیف</button>
+                            <button class="table__page-size-option" data-size="25">۲۵ ردیف</button>
+                            <button class="table__page-size-option" data-size="50">۵۰ ردیف</button>
+                        </div>
+                    </div>
+                    <div class="table__page-numbers"></div>
+                </div>
+
+                <!-- Action Bar -->
+                <div class="table__action-bar">
+                    <div class="table__action-count">
+                        <span class="table__action-count-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                        <span class="table__action-count-text">۰ ردیف انتخاب شده</span>
+                    </div>
+                    <div class="table__action-buttons">
+                        <button class="table__action-btn" data-bulk-action="delete">
+                            <span class="table__action-btn-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M3 6h18M8 6V4a2 2 0 012-2h4a2 2 0 012 2v2m3 0v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6h14z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                            <span>حذف کاربران</span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Filter Modal — no-search-table -->
+        <div class="modal" id="no-search-table-filter">
+            <div class="modal__overlay"></div>
+            <div class="modal__container">
+                <div class="modal__header">
+                    <div class="modal__title-block">
+                        <div class="modal__icon-holder">
+                            <svg viewBox="0 0 24 24" fill="none"><path d="M3.75 3.75h16.5l-5.78 7.16c-.3.37-.47.84-.47 1.32v4.52l-4 2V12.23c0-.48-.17-.95-.47-1.32L3.75 3.75z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </div>
+                        <div class="modal__title-wrap">
+                            <h2 class="modal__title">فیلتر کاربران</h2>
+                            <p class="modal__subtitle">برای مدیریت بهتر میتوانید از فیلتر‌های ترکیبی استفاده کنید</p>
+                        </div>
+                    </div>
+                    <button class="modal__close" type="button" aria-label="بستن">
+                        <svg viewBox="0 0 24 24" fill="none"><path d="M5.25 5.25L18.75 18.75M18.75 5.25L5.25 18.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                    </button>
+                </div>
+                <div class="modal__body">
+                    <div class="modal__content">
+                        <div class="table__filter-group">
+                            <div class="table__filter-section">
+                                <span class="table__filter-section-text">بر اساس مشخصات کاربر</span>
+                                <span class="table__filter-section-line"></span>
+                            </div>
+                            <div class="table__filter-row">
+                                <span class="table__filter-row-label">وضعیت</span>
+                                <span class="table__filter-row-value"><span class="table__filter-row-chevron"><svg viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
+                            </div>
+                            <div class="table__filter-row">
+                                <span class="table__filter-row-label">دسترسی</span>
+                                <span class="table__filter-row-value"><span class="table__filter-row-chevron"><svg viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal__actions">
+                        <div class="table__filter-actions">
+                            <button class="btn btn--outline btn--large" type="button">بازنشانی همه</button>
+                            <button class="btn btn--primary btn--large" type="button" data-modal-close="no-search-table-filter">اعمال فیلتر</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================
+         No-Filter-and-Buttons Table Demo
+         ======================================== -->
+    <div class="demo-wrapper">
+        <div class="demo-section">
+            <h2>جدول بدون فیلتر و دکمه‌ها</h2>
+            <p class="demo-desc">این حالت فقط عنوان جدول را دارد — بدون دکمه فیلتر، بارگذاری گروهی یا افزودن. جستجو و صفحه‌بندی همچنان فعال هستند.</p>
+
+            <div class="table-container" data-table="no-buttons-table" data-page-size="10">
+
+                <!-- Row Action Menu -->
+                <div class="table__row-menu">
+                    <button class="table__row-menu-item" type="button" data-action="edit">ویرایش</button>
+                    <button class="table__row-menu-item" type="button" data-action="report">گزارشات</button>
+                    <button class="table__row-menu-item" type="button" data-action="delete">حذف</button>
+                </div>
+
+                <!-- Title Header — no actions -->
+                <div class="table__header">
+                    <div class="table__title-section">
+                        <h2 class="table__title">لیست کاربران</h2>
+                        <span class="table__dot"></span>
+                        <span class="table__count">تعداد: ۵ نفر</span>
+                    </div>
+                </div>
+
+                <!-- Search Box -->
+                <div class="table__search">
+                    <span class="table__search-icon">
+                        <svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.5"/><path d="M20 20l-3.5-3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                    </span>
+                    <span class="table__search-divider"></span>
+                    <input type="text" class="table__search-input" placeholder="جستجو...">
+                    <button type="button" class="table__search-clear" aria-label="پاک کردن">
+                        <svg viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </button>
+                </div>
+
+                <!-- Select All Row (mobile) -->
+                <div class="table__select-all">
+                    <div class="table__select-all-right">
+                        <label class="table__checkbox-wrapper">
+                            <input type="checkbox" class="table__checkbox-input table__select-all-checkbox">
+                            <span class="table__checkbox-box">
+                                <svg class="table__icon--check" viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                <svg class="table__icon--indeterminate" viewBox="0 0 10 10" fill="none" style="display:none"><path d="M2.5 5H7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                            </span>
+                        </label>
+                        <span class="table__select-all-text">انتخاب همه</span>
+                    </div>
+                    <button class="table__btn table__btn--secondary table__select-all-bulk" disabled>
+                        <span class="table__btn-text">فعالیت گروهی</span>
+                    </button>
+                </div>
+
+                <!-- Table -->
+                <div class="table__scroll-wrapper">
+                <table class="table__grid">
+                    <thead class="table__thead">
+                        <tr class="table__row">
+                            <th class="table__cell table__cell--checkbox">
+                                <label class="table__checkbox-wrapper">
+                                    <input type="checkbox" class="table__checkbox-input">
+                                    <span class="table__checkbox-box">
+                                        <svg class="table__icon--check" viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                        <svg class="table__icon--indeterminate" viewBox="0 0 10 10" fill="none" style="display:none"><path d="M2.5 5H7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                                    </span>
+                                </label>
+                            </th>
+                            <th class="table__cell">
+                                <div class="table__cell-inner">
+                                    <span class="table__cell-icon"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M5 20c0-3.314 3.134-6 7-6s7 2.686 7 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+                                    <span class="table__cell-text">نام و نام خانوادگی</span>
+                                </div>
+                            </th>
+                            <th class="table__cell">
+                                <div class="table__cell-inner">
+                                    <span class="table__cell-icon"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M7 8h2M7 12h2M7 16h2M11 8h6M11 12h6M11 16h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+                                    <span class="table__cell-text">کد اختصاصی</span>
+                                </div>
+                            </th>
+                            <th class="table__cell">
+                                <div class="table__cell-inner">
+                                    <span class="table__cell-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                                    <span class="table__cell-text">شماره تماس</span>
+                                </div>
+                            </th>
+                            <th class="table__cell">
+                                <div class="table__cell-inner">
+                                    <span class="table__cell-icon"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 01-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                                    <span class="table__cell-text">وضعیت</span>
+                                </div>
+                            </th>
+                            <th class="table__cell table__cell--action"></th>
+                        </tr>
+                    </thead>
+                    <tbody class="table__tbody">
+                        <tr class="table__row">
+                            <td class="table__cell table__cell--checkbox"><label class="table__checkbox-wrapper"><input type="checkbox" class="table__checkbox-input"><span class="table__checkbox-box"><svg class="table__icon--check" viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label></td>
+                            <td class="table__cell" data-label="نام و نام خانوادگی">علی میرهادی</td>
+                            <td class="table__cell table__cell--code" data-label="کد اختصاصی">۱۲۵۴۹۸۵۳۱۶</td>
+                            <td class="table__cell" data-label="شماره تماس">۰۹۲۱۵۸۶۳۶۲۲</td>
+                            <td class="table__cell" data-label="وضعیت"><span class="table__tag table__tag--success">فعال</span></td>
+                            <td class="table__cell table__cell--action"><button class="table__row-action">&#8942;</button></td>
+                        </tr>
+                        <tr class="table__row">
+                            <td class="table__cell table__cell--checkbox"><label class="table__checkbox-wrapper"><input type="checkbox" class="table__checkbox-input"><span class="table__checkbox-box"><svg class="table__icon--check" viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label></td>
+                            <td class="table__cell" data-label="نام و نام خانوادگی">اختر شریعتمداری</td>
+                            <td class="table__cell table__cell--code" data-label="کد اختصاصی">۵۸۹۴۶۳۳۲۱۸</td>
+                            <td class="table__cell" data-label="شماره تماس">۰۹۱۲۱۲۳۵۸۴۶</td>
+                            <td class="table__cell" data-label="وضعیت"><span class="table__tag table__tag--success">فعال</span></td>
+                            <td class="table__cell table__cell--action"><button class="table__row-action">&#8942;</button></td>
+                        </tr>
+                        <tr class="table__row">
+                            <td class="table__cell table__cell--checkbox"><label class="table__checkbox-wrapper"><input type="checkbox" class="table__checkbox-input"><span class="table__checkbox-box"><svg class="table__icon--check" viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label></td>
+                            <td class="table__cell" data-label="نام و نام خانوادگی">یزدان مهر دهقان</td>
+                            <td class="table__cell table__cell--code" data-label="کد اختصاصی">۲۵۴۹۶۵۵۱۸۷</td>
+                            <td class="table__cell" data-label="شماره تماس">۰۹۱۲۱۶۵۸۸۴۲</td>
+                            <td class="table__cell" data-label="وضعیت"><span class="table__tag table__tag--success">فعال</span></td>
+                            <td class="table__cell table__cell--action"><button class="table__row-action">&#8942;</button></td>
+                        </tr>
+                        <tr class="table__row">
+                            <td class="table__cell table__cell--checkbox"><label class="table__checkbox-wrapper"><input type="checkbox" class="table__checkbox-input"><span class="table__checkbox-box"><svg class="table__icon--check" viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label></td>
+                            <td class="table__cell" data-label="نام و نام خانوادگی">ایراندخت عبدالکریمی</td>
+                            <td class="table__cell table__cell--code" data-label="کد اختصاصی">۳۵۴۹۱۶۲۵۴۹</td>
+                            <td class="table__cell" data-label="شماره تماس">۰۹۱۲۵۹۱۸۵۴۴</td>
+                            <td class="table__cell" data-label="وضعیت"><span class="table__tag table__tag--danger">غیرفعال</span></td>
+                            <td class="table__cell table__cell--action"><button class="table__row-action">&#8942;</button></td>
+                        </tr>
+                        <tr class="table__row">
+                            <td class="table__cell table__cell--checkbox"><label class="table__checkbox-wrapper"><input type="checkbox" class="table__checkbox-input"><span class="table__checkbox-box"><svg class="table__icon--check" viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label></td>
+                            <td class="table__cell" data-label="نام و نام خانوادگی">هاونی جعفریان</td>
+                            <td class="table__cell table__cell--code" data-label="کد اختصاصی">۱۵۴۶۷۹۱۸۳۵</td>
+                            <td class="table__cell" data-label="شماره تماس">۰۹۱۲۱۴۹۶۵۷۷</td>
+                            <td class="table__cell" data-label="وضعیت"><span class="table__tag table__tag--success">فعال</span></td>
+                            <td class="table__cell table__cell--action"><button class="table__row-action">&#8942;</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- No Results Message -->
+                <div class="table__no-results">
+                    <div class="table__no-results__rings">
+                        <div class="table__no-results__ring table__no-results__ring--lg"></div>
+                        <div class="table__no-results__ring table__no-results__ring--md"></div>
+                        <div class="table__no-results__ring table__no-results__ring--sm"></div>
+                        <div class="table__no-results__icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z"/><path d="M14 2v6h6"/><circle cx="10.5" cy="14.5" r="2.5"/><path d="M16 20l-2-2"/></svg>
+                        </div>
+                    </div>
+                    <p class="table__no-results__title">نتیجه‌ای برای جستجوی شما پیدا نشد.</p>
+                    <p class="table__no-results__subtitle">لطفاً عبارت جستجو را اصلاح کنید.</p>
+                </div>
+                </div>
+
+                <!-- Pagination -->
+                <div class="table__pagination">
+                    <div class="table__page-size">
+                        <button class="table__page-size-btn">
+                            <span class="table__page-size-text">۱۰ ردیف در هر صفحه</span>
+                            <span class="table__page-size-arrow"><svg viewBox="0 0 16 16" fill="none"><path d="M10 4L6 8L10 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                        </button>
+                        <div class="table__page-size-dropdown">
+                            <button class="table__page-size-option table__page-size-option--active" data-size="10">۱۰ ردیف</button>
+                            <button class="table__page-size-option" data-size="25">۲۵ ردیف</button>
+                            <button class="table__page-size-option" data-size="50">۵۰ ردیف</button>
+                        </div>
+                    </div>
+                    <div class="table__page-numbers"></div>
+                </div>
+
+                <!-- Action Bar -->
+                <div class="table__action-bar">
+                    <div class="table__action-count">
+                        <span class="table__action-count-icon"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                        <span class="table__action-count-text">۰ ردیف انتخاب شده</span>
+                    </div>
+                    <div class="table__action-buttons">
+                        <button class="table__action-btn" data-bulk-action="delete">
+                            <span class="table__action-btn-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M3 6h18M8 6V4a2 2 0 012-2h4a2 2 0 012 2v2m3 0v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6h14z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                            <span>حذف کاربران</span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

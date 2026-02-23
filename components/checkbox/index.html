@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkbox Component - دمو کامپوننت چک‌باکس</title>
+  <link rel="stylesheet" href="../colors/colors.css">
+  <link rel="stylesheet" href="../typography/typography.css">
+  <link rel="stylesheet" href="checkbox.css">
+  <script src="checkbox.js" defer></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Peyda(FaNum)', sans-serif;
+      background: #f6f8fa;
+      padding: 40px 20px;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: 32px;
+      margin-bottom: 16px;
+      color: #222323;
+    }
+
+    h2 {
+      font-size: 24px;
+      margin-top: 48px;
+      margin-bottom: 24px;
+      color: #222323;
+      border-bottom: 2px solid #e2e4e6;
+      padding-bottom: 8px;
+    }
+
+    h3 {
+      font-size: 18px;
+      margin-top: 32px;
+      margin-bottom: 16px;
+      color: #222323;
+    }
+
+    .intro {
+      background: white;
+      padding: 24px;
+      border-radius: 8px;
+      margin-bottom: 32px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    .intro p {
+      margin-bottom: 12px;
+      color: #4a4a4a;
+    }
+
+    .intro ul {
+      margin-right: 24px;
+      color: #4a4a4a;
+    }
+
+    .section {
+      background: white;
+      padding: 32px;
+      border-radius: 8px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    .demo-row {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .demo-row > span {
+      font-weight: 500;
+      min-width: 100px;
+      color: #222323;
+      font-size: 14px;
+    }
+
+    .demo-grid {
+      display: grid;
+      grid-template-columns: auto repeat(5, 1fr);
+      gap: 16px 24px;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+
+    .demo-grid .grid-header {
+      font-weight: 500;
+      font-size: 12px;
+      color: #666;
+      text-align: center;
+    }
+
+    .demo-grid .grid-label {
+      font-weight: 500;
+      font-size: 14px;
+      color: #222323;
+    }
+
+    .demo-grid .grid-cell {
+      display: flex;
+      justify-content: center;
+    }
+
+    .code-block {
+      background: #222323;
+      color: #f6f8fa;
+      padding: 16px;
+      border-radius: 8px;
+      font-family: 'Courier New', monospace;
+      font-size: 14px;
+      overflow-x: auto;
+      margin-top: 16px;
+      direction: ltr;
+      text-align: left;
+      white-space: pre;
+      line-height: 1.6;
+    }
+
+    .note {
+      margin-top: 16px;
+      color: #666;
+      font-size: 14px;
+    }
+
+    .note strong {
+      color: #222323;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 16px;
+    }
+
+    th, td {
+      padding: 8px 12px;
+      text-align: right;
+      border-bottom: 1px solid #e2e4e6;
+      font-size: 14px;
+    }
+
+    th {
+      background: #f6f8fa;
+      font-weight: 500;
+      color: #222323;
+    }
+
+    td {
+      color: #4a4a4a;
+    }
+
+    td code {
+      background: #f0f0f0;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+      direction: ltr;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Checkbox Component</h1>
+    <p style="margin-bottom: 32px; color: #666;">کامپوننت چک‌باکس - Pure CSS Component</p>
+
+    <div class="intro">
+      <p><strong>درباره این کامپوننت:</strong></p>
+      <ul>
+        <li>3 وضعیت منطقی (Status): Unchecked, Checked, Indeterminate</li>
+        <li>5 حالت تعاملی (State): Rest, Hover, Pressed, Focused, Disabled</li>
+        <li>2 سایز: Large (28px), Medium (24px)</li>
+        <li>Label اختیاری با قابلیت کلیک</li>
+        <li>پشتیبانی کامل از RTL/LTR</li>
+        <li>Accessible: WCAG 2.1 Level AA</li>
+      </ul>
+    </div>
+
+    <!-- ===== Status × Size ===== -->
+    <h2>وضعیت‌ها و سایزها (Status &times; Size)</h2>
+    <div class="section">
+      <h3>Large</h3>
+      <div class="demo-row">
+        <span>Unchecked:</span>
+        <label class="checkbox checkbox--large">
+          <input type="checkbox" class="checkbox__input" />
+          <span class="checkbox__label">برچسب</span>
+          <span class="checkbox__box">
+            <span class="checkbox__inner">
+              <svg class="checkbox__icon checkbox__icon--check" viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg class="checkbox__icon checkbox__icon--indeterminate" viewBox="0 0 10 10" fill="none"><path d="M2.5 5H7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </span>
+          </span>
+        </label>
+      </div>
+      <div class="demo-row">
+        <span>Checked:</span>
+        <label class="checkbox checkbox--large">
+          <input type="checkbox" class="checkbox__input" checked />
+          <span class="checkbox__label">برچسب</span>
+          <span class="checkbox__box">
+            <span class="checkbox__inner">
+              <svg class="checkbox__icon checkbox__icon--check" viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg class="checkbox__icon checkbox__icon--indeterminate" viewBox="0 0 10 10" fill="none"><path d="M2.5 5H7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </span>
+          </span>
+        </label>
+      </div>
+      <div class="demo-row">
+        <span>Indeterminate:</span>
+        <label class="checkbox checkbox--large">
+          <input type="checkbox" class="checkbox__input" data-indeterminate />
+          <span class="checkbox__label">برچسب</span>
+          <span class="checkbox__box">
+            <span class="checkbox__inner">
+              <svg class="checkbox__icon checkbox__icon--check" viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg class="checkbox__icon checkbox__icon--indeterminate" viewBox="0 0 10 10" fill="none"><path d="M2.5 5H7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </span>
+          </span>
+        </label>
+      </div>
+
+      <h3>Medium</h3>
+      <div class="demo-row">
+        <span>Unchecked:</span>
+        <label class="checkbox checkbox--medium">
+          <input type="checkbox" class="checkbox__input" />
+          <span class="checkbox__label">برچسب</span>
+          <span class="checkbox__box">
+            <span class="checkbox__inner">
+              <svg class="checkbox__icon checkbox__icon--check" viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg class="checkbox__icon checkbox__icon--indeterminate" viewBox="0 0 10 10" fill="none"><path d="M2.5 5H7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </span>
+          </span>
+        </label>
+      </div>
+      <div class="demo-row">
+        <span>Checked:</span>
+        <label class="checkbox checkbox--medium">
+          <input type="checkbox" class="checkbox__input" checked />
+          <span class="checkbox__label">برچسب</span>
+          <span class="checkbox__box">
+            <span class="checkbox__inner">
+              <svg class="checkbox__icon checkbox__icon--check" viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg class="checkbox__icon checkbox__icon--indeterminate" viewBox="0 0 10 10" fill="none"><path d="M2.5 5H7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </span>
+          </span>
+        </label>
+      </div>
+      <div class="demo-row">
+        <span>Indeterminate:</span>
+        <label class="checkbox checkbox--medium">
+          <input type="checkbox" class="checkbox__input" data-indeterminate />
+          <span class="checkbox__label">برچسب</span>
+          <span class="checkbox__box">
+            <span class="checkbox__inner">
+              <svg class="checkbox__icon checkbox__icon--check" viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg class="checkbox__icon checkbox__icon--indeterminate" viewBox="0 0 10 10" fill="none"><path d="M2.5 5H7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </span>
+          </span>
+        </label>
+      </div>
+    </div>
+
+    <!-- ===== States ===== -->
+    <h2>حالت‌های تعاملی (States)</h2>
+    <div class="section">
+
+      <h3>Unchecked States</h3>
+      <div class="demo-row">
+        <span>Rest:</span>
+        <label class="checkbox checkbox--large">
+          <input type="checkbox" class="checkbox__input" />
+          <span class="checkbox__label">برچسب</span>
+          <span class="checkbox__box">
+            <span class="checkbox__inner">
+              <svg class="checkbox__icon checkbox__icon--check" viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg class="checkbox__icon checkbox__icon--indeterminate" viewBox="0 0 10 10" fill="none"><path d="M2.5 5H7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </span>
+          </span>
+        </label>
+      </div>
+      <div class="demo-row">
+        <span>Disabled:</span>
+        <label class="checkbox checkbox--large checkbox--disabled">
+          <input type="checkbox" class="checkbox__input" disabled />
+          <span class="checkbox__label">برچسب</span>
+          <span class="checkbox__box">
+            <span class="checkbox__inner">
+              <svg class="checkbox__icon checkbox__icon--check" viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg class="checkbox__icon checkbox__icon--indeterminate" viewBox="0 0 10 10" fill="none"><path d="M2.5 5H7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </span>
+          </span>
+        </label>
+      </div>
+
+      <h3>Checked States</h3>
+      <div class="demo-row">
+        <span>Rest:</span>
+        <label class="checkbox checkbox--large">
+          <input type="checkbox" class="checkbox__input" checked />
+          <span class="checkbox__label">برچسب</span>
+          <span class="checkbox__box">
+            <span class="checkbox__inner">
+              <svg class="checkbox__icon checkbox__icon--check" viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg class="checkbox__icon checkbox__icon--indeterminate" viewBox="0 0 10 10" fill="none"><path d="M2.5 5H7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </span>
+          </span>
+        </label>
+      </div>
+      <div class="demo-row">
+        <span>Disabled:</span>
+        <label class="checkbox checkbox--large checkbox--disabled">
+          <input type="checkbox" class="checkbox__input" checked disabled />
+          <span class="checkbox__label">برچسب</span>
+          <span class="checkbox__box">
+            <span class="checkbox__inner">
+              <svg class="checkbox__icon checkbox__icon--check" viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg class="checkbox__icon checkbox__icon--indeterminate" viewBox="0 0 10 10" fill="none"><path d="M2.5 5H7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </span>
+          </span>
+        </label>
+      </div>
+
+      <h3>Indeterminate States</h3>
+      <div class="demo-row">
+        <span>Rest:</span>
+        <label class="checkbox checkbox--large">
+          <input type="checkbox" class="checkbox__input" data-indeterminate />
+          <span class="checkbox__label">برچسب</span>
+          <span class="checkbox__box">
+            <span class="checkbox__inner">
+              <svg class="checkbox__icon checkbox__icon--check" viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg class="checkbox__icon checkbox__icon--indeterminate" viewBox="0 0 10 10" fill="none"><path d="M2.5 5H7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </span>
+          </span>
+        </label>
+      </div>
+      <div class="demo-row">
+        <span>Disabled:</span>
+        <label class="checkbox checkbox--large checkbox--disabled">
+          <input type="checkbox" class="checkbox__input" data-indeterminate disabled />
+          <span class="checkbox__label">برچسب</span>
+          <span class="checkbox__box">
+            <span class="checkbox__inner">
+              <svg class="checkbox__icon checkbox__icon--check" viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg class="checkbox__icon checkbox__icon--indeterminate" viewBox="0 0 10 10" fill="none"><path d="M2.5 5H7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </span>
+          </span>
+        </label>
+      </div>
+
+      <p class="note">
+        <strong>نکته:</strong> برای مشاهده حالت Hover و Pressed، ماوس را روی چک‌باکس‌ها ببرید یا کلیک کنید.
+        حالت Focused با Tab کیبورد فعال می‌شود.
+      </p>
+    </div>
+
+    <!-- ===== Without Label ===== -->
+    <h2>بدون برچسب (Without Label)</h2>
+    <div class="section">
+      <div class="demo-row">
+        <span>Large:</span>
+        <label class="checkbox checkbox--large">
+          <input type="checkbox" class="checkbox__input" aria-label="انتخاب آیتم" />
+          <span class="checkbox__box">
+            <span class="checkbox__inner">
+              <svg class="checkbox__icon checkbox__icon--check" viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg class="checkbox__icon checkbox__icon--indeterminate" viewBox="0 0 10 10" fill="none"><path d="M2.5 5H7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </span>
+          </span>
+        </label>
+
+        <label class="checkbox checkbox--large">
+          <input type="checkbox" class="checkbox__input" checked aria-label="انتخاب آیتم" />
+          <span class="checkbox__box">
+            <span class="checkbox__inner">
+              <svg class="checkbox__icon checkbox__icon--check" viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg class="checkbox__icon checkbox__icon--indeterminate" viewBox="0 0 10 10" fill="none"><path d="M2.5 5H7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </span>
+          </span>
+        </label>
+
+        <label class="checkbox checkbox--large">
+          <input type="checkbox" class="checkbox__input" data-indeterminate aria-label="انتخاب آیتم" />
+          <span class="checkbox__box">
+            <span class="checkbox__inner">
+              <svg class="checkbox__icon checkbox__icon--check" viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg class="checkbox__icon checkbox__icon--indeterminate" viewBox="0 0 10 10" fill="none"><path d="M2.5 5H7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </span>
+          </span>
+        </label>
+      </div>
+
+      <div class="demo-row">
+        <span>Medium:</span>
+        <label class="checkbox checkbox--medium">
+          <input type="checkbox" class="checkbox__input" aria-label="انتخاب آیتم" />
+          <span class="checkbox__box">
+            <span class="checkbox__inner">
+              <svg class="checkbox__icon checkbox__icon--check" viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg class="checkbox__icon checkbox__icon--indeterminate" viewBox="0 0 10 10" fill="none"><path d="M2.5 5H7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </span>
+          </span>
+        </label>
+
+        <label class="checkbox checkbox--medium">
+          <input type="checkbox" class="checkbox__input" checked aria-label="انتخاب آیتم" />
+          <span class="checkbox__box">
+            <span class="checkbox__inner">
+              <svg class="checkbox__icon checkbox__icon--check" viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg class="checkbox__icon checkbox__icon--indeterminate" viewBox="0 0 10 10" fill="none"><path d="M2.5 5H7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </span>
+          </span>
+        </label>
+
+        <label class="checkbox checkbox--medium">
+          <input type="checkbox" class="checkbox__input" data-indeterminate aria-label="انتخاب آیتم" />
+          <span class="checkbox__box">
+            <span class="checkbox__inner">
+              <svg class="checkbox__icon checkbox__icon--check" viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg class="checkbox__icon checkbox__icon--indeterminate" viewBox="0 0 10 10" fill="none"><path d="M2.5 5H7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </span>
+          </span>
+        </label>
+      </div>
+
+      <p class="note">
+        <strong>نکته:</strong> در حالت بدون برچسب، حتماً <code>aria-label</code> را روی input قرار دهید.
+      </p>
+    </div>
+
+    <!-- ===== Select All Example ===== -->
+    <h2>مثال: انتخاب همه (Select All)</h2>
+    <div class="section">
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <label class="checkbox checkbox--large">
+          <input type="checkbox" class="checkbox__input" data-checkbox-group="demo" data-checkbox-role="parent" />
+          <span class="checkbox__label">انتخاب همه</span>
+          <span class="checkbox__box">
+            <span class="checkbox__inner">
+              <svg class="checkbox__icon checkbox__icon--check" viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg class="checkbox__icon checkbox__icon--indeterminate" viewBox="0 0 10 10" fill="none"><path d="M2.5 5H7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </span>
+          </span>
+        </label>
+
+        <div style="padding-right: 32px; display: flex; flex-direction: column; gap: 8px;">
+          <label class="checkbox checkbox--medium">
+            <input type="checkbox" class="checkbox__input" data-checkbox-group="demo" data-checkbox-role="child" checked />
+            <span class="checkbox__label">آیتم اول</span>
+            <span class="checkbox__box">
+              <span class="checkbox__inner">
+                <svg class="checkbox__icon checkbox__icon--check" viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <svg class="checkbox__icon checkbox__icon--indeterminate" viewBox="0 0 10 10" fill="none"><path d="M2.5 5H7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </span>
+            </span>
+          </label>
+          <label class="checkbox checkbox--medium">
+            <input type="checkbox" class="checkbox__input" data-checkbox-group="demo" data-checkbox-role="child" />
+            <span class="checkbox__label">آیتم دوم</span>
+            <span class="checkbox__box">
+              <span class="checkbox__inner">
+                <svg class="checkbox__icon checkbox__icon--check" viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <svg class="checkbox__icon checkbox__icon--indeterminate" viewBox="0 0 10 10" fill="none"><path d="M2.5 5H7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </span>
+            </span>
+          </label>
+          <label class="checkbox checkbox--medium">
+            <input type="checkbox" class="checkbox__input" data-checkbox-group="demo" data-checkbox-role="child" />
+            <span class="checkbox__label">آیتم سوم</span>
+            <span class="checkbox__box">
+              <span class="checkbox__inner">
+                <svg class="checkbox__icon checkbox__icon--check" viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <svg class="checkbox__icon checkbox__icon--indeterminate" viewBox="0 0 10 10" fill="none"><path d="M2.5 5H7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </span>
+            </span>
+          </label>
+        </div>
+      </div>
+
+      <p class="note">
+        <strong>نکته:</strong> وضعیت Indeterminate فقط در سناریوی Select All استفاده می‌شود.
+        با کلیک روی آیتم‌ها، حالت "انتخاب همه" به‌روزرسانی می‌شود.
+      </p>
+    </div>
+
+    <!-- ===== Usage ===== -->
+    <h2>نحوه استفاده</h2>
+    <div class="section">
+      <h3>استفاده ساده</h3>
+      <div class="code-block">&lt;link rel="stylesheet" href="checkbox.css"&gt;
+&lt;script src="checkbox.js" defer&gt;&lt;/script&gt;
+
+&lt;!-- Checkbox با برچسب --&gt;
+&lt;label class="checkbox checkbox--large"&gt;
+  &lt;input type="checkbox" class="checkbox__input" /&gt;
+  &lt;span class="checkbox__label"&gt;برچسب&lt;/span&gt;
+  &lt;span class="checkbox__box"&gt;
+    &lt;span class="checkbox__inner"&gt;
+      &lt;svg class="checkbox__icon checkbox__icon--check" ...&gt;...&lt;/svg&gt;
+      &lt;svg class="checkbox__icon checkbox__icon--indeterminate" ...&gt;...&lt;/svg&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+&lt;/label&gt;</div>
+
+      <h3>Checked (انتخاب شده)</h3>
+      <div class="code-block">&lt;label class="checkbox checkbox--large"&gt;
+  &lt;input type="checkbox" class="checkbox__input" checked /&gt;
+  ...
+&lt;/label&gt;</div>
+
+      <h3>Disabled (غیرفعال)</h3>
+      <div class="code-block">&lt;label class="checkbox checkbox--large checkbox--disabled"&gt;
+  &lt;input type="checkbox" class="checkbox__input" disabled /&gt;
+  ...
+&lt;/label&gt;</div>
+
+      <h3>Indeterminate (نامعین)</h3>
+      <div class="code-block">&lt;!-- فقط data-indeterminate را روی input قرار دهید --&gt;
+&lt;label class="checkbox checkbox--large"&gt;
+  &lt;input type="checkbox" class="checkbox__input" data-indeterminate /&gt;
+  ...
+&lt;/label&gt;
+
+&lt;!-- یا به صورت دستی با JavaScript --&gt;
+document.querySelector('.checkbox__input').indeterminate = true;</div>
+
+      <h3>بدون برچسب</h3>
+      <div class="code-block">&lt;label class="checkbox checkbox--large"&gt;
+  &lt;input type="checkbox" class="checkbox__input" aria-label="توضیح" /&gt;
+  &lt;span class="checkbox__box"&gt;...&lt;/span&gt;
+&lt;/label&gt;</div>
+
+      <h3>Select All (انتخاب همه)</h3>
+      <div class="code-block">&lt;!-- والد --&gt;
+&lt;input class="checkbox__input"
+  data-checkbox-group="my-group"
+  data-checkbox-role="parent" /&gt;
+
+&lt;!-- فرزندان --&gt;
+&lt;input class="checkbox__input"
+  data-checkbox-group="my-group"
+  data-checkbox-role="child" /&gt;</div>
+
+      <h3>CSS Classes</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Class</th>
+            <th>توضیح</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>checkbox</code></td>
+            <td>کلاس پایه (روی label)</td>
+          </tr>
+          <tr>
+            <td><code>checkbox--large</code></td>
+            <td>سایز بزرگ (28px)</td>
+          </tr>
+          <tr>
+            <td><code>checkbox--medium</code></td>
+            <td>سایز متوسط (24px)</td>
+          </tr>
+          <tr>
+            <td><code>checkbox--disabled</code></td>
+            <td>حالت غیرفعال (+ disabled attr روی input)</td>
+          </tr>
+          <tr>
+            <td><code>checkbox__input</code></td>
+            <td>input بومی (مخفی)</td>
+          </tr>
+          <tr>
+            <td><code>checkbox__label</code></td>
+            <td>متن برچسب</td>
+          </tr>
+          <tr>
+            <td><code>checkbox__box</code></td>
+            <td>باکس خارجی (boxholder)</td>
+          </tr>
+          <tr>
+            <td><code>checkbox__inner</code></td>
+            <td>باکس داخلی (visual box)</td>
+          </tr>
+          <tr>
+            <td><code>checkbox__icon</code></td>
+            <td>آیکون SVG</td>
+          </tr>
+          <tr>
+            <td><code>checkbox__icon--check</code></td>
+            <td>آیکون تیک (Checked)</td>
+          </tr>
+          <tr>
+            <td><code>checkbox__icon--indeterminate</code></td>
+            <td>آیکون خط (Indeterminate)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</body>
+</html>

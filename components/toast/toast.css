@@ -1,0 +1,334 @@
+/**
+ * Toast Component Styles
+ * کامپوننت اعلان (Toast) - استایل‌ها
+ *
+ * این فایل شامل تمام استایل‌های کامپوننت Toast است
+ * مطابق با Design Tokens استخراج شده از Figma
+ *
+ * ساختار HTML:
+ * <div class="toast toast--success" role="status">
+ *   <div class="toast__icon"><svg>...</svg></div>
+ *   <div class="toast__content">
+ *     <p class="toast__title">عنوان</p>
+ *     <p class="toast__description">توضیحات</p>
+ *   </div>
+ *   <button class="toast__dismiss" aria-label="بستن">
+ *     <svg>...</svg>
+ *   </button>
+ *   <div class="toast__progress">
+ *     <div class="toast__progress-bar"></div>
+ *   </div>
+ * </div>
+ */
+
+/* ==========================================
+   CSS Custom Properties از Design Tokens
+   ========================================== */
+
+:root {
+  /* Neutral */
+  --toast-color-bg: var(--neutral-0);
+  --toast-color-title: var(--neutral-880);
+  --toast-color-description: var(--neutral-660);
+  --toast-color-close: var(--neutral-740);
+
+  /* Success */
+  --toast-color-success-fg: var(--green-500);
+  --toast-color-success-bg: var(--green-25);
+  --toast-color-success-stroke: var(--green-100);
+  --toast-color-success-bar: var(--green-500);
+  --toast-shadow-success: 0px 4px 7px 0px rgba(16, 124, 16, 0.25);
+
+  /* Danger */
+  --toast-color-danger-fg: var(--cranberry-500);
+  --toast-color-danger-bg: var(--cranberry-25);
+  --toast-color-danger-stroke: var(--cranberry-100);
+  --toast-color-danger-bar: var(--cranberry-500);
+  --toast-shadow-danger: 0px 4px 7px 0px rgba(197, 15, 31, 0.25);
+
+  /* Warning */
+  --toast-color-warning-fg: var(--orange-500);
+  --toast-color-warning-bg: var(--orange-25);
+  --toast-color-warning-stroke: var(--orange-100);
+  --toast-color-warning-bar: var(--orange-500);
+  --toast-shadow-warning: 0px 4px 7px 0px rgba(247, 99, 12, 0.25);
+
+  /* Neutral variant */
+  --toast-color-neutral-fg: var(--neutral-740);
+  --toast-color-neutral-bg: var(--neutral-20);
+  --toast-color-neutral-stroke: var(--neutral-100);
+  --toast-color-neutral-bar: var(--neutral-740);
+  --toast-shadow-neutral: 0px 4px 7px 0px rgba(69, 69, 70, 0.25);
+
+  /* Radius */
+  --toast-radius: 8px;
+  --toast-icon-radius: 360px;
+
+  /* Spacing */
+  --toast-padding: 16px;
+  --toast-gap: 16px;
+  --toast-content-gap: 4px;
+  --toast-content-padding-y: 8px;
+  --toast-icon-padding: 12px;
+
+  /* Size */
+  --toast-width: 420px;
+  --toast-border: 2px;
+  --toast-close-size: 18px;
+  --toast-status-icon-size: 36px;
+  --toast-progress-height: 3px;
+
+  /* Duration (default) */
+  --toast-duration: 5s;
+
+  /* Transition */
+  --toast-transition: 0.15s ease;
+}
+
+/* ==========================================
+   Progress Bar Animation
+   ========================================== */
+
+@keyframes toast-progress {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0%;
+  }
+}
+
+/* ==========================================
+   Base Component (ساختار پایه)
+   ========================================== */
+
+.toast {
+  /* Internal state variables — overridden by variant rules */
+  --_icon-fg: var(--toast-color-success-fg);
+  --_bar-color: var(--toast-color-success-bar);
+  --_shadow: var(--toast-shadow-success);
+  --_accent-rgb: 16, 124, 16;
+
+  position: relative;
+  width: var(--toast-width);
+  background: var(--toast-color-bg);
+  border: var(--toast-border) solid var(--toast-color-bg);
+  border-radius: var(--toast-radius);
+  box-shadow: var(--_shadow);
+  box-sizing: border-box;
+  font-family: var(--typo-font-family);
+  padding: var(--toast-padding);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--toast-gap);
+  overflow: clip;
+  direction: rtl;
+}
+
+/* ==========================================
+   Background Effect (افکت پس‌زمینه رنگی)
+   دو لایه radial-gradient که رنگ accent را فقط در
+   سمت راست و پایین Toast نمایش می‌دهند:
+   - ::before → لایه اول: منحنی بزرگ سمت راست
+   - ::after  → لایه دوم: منحنی کوچک‌تر پایین-وسط
+   ========================================== */
+
+.toast::before,
+.toast::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* لایه اول (node 1145:377): منحنی بزرگ — رنگ سمت راست Toast */
+.toast::before {
+  background: radial-gradient(
+    ellipse 70% 100% at 95% 60%,
+    rgba(var(--_accent-rgb), 0.07),
+    transparent
+  );
+}
+
+/* لایه دوم (node 1145:378): منحنی کوچک‌تر — رنگ پایین Toast */
+.toast::after {
+  background: radial-gradient(
+    ellipse 55% 80% at 65% 100%,
+    rgba(var(--_accent-rgb), 0.05),
+    transparent
+  );
+}
+
+/* ==========================================
+   Dismiss Button (دکمه بستن)
+   ========================================== */
+
+.toast__dismiss {
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+  width: var(--toast-close-size);
+  height: var(--toast-close-size);
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--toast-color-close);
+  transition: opacity var(--toast-transition);
+}
+
+.toast__dismiss:hover {
+  opacity: 0.7;
+}
+
+.toast__dismiss:focus-visible {
+  outline: 2px solid var(--toast-color-close);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.toast__dismiss svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* ==========================================
+   Content (محتوا: عنوان + توضیحات)
+   ========================================== */
+
+.toast__content {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--toast-content-gap);
+  padding: var(--toast-content-padding-y) 0;
+  text-align: right;
+  min-width: 0;
+}
+
+.toast__title {
+  margin: 0;
+  font-size: var(--typo-heading-5-size);
+  font-weight: var(--typo-heading-5-weight);
+  line-height: var(--typo-heading-5-line-height);
+  color: var(--toast-color-title);
+  letter-spacing: 0;
+}
+
+.toast__description {
+  margin: 0;
+  font-size: var(--typo-body-medium-150-size);
+  font-weight: var(--typo-body-medium-150-weight);
+  line-height: var(--typo-body-medium-150-line-height);
+  color: var(--toast-color-description);
+  letter-spacing: 0;
+}
+
+/* ==========================================
+   Status Icon (آیکن وضعیت)
+   بدون پس‌زمینه و بدون border — آیکن به تنهایی نمایش داده می‌شود
+   ========================================== */
+
+.toast__icon {
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--toast-icon-padding);
+  color: var(--_icon-fg);
+}
+
+.toast__icon svg {
+  width: var(--toast-status-icon-size);
+  height: var(--toast-status-icon-size);
+}
+
+/* ==========================================
+   Progress Bar (نوار پیشرفت تایمر)
+   ========================================== */
+
+.toast__progress {
+  position: absolute;
+  bottom: 0;
+  left: calc(var(--toast-border) * -1);
+  right: calc(var(--toast-border) * -1);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  z-index: 1;
+}
+
+.toast__progress-bar {
+  height: var(--toast-progress-height);
+  width: 100%;
+  background-color: var(--_bar-color);
+  border-radius: var(--toast-radius);
+  animation: toast-progress var(--toast-duration) linear forwards;
+}
+
+/* ==========================================
+   Variant: Success (موفقیت)
+   ========================================== */
+
+.toast--success {
+  --_icon-fg: var(--toast-color-success-fg);
+  --_bar-color: var(--toast-color-success-bar);
+  --_shadow: var(--toast-shadow-success);
+  --_accent-rgb: 16, 124, 16;
+}
+
+/* ==========================================
+   Variant: Danger (اخطار)
+   ========================================== */
+
+.toast--danger {
+  --_icon-fg: var(--toast-color-danger-fg);
+  --_bar-color: var(--toast-color-danger-bar);
+  --_shadow: var(--toast-shadow-danger);
+  --_accent-rgb: 197, 15, 31;
+}
+
+/* ==========================================
+   Variant: Warning (هشدار)
+   ========================================== */
+
+.toast--warning {
+  --_icon-fg: var(--toast-color-warning-fg);
+  --_bar-color: var(--toast-color-warning-bar);
+  --_shadow: var(--toast-shadow-warning);
+  --_accent-rgb: 247, 99, 12;
+}
+
+/* ==========================================
+   Variant: Neutral (خنثی)
+   ========================================== */
+
+.toast--neutral {
+  --_icon-fg: var(--toast-color-neutral-fg);
+  --_bar-color: var(--toast-color-neutral-bar);
+  --_shadow: var(--toast-shadow-neutral);
+  --_accent-rgb: 69, 69, 70;
+}
+
+/* ==========================================
+   RTL / LTR Support
+   ========================================== */
+
+[dir="ltr"] .toast,
+.toast[dir="ltr"] {
+  direction: ltr;
+}
+
+[dir="ltr"] .toast__content,
+.toast[dir="ltr"] .toast__content {
+  text-align: left;
+}

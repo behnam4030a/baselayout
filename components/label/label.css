@@ -1,0 +1,133 @@
+/**
+ * Label Component Styles
+ * کامپوننت لیبل - استایل‌ها
+ *
+ * این فایل شامل تمام استایل‌های کامپوننت Label است
+ * مطابق با Design Tokens استخراج شده از Figma
+ *
+ * ساختار HTML:
+ * <label class="label label--medium">
+ *   <span class="label__text">برچسب</span>
+ *   <span class="label__required">*</span>
+ * </label>
+ */
+
+/* ==========================================
+   CSS Custom Properties از Design Tokens
+   ========================================== */
+
+:root {
+  /* Colors */
+  --label-color-text: var(--neutral-880);
+  --label-color-disabled: var(--neutral-260);
+  --label-color-required: var(--cranberry-500);
+
+  /* Spacing */
+  --label-gap: 4px;
+}
+
+/* ==========================================
+   Base Component (ساختار پایه)
+   ========================================== */
+
+.label {
+  display: inline-flex;
+  align-items: start;
+  gap: var(--label-gap);
+  font-family: var(--typo-font-family);
+  color: var(--label-color-text);
+  box-sizing: border-box;
+  direction: inherit;
+}
+
+/* ==========================================
+   Label Text (متن برچسب)
+   ========================================== */
+
+.label__text {
+  flex-shrink: 0;
+  color: inherit;
+}
+
+/* ==========================================
+   Required Indicator (ستاره اجباری)
+   ========================================== */
+
+.label__required {
+  flex-shrink: 0;
+  color: var(--label-color-required);
+}
+
+/* ==========================================
+   Size: Large (سایز بزرگ)
+   ========================================== */
+
+.label--large {
+  font-size: var(--typo-body-large-150-size);
+  font-weight: var(--typo-body-large-150-weight);
+  line-height: var(--typo-body-large-150-line-height);
+}
+
+/* ==========================================
+   Size: Medium (سایز متوسط)
+   ========================================== */
+
+.label--medium {
+  font-size: var(--typo-body-medium-150-size);
+  font-weight: var(--typo-body-medium-150-weight);
+  line-height: var(--typo-body-medium-150-line-height);
+}
+
+/* ==========================================
+   Size: Small (سایز کوچک)
+   ========================================== */
+
+.label--small {
+  font-size: var(--typo-body-small-150-size);
+  font-weight: var(--typo-body-small-150-weight);
+  line-height: var(--typo-body-small-150-line-height);
+}
+
+.label--small .label__required {
+  font-size: var(--typo-caption-size);
+  line-height: var(--typo-caption-line-height);
+}
+
+/* ==========================================
+   Type: Semibold (وزن فونت ضخیم‌تر)
+   ========================================== */
+
+.label--semibold.label--large {
+  font-size: var(--typo-body-large-emp-size);
+  font-weight: var(--typo-body-large-emp-weight);
+  line-height: var(--typo-body-large-emp-line-height);
+}
+
+.label--semibold.label--medium {
+  font-size: var(--typo-body-small-emp-size);
+  font-weight: var(--typo-body-small-emp-weight);
+  line-height: var(--typo-body-small-emp-line-height);
+}
+
+.label--semibold.label--small {
+  font-size: var(--typo-body-small-emp-size);
+  font-weight: var(--typo-body-small-emp-weight);
+  line-height: var(--typo-body-small-emp-line-height);
+}
+
+.label--semibold.label--small .label__required {
+  font-size: var(--typo-caption-emp-size);
+  line-height: var(--typo-caption-emp-line-height);
+}
+
+/* ==========================================
+   State: Disabled (غیرفعال)
+   ========================================== */
+
+.label--disabled {
+  color: var(--label-color-disabled);
+}
+
+.label--disabled .label__required {
+  color: var(--label-color-disabled);
+}

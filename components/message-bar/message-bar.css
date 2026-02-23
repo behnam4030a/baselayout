@@ -1,0 +1,551 @@
+/**
+ * Message Bar Component Styles
+ * کامپوننت نوار پیام (Message Bar) - استایل‌ها
+ *
+ * نوار پیام اطلاعات مهمی را در مورد وضعیت کل محصول یا یک بخش انتقال می‌دهد.
+ * مطابق با Design Tokens استخراج شده از Figma
+ *
+ * سه نوع:
+ *   Dismissible — بستن با X (Success, Warning, Danger)
+ *   Actionable  — لینک «بیشتر بدانید» (Info)
+ *   Detailed    — عنوان + توضیحات + بستن با X (هر واریانت)
+ *
+ * واریانت‌های رنگی: Info (آبی)، Success (سبز)، Warning (نارنجی)، Danger (قرمز)
+ *
+ * ساختار HTML (Dismissible):
+ * <div class="message-bar message-bar--success" data-message-bar role="status">
+ *   <div class="message-bar__content">
+ *     <span class="message-bar__icon"><svg>...</svg></span>
+ *     <p class="message-bar__text">
+ *       <strong class="message-bar__title">عنوان پیام</strong>.
+ *       توضیحات بیشتر
+ *     </p>
+ *   </div>
+ *   <button class="message-bar__close" aria-label="بستن"><svg>...</svg></button>
+ * </div>
+ *
+ * ساختار HTML (Actionable):
+ * <div class="message-bar message-bar--info" data-message-bar role="status">
+ *   <div class="message-bar__content">
+ *     <span class="message-bar__icon"><svg>...</svg></span>
+ *     <p class="message-bar__text">...</p>
+ *   </div>
+ *   <a href="#" class="message-bar__link">
+ *     <span class="message-bar__link-text">بیشتر بدانید</span>
+ *     <span class="message-bar__link-icon"><svg>...</svg></span>
+ *   </a>
+ * </div>
+ *
+ * ساختار HTML (Detailed):
+ * <div class="message-bar message-bar--danger message-bar--detailed" data-message-bar role="status">
+ *   <div class="message-bar__content">
+ *     <span class="message-bar__icon"><svg>...</svg></span>
+ *     <div class="message-bar__text-wrap">
+ *       <p class="message-bar__text">عنوان پیام</p>
+ *       <p class="message-bar__description">توضیحات تکمیلی...</p>
+ *     </div>
+ *   </div>
+ *   <button class="message-bar__close" aria-label="بستن"><svg>...</svg></button>
+ * </div>
+ */
+
+/* ==========================================
+   CSS Custom Properties از Design Tokens
+   ========================================== */
+
+:root {
+  /* Info variant */
+  --message-bar-info-bg: var(--blue-50);
+  --message-bar-info-stroke: var(--blue-500);
+  --message-bar-info-link: var(--blue-400);
+
+  /* Success variant */
+  --message-bar-success-bg: var(--green-25);
+  --message-bar-success-stroke: var(--green-500);
+
+  /* Warning variant */
+  --message-bar-warning-bg: var(--orange-25);
+  --message-bar-warning-stroke: var(--orange-500);
+
+  /* Danger variant */
+  --message-bar-danger-bg: var(--cranberry-25);
+  --message-bar-danger-stroke: var(--cranberry-500);
+
+  /* Neutral */
+  --message-bar-color-primary: var(--neutral-880);
+  --message-bar-color-secondary: var(--neutral-660);
+  --message-bar-color-close: var(--neutral-660);
+
+  /* Typography — Normal */
+  --message-bar-body-font-size: 16px;
+  --message-bar-body-font-weight: 500;
+  --message-bar-body-line-height: 1.3;
+  --message-bar-link-font-size: 14px;
+  --message-bar-link-font-weight: 400;
+  --message-bar-link-line-height: 2;
+
+  /* Typography — Detailed */
+  --message-bar-desc-font-size: 13px;
+  --message-bar-desc-font-weight: 400;
+  --message-bar-desc-line-height: 1.3;
+  --message-bar-detailed-gap: 4px;
+
+  /* Spacing */
+  --message-bar-padding-x: 19px;
+  --message-bar-padding-y: 8px;
+  --message-bar-content-gap: 13px;
+
+  /* Size */
+  --message-bar-border-width: 1px;
+  --message-bar-radius: 10px;
+  --message-bar-icon-size: 34px;
+  --message-bar-icon-inner: 24px;
+  --message-bar-close-size: 24px;
+  --message-bar-close-inner: 24px;
+
+  /* Transition */
+  --message-bar-transition: 0.3s ease;
+
+  /* Positioning container */
+  --message-bar-container-bottom: 24px;
+  --message-bar-container-right: 24px;
+  --message-bar-container-width: 800px;
+  --message-bar-container-gap: 8px;
+  --message-bar-container-z: 1000;
+}
+
+/* ==========================================
+   Base Component (ساختار پایه)
+   ========================================== */
+
+.message-bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: var(--message-bar-padding-y) var(--message-bar-padding-x);
+  border: var(--message-bar-border-width) solid transparent;
+  border-radius: var(--message-bar-radius);
+  box-sizing: border-box;
+  font-family: var(--typo-font-family);
+  direction: rtl;
+  overflow: hidden;
+  transition:
+    opacity var(--message-bar-transition),
+    max-height var(--message-bar-transition),
+    padding var(--message-bar-transition),
+    margin var(--message-bar-transition),
+    border-width var(--message-bar-transition);
+  max-height: 300px;
+  opacity: 1;
+}
+
+/* ==========================================
+   Content (آیکن + متن)
+   ========================================== */
+
+.message-bar__content {
+  display: flex;
+  align-items: center;
+  gap: var(--message-bar-content-gap);
+  flex: 1;
+  min-width: 0;
+}
+
+/* ==========================================
+   Status Icon (آیکن وضعیت)
+   ========================================== */
+
+.message-bar__icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--message-bar-icon-size);
+  height: var(--message-bar-icon-size);
+}
+
+.message-bar__icon svg {
+  width: var(--message-bar-icon-inner);
+  height: var(--message-bar-icon-inner);
+}
+
+/* ==========================================
+   Text (متن پیام)
+   ========================================== */
+
+.message-bar__text {
+  margin: 0;
+  font-size: var(--message-bar-body-font-size);
+  font-weight: var(--message-bar-body-font-weight);
+  line-height: var(--message-bar-body-line-height);
+  color: var(--message-bar-color-primary);
+  text-align: right;
+}
+
+.message-bar__title {
+  font-weight: var(--message-bar-body-font-weight);
+}
+
+/* ==========================================
+   Text Wrap — Detailed (عنوان + توضیحات)
+   ========================================== */
+
+.message-bar__text-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--message-bar-detailed-gap);
+  flex: 1;
+  min-width: 0;
+  align-items: flex-end;
+}
+
+.message-bar__text-wrap .message-bar__text {
+  width: 100%;
+}
+
+.message-bar__description {
+  margin: 0;
+  font-size: var(--message-bar-desc-font-size);
+  font-weight: var(--message-bar-desc-font-weight);
+  line-height: var(--message-bar-desc-line-height);
+  color: var(--message-bar-color-primary);
+  text-align: right;
+  width: 100%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* ==========================================
+   Modifier: Detailed (عنوان + توضیحات بلند)
+   آیکن و دکمه بستن بالا می‌مانند، محتوا بدون محدودیت ارتفاع
+   ========================================== */
+
+.message-bar--detailed {
+  align-items: flex-start;
+  max-height: 5000px;
+}
+
+/* ==========================================
+   Link (لینک «بیشتر بدانید» — واریانت Info)
+   ========================================== */
+
+.message-bar__link {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--message-bar-info-link);
+  transition: opacity var(--message-bar-transition);
+}
+
+.message-bar__link:hover {
+  opacity: 0.75;
+}
+
+.message-bar__link-text {
+  font-size: var(--message-bar-link-font-size);
+  font-weight: var(--message-bar-link-font-weight);
+  line-height: var(--message-bar-link-line-height);
+  white-space: nowrap;
+}
+
+.message-bar__link-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+}
+
+.message-bar__link-icon svg {
+  width: var(--message-bar-icon-inner);
+  height: var(--message-bar-icon-inner);
+}
+
+/* ==========================================
+   Close Button (دکمه بستن — Dismissible & Detailed)
+   ========================================== */
+
+.message-bar__close {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--message-bar-close-size);
+  height: var(--message-bar-close-size);
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: var(--message-bar-color-close);
+  transition: opacity var(--message-bar-transition);
+}
+
+.message-bar__close:hover {
+  opacity: 0.6;
+}
+
+.message-bar__close:focus-visible {
+  outline: 2px solid var(--message-bar-color-close);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.message-bar__close svg {
+  width: var(--message-bar-close-inner);
+  height: var(--message-bar-close-inner);
+}
+
+/* ==========================================
+   Variant: Info (اطلاع‌رسانی — آبی)
+   ========================================== */
+
+.message-bar--info {
+  background-color: var(--message-bar-info-bg);
+  border-color: var(--message-bar-info-stroke);
+}
+
+.message-bar--info .message-bar__icon {
+  color: var(--message-bar-info-stroke);
+}
+
+/* ==========================================
+   Variant: Success (موفقیت — سبز)
+   ========================================== */
+
+.message-bar--success {
+  background-color: var(--message-bar-success-bg);
+  border-color: var(--message-bar-success-stroke);
+}
+
+.message-bar--success .message-bar__icon {
+  color: var(--message-bar-success-stroke);
+}
+
+/* ==========================================
+   Variant: Warning (هشدار — نارنجی)
+   ========================================== */
+
+.message-bar--warning {
+  background-color: var(--message-bar-warning-bg);
+  border-color: var(--message-bar-warning-stroke);
+}
+
+.message-bar--warning .message-bar__icon {
+  color: var(--message-bar-warning-stroke);
+}
+
+/* ==========================================
+   Variant: Danger (خطا — قرمز)
+   ========================================== */
+
+.message-bar--danger {
+  background-color: var(--message-bar-danger-bg);
+  border-color: var(--message-bar-danger-stroke);
+}
+
+.message-bar--danger .message-bar__icon {
+  color: var(--message-bar-danger-stroke);
+}
+
+/* ==========================================
+   Hidden State (مخفی شده)
+   ========================================== */
+
+.message-bar--hidden {
+  opacity: 0;
+  max-height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  border-width: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* ==========================================
+   Positioning Container (موقعیت‌دهی)
+   پیش‌فرض: پایین-راست دسکتاپ / پایین تمام‌عرض موبایل
+   قابل تنظیم با position option در create()
+   ========================================== */
+
+.message-bar-container {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  gap: var(--message-bar-container-gap);
+  width: var(--message-bar-container-width);
+  max-width: calc(100vw - 32px);
+  z-index: var(--message-bar-container-z);
+  direction: rtl;
+  pointer-events: none;
+}
+
+.message-bar-container > .message-bar {
+  pointer-events: auto;
+}
+
+/* --- Positions --- */
+
+.message-bar-container--bottom-right {
+  bottom: var(--message-bar-container-bottom);
+  right: var(--message-bar-container-right);
+}
+
+.message-bar-container--bottom-left {
+  bottom: var(--message-bar-container-bottom);
+  left: var(--message-bar-container-right);
+}
+
+.message-bar-container--top-right {
+  top: var(--message-bar-container-bottom);
+  right: var(--message-bar-container-right);
+}
+
+.message-bar-container--top-left {
+  top: var(--message-bar-container-bottom);
+  left: var(--message-bar-container-right);
+}
+
+.message-bar-container--bottom-center {
+  bottom: var(--message-bar-container-bottom);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.message-bar-container--top-center {
+  top: var(--message-bar-container-bottom);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* --- Inline (بدون fixed، داخل جریان صفحه) --- */
+.message-bar-container--inline {
+  position: static;
+  width: 100%;
+  max-width: none;
+  pointer-events: auto;
+}
+
+/* ==========================================
+   Responsive — Tablet (< 768px)
+   ========================================== */
+
+@media (max-width: 767px) {
+  .message-bar {
+    --message-bar-body-font-size: 15px;
+    --message-bar-link-font-size: 13px;
+    --message-bar-desc-font-size: 12px;
+    --message-bar-padding-x: 14px;
+    --message-bar-content-gap: 10px;
+  }
+
+  /* موبایل: تمام عرض، همیشه پایین صفحه */
+  .message-bar-container {
+    width: auto;
+    max-width: none;
+  }
+
+  .message-bar-container--bottom-right,
+  .message-bar-container--bottom-left,
+  .message-bar-container--bottom-center,
+  .message-bar-container--top-right,
+  .message-bar-container--top-left,
+  .message-bar-container--top-center {
+    top: auto;
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+    transform: none;
+  }
+}
+
+/* ==========================================
+   Responsive — Mobile (< 480px)
+   ========================================== */
+
+@media (max-width: 479px) {
+  .message-bar {
+    --message-bar-body-font-size: 14px;
+    --message-bar-link-font-size: 12px;
+    --message-bar-desc-font-size: 11px;
+    --message-bar-icon-size: 28px;
+    --message-bar-icon-inner: 18px;
+    --message-bar-close-size: 24px;
+    --message-bar-close-inner: 18px;
+    --message-bar-padding-x: 12px;
+    --message-bar-padding-y: 10px;
+    --message-bar-content-gap: 8px;
+    flex-wrap: wrap;
+    gap: 8px;
+    max-height: 400px;
+  }
+
+  .message-bar--detailed {
+    max-height: 5000px;
+  }
+
+  /* Info: لینک به خط بعد می‌رود */
+  .message-bar--info .message-bar__link {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  /* واریانت‌های دارای دکمه بستن: تک‌خطی */
+  .message-bar--success,
+  .message-bar--warning,
+  .message-bar--danger {
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    padding-top: 12px;
+  }
+}
+
+/* ==========================================
+   RTL / LTR Support
+   ========================================== */
+
+[dir="ltr"] .message-bar,
+.message-bar[dir="ltr"] {
+  direction: ltr;
+}
+
+[dir="ltr"] .message-bar__text,
+.message-bar[dir="ltr"] .message-bar__text {
+  text-align: left;
+}
+
+[dir="ltr"] .message-bar__description,
+.message-bar[dir="ltr"] .message-bar__description {
+  text-align: left;
+}
+
+[dir="ltr"] .message-bar__text-wrap,
+.message-bar[dir="ltr"] .message-bar__text-wrap {
+  align-items: flex-start;
+}
+
+[dir="ltr"] .message-bar-container,
+.message-bar-container[dir="ltr"] {
+  direction: ltr;
+}
+
+[dir="ltr"] .message-bar-container--bottom-right {
+  right: auto;
+  left: var(--message-bar-container-right);
+}
+
+[dir="ltr"] .message-bar-container--bottom-left {
+  left: auto;
+  right: var(--message-bar-container-right);
+}
+
+@media (max-width: 479px) {
+  [dir="ltr"] .message-bar--info .message-bar__link {
+    justify-content: flex-start;
+  }
+}

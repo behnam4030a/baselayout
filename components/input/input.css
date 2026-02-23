@@ -1,0 +1,418 @@
+/**
+ * Input Component Styles
+ * کامپوننت اینپوت - استایل‌ها
+ *
+ * این فایل شامل تمام استایل‌های کامپوننت Input است
+ * مطابق با Design Tokens استخراج شده از Figma
+ *
+ * ساختار HTML:
+ * <div class="input input--large">
+ *   <div class="input__container">
+ *     <span class="input__icon input__icon--before"><!-- Icon --></span>
+ *     <span class="input__divider"></span>
+ *     <input type="text" class="input__field" placeholder="متن نگهدارنده" />
+ *     <span class="input__icon input__icon--after"><!-- Icon --></span>
+ *   </div>
+ * </div>
+ */
+
+/* ==========================================
+   CSS Custom Properties از Design Tokens
+   ========================================== */
+
+:root {
+  /* Neutral Foreground */
+  --input-color-neutral-fg-placeholder: var(--neutral-360);
+  --input-color-neutral-fg-text: var(--neutral-880);
+  --input-color-neutral-fg-disabled: var(--neutral-260);
+
+  /* Neutral Background */
+  --input-color-neutral-bg-rest: var(--neutral-0);
+  --input-color-neutral-bg-readonly: var(--neutral-20);
+
+  /* Neutral Stroke */
+  --input-color-neutral-stroke-rest: var(--neutral-100);
+  --input-color-neutral-stroke-hover: var(--neutral-140);
+  --input-color-neutral-stroke-secondary: var(--neutral-240);
+  --input-color-neutral-stroke-disabled: var(--neutral-120);
+  --input-color-neutral-stroke-focused: var(--neutral-20);
+  --input-color-neutral-stroke-selected: var(--brand-300);
+
+  /* Danger (Error) */
+  --input-color-danger-bg: var(--cranberry-25);
+  --input-color-danger-stroke: var(--cranberry-500);
+
+  /* Radius */
+  --input-radius: 8px;
+
+  /* Shadows */
+  --input-shadow-focused: 0px 2px 3px 1px rgba(42, 187, 156, 0.2);
+  --input-shadow-error: 0px 0px 3px 1px rgba(197, 15, 31, 0.2);
+
+  /* Spacing */
+  --input-padding-lg: 16px;
+  --input-padding-md: 12px;
+  --input-padding-sm: 8px;
+  --input-gap: 8px;
+
+  /* Size */
+  --input-height-lg: 45px;
+  --input-height-md: 37px;
+  --input-height-sm: 24px;
+  --input-width: 320px;
+
+  /* Icon Size */
+  --input-icon-lg: 20px;
+  --input-icon-md: 20px;
+  --input-icon-sm: 16px;
+  --input-after-icon: 16px;
+
+  /* Divider Size */
+  --input-divider-lg: 16px;
+  --input-divider-md: 12px;
+  --input-divider-sm: 8px;
+
+  /* Indicator */
+  --input-indicator-height: 1.5px;
+
+  /* Transition */
+  --input-transition: 0.15s ease;
+}
+
+/* ==========================================
+   Base Component (ساختار پایه)
+   ========================================== */
+
+.input {
+  /* Internal state variables — overridden by state rules */
+  --_text-color: var(--input-color-neutral-fg-text);
+  --_placeholder-color: var(--input-color-neutral-fg-placeholder);
+  --_icon-color: var(--input-color-neutral-fg-placeholder);
+  --_border-color: var(--input-color-neutral-stroke-rest);
+  --_bg-color: var(--input-color-neutral-bg-rest);
+  --_shadow: 0 0 0 0 transparent;
+  --_indicator-shadow: inset 0 calc(-1 * var(--input-indicator-height)) 0 0 transparent;
+  --_cursor: text;
+
+  position: relative;
+  width: var(--input-width);
+  border-radius: var(--input-radius);
+  overflow: clip;
+  box-sizing: border-box;
+  font-family: var(--typo-font-family);
+}
+
+/* ==========================================
+   Inner Container (کانتینر داخلی)
+   ========================================== */
+
+.input__container {
+  display: flex;
+  align-items: center;
+  gap: var(--input-gap);
+  width: 100%;
+  height: 100%;
+  border-radius: var(--input-radius);
+  border: 1px solid var(--_border-color);
+  background-color: var(--_bg-color);
+  box-shadow: var(--_shadow), var(--_indicator-shadow);
+  box-sizing: border-box;
+  cursor: var(--_cursor);
+  transition:
+    border-color var(--input-transition),
+    background-color var(--input-transition),
+    box-shadow var(--input-transition);
+}
+
+/* ==========================================
+   Native Input Field (فیلد ورودی)
+   ========================================== */
+
+.input__field {
+  flex: 1 1 0;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: var(--typo-font-family);
+  letter-spacing: 0;
+  color: var(--_text-color);
+  cursor: var(--_cursor);
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  text-align: right;
+  transition: color var(--input-transition);
+}
+
+.input__field::placeholder {
+  color: var(--_placeholder-color);
+  opacity: 1;
+  transition: color var(--input-transition);
+}
+
+.input__field::-webkit-search-decoration,
+.input__field::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+}
+
+/* ==========================================
+   Icons (آیکون‌ها)
+   ========================================== */
+
+.input__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--_icon-color);
+  transition: color var(--input-transition);
+}
+
+.input__icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  fill: currentColor;
+}
+
+/* ==========================================
+   Divider (خط جداکننده عمودی)
+   ========================================== */
+
+.input__divider {
+  width: 1px;
+  flex-shrink: 0;
+  background-color: var(--_border-color);
+  transition: background-color var(--input-transition);
+}
+
+/* ==========================================
+   Size: Large (سایز بزرگ)
+   ========================================== */
+
+.input--large {
+  height: var(--input-height-lg);
+}
+
+.input--large .input__container {
+  padding: 0 var(--input-padding-lg);
+}
+
+.input--large .input__field {
+  font-size: var(--typo-body-medium-200-size);
+  font-weight: var(--typo-body-medium-200-weight);
+  line-height: var(--typo-body-medium-200-line-height);
+}
+
+.input--large .input__icon--before {
+  width: var(--input-icon-lg);
+  height: var(--input-icon-lg);
+}
+
+.input--large .input__icon--after {
+  width: var(--input-after-icon);
+  height: var(--input-after-icon);
+}
+
+.input--large .input__divider {
+  height: var(--input-divider-lg);
+}
+
+/* ==========================================
+   Size: Medium (سایز متوسط)
+   ========================================== */
+
+.input--medium {
+  height: var(--input-height-md);
+}
+
+.input--medium .input__container {
+  padding: 0 var(--input-padding-md);
+}
+
+.input--medium .input__field {
+  font-size: var(--typo-body-medium-200-size);
+  font-weight: var(--typo-body-medium-200-weight);
+  line-height: var(--typo-body-medium-200-line-height);
+}
+
+.input--medium .input__icon--before {
+  width: var(--input-icon-md);
+  height: var(--input-icon-md);
+}
+
+.input--medium .input__icon--after {
+  width: var(--input-after-icon);
+  height: var(--input-after-icon);
+}
+
+.input--medium .input__divider {
+  height: var(--input-divider-md);
+}
+
+/* ==========================================
+   Size: Small (سایز کوچک)
+   ========================================== */
+
+.input--small {
+  height: var(--input-height-sm);
+}
+
+.input--small .input__container {
+  padding: 0 var(--input-padding-sm);
+}
+
+.input--small .input__field {
+  font-size: var(--typo-body-small-150-size);
+  font-weight: var(--typo-body-small-150-weight);
+  line-height: var(--typo-body-small-150-line-height);
+}
+
+.input--small .input__icon--before {
+  width: var(--input-icon-sm);
+  height: var(--input-icon-sm);
+}
+
+.input--small .input__icon--after {
+  width: var(--input-after-icon);
+  height: var(--input-after-icon);
+}
+
+.input--small .input__divider {
+  height: var(--input-divider-sm);
+}
+
+/* ==========================================
+   State: Hover (هاور)
+   ========================================== */
+
+.input:hover:not(:has(.input__field:disabled)):not(:has(.input__field[readonly])):not(.input--error) {
+  --_border-color: var(--input-color-neutral-stroke-hover);
+  --_indicator-shadow: inset 0 calc(-1 * var(--input-indicator-height)) 0 0 var(--input-color-neutral-stroke-secondary);
+  --_cursor: pointer;
+}
+
+/* Hover fallback — مرورگرهای بدون :has() */
+@supports not selector(:has(*)) {
+  .input:hover:not(.input--disabled):not(.input--readonly):not(.input--error) {
+    --_border-color: var(--input-color-neutral-stroke-hover);
+    --_indicator-shadow: inset 0 calc(-1 * var(--input-indicator-height)) 0 0 var(--input-color-neutral-stroke-secondary);
+    --_cursor: pointer;
+  }
+}
+
+/* ==========================================
+   State: Focused (فوکوس)
+   ========================================== */
+
+.input:focus-within:not(:has(.input__field:disabled)):not(.input--error) {
+  --_border-color: var(--input-color-neutral-stroke-focused);
+  --_shadow: var(--input-shadow-focused);
+  --_indicator-shadow: inset 0 calc(-1 * var(--input-indicator-height)) 0 0 var(--input-color-neutral-stroke-selected);
+  --_cursor: text;
+}
+
+/* Focused fallback */
+@supports not selector(:has(*)) {
+  .input:focus-within:not(.input--disabled):not(.input--error) {
+    --_border-color: var(--input-color-neutral-stroke-focused);
+    --_shadow: var(--input-shadow-focused);
+    --_indicator-shadow: inset 0 calc(-1 * var(--input-indicator-height)) 0 0 var(--input-color-neutral-stroke-selected);
+    --_cursor: text;
+  }
+}
+
+/* ==========================================
+   State: Error (خطا)
+   ========================================== */
+
+.input.input--error {
+  --_border-color: var(--input-color-danger-stroke);
+  --_bg-color: var(--input-color-danger-bg);
+  --_shadow: var(--input-shadow-error);
+}
+
+/* ==========================================
+   State: Disabled (غیرفعال)
+   ========================================== */
+
+.input:has(.input__field:disabled) {
+  --_text-color: var(--input-color-neutral-fg-disabled);
+  --_placeholder-color: var(--input-color-neutral-fg-disabled);
+  --_icon-color: var(--input-color-neutral-fg-disabled);
+  --_border-color: var(--input-color-neutral-stroke-disabled);
+  --_bg-color: transparent;
+  --_shadow: 0 0 0 0 transparent;
+  --_cursor: not-allowed;
+}
+
+/* Disabled fallback */
+.input.input--disabled {
+  --_text-color: var(--input-color-neutral-fg-disabled);
+  --_placeholder-color: var(--input-color-neutral-fg-disabled);
+  --_icon-color: var(--input-color-neutral-fg-disabled);
+  --_border-color: var(--input-color-neutral-stroke-disabled);
+  --_bg-color: transparent;
+  --_shadow: 0 0 0 0 transparent;
+  --_cursor: not-allowed;
+}
+
+/* جلوگیری از hover/focus در حالت disabled */
+.input:has(.input__field:disabled):hover,
+.input.input--disabled:hover {
+  --_border-color: var(--input-color-neutral-stroke-disabled);
+  --_indicator-shadow: inset 0 calc(-1 * var(--input-indicator-height)) 0 0 transparent;
+  --_cursor: not-allowed;
+}
+
+.input:has(.input__field:disabled):focus-within,
+.input.input--disabled:focus-within {
+  --_border-color: var(--input-color-neutral-stroke-disabled);
+  --_shadow: 0 0 0 0 transparent;
+}
+
+/* ==========================================
+   State: ReadOnly (فقط‌خواندنی)
+   ========================================== */
+
+.input:has(.input__field[readonly]) {
+  --_border-color: transparent;
+  --_bg-color: var(--input-color-neutral-bg-readonly);
+  --_shadow: 0 0 0 0 transparent;
+}
+
+/* ReadOnly fallback */
+.input.input--readonly {
+  --_border-color: transparent;
+  --_bg-color: var(--input-color-neutral-bg-readonly);
+  --_shadow: 0 0 0 0 transparent;
+}
+
+/* جلوگیری از hover indicator در readonly */
+.input:has(.input__field[readonly]):hover,
+.input.input--readonly:hover {
+  --_border-color: transparent;
+  --_indicator-shadow: inset 0 calc(-1 * var(--input-indicator-height)) 0 0 transparent;
+  --_cursor: text;
+}
+
+/* ==========================================
+   RTL / LTR Support (پشتیبانی راست‌به‌چپ)
+   ========================================== */
+
+[dir="ltr"] .input__field,
+.input[dir="ltr"] .input__field {
+  text-align: left;
+}
+
+/* ==========================================
+   Full Width Utility
+   ========================================== */
+
+.input--full-width {
+  width: 100%;
+}

@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Label Component - دمو کامپوننت لیبل</title>
+  <link rel="stylesheet" href="../colors/colors.css">
+  <link rel="stylesheet" href="../typography/typography.css">
+  <link rel="stylesheet" href="label.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Peyda(FaNum)', sans-serif;
+      background: #f6f8fa;
+      padding: 40px 20px;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: 32px;
+      margin-bottom: 16px;
+      color: #222323;
+    }
+
+    h2 {
+      font-size: 24px;
+      margin-top: 48px;
+      margin-bottom: 24px;
+      color: #222323;
+      border-bottom: 2px solid #e2e4e6;
+      padding-bottom: 8px;
+    }
+
+    h3 {
+      font-size: 18px;
+      margin-top: 32px;
+      margin-bottom: 16px;
+      color: #59595a;
+    }
+
+    .demo-row {
+      display: flex;
+      align-items: baseline;
+      gap: 32px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .demo-item {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .demo-label {
+      font-size: 11px;
+      color: #9a9b9d;
+      font-family: monospace;
+      direction: ltr;
+      text-align: left;
+    }
+
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    .demo-card {
+      background: #ffffff;
+      border: 1px solid #e2e4e6;
+      border-radius: 8px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .demo-card__title {
+      font-size: 11px;
+      color: #9a9b9d;
+      font-family: monospace;
+      direction: ltr;
+      text-align: left;
+      border-bottom: 1px solid #f0f0f0;
+      padding-bottom: 4px;
+    }
+
+    .section-desc {
+      color: #59595a;
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 24px;
+      font-size: 14px;
+    }
+
+    .comparison-table th,
+    .comparison-table td {
+      padding: 12px 16px;
+      border: 1px solid #e2e4e6;
+      text-align: right;
+    }
+
+    .comparison-table th {
+      background: #f6f8fa;
+      font-weight: 500;
+      color: #222323;
+    }
+
+    .comparison-table td {
+      background: #ffffff;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <h1>Label Component</h1>
+  <p class="section-desc">
+    برچسب‌ها به یک کامپوننت یا گروهی از کامپوننت‌ها نام می‌دهند. آن‌ها را با اجزایی مانند چک‌باکس‌ها و اینپوت‌ها استفاده کنید تا از شخصی خواسته شود اطلاعات خاصی را وارد کند، همچنین با متنی ساده برای دسته‌بندی اطلاعات نیز قابل استفاده می‌باشد.
+  </p>
+
+  <!-- ==========================================
+       1. سایزها — Regular
+       ========================================== -->
+
+  <h2>۱. سایزها — Regular</h2>
+  <p class="section-desc">سه سایز با وزن فونت Regular (400)</p>
+
+  <div class="demo-row">
+    <div class="demo-item">
+      <span class="demo-label">label--large</span>
+      <label class="label label--large">
+        <span class="label__text">برچسب</span>
+      </label>
+    </div>
+    <div class="demo-item">
+      <span class="demo-label">label--medium</span>
+      <label class="label label--medium">
+        <span class="label__text">برچسب</span>
+      </label>
+    </div>
+    <div class="demo-item">
+      <span class="demo-label">label--small</span>
+      <label class="label label--small">
+        <span class="label__text">برچسب</span>
+      </label>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       2. سایزها — Semibold
+       ========================================== -->
+
+  <h2>۲. سایزها — Semibold</h2>
+  <p class="section-desc">سه سایز با وزن فونت Semibold (500)</p>
+
+  <div class="demo-row">
+    <div class="demo-item">
+      <span class="demo-label">label--large label--semibold</span>
+      <label class="label label--large label--semibold">
+        <span class="label__text">برچسب</span>
+      </label>
+    </div>
+    <div class="demo-item">
+      <span class="demo-label">label--medium label--semibold</span>
+      <label class="label label--medium label--semibold">
+        <span class="label__text">برچسب</span>
+      </label>
+    </div>
+    <div class="demo-item">
+      <span class="demo-label">label--small label--semibold</span>
+      <label class="label label--small label--semibold">
+        <span class="label__text">برچسب</span>
+      </label>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       3. Required — Regular
+       ========================================== -->
+
+  <h2>۳. Required — Regular</h2>
+  <p class="section-desc">نمایش ستاره اجباری (*) با سایزهای مختلف</p>
+
+  <div class="demo-row">
+    <div class="demo-item">
+      <span class="demo-label">large + required</span>
+      <label class="label label--large label--required">
+        <span class="label__text">برچسب</span>
+        <span class="label__required">*</span>
+      </label>
+    </div>
+    <div class="demo-item">
+      <span class="demo-label">medium + required</span>
+      <label class="label label--medium label--required">
+        <span class="label__text">برچسب</span>
+        <span class="label__required">*</span>
+      </label>
+    </div>
+    <div class="demo-item">
+      <span class="demo-label">small + required</span>
+      <label class="label label--small label--required">
+        <span class="label__text">برچسب</span>
+        <span class="label__required">*</span>
+      </label>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       4. Required — Semibold
+       ========================================== -->
+
+  <h2>۴. Required — Semibold</h2>
+  <p class="section-desc">نمایش ستاره اجباری (*) با وزن فونت Semibold</p>
+
+  <div class="demo-row">
+    <div class="demo-item">
+      <span class="demo-label">large + semibold + required</span>
+      <label class="label label--large label--semibold label--required">
+        <span class="label__text">برچسب</span>
+        <span class="label__required">*</span>
+      </label>
+    </div>
+    <div class="demo-item">
+      <span class="demo-label">medium + semibold + required</span>
+      <label class="label label--medium label--semibold label--required">
+        <span class="label__text">برچسب</span>
+        <span class="label__required">*</span>
+      </label>
+    </div>
+    <div class="demo-item">
+      <span class="demo-label">small + semibold + required</span>
+      <label class="label label--small label--semibold label--required">
+        <span class="label__text">برچسب</span>
+        <span class="label__required">*</span>
+      </label>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       5. Disabled
+       ========================================== -->
+
+  <h2>۵. Disabled</h2>
+  <p class="section-desc">حالت غیرفعال — رنگ متن و ستاره هر دو #bbbcbe</p>
+
+  <h3>Regular — بدون Required</h3>
+  <div class="demo-row">
+    <div class="demo-item">
+      <span class="demo-label">large + disabled</span>
+      <label class="label label--large label--disabled">
+        <span class="label__text">برچسب</span>
+      </label>
+    </div>
+    <div class="demo-item">
+      <span class="demo-label">medium + disabled</span>
+      <label class="label label--medium label--disabled">
+        <span class="label__text">برچسب</span>
+      </label>
+    </div>
+    <div class="demo-item">
+      <span class="demo-label">small + disabled</span>
+      <label class="label label--small label--disabled">
+        <span class="label__text">برچسب</span>
+      </label>
+    </div>
+  </div>
+
+  <h3>Regular — با Required</h3>
+  <div class="demo-row">
+    <div class="demo-item">
+      <span class="demo-label">large + required + disabled</span>
+      <label class="label label--large label--required label--disabled">
+        <span class="label__text">برچسب</span>
+        <span class="label__required">*</span>
+      </label>
+    </div>
+    <div class="demo-item">
+      <span class="demo-label">medium + required + disabled</span>
+      <label class="label label--medium label--required label--disabled">
+        <span class="label__text">برچسب</span>
+        <span class="label__required">*</span>
+      </label>
+    </div>
+    <div class="demo-item">
+      <span class="demo-label">small + required + disabled</span>
+      <label class="label label--small label--required label--disabled">
+        <span class="label__text">برچسب</span>
+        <span class="label__required">*</span>
+      </label>
+    </div>
+  </div>
+
+  <h3>Semibold — با Required</h3>
+  <div class="demo-row">
+    <div class="demo-item">
+      <span class="demo-label">large + semibold + required + disabled</span>
+      <label class="label label--large label--semibold label--required label--disabled">
+        <span class="label__text">برچسب</span>
+        <span class="label__required">*</span>
+      </label>
+    </div>
+    <div class="demo-item">
+      <span class="demo-label">medium + semibold + required + disabled</span>
+      <label class="label label--medium label--semibold label--required label--disabled">
+        <span class="label__text">برچسب</span>
+        <span class="label__required">*</span>
+      </label>
+    </div>
+    <div class="demo-item">
+      <span class="demo-label">small + semibold + required + disabled</span>
+      <label class="label label--small label--semibold label--required label--disabled">
+        <span class="label__text">برچسب</span>
+        <span class="label__required">*</span>
+      </label>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       6. ماتریس کامل ترکیب‌ها
+       ========================================== -->
+
+  <h2>۶. ماتریس کامل ترکیب‌ها</h2>
+  <p class="section-desc">تمام ترکیب‌های ممکن type × size × required × disabled</p>
+
+  <div class="demo-grid">
+    <!-- Regular / Large -->
+    <div class="demo-card">
+      <span class="demo-card__title">Regular / Large</span>
+      <label class="label label--large">
+        <span class="label__text">برچسب</span>
+      </label>
+    </div>
+    <div class="demo-card">
+      <span class="demo-card__title">Regular / Large / Required</span>
+      <label class="label label--large label--required">
+        <span class="label__text">برچسب</span>
+        <span class="label__required">*</span>
+      </label>
+    </div>
+    <div class="demo-card">
+      <span class="demo-card__title">Regular / Large / Disabled</span>
+      <label class="label label--large label--disabled">
+        <span class="label__text">برچسب</span>
+      </label>
+    </div>
+    <div class="demo-card">
+      <span class="demo-card__title">Regular / Large / Required / Disabled</span>
+      <label class="label label--large label--required label--disabled">
+        <span class="label__text">برچسب</span>
+        <span class="label__required">*</span>
+      </label>
+    </div>
+
+    <!-- Regular / Medium -->
+    <div class="demo-card">
+      <span class="demo-card__title">Regular / Medium</span>
+      <label class="label label--medium">
+        <span class="label__text">برچسب</span>
+      </label>
+    </div>
+    <div class="demo-card">
+      <span class="demo-card__title">Regular / Medium / Required</span>
+      <label class="label label--medium label--required">
+        <span class="label__text">برچسب</span>
+        <span class="label__required">*</span>
+      </label>
+    </div>
+    <div class="demo-card">
+      <span class="demo-card__title">Regular / Medium / Disabled</span>
+      <label class="label label--medium label--disabled">
+        <span class="label__text">برچسب</span>
+      </label>
+    </div>
+    <div class="demo-card">
+      <span class="demo-card__title">Regular / Medium / Required / Disabled</span>
+      <label class="label label--medium label--required label--disabled">
+        <span class="label__text">برچسب</span>
+        <span class="label__required">*</span>
+      </label>
+    </div>
+
+    <!-- Regular / Small -->
+    <div class="demo-card">
+      <span class="demo-card__title">Regular / Small</span>
+      <label class="label label--small">
+        <span class="label__text">برچسب</span>
+      </label>
+    </div>
+    <div class="demo-card">
+      <span class="demo-card__title">Regular / Small / Required</span>
+      <label class="label label--small label--required">
+        <span class="label__text">برچسب</span>
+        <span class="label__required">*</span>
+      </label>
+    </div>
+    <div class="demo-card">
+      <span class="demo-card__title">Regular / Small / Disabled</span>
+      <label class="label label--small label--disabled">
+        <span class="label__text">برچسب</span>
+      </label>
+    </div>
+    <div class="demo-card">
+      <span class="demo-card__title">Regular / Small / Required / Disabled</span>
+      <label class="label label--small label--required label--disabled">
+        <span class="label__text">برچسب</span>
+        <span class="label__required">*</span>
+      </label>
+    </div>
+
+    <!-- Semibold / Large -->
+    <div class="demo-card">
+      <span class="demo-card__title">Semibold / Large</span>
+      <label class="label label--large label--semibold">
+        <span class="label__text">برچسب</span>
+      </label>
+    </div>
+    <div class="demo-card">
+      <span class="demo-card__title">Semibold / Large / Required</span>
+      <label class="label label--large label--semibold label--required">
+        <span class="label__text">برچسب</span>
+        <span class="label__required">*</span>
+      </label>
+    </div>
+    <div class="demo-card">
+      <span class="demo-card__title">Semibold / Large / Disabled</span>
+      <label class="label label--large label--semibold label--disabled">
+        <span class="label__text">برچسب</span>
+      </label>
+    </div>
+    <div class="demo-card">
+      <span class="demo-card__title">Semibold / Large / Required / Disabled</span>
+      <label class="label label--large label--semibold label--required label--disabled">
+        <span class="label__text">برچسب</span>
+        <span class="label__required">*</span>
+      </label>
+    </div>
+
+    <!-- Semibold / Medium -->
+    <div class="demo-card">
+      <span class="demo-card__title">Semibold / Medium</span>
+      <label class="label label--medium label--semibold">
+        <span class="label__text">برچسب</span>
+      </label>
+    </div>
+    <div class="demo-card">
+      <span class="demo-card__title">Semibold / Medium / Required</span>
+      <label class="label label--medium label--semibold label--required">
+        <span class="label__text">برچسب</span>
+        <span class="label__required">*</span>
+      </label>
+    </div>
+    <div class="demo-card">
+      <span class="demo-card__title">Semibold / Medium / Disabled</span>
+      <label class="label label--medium label--semibold label--disabled">
+        <span class="label__text">برچسب</span>
+      </label>
+    </div>
+    <div class="demo-card">
+      <span class="demo-card__title">Semibold / Medium / Required / Disabled</span>
+      <label class="label label--medium label--semibold label--required label--disabled">
+        <span class="label__text">برچسب</span>
+        <span class="label__required">*</span>
+      </label>
+    </div>
+
+    <!-- Semibold / Small -->
+    <div class="demo-card">
+      <span class="demo-card__title">Semibold / Small</span>
+      <label class="label label--small label--semibold">
+        <span class="label__text">برچسب</span>
+      </label>
+    </div>
+    <div class="demo-card">
+      <span class="demo-card__title">Semibold / Small / Required</span>
+      <label class="label label--small label--semibold label--required">
+        <span class="label__text">برچسب</span>
+        <span class="label__required">*</span>
+      </label>
+    </div>
+    <div class="demo-card">
+      <span class="demo-card__title">Semibold / Small / Disabled</span>
+      <label class="label label--small label--semibold label--disabled">
+        <span class="label__text">برچسب</span>
+      </label>
+    </div>
+    <div class="demo-card">
+      <span class="demo-card__title">Semibold / Small / Required / Disabled</span>
+      <label class="label label--small label--semibold label--required label--disabled">
+        <span class="label__text">برچسب</span>
+        <span class="label__required">*</span>
+      </label>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       7. پشتیبانی LTR
+       ========================================== -->
+
+  <h2>۷. پشتیبانی LTR</h2>
+  <p class="section-desc">نمایش در جهت چپ‌به‌راست</p>
+
+  <div dir="ltr" style="margin-bottom: 24px;">
+    <div class="demo-row">
+      <div class="demo-item">
+        <span class="demo-label">LTR / large / required</span>
+        <label class="label label--large label--required">
+          <span class="label__text">Label</span>
+          <span class="label__required">*</span>
+        </label>
+      </div>
+      <div class="demo-item">
+        <span class="demo-label">LTR / medium / semibold / required</span>
+        <label class="label label--medium label--semibold label--required">
+          <span class="label__text">Label</span>
+          <span class="label__required">*</span>
+        </label>
+      </div>
+      <div class="demo-item">
+        <span class="demo-label">LTR / small / required / disabled</span>
+        <label class="label label--small label--required label--disabled">
+          <span class="label__text">Label</span>
+          <span class="label__required">*</span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       8. جدول تایپوگرافی
+       ========================================== -->
+
+  <h2>۸. جدول تایپوگرافی</h2>
+
+  <table class="comparison-table">
+    <thead>
+      <tr>
+        <th>Size</th>
+        <th>Type</th>
+        <th>Font Size</th>
+        <th>Font Weight</th>
+        <th>Line Height</th>
+        <th>ستاره (Small)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Large</td>
+        <td>Regular</td>
+        <td>16px</td>
+        <td>400</td>
+        <td>1.5</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td>Medium</td>
+        <td>Regular</td>
+        <td>14px</td>
+        <td>400</td>
+        <td>1.5</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td>Small</td>
+        <td>Regular</td>
+        <td>12px</td>
+        <td>400</td>
+        <td>1.5</td>
+        <td>13px / 1.3</td>
+      </tr>
+      <tr>
+        <td>Large</td>
+        <td>Semibold</td>
+        <td>16px</td>
+        <td>500</td>
+        <td>1.5</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td>Medium</td>
+        <td>Semibold</td>
+        <td>12px</td>
+        <td>500</td>
+        <td>1.5</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td>Small</td>
+        <td>Semibold</td>
+        <td>12px</td>
+        <td>500</td>
+        <td>1.5</td>
+        <td>13px / 1.3</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ==========================================
+       9. CSS Classes
+       ========================================== -->
+
+  <h2>۹. CSS Classes</h2>
+
+  <table class="comparison-table">
+    <thead>
+      <tr>
+        <th>کلاس</th>
+        <th>توضیح</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><code>label</code></td><td>کلاس پایه (روی <code>&lt;label&gt;</code>)</td></tr>
+      <tr><td><code>label--large</code></td><td>سایز بزرگ (16px Regular / 16px Semibold)</td></tr>
+      <tr><td><code>label--medium</code></td><td>سایز متوسط (14px Regular / 12px Semibold)</td></tr>
+      <tr><td><code>label--small</code></td><td>سایز کوچک (12px)</td></tr>
+      <tr><td><code>label--semibold</code></td><td>وزن فونت Semibold (500)</td></tr>
+      <tr><td><code>label--required</code></td><td>نشانگر فیلد اجباری (semantic)</td></tr>
+      <tr><td><code>label--disabled</code></td><td>حالت غیرفعال</td></tr>
+      <tr><td><code>label__text</code></td><td>متن برچسب</td></tr>
+      <tr><td><code>label__required</code></td><td>ستاره اجباری (*)</td></tr>
+    </tbody>
+  </table>
+
+  <!-- ==========================================
+       10. نحوه استفاده
+       ========================================== -->
+
+  <h2>۱۰. نحوه استفاده</h2>
+
+  <h3>ساده (بدون Required)</h3>
+  <pre dir="ltr" style="background:#fff;border:1px solid #e2e4e6;border-radius:8px;padding:16px;overflow-x:auto;font-size:13px;line-height:1.6;margin-bottom:16px;"><code>&lt;label class="label label--medium"&gt;
+  &lt;span class="label__text"&gt;برچسب&lt;/span&gt;
+&lt;/label&gt;</code></pre>
+
+  <h3>با Required</h3>
+  <pre dir="ltr" style="background:#fff;border:1px solid #e2e4e6;border-radius:8px;padding:16px;overflow-x:auto;font-size:13px;line-height:1.6;margin-bottom:16px;"><code>&lt;label class="label label--medium label--required"&gt;
+  &lt;span class="label__text"&gt;برچسب&lt;/span&gt;
+  &lt;span class="label__required"&gt;*&lt;/span&gt;
+&lt;/label&gt;</code></pre>
+
+  <h3>Semibold + Required</h3>
+  <pre dir="ltr" style="background:#fff;border:1px solid #e2e4e6;border-radius:8px;padding:16px;overflow-x:auto;font-size:13px;line-height:1.6;margin-bottom:16px;"><code>&lt;label class="label label--large label--semibold label--required"&gt;
+  &lt;span class="label__text"&gt;برچسب&lt;/span&gt;
+  &lt;span class="label__required"&gt;*&lt;/span&gt;
+&lt;/label&gt;</code></pre>
+
+  <h3>Disabled + Required</h3>
+  <pre dir="ltr" style="background:#fff;border:1px solid #e2e4e6;border-radius:8px;padding:16px;overflow-x:auto;font-size:13px;line-height:1.6;margin-bottom:16px;"><code>&lt;label class="label label--medium label--required label--disabled"&gt;
+  &lt;span class="label__text"&gt;برچسب&lt;/span&gt;
+  &lt;span class="label__required"&gt;*&lt;/span&gt;
+&lt;/label&gt;</code></pre>
+
+  <h3>مرتبط کردن با فیلد (for/id)</h3>
+  <pre dir="ltr" style="background:#fff;border:1px solid #e2e4e6;border-radius:8px;padding:16px;overflow-x:auto;font-size:13px;line-height:1.6;margin-bottom:16px;"><code>&lt;label class="label label--medium label--required" for="email-input"&gt;
+  &lt;span class="label__text"&gt;ایمیل&lt;/span&gt;
+  &lt;span class="label__required"&gt;*&lt;/span&gt;
+&lt;/label&gt;
+&lt;input id="email-input" type="email" class="input__field" /&gt;</code></pre>
+
+</div>
+
+</body>
+</html>

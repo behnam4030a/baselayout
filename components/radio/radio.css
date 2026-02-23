@@ -1,0 +1,262 @@
+/**
+ * Radio Component Styles
+ * کامپوننت رادیو - استایل‌ها
+ *
+ * این فایل شامل تمام استایل‌های کامپوننت Radio است
+ * مطابق با Design Tokens استخراج شده از Figma
+ *
+ * ساختار HTML:
+ * <label class="radio">
+ *   <input type="radio" class="radio__input" name="group" />
+ *   <span class="radio__box">
+ *     <span class="radio__circle">
+ *       <span class="radio__dot"></span>
+ *     </span>
+ *   </span>
+ *   <span class="radio__label">برچسب</span>
+ * </label>
+ */
+
+/* ==========================================
+   CSS Custom Properties از Design Tokens
+   ========================================== */
+
+:root {
+  /* Brand Foreground (Checked) */
+  --radio-color-brand-fg-rest: var(--brand-400);
+  --radio-color-brand-fg-hover: var(--brand-600);
+  --radio-color-brand-fg-pressed: var(--brand-800);
+
+  /* Neutral Foreground */
+  --radio-color-neutral-fg-rest: var(--neutral-880);
+  --radio-color-neutral-fg-disabled: var(--neutral-260);
+
+  /* Neutral Stroke (Unchecked) */
+  --radio-color-neutral-stroke-rest: var(--neutral-620);
+  --radio-color-neutral-stroke-hover: var(--neutral-660);
+  --radio-color-neutral-stroke-pressed: var(--neutral-700);
+
+  /* Radius */
+  --radio-radius-circle: 50%;
+  --radio-radius-container: 4px;
+
+  /* Spacing */
+  --radio-gap: 2px;
+  --radio-label-padding: 8px;
+  --radio-box-padding: 4px;
+
+  /* Size */
+  --radio-box-size: 25px;
+  --radio-circle-size: 17px;
+  --radio-dot-size: 9px;
+
+  /* Transition */
+  --radio-transition: 0.15s ease;
+}
+
+/* ==========================================
+   Base Component (ساختار پایه)
+   ========================================== */
+
+.radio {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--radio-gap);
+  border-radius: var(--radio-radius-container);
+  border: 1px solid transparent;
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+  font-family: var(--typo-font-family);
+  box-sizing: border-box;
+}
+
+/* ==========================================
+   Hidden Native Input (مخفی‌سازی input)
+   ========================================== */
+
+.radio__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ==========================================
+   Label (برچسب)
+   ========================================== */
+
+.radio__label {
+  color: var(--radio-color-neutral-fg-rest);
+  font-family: var(--typo-font-family);
+  font-size: var(--typo-body-medium-150-size);
+  font-weight: var(--typo-body-medium-150-weight);
+  line-height: var(--typo-body-medium-150-line-height);
+  letter-spacing: 0;
+  text-align: right;
+  padding-inline-start: var(--radio-label-padding);
+  transition: color var(--radio-transition);
+}
+
+/* ==========================================
+   Box (کانتینر دایره)
+   ========================================== */
+
+.radio__box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: var(--radio-box-size);
+  height: var(--radio-box-size);
+  padding: var(--radio-box-padding);
+  box-sizing: border-box;
+}
+
+/* ==========================================
+   Circle (دایره بیرونی)
+   ========================================== */
+
+.radio__circle {
+  width: var(--radio-circle-size);
+  height: var(--radio-circle-size);
+  border-radius: var(--radio-radius-circle);
+  border: 1px solid var(--radio-color-neutral-stroke-rest);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+  transition:
+    border-color var(--radio-transition);
+}
+
+/* ==========================================
+   Dot (نقطه داخلی — checked)
+   ========================================== */
+
+.radio__dot {
+  width: var(--radio-dot-size);
+  height: var(--radio-dot-size);
+  border-radius: var(--radio-radius-circle);
+  background-color: var(--radio-color-brand-fg-rest);
+  transform: scale(0);
+  transition:
+    transform var(--radio-transition),
+    background-color var(--radio-transition);
+}
+
+/* ==========================================
+   Status: Checked (وضعیت انتخاب شده)
+   ========================================== */
+
+.radio__input:checked ~ .radio__box .radio__circle {
+  border-color: var(--radio-color-brand-fg-rest);
+}
+
+.radio__input:checked ~ .radio__box .radio__dot {
+  transform: scale(1);
+}
+
+/* ==========================================
+   State: Hover — Unchecked (هاور — خالی)
+   ========================================== */
+
+.radio:hover .radio__input:not(:checked):not(:disabled) ~ .radio__box .radio__circle {
+  border-color: var(--radio-color-neutral-stroke-hover);
+}
+
+/* ==========================================
+   State: Hover — Checked (هاور — انتخاب‌شده)
+   ========================================== */
+
+.radio:hover .radio__input:checked:not(:disabled) ~ .radio__box .radio__circle {
+  border-color: var(--radio-color-brand-fg-hover);
+}
+
+.radio:hover .radio__input:checked:not(:disabled) ~ .radio__box .radio__dot {
+  background-color: var(--radio-color-brand-fg-hover);
+}
+
+/* ==========================================
+   State: Pressed — Unchecked (فشرده — خالی)
+   ========================================== */
+
+.radio:active .radio__input:not(:checked):not(:disabled) ~ .radio__box .radio__circle {
+  border-color: var(--radio-color-neutral-stroke-pressed);
+}
+
+/* ==========================================
+   State: Pressed — Checked (فشرده — انتخاب‌شده)
+   ========================================== */
+
+.radio:active .radio__input:checked:not(:disabled) ~ .radio__box .radio__circle {
+  border-color: var(--radio-color-brand-fg-pressed);
+}
+
+.radio:active .radio__input:checked:not(:disabled) ~ .radio__box .radio__dot {
+  background-color: var(--radio-color-brand-fg-pressed);
+}
+
+/* ==========================================
+   State: Focus (فوکوس — ناوبری کیبورد)
+   ========================================== */
+
+.radio:has(.radio__input:focus-visible) {
+  border-color: var(--radio-color-neutral-fg-rest);
+}
+
+/* فال‌بک برای مرورگرهای بدون :has() */
+@supports not selector(:has(*)) {
+  .radio:focus-within {
+    border-color: var(--radio-color-neutral-fg-rest);
+  }
+}
+
+/* ==========================================
+   State: Disabled (غیرفعال)
+   ========================================== */
+
+/* Disabled — Unchecked */
+.radio__input:disabled ~ .radio__box .radio__circle {
+  border-color: var(--radio-color-neutral-fg-disabled);
+}
+
+/* Disabled — Checked */
+.radio__input:disabled:checked ~ .radio__box .radio__circle {
+  border-color: var(--radio-color-neutral-fg-disabled);
+}
+
+.radio__input:disabled:checked ~ .radio__box .radio__dot {
+  background-color: var(--radio-color-neutral-fg-disabled);
+}
+
+/* Disabled — Label */
+.radio__input:disabled ~ .radio__label {
+  color: var(--radio-color-neutral-fg-disabled);
+}
+
+/* Disabled — Cursor */
+.radio:has(.radio__input:disabled) {
+  cursor: not-allowed;
+}
+
+@supports not selector(:has(*)) {
+  .radio--disabled {
+    cursor: not-allowed;
+  }
+}
+
+/* ==========================================
+   RTL / LTR Support (پشتیبانی راست‌به‌چپ)
+   ========================================== */
+
+[dir="ltr"] .radio__label,
+.radio[dir="ltr"] .radio__label {
+  text-align: left;
+}

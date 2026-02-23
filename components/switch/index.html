@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Switch Component - دمو کامپوننت سوئیچ</title>
+  <link rel="stylesheet" href="../colors/colors.css">
+  <link rel="stylesheet" href="../typography/typography.css">
+  <link rel="stylesheet" href="switch.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Peyda(FaNum)', sans-serif;
+      background: #f6f8fa;
+      padding: 40px 20px;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: 32px;
+      margin-bottom: 16px;
+      color: #222323;
+    }
+
+    h2 {
+      font-size: 24px;
+      margin-top: 48px;
+      margin-bottom: 24px;
+      color: #222323;
+      border-bottom: 2px solid #e2e4e6;
+      padding-bottom: 8px;
+    }
+
+    h3 {
+      font-size: 18px;
+      margin-top: 32px;
+      margin-bottom: 16px;
+      color: #59595a;
+    }
+
+    .demo-row {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .demo-item {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .demo-label {
+      font-size: 11px;
+      color: #9a9b9d;
+      font-family: monospace;
+      direction: ltr;
+      text-align: left;
+    }
+
+    .section-desc {
+      color: #59595a;
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    .demo-card {
+      background: #ffffff;
+      border: 1px solid #e2e4e6;
+      border-radius: 8px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .demo-card__title {
+      font-size: 11px;
+      color: #9a9b9d;
+      font-family: monospace;
+      direction: ltr;
+      text-align: center;
+      border-bottom: 1px solid #f0f0f0;
+      padding-bottom: 4px;
+      width: 100%;
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 24px;
+      font-size: 14px;
+    }
+
+    .comparison-table th,
+    .comparison-table td {
+      padding: 12px 16px;
+      border: 1px solid #e2e4e6;
+      text-align: right;
+    }
+
+    .comparison-table th {
+      background: #f6f8fa;
+      font-weight: 500;
+      color: #222323;
+    }
+
+    .comparison-table td {
+      background: #ffffff;
+    }
+
+    .with-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .with-label__text {
+      font-size: 14px;
+      color: #222323;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <h1>Switch Component</h1>
+  <p class="section-desc">
+    سوئیچ به کاربران امکان می‌دهد بین دو گزینه منحصر به فرد متقابل، مانند روشن یا خاموش
+    یک گزینه را انتخاب کنند. فعال کردن سوئیچ باعث تغییر فوری می‌شود.
+  </p>
+
+  <!-- ==========================================
+       1. حالت‌های Checked (روشن)
+       ========================================== -->
+
+  <h2>۱. حالت‌های Checked (روشن)</h2>
+  <p class="section-desc">وضعیت‌های مختلف Switch در حالت روشن</p>
+
+  <div class="demo-row">
+    <div class="demo-item">
+      <span class="demo-label">Rest</span>
+      <label class="switch">
+        <input type="checkbox" class="switch__input" role="switch" checked />
+        <span class="switch__track">
+          <span class="switch__thumb">
+            <svg class="switch__icon switch__icon--check" viewBox="0 0 14 14" fill="none"><path d="M3.75 7.5L5.75 9.75L10.25 4.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg class="switch__icon switch__icon--close" viewBox="0 0 14 14" fill="none"><path d="M4.25 4.25L9.75 9.75M9.75 4.25L4.25 9.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </span>
+        </span>
+      </label>
+    </div>
+    <div class="demo-item">
+      <span class="demo-label">Hover (mouse over)</span>
+      <label class="switch">
+        <input type="checkbox" class="switch__input" role="switch" checked />
+        <span class="switch__track">
+          <span class="switch__thumb">
+            <svg class="switch__icon switch__icon--check" viewBox="0 0 14 14" fill="none"><path d="M3.75 7.5L5.75 9.75L10.25 4.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg class="switch__icon switch__icon--close" viewBox="0 0 14 14" fill="none"><path d="M4.25 4.25L9.75 9.75M9.75 4.25L4.25 9.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </span>
+        </span>
+      </label>
+    </div>
+    <div class="demo-item">
+      <span class="demo-label">Disabled</span>
+      <label class="switch">
+        <input type="checkbox" class="switch__input" role="switch" checked disabled />
+        <span class="switch__track">
+          <span class="switch__thumb">
+            <svg class="switch__icon switch__icon--check" viewBox="0 0 14 14" fill="none"><path d="M3.75 7.5L5.75 9.75L10.25 4.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg class="switch__icon switch__icon--close" viewBox="0 0 14 14" fill="none"><path d="M4.25 4.25L9.75 9.75M9.75 4.25L4.25 9.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </span>
+        </span>
+      </label>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       2. حالت‌های Unchecked (خاموش)
+       ========================================== -->
+
+  <h2>۲. حالت‌های Unchecked (خاموش)</h2>
+  <p class="section-desc">وضعیت‌های مختلف Switch در حالت خاموش</p>
+
+  <div class="demo-row">
+    <div class="demo-item">
+      <span class="demo-label">Rest</span>
+      <label class="switch">
+        <input type="checkbox" class="switch__input" role="switch" />
+        <span class="switch__track">
+          <span class="switch__thumb">
+            <svg class="switch__icon switch__icon--check" viewBox="0 0 14 14" fill="none"><path d="M3.75 7.5L5.75 9.75L10.25 4.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg class="switch__icon switch__icon--close" viewBox="0 0 14 14" fill="none"><path d="M4.25 4.25L9.75 9.75M9.75 4.25L4.25 9.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </span>
+        </span>
+      </label>
+    </div>
+    <div class="demo-item">
+      <span class="demo-label">Hover (mouse over)</span>
+      <label class="switch">
+        <input type="checkbox" class="switch__input" role="switch" />
+        <span class="switch__track">
+          <span class="switch__thumb">
+            <svg class="switch__icon switch__icon--check" viewBox="0 0 14 14" fill="none"><path d="M3.75 7.5L5.75 9.75L10.25 4.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg class="switch__icon switch__icon--close" viewBox="0 0 14 14" fill="none"><path d="M4.25 4.25L9.75 9.75M9.75 4.25L4.25 9.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </span>
+        </span>
+      </label>
+    </div>
+    <div class="demo-item">
+      <span class="demo-label">Disabled</span>
+      <label class="switch">
+        <input type="checkbox" class="switch__input" role="switch" disabled />
+        <span class="switch__track">
+          <span class="switch__thumb">
+            <svg class="switch__icon switch__icon--check" viewBox="0 0 14 14" fill="none"><path d="M3.75 7.5L5.75 9.75L10.25 4.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg class="switch__icon switch__icon--close" viewBox="0 0 14 14" fill="none"><path d="M4.25 4.25L9.75 9.75M9.75 4.25L4.25 9.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </span>
+        </span>
+      </label>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       3. ماتریس state × checked
+       ========================================== -->
+
+  <h2>۳. ماتریس state × checked</h2>
+  <p class="section-desc">تمام ترکیب‌های حالت و وضعیت روشن/خاموش</p>
+
+  <div class="demo-grid">
+    <div class="demo-card">
+      <span class="demo-card__title">Rest / Checked</span>
+      <label class="switch">
+        <input type="checkbox" class="switch__input" role="switch" checked />
+        <span class="switch__track"><span class="switch__thumb">
+          <svg class="switch__icon switch__icon--check" viewBox="0 0 14 14" fill="none"><path d="M3.75 7.5L5.75 9.75L10.25 4.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg class="switch__icon switch__icon--close" viewBox="0 0 14 14" fill="none"><path d="M4.25 4.25L9.75 9.75M9.75 4.25L4.25 9.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </span></span>
+      </label>
+    </div>
+    <div class="demo-card">
+      <span class="demo-card__title">Rest / Unchecked</span>
+      <label class="switch">
+        <input type="checkbox" class="switch__input" role="switch" />
+        <span class="switch__track"><span class="switch__thumb">
+          <svg class="switch__icon switch__icon--check" viewBox="0 0 14 14" fill="none"><path d="M3.75 7.5L5.75 9.75L10.25 4.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg class="switch__icon switch__icon--close" viewBox="0 0 14 14" fill="none"><path d="M4.25 4.25L9.75 9.75M9.75 4.25L4.25 9.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </span></span>
+      </label>
+    </div>
+    <div class="demo-card">
+      <span class="demo-card__title">Disabled / Checked</span>
+      <label class="switch">
+        <input type="checkbox" class="switch__input" role="switch" checked disabled />
+        <span class="switch__track"><span class="switch__thumb">
+          <svg class="switch__icon switch__icon--check" viewBox="0 0 14 14" fill="none"><path d="M3.75 7.5L5.75 9.75L10.25 4.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg class="switch__icon switch__icon--close" viewBox="0 0 14 14" fill="none"><path d="M4.25 4.25L9.75 9.75M9.75 4.25L4.25 9.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </span></span>
+      </label>
+    </div>
+    <div class="demo-card">
+      <span class="demo-card__title">Disabled / Unchecked</span>
+      <label class="switch">
+        <input type="checkbox" class="switch__input" role="switch" disabled />
+        <span class="switch__track"><span class="switch__thumb">
+          <svg class="switch__icon switch__icon--check" viewBox="0 0 14 14" fill="none"><path d="M3.75 7.5L5.75 9.75L10.25 4.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg class="switch__icon switch__icon--close" viewBox="0 0 14 14" fill="none"><path d="M4.25 4.25L9.75 9.75M9.75 4.25L4.25 9.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </span></span>
+      </label>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       4. Toggle تعاملی
+       ========================================== -->
+
+  <h2>۴. Toggle تعاملی</h2>
+  <p class="section-desc">کلیک کنید تا عملکرد toggle را ببینید</p>
+
+  <div class="demo-row">
+    <div class="demo-item">
+      <span class="demo-label">Click to toggle</span>
+      <label class="switch">
+        <input type="checkbox" class="switch__input" role="switch" />
+        <span class="switch__track">
+          <span class="switch__thumb">
+            <svg class="switch__icon switch__icon--check" viewBox="0 0 14 14" fill="none"><path d="M3.75 7.5L5.75 9.75L10.25 4.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg class="switch__icon switch__icon--close" viewBox="0 0 14 14" fill="none"><path d="M4.25 4.25L9.75 9.75M9.75 4.25L4.25 9.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </span>
+        </span>
+      </label>
+    </div>
+    <div class="demo-item">
+      <span class="demo-label">Click to toggle (starts on)</span>
+      <label class="switch">
+        <input type="checkbox" class="switch__input" role="switch" checked />
+        <span class="switch__track">
+          <span class="switch__thumb">
+            <svg class="switch__icon switch__icon--check" viewBox="0 0 14 14" fill="none"><path d="M3.75 7.5L5.75 9.75L10.25 4.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg class="switch__icon switch__icon--close" viewBox="0 0 14 14" fill="none"><path d="M4.25 4.25L9.75 9.75M9.75 4.25L4.25 9.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </span>
+        </span>
+      </label>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       5. استفاده با Label جداگانه
+       ========================================== -->
+
+  <h2>۵. استفاده با Label جداگانه</h2>
+  <p class="section-desc">Switch بدون Label داخلی است. از کامپوننت Label جداگانه استفاده کنید</p>
+
+  <div class="demo-row">
+    <div class="demo-item">
+      <span class="demo-label">With label</span>
+      <div class="with-label">
+        <span class="with-label__text">حالت شب</span>
+        <label class="switch">
+          <input type="checkbox" class="switch__input" role="switch" />
+          <span class="switch__track">
+            <span class="switch__thumb">
+              <svg class="switch__icon switch__icon--check" viewBox="0 0 14 14" fill="none"><path d="M3.75 7.5L5.75 9.75L10.25 4.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg class="switch__icon switch__icon--close" viewBox="0 0 14 14" fill="none"><path d="M4.25 4.25L9.75 9.75M9.75 4.25L4.25 9.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </span>
+          </span>
+        </label>
+      </div>
+    </div>
+    <div class="demo-item">
+      <span class="demo-label">With label (checked)</span>
+      <div class="with-label">
+        <span class="with-label__text">اعلان‌ها</span>
+        <label class="switch">
+          <input type="checkbox" class="switch__input" role="switch" checked />
+          <span class="switch__track">
+            <span class="switch__thumb">
+              <svg class="switch__icon switch__icon--check" viewBox="0 0 14 14" fill="none"><path d="M3.75 7.5L5.75 9.75L10.25 4.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg class="switch__icon switch__icon--close" viewBox="0 0 14 14" fill="none"><path d="M4.25 4.25L9.75 9.75M9.75 4.25L4.25 9.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </span>
+          </span>
+        </label>
+      </div>
+    </div>
+    <div class="demo-item">
+      <span class="demo-label">With label (disabled)</span>
+      <div class="with-label">
+        <span class="with-label__text" style="color: #bbbcbe;">ذخیره خودکار</span>
+        <label class="switch">
+          <input type="checkbox" class="switch__input" role="switch" disabled />
+          <span class="switch__track">
+            <span class="switch__thumb">
+              <svg class="switch__icon switch__icon--check" viewBox="0 0 14 14" fill="none"><path d="M3.75 7.5L5.75 9.75L10.25 4.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg class="switch__icon switch__icon--close" viewBox="0 0 14 14" fill="none"><path d="M4.25 4.25L9.75 9.75M9.75 4.25L4.25 9.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </span>
+          </span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       6. پشتیبانی LTR
+       ========================================== -->
+
+  <h2>۶. پشتیبانی LTR</h2>
+  <p class="section-desc">نمایش در جهت چپ‌به‌راست</p>
+
+  <div dir="ltr" style="margin-bottom: 24px;">
+    <div class="demo-row">
+      <div class="demo-item">
+        <span class="demo-label">Checked (LTR)</span>
+        <label class="switch">
+          <input type="checkbox" class="switch__input" role="switch" checked />
+          <span class="switch__track"><span class="switch__thumb">
+            <svg class="switch__icon switch__icon--check" viewBox="0 0 14 14" fill="none"><path d="M3.75 7.5L5.75 9.75L10.25 4.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg class="switch__icon switch__icon--close" viewBox="0 0 14 14" fill="none"><path d="M4.25 4.25L9.75 9.75M9.75 4.25L4.25 9.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </span></span>
+        </label>
+      </div>
+      <div class="demo-item">
+        <span class="demo-label">Unchecked (LTR)</span>
+        <label class="switch">
+          <input type="checkbox" class="switch__input" role="switch" />
+          <span class="switch__track"><span class="switch__thumb">
+            <svg class="switch__icon switch__icon--check" viewBox="0 0 14 14" fill="none"><path d="M3.75 7.5L5.75 9.75L10.25 4.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg class="switch__icon switch__icon--close" viewBox="0 0 14 14" fill="none"><path d="M4.25 4.25L9.75 9.75M9.75 4.25L4.25 9.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </span></span>
+        </label>
+      </div>
+      <div class="demo-item">
+        <span class="demo-label">Disabled (LTR)</span>
+        <label class="switch">
+          <input type="checkbox" class="switch__input" role="switch" checked disabled />
+          <span class="switch__track"><span class="switch__thumb">
+            <svg class="switch__icon switch__icon--check" viewBox="0 0 14 14" fill="none"><path d="M3.75 7.5L5.75 9.75L10.25 4.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg class="switch__icon switch__icon--close" viewBox="0 0 14 14" fill="none"><path d="M4.25 4.25L9.75 9.75M9.75 4.25L4.25 9.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </span></span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       7. جدول رنگ‌ها
+       ========================================== -->
+
+  <h2>۷. جدول رنگ‌ها</h2>
+
+  <h3>Track</h3>
+  <table class="comparison-table">
+    <thead>
+      <tr>
+        <th>State</th>
+        <th>Checked (bg / border)</th>
+        <th>Unchecked (bg / border)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Rest</td>
+        <td><code>#26a88c</code> / <code>#eaf8f5</code></td>
+        <td><code>#ffffff</code> / <code>#e2e4e6</code></td>
+      </tr>
+      <tr>
+        <td>Hover</td>
+        <td><code>#22967d</code> / <code>#eaf8f5</code></td>
+        <td><code>#f6f8fa</code> / <code>#e2e4e6</code></td>
+      </tr>
+      <tr>
+        <td>Pressed</td>
+        <td><code>#19705e</code> / <code>#eaf8f5</code></td>
+        <td><code>#dddfe1</code> / <code>#e2e4e6</code></td>
+      </tr>
+      <tr>
+        <td>Disabled</td>
+        <td colspan="2"><code>#f6f8fa</code> / <code>#dddfe1</code></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Thumb</h3>
+  <table class="comparison-table">
+    <thead>
+      <tr>
+        <th>وضعیت</th>
+        <th>Background</th>
+        <th>Border</th>
+        <th>Icon Color</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Checked</td>
+        <td><code>#ffffff</code></td>
+        <td><code>#26a88c</code></td>
+        <td><code>#26a88c</code> (checkmark)</td>
+      </tr>
+      <tr>
+        <td>Unchecked</td>
+        <td><code>#ffffff</code></td>
+        <td><code>#e2e4e6</code></td>
+        <td><code>#59595a</code> (X)</td>
+      </tr>
+      <tr>
+        <td>Disabled</td>
+        <td><code>#e7e9eb</code></td>
+        <td><code>#dddfe1</code></td>
+        <td><code>#bbbcbe</code></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ==========================================
+       8. CSS Classes
+       ========================================== -->
+
+  <h2>۸. CSS Classes</h2>
+
+  <table class="comparison-table">
+    <thead>
+      <tr>
+        <th>کلاس</th>
+        <th>توضیح</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><code>switch</code></td><td>کلاس پایه (روی <code>&lt;label&gt;</code> wrapper)</td></tr>
+      <tr><td><code>switch__input</code></td><td>input بومی مخفی (<code>&lt;input type="checkbox" role="switch"&gt;</code>)</td></tr>
+      <tr><td><code>switch__track</code></td><td>نوار پس‌زمینه (40px × 20px)</td></tr>
+      <tr><td><code>switch__thumb</code></td><td>دایره متحرک (22px × 22px)</td></tr>
+      <tr><td><code>switch__icon</code></td><td>آیکن داخل Thumb (14px)</td></tr>
+      <tr><td><code>switch__icon--check</code></td><td>آیکن checkmark (حالت checked)</td></tr>
+      <tr><td><code>switch__icon--close</code></td><td>آیکن X (حالت unchecked)</td></tr>
+      <tr><td><code>switch--disabled</code></td><td>حالت غیرفعال (fallback برای :has())</td></tr>
+    </tbody>
+  </table>
+
+  <!-- ==========================================
+       9. نحوه استفاده
+       ========================================== -->
+
+  <h2>۹. نحوه استفاده</h2>
+
+  <h3>Switch ساده</h3>
+  <pre dir="ltr" style="background:#fff;border:1px solid #e2e4e6;border-radius:8px;padding:16px;overflow-x:auto;font-size:13px;line-height:1.6;margin-bottom:16px;"><code>&lt;label class="switch"&gt;
+  &lt;input type="checkbox" class="switch__input" role="switch" /&gt;
+  &lt;span class="switch__track"&gt;
+    &lt;span class="switch__thumb"&gt;
+      &lt;svg class="switch__icon switch__icon--check" viewBox="0 0 14 14" fill="none"&gt;
+        &lt;path d="M3.75 7.5L5.75 9.75L10.25 4.25" stroke="currentColor"
+          stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/&gt;
+      &lt;/svg&gt;
+      &lt;svg class="switch__icon switch__icon--close" viewBox="0 0 14 14" fill="none"&gt;
+        &lt;path d="M4.25 4.25L9.75 9.75M9.75 4.25L4.25 9.75" stroke="currentColor"
+          stroke-width="1.5" stroke-linecap="round"/&gt;
+      &lt;/svg&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+&lt;/label&gt;</code></pre>
+
+  <h3>Switch با Label جداگانه</h3>
+  <pre dir="ltr" style="background:#fff;border:1px solid #e2e4e6;border-radius:8px;padding:16px;overflow-x:auto;font-size:13px;line-height:1.6;margin-bottom:16px;"><code>&lt;div style="display: flex; align-items: center; gap: 8px;"&gt;
+  &lt;span&gt;حالت شب&lt;/span&gt;
+  &lt;label class="switch"&gt;
+    &lt;input type="checkbox" class="switch__input" role="switch" /&gt;
+    &lt;span class="switch__track"&gt;
+      &lt;span class="switch__thumb"&gt;...&lt;/span&gt;
+    &lt;/span&gt;
+  &lt;/label&gt;
+&lt;/div&gt;</code></pre>
+
+</div>
+
+</body>
+</html>

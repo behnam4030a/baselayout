@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__figma__get_design_context",
+      "mcp__figma__get_screenshot",
+      "Bash(cd /c/WorkProject/FrontLayer_Portal_V.3 && openspec validate add-admin-layout-navigation --strict 2>&1)",
+      "Bash(cd /c/WorkProject/FrontLayer_Portal_V.3 && openspec show add-admin-layout-navigation 2>&1)",
+      "mcp__claude_ai_Figma__get_design_context",
+      "mcp__claude_ai_Figma__get_screenshot",
+      "Bash(python3:*)",
+      "Bash(cat:*)",
+      "mcp__figma__get_metadata",
+      "mcp__claude_ai_Figma__get_metadata",
+      "Bash(python:*)",
+      "mcp__figma__get_variable_defs",
+      "Bash(curl:*)",
+      "Bash(cd /c/WorkProject/FrontLayer_Portal_V.3 && openspec list 2>&1)",
+      "Bash(cd /c/WorkProject/FrontLayer_Portal_V.3 && openspec list --specs 2>&1)"
+    ]
+  }
+}

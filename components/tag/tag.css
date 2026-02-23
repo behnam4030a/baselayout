@@ -1,0 +1,368 @@
+/**
+ * Tag Component Styles
+ * کامپوننت تگ - استایل‌ها
+ *
+ * این فایل شامل تمام استایل‌های کامپوننت Tag است
+ * مطابق با Design Tokens استخراج شده از Figma
+ *
+ * ساختار HTML:
+ * <span class="tag tag--filled tag--gray tag--medium tag--rounded">
+ *   <span class="tag__icon">...</span>   <!-- اختیاری: آیکن trailing -->
+ *   <span class="tag__text">متن تگ</span>
+ *   <button class="tag__dismiss">...</button>   <!-- اختیاری: دکمه حذف -->
+ * </span>
+ */
+
+/* ==========================================
+   CSS Custom Properties از Design Tokens
+   ========================================== */
+
+:root {
+  /* --- Colors: Neutral / Gray --- */
+  --tag-neutral-bg-rest: var(--neutral-20);
+  --tag-neutral-bg-hover: var(--neutral-40);
+  --tag-neutral-stroke-rest: var(--neutral-100);
+  --tag-neutral-fg-rest: var(--neutral-880);
+
+  /* --- Colors: Success / Green --- */
+  --tag-success-bg-rest: var(--green-25);
+  --tag-success-bg-hover: var(--green-50);
+  --tag-success-stroke-primary: var(--green-100);
+  --tag-success-stroke-secondary: var(--green-500);
+  --tag-success-fg-rest: var(--green-500);
+  --tag-success-fg-hover: var(--green-700);
+
+  /* --- Colors: Warning / Orange --- */
+  --tag-warning-bg-rest: var(--orange-25);
+  --tag-warning-bg-hover: var(--orange-50);
+  --tag-warning-stroke-primary: var(--orange-100);
+  --tag-warning-stroke-secondary: var(--orange-500);
+  --tag-warning-fg-rest: var(--orange-500);
+  --tag-warning-fg-hover: var(--orange-700);
+
+  /* --- Colors: Danger / Red --- */
+  --tag-danger-bg-rest: var(--cranberry-25);
+  --tag-danger-bg-hover: var(--cranberry-50);
+  --tag-danger-stroke-primary: var(--cranberry-100);
+  --tag-danger-stroke-secondary: var(--cranberry-500);
+  --tag-danger-fg-rest: var(--cranberry-500);
+  --tag-danger-fg-hover: var(--cranberry-700);
+
+  /* --- Colors: Disabled --- */
+  --tag-disabled-bg: var(--neutral-80);
+  --tag-disabled-stroke: var(--neutral-80);
+  --tag-disabled-fg: var(--neutral-260);
+
+  /* --- Colors: Focus --- */
+  --tag-focus-border: var(--neutral-880);
+
+  /* --- Colors: Filled border --- */
+  --tag-filled-border: var(--neutral-0);
+
+  /* --- Radius --- */
+  --tag-radius-rounded: 8px;
+  --tag-radius-circular: 360px;
+
+  /* --- Size: Large --- */
+  --tag-lg-height: 37px;
+  --tag-lg-padding-x: 12px;
+  --tag-lg-icon-wrapper: 22px;
+
+  /* --- Size: Medium --- */
+  --tag-md-height: 32px;
+  --tag-md-padding-x: 8px;
+  --tag-md-icon-wrapper: 18px;
+
+  /* --- Size: Small --- */
+  --tag-sm-height: 24px;
+  --tag-sm-padding-x: 8px;
+  --tag-sm-icon-wrapper: 18px;
+
+  /* --- Spacing --- */
+  --tag-gap: 4px;
+
+  /* --- Dismiss icon --- */
+  --tag-dismiss-size: 24px;
+
+  /* --- Transition --- */
+  --tag-transition: 0.15s ease;
+}
+
+/* ==========================================
+   Base Component (ساختار پایه)
+   ========================================== */
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--tag-gap);
+  font-family: var(--typo-font-family);
+  font-weight: var(--typo-body-medium-150-weight);
+  font-style: normal;
+  overflow: clip;
+  box-sizing: border-box;
+  user-select: none;
+  white-space: nowrap;
+  transition:
+    background-color var(--tag-transition),
+    border-color var(--tag-transition),
+    color var(--tag-transition);
+}
+
+/* ==========================================
+   Element: Text (متن تگ)
+   ========================================== */
+
+.tag__text {
+  flex-shrink: 0;
+}
+
+/* ==========================================
+   Element: Icon (آیکن کنار متن)
+   ========================================== */
+
+.tag__icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tag__icon svg {
+  display: block;
+}
+
+/* ==========================================
+   Element: Dismiss Button (دکمه حذف)
+   ========================================== */
+
+.tag__dismiss {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--tag-dismiss-size);
+  height: var(--tag-dismiss-size);
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  color: inherit;
+  transition: color var(--tag-transition);
+}
+
+.tag__dismiss svg {
+  display: block;
+}
+
+/* ==========================================
+   Modifier: Size — Large
+   ========================================== */
+
+.tag--large {
+  height: var(--tag-lg-height);
+  padding-inline: var(--tag-lg-padding-x);
+  font-size: var(--typo-body-large-150-size);
+  line-height: var(--typo-body-large-150-line-height);
+}
+
+.tag--large .tag__icon {
+  width: var(--tag-lg-icon-wrapper);
+  height: var(--tag-lg-icon-wrapper);
+}
+
+/* ==========================================
+   Modifier: Size — Medium
+   ========================================== */
+
+.tag--medium {
+  height: var(--tag-md-height);
+  padding-inline: var(--tag-md-padding-x);
+  font-size: var(--typo-body-medium-150-size);
+  line-height: var(--typo-body-medium-150-line-height);
+}
+
+.tag--medium .tag__icon {
+  width: var(--tag-md-icon-wrapper);
+  height: var(--tag-md-icon-wrapper);
+}
+
+/* ==========================================
+   Modifier: Size — Small
+   ========================================== */
+
+.tag--small {
+  height: var(--tag-sm-height);
+  padding-inline: var(--tag-sm-padding-x);
+  font-size: var(--typo-caption-size);
+  line-height: var(--typo-caption-line-height);
+}
+
+.tag--small .tag__icon {
+  width: var(--tag-sm-icon-wrapper);
+  height: var(--tag-sm-icon-wrapper);
+}
+
+/* ==========================================
+   Modifier: Radius — Rounded
+   ========================================== */
+
+.tag--rounded {
+  border-radius: var(--tag-radius-rounded);
+}
+
+/* ==========================================
+   Modifier: Radius — Circular
+   ========================================== */
+
+.tag--circular {
+  border-radius: var(--tag-radius-circular);
+}
+
+/* ==========================================
+   FILLED STYLE (استایل پر)
+   ========================================== */
+
+.tag--filled {
+  border: 2px solid var(--tag-filled-border);
+}
+
+/* --- Filled × Gray --- */
+
+.tag--filled.tag--gray {
+  background-color: var(--tag-neutral-bg-rest);
+  color: var(--tag-neutral-fg-rest);
+}
+
+.tag--filled.tag--gray:hover:not(.tag--disabled) {
+  background-color: var(--tag-neutral-bg-hover);
+}
+
+/* --- Filled × Green --- */
+
+.tag--filled.tag--green {
+  background-color: var(--tag-success-bg-rest);
+  color: var(--tag-success-fg-rest);
+}
+
+.tag--filled.tag--green:hover:not(.tag--disabled) {
+  background-color: var(--tag-success-bg-hover);
+}
+
+/* --- Filled × Orange --- */
+
+.tag--filled.tag--orange {
+  background-color: var(--tag-warning-bg-rest);
+  color: var(--tag-warning-fg-rest);
+}
+
+.tag--filled.tag--orange:hover:not(.tag--disabled) {
+  background-color: var(--tag-warning-bg-hover);
+}
+
+/* --- Filled × Red --- */
+
+.tag--filled.tag--red {
+  background-color: var(--tag-danger-bg-rest);
+  color: var(--tag-danger-fg-rest);
+}
+
+.tag--filled.tag--red:hover:not(.tag--disabled) {
+  background-color: var(--tag-danger-bg-hover);
+}
+
+/* --- Filled × Focus --- */
+
+.tag--filled.tag--focused:not(.tag--disabled) {
+  border: 1px solid var(--tag-focus-border);
+}
+
+/* --- Filled × Disabled --- */
+
+.tag--filled.tag--disabled {
+  background-color: var(--tag-disabled-bg);
+  border-color: transparent;
+  color: var(--tag-disabled-fg);
+  cursor: default;
+}
+
+/* ==========================================
+   OUTLINE STYLE (استایل خطی)
+   ========================================== */
+
+.tag--outline {
+  border: 1px solid;
+  background-color: transparent;
+}
+
+/* --- Outline × Gray --- */
+
+.tag--outline.tag--gray {
+  border-color: var(--tag-neutral-stroke-rest);
+  color: var(--tag-neutral-fg-rest);
+}
+
+.tag--outline.tag--gray:hover:not(.tag--disabled) {
+  border-color: var(--tag-neutral-stroke-rest);
+  color: var(--tag-neutral-fg-rest);
+}
+
+/* --- Outline × Green --- */
+
+.tag--outline.tag--green {
+  border-color: var(--tag-success-stroke-primary);
+  color: var(--tag-success-fg-rest);
+}
+
+.tag--outline.tag--green:hover:not(.tag--disabled) {
+  border-color: var(--tag-success-stroke-secondary);
+  color: var(--tag-success-fg-hover);
+}
+
+/* --- Outline × Orange --- */
+
+.tag--outline.tag--orange {
+  border-color: var(--tag-warning-stroke-primary);
+  color: var(--tag-warning-fg-rest);
+}
+
+.tag--outline.tag--orange:hover:not(.tag--disabled) {
+  border-color: var(--tag-warning-stroke-secondary);
+  color: var(--tag-warning-fg-hover);
+}
+
+/* --- Outline × Red --- */
+
+.tag--outline.tag--red {
+  border-color: var(--tag-danger-stroke-primary);
+  color: var(--tag-danger-fg-rest);
+}
+
+.tag--outline.tag--red:hover:not(.tag--disabled) {
+  border-color: var(--tag-danger-stroke-secondary);
+  color: var(--tag-danger-fg-hover);
+}
+
+/* --- Outline × Focus --- */
+
+.tag--outline.tag--focused:not(.tag--disabled) {
+  border-color: var(--tag-focus-border);
+}
+
+/* --- Outline × Disabled --- */
+
+.tag--outline.tag--disabled {
+  border-color: var(--tag-disabled-stroke);
+  color: var(--tag-disabled-fg);
+  cursor: default;
+}
+
+/* ==========================================
+   Disabled — Dismiss Button
+   ========================================== */
+
+.tag--disabled .tag__dismiss {
+  cursor: default;
+  pointer-events: none;
+}

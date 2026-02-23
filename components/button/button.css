@@ -1,0 +1,437 @@
+/**
+ * Button Component Styles
+ * کامپوننت دکمه - استایل‌ها
+ *
+ * این فایل شامل تمام استایل‌های کامپوننت Button است
+ * مطابق با Design Tokens استخراج شده از Figma
+ */
+
+/* ==========================================
+   CSS Custom Properties از Design Tokens
+   ========================================== */
+
+:root {
+  /* Brand Colors */
+  --btn-color-brand-bg-rest: var(--brand-400);
+  --btn-color-brand-bg-hover: var(--brand-500);
+  --btn-color-brand-bg-pressed: var(--brand-700);
+  --btn-color-brand-bg-selected: var(--brand-600);
+
+  --btn-color-brand-fg-hover: var(--brand-600);
+  --btn-color-brand-fg-pressed: var(--brand-800);
+  --btn-color-brand-fg-selected: var(--brand-300);
+
+  --btn-color-brand-stroke-rest: var(--brand-600);
+
+  /* AI Colors */
+  --btn-color-ai-bg-rest: var(--lavender-500);
+  --btn-color-ai-bg-hover: var(--lavender-600);
+  --btn-color-ai-bg-pressed: var(--lavender-800);
+  --btn-color-ai-bg-selected: var(--lavender-700);
+
+  --btn-color-ai-stroke-rest: var(--lavender-800);
+
+  /* Neutral Colors */
+  --btn-color-neutral-bg-rest: var(--neutral-0);
+  --btn-color-neutral-bg-hover: var(--neutral-20);
+  --btn-color-neutral-bg-pressed: var(--neutral-120);
+  --btn-color-neutral-bg-selected: var(--neutral-120);
+
+  --btn-color-neutral-fg-rest: var(--neutral-880);
+  --btn-color-neutral-fg-inverted-rest: var(--neutral-0);
+
+  --btn-color-neutral-stroke-rest: var(--neutral-100);
+  --btn-color-neutral-stroke-hover: var(--neutral-140);
+  --btn-color-neutral-stroke-pressed: var(--neutral-220);
+  --btn-color-neutral-stroke-selected: var(--neutral-180);
+
+  /* Radius */
+  --btn-radius: 8px;
+
+  /* Shadows */
+  --btn-shadow-primary:
+    0px 2px 3px 1px rgba(13, 56, 47, 0.05),
+    inset 0px -2px 4px 1px rgba(13, 56, 47, 0.15),
+    inset 0px 0px 0px 2px rgba(170, 228, 215, 0.55);
+
+  --btn-shadow-ai:
+    0px 2px 3px 1px rgba(34, 29, 70, 0.05),
+    inset 0px -2px 4px 1px rgba(34, 29, 70, 0.15),
+    inset 0px 0px 0px 2px rgba(198, 191, 246, 0.55);
+
+  --btn-shadow-secondary:
+    0px 2px 2px 1px rgba(0, 0, 0, 0.02),
+    inset 0px -2px 4px 1px rgba(223, 223, 223, 0.15),
+    inset 0px 0px 0px 2px rgba(0, 0, 0, 0.03);
+
+  /* Spacing */
+  --btn-padding-large: 16px;
+  --btn-padding-medium: 12px;
+  --btn-padding-small: 8px;
+  --btn-gap: 8px;
+
+  /* Size */
+  --btn-height-large: 45px;
+  --btn-height-medium: 37px;
+  --btn-height-small: 24px;
+  --btn-icon-size: 18px;
+
+  /* Transition */
+  --btn-transition: all 0.2s ease-in-out;
+}
+
+/* ==========================================
+   Base Button Styles (ساختار پایه)
+   ========================================== */
+
+.btn {
+  /* Layout */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--btn-gap);
+
+  /* Typography — از سیستم تایپوگرافی */
+  font-family: var(--typo-font-family);
+  text-align: center;
+
+  /* Border & Radius */
+  border-radius: var(--btn-radius);
+  border: none;
+  outline: none;
+
+  /* Behavior */
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  text-decoration: none;
+
+  /* Transition */
+  transition: var(--btn-transition);
+
+  /* Reset */
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.btn:disabled,
+.btn--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ==========================================
+   Button Sizes (سایزها)
+   ========================================== */
+
+.btn--large {
+  height: var(--btn-height-large);
+  padding: 0 var(--btn-padding-large);
+  font-size: var(--typo-button-large-size);
+  font-weight: var(--typo-button-large-weight);
+  line-height: var(--typo-button-large-line-height);
+}
+
+.btn--medium {
+  height: var(--btn-height-medium);
+  padding: 0 var(--btn-padding-medium);
+  font-size: var(--typo-button-medium-size);
+  font-weight: var(--typo-button-medium-weight);
+  line-height: var(--typo-button-medium-line-height);
+}
+
+.btn--small {
+  height: var(--btn-height-small);
+  padding: 0 var(--btn-padding-small);
+  font-size: var(--typo-button-small-size);
+  font-weight: var(--typo-button-small-weight);
+  line-height: var(--typo-button-small-line-height);
+}
+
+/* Icon-only buttons (دکمه‌های فقط آیکن) */
+.btn--icon-only.btn--large {
+  padding: 0 var(--btn-padding-large);
+  aspect-ratio: 1;
+}
+
+.btn--icon-only.btn--medium {
+  padding: 0 var(--btn-padding-medium);
+  aspect-ratio: 1;
+}
+
+.btn--icon-only.btn--small {
+  padding: 0 var(--btn-padding-small);
+  aspect-ratio: 1;
+}
+
+/* ==========================================
+   Button Types - Primary (نوع اولیه)
+   ========================================== */
+
+.btn--primary {
+  background: var(--btn-color-brand-bg-rest);
+  color: var(--btn-color-neutral-fg-inverted-rest);
+  border: 1px solid var(--btn-color-brand-stroke-rest);
+  box-shadow: var(--btn-shadow-primary);
+}
+
+.btn--primary:hover:not(:disabled):not(.btn--disabled) {
+  background: var(--btn-color-brand-bg-hover);
+}
+
+.btn--primary:active:not(:disabled):not(.btn--disabled),
+.btn--primary.btn--pressed {
+  background: var(--btn-color-brand-bg-pressed);
+}
+
+.btn--primary.btn--selected {
+  background: var(--btn-color-brand-bg-selected);
+}
+
+.btn--primary.btn--selected:hover:not(:disabled):not(.btn--disabled) {
+  background: var(--btn-color-brand-bg-selected);
+  filter: brightness(1.05);
+}
+
+/* ==========================================
+   Button Types - AI (نوع هوش مصنوعی)
+   ========================================== */
+
+.btn--ai {
+  background: var(--btn-color-ai-bg-rest);
+  color: var(--btn-color-neutral-fg-inverted-rest);
+  border: 1px solid var(--btn-color-ai-stroke-rest);
+  box-shadow: var(--btn-shadow-ai);
+}
+
+.btn--ai:hover:not(:disabled):not(.btn--disabled) {
+  background: var(--btn-color-ai-bg-hover);
+}
+
+.btn--ai:active:not(:disabled):not(.btn--disabled),
+.btn--ai.btn--pressed {
+  background: var(--btn-color-ai-bg-pressed);
+}
+
+.btn--ai.btn--selected {
+  background: var(--btn-color-ai-bg-selected);
+}
+
+.btn--ai.btn--selected:hover:not(:disabled):not(.btn--disabled) {
+  background: var(--btn-color-ai-bg-selected);
+  filter: brightness(1.05);
+}
+
+/* ==========================================
+   Button Types - Secondary (نوع ثانویه)
+   ========================================== */
+
+.btn--secondary {
+  background: var(--btn-color-neutral-bg-rest);
+  color: var(--btn-color-neutral-fg-rest);
+  border: 1px solid var(--btn-color-neutral-stroke-rest);
+  box-shadow: var(--btn-shadow-secondary);
+}
+
+.btn--secondary:hover:not(:disabled):not(.btn--disabled) {
+  background: var(--btn-color-neutral-bg-hover);
+  border-color: var(--btn-color-neutral-stroke-hover);
+}
+
+.btn--secondary:active:not(:disabled):not(.btn--disabled),
+.btn--secondary.btn--pressed {
+  background: var(--btn-color-neutral-bg-pressed);
+  border-color: var(--btn-color-neutral-stroke-pressed);
+}
+
+.btn--secondary.btn--selected {
+  background: var(--btn-color-neutral-bg-selected);
+  border-color: var(--btn-color-neutral-stroke-selected);
+}
+
+.btn--secondary.btn--selected:hover:not(:disabled):not(.btn--disabled) {
+  background: var(--btn-color-neutral-bg-selected);
+  filter: brightness(0.98);
+}
+
+/* ==========================================
+   Button Types - Subtle (نوع ظریف)
+   ========================================== */
+
+.btn--subtle {
+  background: var(--btn-color-neutral-bg-rest);
+  color: var(--btn-color-neutral-fg-rest);
+  border: none;
+}
+
+.btn--subtle:hover:not(:disabled):not(.btn--disabled) {
+  background: var(--btn-color-neutral-bg-hover);
+}
+
+.btn--subtle:active:not(:disabled):not(.btn--disabled),
+.btn--subtle.btn--pressed {
+  background: var(--btn-color-neutral-bg-pressed);
+}
+
+.btn--subtle.btn--selected {
+  background: var(--btn-color-neutral-bg-selected);
+}
+
+/* ==========================================
+   Button Types - Outline (نوع خطی)
+   ========================================== */
+
+.btn--outline {
+  background: transparent;
+  color: var(--btn-color-neutral-fg-rest);
+  border: 1px solid var(--btn-color-neutral-stroke-rest);
+}
+
+.btn--outline:hover:not(:disabled):not(.btn--disabled) {
+  border-color: var(--btn-color-neutral-stroke-hover);
+}
+
+.btn--outline:active:not(:disabled):not(.btn--disabled),
+.btn--outline.btn--pressed {
+  border-width: 2px;
+  border-color: var(--btn-color-neutral-stroke-pressed);
+}
+
+.btn--outline.btn--selected {
+  border-color: var(--btn-color-neutral-stroke-selected);
+}
+
+/* ==========================================
+   Button Types - Transparent (نوع شفاف)
+   ========================================== */
+
+.btn--transparent {
+  background: transparent;
+  color: var(--btn-color-brand-fg-hover);
+  border: none;
+}
+
+.btn--transparent:hover:not(:disabled):not(.btn--disabled) {
+  color: var(--btn-color-brand-fg-hover);
+}
+
+.btn--transparent:active:not(:disabled):not(.btn--disabled),
+.btn--transparent.btn--pressed {
+  color: var(--btn-color-brand-fg-pressed);
+}
+
+.btn--transparent.btn--selected {
+  color: var(--btn-color-brand-fg-selected);
+}
+
+/* ==========================================
+   Focus Ring (حلقه فوکوس)
+   ========================================== */
+
+/* Focus ring برای Primary و AI - خارج از دکمه */
+.btn--primary:focus-visible,
+.btn--ai:focus-visible {
+  outline: 3px solid var(--btn-color-neutral-fg-rest);
+  outline-offset: 1px;
+}
+
+/* Focus ring برای بقیه - داخل دکمه */
+.btn--secondary:focus-visible,
+.btn--subtle:focus-visible,
+.btn--outline:focus-visible,
+.btn--transparent:focus-visible {
+  outline: 2px solid var(--btn-color-neutral-fg-rest);
+  outline-offset: -2px;
+}
+
+/* Focus ring برای outline در حالت pressed */
+.btn--outline.btn--pressed:focus-visible {
+  outline-offset: -3px;
+}
+
+/* ==========================================
+   RTL Support (پشتیبانی راست‌به‌چپ)
+   ========================================== */
+
+.btn[dir="rtl"] {
+  direction: rtl;
+  text-align: right;
+}
+
+.btn[dir="ltr"] {
+  direction: ltr;
+  text-align: left;
+}
+
+/* ==========================================
+   Button Inner Elements
+   ========================================== */
+
+.btn__inner {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--btn-gap);
+  justify-content: center;
+}
+
+.btn__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--btn-icon-size);
+  height: var(--btn-icon-size);
+  flex-shrink: 0;
+}
+
+.btn__icon svg {
+  width: 100%;
+  height: 100%;
+  fill: currentColor;
+}
+
+.btn__text {
+  display: inline-block;
+}
+
+/* ==========================================
+   Utility Classes
+   ========================================== */
+
+.btn--full-width {
+  width: 100%;
+}
+
+.btn--loading {
+  position: relative;
+  pointer-events: none;
+}
+
+.btn--loading .btn__text {
+  visibility: hidden;
+}
+
+/* ==========================================
+   Animations
+   ========================================== */
+
+@keyframes btn-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.btn__spinner {
+  position: absolute;
+  width: var(--btn-icon-size);
+  height: var(--btn-icon-size);
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: btn-spin 0.6s linear infinite;
+}

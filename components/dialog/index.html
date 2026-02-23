@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dialog Component</title>
+    <link rel="stylesheet" href="../colors/colors.css">
+    <link rel="stylesheet" href="../typography/typography.css">
+    <link rel="stylesheet" href="../button/button.css">
+    <link rel="stylesheet" href="dialog.css">
+    <script src="dialog.js" defer></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Peyda(FaNum)', sans-serif;
+            background: #f6f8fa;
+            padding: 40px 24px;
+        }
+        .demo-section {
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+        .demo-section h2 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #222323;
+            margin-bottom: 12px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- ============================================
+         Demo 1: Delete Confirmation (Danger)
+         ============================================ -->
+    <div class="demo-section">
+        <h2>دیالوگ تایید حذف</h2>
+        <div class="demo-buttons">
+            <button class="btn btn--primary btn--medium" onclick="Dialog.open('dialog-delete')">نمایش دیالوگ حذف</button>
+        </div>
+    </div>
+
+    <div class="dialog" id="dialog-delete">
+        <div class="dialog__overlay"></div>
+        <div class="dialog__panel">
+            <div class="dialog__card">
+                <div class="dialog__content">
+                    <div class="dialog__header">
+                        <h3 class="dialog__title">حذف کاربر؟</h3>
+                        <button class="dialog__close" type="button" aria-label="بستن">
+                            <svg viewBox="0 0 24 24" fill="none"><path d="M5.25 5.25L18.75 18.75M18.75 5.25L5.25 18.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                        </button>
+                    </div>
+                    <p class="dialog__description">آیا مطمئن هستید می‌خواهید این کاربر را حذف کنید؟ این عملیات قابل بازگشت نیست.</p>
+                </div>
+                <div class="dialog__actions">
+                    <button class="dialog__btn dialog__btn--danger" data-action="delete">حذف</button>
+                    <button class="dialog__btn dialog__btn--primary" data-action="cancel">انصراف</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================
+         Demo 2: Single Action (Confirm Only)
+         ============================================ -->
+    <div class="demo-section">
+        <h2>دیالوگ تأیید تکی (Single Action)</h2>
+        <div class="demo-buttons">
+            <button class="btn btn--primary btn--medium" onclick="Dialog.open('dialog-single')">نمایش دیالوگ تأیید</button>
+        </div>
+    </div>
+
+    <div class="dialog" id="dialog-single">
+        <div class="dialog__overlay"></div>
+        <div class="dialog__panel">
+            <div class="dialog__card">
+                <div class="dialog__content">
+                    <div class="dialog__header">
+                        <h3 class="dialog__title">اطلاعات ثبت شد</h3>
+                        <button class="dialog__close" type="button" aria-label="بستن">
+                            <svg viewBox="0 0 24 24" fill="none"><path d="M5.25 5.25L18.75 18.75M18.75 5.25L5.25 18.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                        </button>
+                    </div>
+                    <p class="dialog__description">تغییرات شما با موفقیت ذخیره شد. می‌توانید به صفحه قبل بازگردید.</p>
+                </div>
+                <div class="dialog__actions dialog__actions--single">
+                    <button class="dialog__btn dialog__btn--confirm" data-action="confirm">متوجه شدم</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================
+         Demo 3: General Confirmation
+         ============================================ -->
+    <div class="demo-section">
+        <h2>دیالوگ تایید عملیات</h2>
+        <div class="demo-buttons">
+            <button class="btn btn--outline btn--medium" onclick="Dialog.open('dialog-confirm')">نمایش دیالوگ تایید</button>
+        </div>
+    </div>
+
+    <div class="dialog" id="dialog-confirm">
+        <div class="dialog__overlay"></div>
+        <div class="dialog__panel">
+            <div class="dialog__card">
+                <div class="dialog__content">
+                    <div class="dialog__header">
+                        <h3 class="dialog__title">تغییر وضعیت</h3>
+                        <button class="dialog__close" type="button" aria-label="بستن">
+                            <svg viewBox="0 0 24 24" fill="none"><path d="M5.25 5.25L18.75 18.75M18.75 5.25L5.25 18.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                        </button>
+                    </div>
+                    <p class="dialog__description">آیا از تغییر وضعیت ۳ کاربر انتخاب شده اطمینان دارید؟ وضعیت کاربران به «فعال» تغییر خواهد کرد.</p>
+                </div>
+                <div class="dialog__actions">
+                    <button class="dialog__btn dialog__btn--danger" data-action="change-status">تغییر وضعیت</button>
+                    <button class="dialog__btn dialog__btn--primary" data-action="cancel">انصراف</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>

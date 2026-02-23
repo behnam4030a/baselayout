@@ -1,0 +1,423 @@
+/**
+ * Dialog Component Styles
+ *
+ * HTML Structure:
+ * <div class="dialog" id="my-dialog">
+ *   <div class="dialog__overlay"></div>
+ *   <div class="dialog__panel">
+ *     <div class="dialog__card">
+ *       <div class="dialog__content">
+ *         <div class="dialog__header">
+ *           <h3 class="dialog__title">Title</h3>
+ *           <button class="dialog__close" type="button" aria-label="بستن">
+ *             <svg>...</svg>
+ *           </button>
+ *         </div>
+ *         <p class="dialog__description">Description text</p>
+ *       </div>
+ *       <div class="dialog__actions">
+ *         <button class="dialog__btn dialog__btn--danger" data-action="delete">Delete</button>
+ *         <button class="dialog__btn dialog__btn--primary" data-action="cancel">Cancel</button>
+ *       </div>
+ *     </div>
+ *   </div>
+ * </div>
+ */
+
+/* ==========================================
+   CSS Custom Properties (Design Tokens)
+   ========================================== */
+
+:root {
+  /* --- Overlay --- */
+  --dialog-overlay-from: rgba(34, 35, 35, 0.05);
+  --dialog-overlay-to: rgba(0, 0, 0, 0.3);
+
+  /* --- Container --- */
+  --dialog-bg: var(--neutral-0);
+  --dialog-fg-title: var(--neutral-880);
+  --dialog-fg-description: var(--neutral-520);
+  --dialog-fg-close: var(--neutral-180);
+
+  /* --- Buttons --- */
+  --dialog-btn-primary-bg: var(--neutral-0);
+  --dialog-btn-primary-stroke: var(--neutral-100);
+  --dialog-btn-primary-fg: var(--neutral-880);
+  --dialog-btn-danger-bg: var(--cranberry-500);
+  --dialog-btn-danger-stroke: var(--cranberry-500);
+  --dialog-btn-danger-fg: var(--neutral-0);
+  --dialog-btn-confirm-bg: var(--brand-400);
+  --dialog-btn-confirm-stroke: var(--brand-400);
+  --dialog-btn-confirm-fg: var(--neutral-0);
+
+  /* --- Radius --- */
+  --dialog-radius: 8px;
+  --dialog-radius-sheet: 16px;
+  --dialog-btn-radius: 8px;
+
+  /* --- Spacing --- */
+  --dialog-card-padding: 16px;
+  --dialog-content-gap: 20px;
+  --dialog-header-gap: 8px;
+  --dialog-description-padding-y: 8px;
+  --dialog-actions-gap: 24px;
+  --dialog-btn-padding-x: 16px;
+  --dialog-btn-inner-gap: 8px;
+
+  /* --- Size --- */
+  --dialog-width: 434px;
+  --dialog-btn-height: 45px;
+  --dialog-danger-btn-width: 186px;
+  --dialog-close-size: 24px;
+  --dialog-btn-icon-size: 18px;
+
+  /* --- Animation --- */
+  --dialog-animation-duration: 300ms;
+}
+
+/* ==========================================
+   Base
+   ========================================== */
+
+.dialog {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
+  align-items: center;
+  justify-content: center;
+}
+
+.dialog--open {
+  display: flex;
+}
+
+/* ==========================================
+   Overlay
+   ========================================== */
+
+.dialog__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    var(--dialog-overlay-from) 20%,
+    var(--dialog-overlay-to)
+  );
+  animation: dialog-fade-in var(--dialog-animation-duration) ease forwards;
+}
+
+.dialog--closing .dialog__overlay {
+  animation: dialog-fade-out var(--dialog-animation-duration) ease forwards;
+}
+
+/* ==========================================
+   Panel (animation wrapper — desktop: wraps card; mobile: bottom sheet)
+   ========================================== */
+
+.dialog__panel {
+  position: relative;
+  width: var(--dialog-width);
+  max-width: calc(100vw - 32px);
+  z-index: 1;
+  animation: dialog-slide-up var(--dialog-animation-duration) ease forwards;
+}
+
+.dialog--closing .dialog__panel {
+  animation: dialog-slide-down var(--dialog-animation-duration) ease forwards;
+}
+
+/* ==========================================
+   Card (visible white dialog box)
+   ========================================== */
+
+.dialog__card {
+  background: var(--dialog-bg);
+  border-radius: var(--dialog-radius);
+  padding: var(--dialog-card-padding);
+  display: flex;
+  flex-direction: column;
+  gap: var(--dialog-content-gap);
+  width: 100%;
+}
+
+/* ==========================================
+   Content (Header + Description group)
+   ========================================== */
+
+.dialog__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--dialog-header-gap);
+}
+
+/* ==========================================
+   Header
+   ========================================== */
+
+.dialog__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--dialog-header-gap);
+}
+
+.dialog__title {
+  font-family: var(--typo-font-family);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--dialog-fg-title);
+  margin: 0;
+}
+
+.dialog__close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--dialog-close-size);
+  height: var(--dialog-close-size);
+  min-width: var(--dialog-close-size);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--dialog-fg-close);
+  padding: 0;
+  transition: opacity 0.15s ease;
+}
+
+.dialog__close:hover {
+  opacity: 0.7;
+}
+
+.dialog__close svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* ==========================================
+   Description
+   ========================================== */
+
+.dialog__description {
+  font-family: var(--typo-font-family);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--dialog-fg-description);
+  margin: 0;
+  padding: var(--dialog-description-padding-y) 0;
+}
+
+/* ==========================================
+   Actions
+   ========================================== */
+
+.dialog__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--dialog-actions-gap);
+}
+
+/* ==========================================
+   Buttons
+   ========================================== */
+
+.dialog__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--dialog-btn-inner-gap);
+  height: var(--dialog-btn-height);
+  padding: 0 var(--dialog-btn-padding-x);
+  border-radius: var(--dialog-btn-radius);
+  border: 1px solid transparent;
+  font-family: var(--typo-font-family);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+  overflow: hidden;
+}
+
+.dialog__btn:hover {
+  opacity: 0.9;
+}
+
+.dialog__btn-icon {
+  width: var(--dialog-btn-icon-size);
+  height: var(--dialog-btn-icon-size);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.dialog__btn-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* --- Primary (Cancel) — outlined white --- */
+
+.dialog__btn--primary {
+  flex: 1;
+  background: var(--dialog-btn-primary-bg);
+  border-color: var(--dialog-btn-primary-stroke);
+  color: var(--dialog-btn-primary-fg);
+}
+
+/* --- Danger (Delete) --- */
+
+.dialog__btn--danger {
+  width: var(--dialog-danger-btn-width);
+  min-width: var(--dialog-danger-btn-width);
+  background: var(--dialog-btn-danger-bg);
+  border-color: var(--dialog-btn-danger-stroke);
+  color: var(--dialog-btn-danger-fg);
+}
+
+/* --- Confirm (Acknowledge / Positive) --- */
+
+.dialog__btn--confirm {
+  flex: 1;
+  background: var(--dialog-btn-confirm-bg);
+  border-color: var(--dialog-btn-confirm-stroke);
+  color: var(--dialog-btn-confirm-fg);
+}
+
+/* --- Single Action — تک‌دکمه تمام‌عرض --- */
+
+.dialog__actions--single .dialog__btn {
+  flex: 1;
+  width: 100%;
+  min-width: unset;
+}
+
+/* ==========================================
+   Animations
+   ========================================== */
+
+@keyframes dialog-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes dialog-fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes dialog-slide-up {
+  from { opacity: 0; transform: translateY(60px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes dialog-slide-down {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(60px); }
+}
+
+@keyframes dialog-mobile-slide-up {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+@keyframes dialog-mobile-slide-down {
+  from { transform: translateY(0); }
+  to { transform: translateY(100%); }
+}
+
+/* ==========================================
+   Mobile — Bottom Sheet (< 768px)
+   ========================================== */
+
+@media (max-width: 767px) {
+  .dialog--open {
+    align-items: flex-end;
+    justify-content: stretch;
+  }
+
+  /* Overlay: stronger at bottom */
+  .dialog__overlay {
+    background: linear-gradient(
+      to bottom,
+      rgba(34, 35, 35, 0.05) 20%,
+      rgba(0, 0, 0, 0.3)
+    );
+  }
+
+  /* Panel becomes the outer bottom sheet */
+  .dialog__panel {
+    width: 100%;
+    max-width: none;
+    background: var(--dialog-bg);
+    border-radius: var(--dialog-radius-sheet) var(--dialog-radius-sheet) 0 0;
+    box-shadow: 0 -3px 5px 0 rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    animation-name: dialog-mobile-slide-up;
+    overflow: hidden;
+  }
+
+  .dialog--closing .dialog__panel {
+    animation-name: dialog-mobile-slide-down;
+  }
+
+  /* Handle bar */
+  .dialog__panel::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 4px;
+    background: var(--neutral-100);
+    border-radius: 2px;
+    align-self: center;
+    margin: 16px 0 0;
+    flex-shrink: 0;
+  }
+
+  /* Inner card with side margins and bottom margin */
+  .dialog__card {
+    border-radius: var(--dialog-radius);
+    padding: var(--dialog-card-padding);
+    gap: var(--dialog-content-gap);
+  }
+
+  /* Hide close button */
+  .dialog__close {
+    display: none;
+  }
+
+  /* Lighter description on mobile */
+  .dialog__description {
+    color: var(--neutral-360);
+  }
+
+  /* Vertical actions */
+  .dialog__actions {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  /* Both buttons full width — danger on top (first in DOM) */
+  .dialog__btn--danger {
+    width: 100%;
+    min-width: unset;
+  }
+
+  .dialog__btn--primary {
+    flex: none;
+    width: 100%;
+  }
+}
+
+/* ==========================================
+   Body Scroll Lock
+   ========================================== */
+
+body.dialog-body-locked {
+  overflow: hidden;
+}

@@ -1,0 +1,654 @@
+/**
+ * Select Component Styles
+ * کامپوننت انتخاب (Select) - استایل‌ها
+ *
+ * مطابق با Design Tokens استخراج شده از Figma
+ *
+ * ساختار HTML:
+ * <div class="select select--basic">
+ *   <button class="select__trigger">
+ *     <span class="select__value">انتخاب کنید</span>
+ *     <svg class="select__chevron">...</svg>
+ *   </button>
+ *   <div class="select__dropdown">
+ *     <div class="select__search">
+ *       <input class="select__search-input" />
+ *     </div>
+ *     <ul class="select__list" role="listbox">
+ *       <li class="select__item" role="option">آیتم</li>
+ *     </ul>
+ *   </div>
+ * </div>
+ */
+
+/* ==========================================
+   CSS Custom Properties از Design Tokens
+   ========================================== */
+
+:root {
+  /* Neutral Colors */
+  --select-color-bg: var(--neutral-0);
+  --select-color-text: var(--neutral-660);
+  --select-color-title: var(--neutral-880);
+  --select-color-disabled-text: var(--neutral-260);
+  --select-color-disabled-bg: var(--neutral-40);
+  --select-color-placeholder: var(--neutral-660);
+
+  /* Stroke Colors */
+  --select-color-stroke-rest: var(--neutral-100);
+  --select-color-stroke-hover: var(--neutral-140);
+  --select-color-stroke-search: var(--neutral-200);
+  --select-color-stroke-disabled: var(--neutral-120);
+
+  /* Accent Colors */
+  --select-color-accent: var(--lavender-400);
+  --select-color-accent-bg: rgba(138, 56, 245, 0.05);
+
+  /* Tag Colors — Single (Primary) */
+  --select-color-tag-single-bg: rgba(138, 56, 245, 0.05);
+  --select-color-tag-single-text: var(--lavender-400);
+
+  /* Tag Colors — Multiple */
+  --select-color-tag-multi-bg: rgba(89, 89, 90, 0.05);
+  --select-color-tag-multi-text: var(--neutral-660);
+
+  /* Scrollbar */
+  --select-color-scrollbar: var(--neutral-140);
+
+  /* Radius */
+  --select-radius: 8px;
+  --select-radius-dropdown: 8px;
+  --select-radius-item: 4px;
+  --select-radius-tag: 4px;
+  --select-radius-search: 4px;
+
+  /* Shadow */
+  --select-shadow-dropdown: 1px 4px 5.8px 0px rgba(93, 93, 93, 0.09);
+  --select-shadow-active: 0px 0px 4px 0px rgba(138, 56, 245, 0.5);
+
+  /* Spacing */
+  --select-trigger-padding-x: 8px;
+  --select-trigger-gap: 4px;
+  --select-trigger-tag-gap: 8px;
+  --select-dropdown-padding: 8px;
+  --select-item-gap: 4px;
+  --select-item-padding-x: 5px;
+  --select-tag-padding-x: 6px;
+  --select-tag-gap: 4px;
+
+  /* Size */
+  --select-width: 320px;
+  --select-trigger-height: 45px;
+  --select-search-height: 32px;
+  --select-chevron-size: 16px;
+  --select-close-icon-size: 12px;
+  --select-tag-close-size: 12px;
+  --select-indicator-height: 1.5px;
+  --select-scrollbar-width: 5px;
+  --select-scrollbar-height: 10px;
+
+  /* Transition */
+  --select-transition: 0.15s ease;
+}
+
+/* ==========================================
+   Base Component (ساختار پایه)
+   ========================================== */
+
+.select {
+  position: relative;
+  width: 100%;
+  min-width: 250px;
+  max-width: var(--select-width);
+  font-family: var(--typo-font-family);
+  box-sizing: border-box;
+  direction: rtl;
+}
+
+.select *,
+.select *::before,
+.select *::after {
+  box-sizing: border-box;
+}
+
+/* ==========================================
+   Trigger (ناحیه کلیک‌پذیر)
+   ========================================== */
+
+.select__trigger {
+  position: relative;
+  width: 100%;
+  min-height: var(--select-trigger-height);
+  display: flex;
+  align-items: center;
+  gap: var(--select-trigger-gap);
+  padding: 0 var(--select-trigger-padding-x);
+  background: var(--select-color-bg);
+  border: 1px solid var(--select-color-stroke-rest);
+  border-radius: var(--select-radius);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: var(--typo-body-medium-200-size);
+  color: var(--select-color-text);
+  transition: border-color var(--select-transition), box-shadow var(--select-transition);
+  outline: none;
+  text-align: right;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.select__trigger:hover {
+  border-color: var(--select-color-stroke-hover);
+}
+
+/* ==========================================
+   Value & Placeholder (مقدار / placeholder)
+   ========================================== */
+
+.select__value {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--select-color-placeholder);
+  pointer-events: none;
+}
+
+.select__value--selected {
+  color: var(--select-color-title);
+}
+
+/* ==========================================
+   Chevron Icon (آیکن فلش)
+   ========================================== */
+
+.select__chevron {
+  flex-shrink: 0;
+  width: var(--select-chevron-size);
+  height: var(--select-chevron-size);
+  color: var(--select-color-text);
+  transition: transform var(--select-transition);
+  pointer-events: none;
+}
+
+/* ==========================================
+   Tags Container (کانتینر تگ‌ها)
+   ========================================== */
+
+.select__tags {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--select-tag-gap);
+  min-width: 0;
+  padding: 4px 0;
+}
+
+/* ==========================================
+   Tag (تگ انتخاب)
+   ========================================== */
+
+.select__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--select-tag-gap);
+  padding: 2px var(--select-tag-padding-x);
+  border-radius: var(--select-radius-tag);
+  font-size: var(--typo-body-medium-200-size);
+  font-weight: var(--typo-body-medium-200-weight);
+  line-height: 1.6;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.select__tag-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.select__tag--single {
+  background: var(--select-color-tag-single-bg);
+  color: var(--select-color-tag-single-text);
+}
+
+.select__tag--multiple {
+  background: var(--select-color-tag-multi-bg);
+  color: var(--select-color-tag-multi-text);
+}
+
+/* ==========================================
+   Tag Close Button (دکمه حذف تگ)
+   ========================================== */
+
+.select__tag-close {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--select-tag-close-size);
+  height: var(--select-tag-close-size);
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity var(--select-transition);
+}
+
+.select__tag-close:hover {
+  opacity: 1;
+}
+
+.select__tag-close svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* ==========================================
+   Clear Button (دکمه پاک کردن مقدار — Basic)
+   ========================================== */
+
+.select__clear {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--select-close-icon-size);
+  height: var(--select-close-icon-size);
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--select-color-text);
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity var(--select-transition);
+}
+
+.select__clear:hover {
+  opacity: 1;
+}
+
+.select__clear svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* ==========================================
+   Dropdown (پنل باز شونده)
+   ========================================== */
+
+.select__dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--select-color-bg);
+  border: 1px solid var(--select-color-stroke-rest);
+  border-radius: var(--select-radius-dropdown);
+  box-shadow: var(--select-shadow-dropdown);
+  padding: var(--select-dropdown-padding);
+  z-index: 100;
+  display: none;
+  flex-direction: column;
+  gap: var(--select-item-gap);
+}
+
+/* ==========================================
+   Search (فیلد جستجو)
+   ========================================== */
+
+.select__search {
+  padding-bottom: var(--select-item-gap);
+}
+
+.select__search-input {
+  width: 100%;
+  height: var(--select-search-height);
+  padding: 0 var(--select-item-padding-x);
+  border: 1px solid var(--select-color-stroke-search);
+  border-radius: var(--select-radius-search);
+  background: var(--select-color-bg);
+  font-family: inherit;
+  font-size: var(--typo-body-medium-200-size);
+  color: var(--select-color-title);
+  outline: none;
+  transition: border-color var(--select-transition);
+}
+
+.select__search-input::placeholder {
+  color: var(--select-color-placeholder);
+}
+
+.select__search-input:focus {
+  border-color: var(--select-color-accent);
+}
+
+/* ==========================================
+   List (لیست آیتم‌ها)
+   ========================================== */
+
+.select__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--select-item-gap);
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+/* ==========================================
+   Item (آیتم)
+   ========================================== */
+
+.select__item {
+  padding: 0 var(--select-item-padding-x);
+  border-radius: var(--select-radius-item);
+  font-size: var(--typo-body-medium-200-size);
+  font-weight: var(--typo-body-medium-200-weight);
+  line-height: var(--typo-body-medium-200-line-height);
+  color: var(--select-color-text);
+  cursor: pointer;
+  transition: background-color var(--select-transition), color var(--select-transition);
+  user-select: none;
+}
+
+.select__item:hover,
+.select__item--highlighted {
+  background: var(--select-color-accent-bg);
+}
+
+.select__item--selected {
+  background: var(--select-color-accent-bg);
+  color: var(--select-color-accent);
+}
+
+.select__item--hidden {
+  display: none;
+}
+
+.select__item--group {
+  font-weight: 600;
+  color: var(--select-color-title);
+  cursor: default;
+  pointer-events: none;
+}
+
+.select__item--group:hover,
+.select__item--group.select__item--highlighted {
+  background: transparent;
+}
+
+/* ==========================================
+   Custom Scrollbar (اسکرول‌بار سفارشی)
+   ========================================== */
+
+.select__list::-webkit-scrollbar {
+  width: var(--select-scrollbar-width);
+}
+
+.select__list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.select__list::-webkit-scrollbar-thumb {
+  background: var(--select-color-scrollbar);
+  border-radius: var(--select-scrollbar-width);
+  min-height: var(--select-scrollbar-height);
+}
+
+/* Firefox */
+.select__list {
+  scrollbar-width: thin;
+  scrollbar-color: var(--select-color-scrollbar) transparent;
+}
+
+/* ==========================================
+   State: Active / Focused
+   ========================================== */
+
+.select--active .select__trigger {
+  border-color: var(--select-color-accent);
+  box-shadow: var(--select-shadow-active);
+}
+
+/* ==========================================
+   State: Open (dropdown باز)
+   ========================================== */
+
+.select--open .select__trigger {
+  border-radius: var(--select-radius) var(--select-radius) 0 0;
+}
+
+.select--open .select__dropdown {
+  display: flex;
+  border-top: none;
+  border-radius: 0 0 var(--select-radius-dropdown) var(--select-radius-dropdown);
+}
+
+.select--open .select__chevron {
+  transform: rotate(180deg);
+}
+
+/* ==========================================
+   State: Disabled (غیرفعال)
+   ========================================== */
+
+.select--disabled .select__trigger {
+  background: var(--select-color-disabled-bg);
+  border-color: var(--select-color-stroke-disabled);
+  color: var(--select-color-disabled-text);
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.select--disabled .select__value {
+  color: var(--select-color-disabled-text);
+}
+
+.select--disabled .select__chevron {
+  color: var(--select-color-disabled-text);
+}
+
+.select--disabled .select__trigger::after {
+  display: none;
+}
+
+/* ==========================================
+   Type: Basic (نمایش متنی)
+   ========================================== */
+
+/* Basic نمایش search در dropdown — پیش‌فرض */
+
+/* ==========================================
+   Type: Primary (تگ تکی بنفش)
+   ========================================== */
+
+.select--primary .select__search,
+.select--multiple .select__search,
+.select--tagify .select__search,
+.select--icon .select__search {
+  display: none;
+}
+
+/* ==========================================
+   Type: Icon (آیکن‌دار)
+   ========================================== */
+
+.select__trigger-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  color: var(--select-color-text);
+  pointer-events: none;
+}
+
+.select__trigger-icon svg,
+.select__trigger-icon img {
+  width: 100%;
+  height: 100%;
+}
+
+.select__trigger-divider {
+  flex-shrink: 0;
+  width: 1.5px;
+  height: 16px;
+  background: var(--select-color-stroke-rest);
+  pointer-events: none;
+}
+
+.select--icon .select__item,
+.select--has-icons .select__item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.select__item-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  color: var(--select-color-text);
+  pointer-events: none;
+}
+
+.select__item-icon svg,
+.select__item-icon img {
+  width: 100%;
+  height: 100%;
+}
+
+.select--icon .select__item--selected .select__item-icon,
+.select--icon .select__item--highlighted .select__item-icon,
+.select--has-icons .select__item--selected .select__item-icon,
+.select--has-icons .select__item--highlighted .select__item-icon {
+  color: var(--select-color-accent);
+}
+
+/* آیکن داخل تگ */
+.select__tag-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  color: inherit;
+  pointer-events: none;
+}
+
+.select__tag-icon svg,
+.select__tag-icon img {
+  width: 100%;
+  height: 100%;
+}
+
+/* ==========================================
+   Size: Small (کوچک)
+   ========================================== */
+
+.select--sm .select__trigger {
+  min-height: 36px;
+  font-size: 12px;
+}
+
+.select--sm .select__tag {
+  font-size: 12px;
+  padding: 1px 4px;
+}
+
+.select--sm .select__item {
+  font-size: 12px;
+}
+
+/* ==========================================
+   Size: Large (بزرگ)
+   ========================================== */
+
+.select--lg .select__trigger {
+  min-height: 52px;
+  font-size: 16px;
+}
+
+.select--lg .select__tag {
+  font-size: 16px;
+  padding: 3px 8px;
+}
+
+.select--lg .select__item {
+  font-size: 16px;
+}
+
+/* ==========================================
+   Tagify Free Input (inline text input در trigger)
+   ========================================== */
+
+.select__tag-input {
+  flex: 1;
+  min-width: 60px;
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: var(--typo-body-medium-200-size);
+  color: var(--select-color-title);
+  outline: none;
+  padding: 0;
+  margin: 0;
+  line-height: 1.6;
+  direction: inherit;
+}
+
+.select__tag-input::placeholder {
+  color: var(--select-color-placeholder);
+}
+
+/* ==========================================
+   RTL / LTR Support
+   ========================================== */
+
+[dir="ltr"] .select,
+.select[dir="ltr"] {
+  direction: ltr;
+}
+
+[dir="ltr"] .select__trigger,
+.select[dir="ltr"] .select__trigger {
+  text-align: left;
+}
+
+/* ==========================================
+   Full Width (تمام عرض)
+   ========================================== */
+
+.select--full {
+  max-width: 100%;
+}
+
+/* ==========================================
+   Responsive (واکنش‌گرا)
+   ========================================== */
+
+@media (max-width: 480px) {
+  /* آیتم‌ها: touch target بزرگ‌تر برای لمس راحت‌تر */
+  .select__item {
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+  }
+
+  /* dropdown: ارتفاع کمتر برای صفحه‌های کوچک */
+  .select__list {
+    max-height: 180px;
+  }
+}

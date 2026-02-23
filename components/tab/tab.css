@@ -1,0 +1,219 @@
+/**
+ * Tab Component Styles
+ * کامپوننت تب (Tab) - استایل‌ها
+ *
+ * ساختار HTML:
+ * <div class="tab" data-tab-group="my-tabs">
+ *   <div class="tab__list" role="tablist">
+ *     <button class="tab__item tab__item--active" role="tab">تب اول</button>
+ *     <button class="tab__item" role="tab">تب دوم</button>
+ *   </div>
+ * </div>
+ * <div class="tab__panel tab__panel--active" role="tabpanel">...</div>
+ * <div class="tab__panel" role="tabpanel">...</div>
+ */
+
+/* ==========================================
+   CSS Custom Properties (Design Tokens)
+   ========================================== */
+
+:root {
+  /* --- Colors --- */
+  --tab-container-bg: var(--neutral-0);
+  --tab-active-text: var(--neutral-880);
+  --tab-inactive-text: var(--neutral-660);
+  --tab-brand: var(--brand-400);
+  --tab-brand-tint: var(--brand-5);
+  --tab-filled-active-bg: var(--brand-400);
+  --tab-filled-active-text: var(--neutral-0);
+
+  /* --- Spacing --- */
+  --tab-container-padding-x: 24px;
+  --tab-container-gap: 12px;
+  --tab-item-padding-x: 12px;
+  --tab-item-padding-y: 16px;
+  --tab-icon-text-gap: 10px;
+  --tab-badge-text-gap: 5px;
+
+  /* --- Size --- */
+  --tab-container-height: 48px;
+  --tab-filled-active-height: 38px;
+  --tab-icon-size: 20px;
+  --tab-badge-size: 15px;
+  --tab-underline-width: 2px;
+
+  /* --- Radius --- */
+  --tab-container-radius: 8px;
+  --tab-filled-active-radius: 8px;
+}
+
+/* ==========================================
+   Tab List (Container)
+   ========================================== */
+
+.tab__list {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: var(--tab-container-height);
+  padding: 0 var(--tab-container-padding-x);
+  gap: var(--tab-container-gap);
+  background: var(--tab-container-bg);
+  border-radius: var(--tab-container-radius);
+}
+
+/* ==========================================
+   Tab Item (Base)
+   ========================================== */
+
+.tab__item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: var(--tab-item-padding-y) var(--tab-item-padding-x);
+  border: none;
+  background: none;
+  cursor: pointer;
+  overflow: hidden;
+  white-space: nowrap;
+  font-family: var(--typo-font-family);
+  font-size: var(--typo-caption-size);
+  font-weight: var(--typo-caption-weight);
+  line-height: var(--typo-caption-line-height);
+  color: var(--tab-inactive-text);
+  border-bottom: var(--tab-underline-width) solid transparent;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+/* ==========================================
+   Underline Variant (Default) — Hover
+   ========================================== */
+
+.tab__item:not(.tab__item--active):hover {
+  color: var(--tab-brand);
+}
+
+/* ==========================================
+   Underline Variant (Default) — Active
+   ========================================== */
+
+.tab__item--active {
+  font-weight: var(--typo-caption-emp-weight);
+  color: var(--tab-active-text);
+  border-bottom-color: var(--tab-brand);
+}
+
+/* ==========================================
+   Colored Variant — active text is brand color
+   ========================================== */
+
+.tab--colored .tab__item--active {
+  color: var(--tab-brand);
+}
+
+/* ==========================================
+   Filled Variant
+   ========================================== */
+
+.tab--filled .tab__list {
+  background: none;
+}
+
+.tab--filled .tab__item {
+  border-bottom: none;
+  border-radius: 0;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.tab--filled .tab__item--active {
+  background: var(--tab-filled-active-bg);
+  color: var(--tab-filled-active-text);
+  height: var(--tab-filled-active-height);
+  border-radius: var(--tab-filled-active-radius);
+}
+
+/* ==========================================
+   Icon Support
+   ========================================== */
+
+.tab__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--tab-icon-size);
+  height: var(--tab-icon-size);
+  flex-shrink: 0;
+  color: inherit;
+}
+
+.tab__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.tab__item .tab__icon {
+  margin-inline-end: var(--tab-icon-text-gap);
+}
+
+/* Icon variant: center-align container */
+.tab--icon .tab__list {
+  justify-content: center;
+}
+
+/* ==========================================
+   Badge Support
+   ========================================== */
+
+.tab__badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--tab-badge-size);
+  height: var(--tab-badge-size);
+  flex-shrink: 0;
+  padding: 0 2px;
+  border-radius: 50%;
+  background: var(--tab-brand-tint);
+  font-family: var(--typo-font-family);
+  font-size: 10px;
+  font-weight: var(--typo-caption-emp-weight);
+  line-height: 1;
+  color: var(--tab-brand);
+}
+
+.tab__item .tab__badge {
+  margin-inline-start: var(--tab-badge-text-gap);
+}
+
+/* ==========================================
+   Mobile — Horizontal Scroll
+   ========================================== */
+
+@media (max-width: 767px) {
+  .tab__list {
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+  }
+
+  .tab__list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .tab__item {
+    flex-shrink: 0;
+  }
+}
+
+/* ==========================================
+   Tab Panels
+   ========================================== */
+
+.tab__panel {
+  display: none;
+}
+
+.tab__panel--active {
+  display: block;
+}

@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Select Component — Demo</title>
+  <link rel="stylesheet" href="../colors/colors.css">
+  <link rel="stylesheet" href="../typography/typography.css">
+  <link rel="stylesheet" href="select.css">
+  <style>
+    @font-face {
+      font-family: 'Peyda(FaNum)';
+      src: local('Peyda'), local('Peyda-Regular');
+    }
+    body {
+      font-family: 'Peyda(FaNum)', Tahoma, sans-serif;
+      background: #f8f9fa;
+      margin: 0;
+      padding: 40px 24px;
+      direction: rtl;
+    }
+    h1 { font-size: 28px; color: #222; margin: 0 0 8px; }
+    h2 { font-size: 20px; color: #333; margin: 40px 0 16px; padding-bottom: 8px; border-bottom: 1px solid #e2e4e6; }
+    h3 { font-size: 16px; color: #555; margin: 24px 0 12px; }
+    p.desc { color: #666; font-size: 14px; margin: 0 0 32px; }
+    .demo-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      align-items: flex-start;
+      margin-bottom: 24px;
+    }
+    .demo-col {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .demo-col label {
+      font-size: 13px;
+      color: #888;
+    }
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <h1>Select Component</h1>
+    <p class="desc">سلکت‌ها یک انتخاب را مشخص می‌کنند. سلکت برای انتخاب مقدار از میان گزینه‌های موجود استفاده می‌شود.</p>
+
+    <!-- ==========================================
+         Basic Select
+         ========================================== -->
+    <h2>Basic Select — مدل اولیه</h2>
+
+    <div class="demo-row">
+      <div class="demo-col">
+        <label>پیش‌فرض (Rest)</label>
+        <div class="select select--basic" data-type="basic" data-placeholder="انتخاب کنید">
+          <input type="hidden" name="basic_select" />
+          <button class="select__trigger" type="button">
+            <span class="select__value">انتخاب کنید</span>
+          </button>
+          <div class="select__dropdown">
+            <div class="select__search">
+              <input type="text" class="select__search-input" placeholder="جستجو..." />
+            </div>
+            <ul class="select__list" role="listbox">
+              <li class="select__item" data-value="option1">گزینه اول</li>
+              <li class="select__item" data-value="option2">گزینه دوم</li>
+              <li class="select__item" data-value="option3">گزینه سوم</li>
+              <li class="select__item" data-value="option4">گزینه چهارم</li>
+              <li class="select__item" data-value="option5">گزینه پنجم</li>
+              <li class="select__item" data-value="option6">گزینه ششم</li>
+              <li class="select__item" data-value="option7">گزینه هفتم</li>
+              <li class="select__item" data-value="option8">گزینه هشتم</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-col">
+        <label>از قبل انتخاب شده</label>
+        <div class="select select--basic" data-type="basic" data-placeholder="انتخاب کنید">
+          <input type="hidden" name="city" />
+          <button class="select__trigger" type="button">
+            <span class="select__value">انتخاب کنید</span>
+          </button>
+          <div class="select__dropdown">
+            <div class="select__search">
+              <input type="text" class="select__search-input" placeholder="جستجو..." />
+            </div>
+            <ul class="select__list" role="listbox">
+              <li class="select__item" data-value="tehran">تهران</li>
+              <li class="select__item select__item--selected" data-value="isfahan">اصفهان</li>
+              <li class="select__item" data-value="shiraz">شیراز</li>
+              <li class="select__item" data-value="tabriz">تبریز</li>
+              <li class="select__item" data-value="mashhad">مشهد</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-col">
+        <label>غیرفعال (Disabled)</label>
+        <div class="select select--basic select--disabled" data-type="basic" data-placeholder="غیرفعال">
+          <button class="select__trigger" type="button" disabled>
+            <span class="select__value">غیرفعال</span>
+          </button>
+          <div class="select__dropdown">
+            <ul class="select__list" role="listbox">
+              <li class="select__item">گزینه اول</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==========================================
+         Primary Select (Single Tag)
+         ========================================== -->
+    <h2>Primary Select — اصلی (تگ تکی)</h2>
+
+    <div class="demo-row">
+      <div class="demo-col">
+        <label>پیش‌فرض</label>
+        <div class="select select--primary" data-type="primary" data-placeholder="انتخاب کنید">
+          <input type="hidden" name="department" />
+          <button class="select__trigger" type="button">
+            <span class="select__value">انتخاب کنید</span>
+          </button>
+          <div class="select__dropdown">
+            <ul class="select__list" role="listbox">
+              <li class="select__item" data-value="design">طراحی</li>
+              <li class="select__item" data-value="development">توسعه</li>
+              <li class="select__item" data-value="marketing">بازاریابی</li>
+              <li class="select__item" data-value="management">مدیریت</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-col">
+        <label>از قبل انتخاب شده</label>
+        <div class="select select--primary" data-type="primary" data-placeholder="انتخاب کنید">
+          <input type="hidden" name="role" />
+          <button class="select__trigger" type="button">
+            <span class="select__value">انتخاب کنید</span>
+          </button>
+          <div class="select__dropdown">
+            <ul class="select__list" role="listbox">
+              <li class="select__item" data-value="frontend">فرانت‌اند</li>
+              <li class="select__item select__item--selected" data-value="backend">بک‌اند</li>
+              <li class="select__item" data-value="fullstack">فول‌استک</li>
+              <li class="select__item" data-value="devops">دواپس</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==========================================
+         Multiple Select
+         ========================================== -->
+    <h2>Multiple Select — چندگانه</h2>
+
+    <div class="demo-row">
+      <div class="demo-col">
+        <label>پیش‌فرض (با گروه‌بندی)</label>
+        <div class="select select--multiple" data-type="multiple" data-placeholder="انتخاب کنید">
+          <input type="hidden" name="languages" />
+          <button class="select__trigger" type="button">
+            <span class="select__value">انتخاب کنید</span>
+          </button>
+          <div class="select__dropdown">
+            <ul class="select__list" role="listbox" aria-multiselectable="true">
+              <li class="select__item select__item--group">پایه</li>
+              <li class="select__item" data-value="html">HTML</li>
+              <li class="select__item" data-value="css">CSS</li>
+              <li class="select__item" data-value="js">JavaScript</li>
+              <li class="select__item select__item--group">فریم‌ورک</li>
+              <li class="select__item" data-value="ts">TypeScript</li>
+              <li class="select__item" data-value="react">React</li>
+              <li class="select__item" data-value="vue">Vue</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-col">
+        <label>از قبل انتخاب شده</label>
+        <div class="select select--multiple" data-type="multiple" data-placeholder="مهارت‌ها">
+          <input type="hidden" name="skills" />
+          <button class="select__trigger" type="button">
+            <span class="select__value">مهارت‌ها</span>
+          </button>
+          <div class="select__dropdown">
+            <ul class="select__list" role="listbox" aria-multiselectable="true">
+              <li class="select__item select__item--group">ادوبی</li>
+              <li class="select__item select__item--selected" data-value="photoshop">فتوشاپ</li>
+              <li class="select__item" data-value="illustrator">ایلاستریتور</li>
+              <li class="select__item select__item--group">طراحی UI</li>
+              <li class="select__item select__item--selected" data-value="figma">فیگما</li>
+              <li class="select__item select__item--selected" data-value="xd">ایکس‌دی</li>
+              <li class="select__item" data-value="sketch">اسکچ</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==========================================
+         Tagify Select
+         ========================================== -->
+    <h2>Tagify Select — تگیفای</h2>
+
+    <div class="demo-row">
+      <div class="demo-col">
+        <label>پیش‌فرض</label>
+        <div class="select select--tagify" data-type="tagify" data-placeholder="برچسب‌ها">
+          <input type="hidden" name="tags" />
+          <button class="select__trigger" type="button">
+            <span class="select__value">برچسب‌ها</span>
+          </button>
+          <div class="select__dropdown">
+            <ul class="select__list" role="listbox" aria-multiselectable="true">
+              <li class="select__item" data-value="urgent">فوری</li>
+              <li class="select__item" data-value="important">مهم</li>
+              <li class="select__item" data-value="review">بررسی</li>
+              <li class="select__item" data-value="done">انجام شده</li>
+              <li class="select__item" data-value="pending">در انتظار</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-col">
+        <label>از قبل انتخاب شده</label>
+        <div class="select select--tagify" data-type="tagify" data-placeholder="برچسب‌ها">
+          <input type="hidden" name="labels" />
+          <button class="select__trigger" type="button">
+            <span class="select__value">برچسب‌ها</span>
+          </button>
+          <div class="select__dropdown">
+            <ul class="select__list" role="listbox" aria-multiselectable="true">
+              <li class="select__item select__item--selected" data-value="bug">باگ</li>
+              <li class="select__item" data-value="feature">ویژگی</li>
+              <li class="select__item select__item--selected" data-value="enhancement">بهبود</li>
+              <li class="select__item" data-value="docs">مستندات</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-col">
+        <label>ورود آزاد + انتخاب از لیست</label>
+        <div class="select select--tagify" data-type="tagify" data-placeholder="تایپ یا انتخاب کنید..." data-free-input="true">
+          <input type="hidden" name="free_tags" />
+          <button class="select__trigger" type="button"></button>
+          <div class="select__dropdown">
+            <ul class="select__list" role="listbox" aria-multiselectable="true">
+              <li class="select__item" data-value="فوری">فوری</li>
+              <li class="select__item" data-value="مهم">مهم</li>
+              <li class="select__item" data-value="بررسی">بررسی</li>
+              <li class="select__item" data-value="انجام شده">انجام شده</li>
+              <li class="select__item" data-value="در انتظار">در انتظار</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-col">
+        <label>ورود آزاد — از قبل انتخاب شده</label>
+        <div class="select select--tagify" data-type="tagify" data-placeholder="تایپ یا انتخاب کنید..." data-free-input="true">
+          <input type="hidden" name="free_tags_preset" />
+          <button class="select__trigger" type="button"></button>
+          <div class="select__dropdown">
+            <ul class="select__list" role="listbox" aria-multiselectable="true">
+              <li class="select__item select__item--selected" data-value="فوری">فوری</li>
+              <li class="select__item select__item--selected" data-value="مهم">مهم</li>
+              <li class="select__item" data-value="بررسی">بررسی</li>
+              <li class="select__item" data-value="انجام شده">انجام شده</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==========================================
+         Icon Select
+         ========================================== -->
+    <h2>Icon Select — آیکن‌دار</h2>
+
+    <div class="demo-row">
+      <div class="demo-col">
+        <label>پیش‌فرض</label>
+        <div class="select select--icon" data-type="icon" data-placeholder="وضعیت">
+          <input type="hidden" name="status" />
+          <button class="select__trigger" type="button">
+            <span class="select__value">وضعیت</span>
+          </button>
+          <div class="select__dropdown">
+            <ul class="select__list" role="listbox">
+              <li class="select__item" data-value="active">
+                <span class="select__item-icon">
+                  <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="10" cy="10" r="7.5" stroke="currentColor" stroke-width="1.5"/>
+                    <path d="M7 10L9 12L13 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                فعال
+              </li>
+              <li class="select__item" data-value="inactive">
+                <span class="select__item-icon">
+                  <svg viewBox="0 0 20 20" fill="none">
+                    <circle cx="10" cy="10" r="7.5" stroke="currentColor" stroke-width="1.5"/>
+                    <path d="M7.5 7.5L12.5 12.5M12.5 7.5L7.5 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                </span>
+                غیرفعال
+              </li>
+              <li class="select__item" data-value="pending">
+                <span class="select__item-icon">
+                  <svg viewBox="0 0 20 20" fill="none">
+                    <circle cx="10" cy="10" r="7.5" stroke="currentColor" stroke-width="1.5"/>
+                    <path d="M10 6.5V10L12.5 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                در انتظار
+              </li>
+              <li class="select__item" data-value="archived">
+                <span class="select__item-icon">
+                  <svg viewBox="0 0 20 20" fill="none">
+                    <rect x="3.5" y="8" width="13" height="8.5" rx="1" stroke="currentColor" stroke-width="1.5"/>
+                    <path d="M2.5 5.5H17.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M1.5 3.5H18.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M8 11.5H12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                </span>
+                آرشیو
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-col">
+        <label>از قبل انتخاب شده</label>
+        <div class="select select--icon" data-type="icon" data-placeholder="وضعیت">
+          <input type="hidden" name="status_preset" />
+          <button class="select__trigger" type="button">
+            <span class="select__value">وضعیت</span>
+          </button>
+          <div class="select__dropdown">
+            <ul class="select__list" role="listbox">
+              <li class="select__item select__item--selected" data-value="active">
+                <span class="select__item-icon">
+                  <svg viewBox="0 0 20 20" fill="none">
+                    <circle cx="10" cy="10" r="7.5" stroke="currentColor" stroke-width="1.5"/>
+                    <path d="M7 10L9 12L13 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                فعال
+              </li>
+              <li class="select__item" data-value="inactive">
+                <span class="select__item-icon">
+                  <svg viewBox="0 0 20 20" fill="none">
+                    <circle cx="10" cy="10" r="7.5" stroke="currentColor" stroke-width="1.5"/>
+                    <path d="M7.5 7.5L12.5 12.5M12.5 7.5L7.5 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                </span>
+                غیرفعال
+              </li>
+              <li class="select__item" data-value="pending">
+                <span class="select__item-icon">
+                  <svg viewBox="0 0 20 20" fill="none">
+                    <circle cx="10" cy="10" r="7.5" stroke="currentColor" stroke-width="1.5"/>
+                    <path d="M10 6.5V10L12.5 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                در انتظار
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-col">
+        <label>غیرفعال (Disabled)</label>
+        <div class="select select--icon select--disabled" data-type="icon" data-placeholder="وضعیت">
+          <button class="select__trigger" type="button" disabled>
+            <span class="select__value">وضعیت</span>
+          </button>
+          <div class="select__dropdown">
+            <ul class="select__list" role="listbox">
+              <li class="select__item" data-value="active">
+                <span class="select__item-icon">
+                  <svg viewBox="0 0 20 20" fill="none">
+                    <circle cx="10" cy="10" r="7.5" stroke="currentColor" stroke-width="1.5"/>
+                    <path d="M7 10L9 12L13 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                فعال
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==========================================
+         Static Trigger Icon (آیکن ثابت در trigger)
+         ========================================== -->
+    <h2>Static Icon — آیکن ثابت</h2>
+    <p class="desc">آیکن ثابت در trigger نمایش داده می‌شود و با تغییر انتخاب تغییر نمی‌کند. آیتم‌های dropdown بدون آیکن هستند.</p>
+
+    <div class="demo-row">
+      <div class="demo-col">
+        <label>پیش‌فرض</label>
+        <div class="select select--icon" data-type="icon" data-placeholder="وضعیت">
+          <input type="hidden" name="status_static" />
+          <button class="select__trigger" type="button">
+            <span class="select__trigger-icon select__trigger-icon--static">
+              <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7.5" stroke="currentColor" stroke-width="1.5"/><path d="M7 10L9 12L13 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <span class="select__trigger-divider select__trigger-divider--static"></span>
+            <span class="select__value">وضعیت</span>
+          </button>
+          <div class="select__dropdown">
+            <ul class="select__list" role="listbox">
+              <li class="select__item" data-value="active">فعال</li>
+              <li class="select__item" data-value="inactive">غیرفعال</li>
+              <li class="select__item" data-value="pending">در انتظار</li>
+              <li class="select__item" data-value="archived">آرشیو</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-col">
+        <label>از قبل انتخاب شده</label>
+        <div class="select select--icon" data-type="icon" data-placeholder="وضعیت">
+          <input type="hidden" name="status_static_preset" />
+          <button class="select__trigger" type="button">
+            <span class="select__trigger-icon select__trigger-icon--static">
+              <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7.5" stroke="currentColor" stroke-width="1.5"/><path d="M7 10L9 12L13 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <span class="select__trigger-divider select__trigger-divider--static"></span>
+            <span class="select__value">وضعیت</span>
+          </button>
+          <div class="select__dropdown">
+            <ul class="select__list" role="listbox">
+              <li class="select__item select__item--selected" data-value="active">فعال</li>
+              <li class="select__item" data-value="inactive">غیرفعال</li>
+              <li class="select__item" data-value="pending">در انتظار</li>
+              <li class="select__item" data-value="archived">آرشیو</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-col">
+        <label>غیرفعال (Disabled)</label>
+        <div class="select select--icon select--disabled" data-type="icon" data-placeholder="وضعیت">
+          <button class="select__trigger" type="button" disabled>
+            <span class="select__trigger-icon select__trigger-icon--static">
+              <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7.5" stroke="currentColor" stroke-width="1.5"/><path d="M7 10L9 12L13 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <span class="select__trigger-divider select__trigger-divider--static"></span>
+            <span class="select__value">وضعیت</span>
+          </button>
+          <div class="select__dropdown">
+            <ul class="select__list" role="listbox">
+              <li class="select__item" data-value="active">فعال</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==========================================
+         Icon + Multiple Select
+         ========================================== -->
+    <h2>Multiple + Icon — آیکن‌دار چندگانه</h2>
+    <p class="desc">آیکن به عنوان یک افزونه اختیاری روی هر نوع select قابل استفاده است — کافیست <code>.select__item-icon</code> را داخل آیتم‌ها قرار دهید.</p>
+
+    <div class="demo-row">
+      <div class="demo-col">
+        <label>Multiple + Icons</label>
+        <div class="select select--multiple" data-type="multiple" data-placeholder="اولویت را انتخاب کنید">
+          <input type="hidden" name="priority_multi" />
+          <button class="select__trigger" type="button">
+            <span class="select__value">اولویت را انتخاب کنید</span>
+          </button>
+          <div class="select__dropdown">
+            <ul class="select__list" role="listbox" aria-multiselectable="true">
+              <li class="select__item" data-value="critical">
+                <span class="select__item-icon">
+                  <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7.5" stroke="currentColor" stroke-width="1.5"/><path d="M10 7V10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="10" cy="13" r="0.75" fill="currentColor"/></svg>
+                </span>
+                بحرانی
+              </li>
+              <li class="select__item" data-value="high">
+                <span class="select__item-icon">
+                  <svg viewBox="0 0 20 20" fill="none"><path d="M10 3.5L17 16.5H3L10 3.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                </span>
+                بالا
+              </li>
+              <li class="select__item select__item--selected" data-value="medium">
+                <span class="select__item-icon">
+                  <svg viewBox="0 0 20 20" fill="none"><rect x="3" y="9" width="14" height="2.5" rx="1.25" stroke="currentColor" stroke-width="1.5"/></svg>
+                </span>
+                متوسط
+              </li>
+              <li class="select__item" data-value="low">
+                <span class="select__item-icon">
+                  <svg viewBox="0 0 20 20" fill="none"><path d="M4 8L10 14L16 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+                پایین
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-col">
+        <label>Primary + Icons</label>
+        <div class="select select--primary" data-type="primary" data-placeholder="نوع را انتخاب کنید">
+          <input type="hidden" name="type_primary_icon" />
+          <button class="select__trigger" type="button">
+            <span class="select__value">نوع را انتخاب کنید</span>
+          </button>
+          <div class="select__dropdown">
+            <ul class="select__list" role="listbox">
+              <li class="select__item select__item--selected" data-value="design">
+                <span class="select__item-icon">
+                  <svg viewBox="0 0 20 20" fill="none"><rect x="3" y="3" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="11" y="3" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="3" y="11" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="11" y="11" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.5"/></svg>
+                </span>
+                طراحی
+              </li>
+              <li class="select__item" data-value="development">
+                <span class="select__item-icon">
+                  <svg viewBox="0 0 20 20" fill="none"><path d="M6 7.5L3 10L6 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 7.5L17 10L14 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 5L8 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </span>
+                توسعه
+              </li>
+              <li class="select__item" data-value="marketing">
+                <span class="select__item-icon">
+                  <svg viewBox="0 0 20 20" fill="none"><path d="M4 14L4 10C4 6.7 6.7 4 10 4C13.3 4 16 6.7 16 10L16 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M2 12H6V16H2Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M14 12H18V16H14Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
+                </span>
+                بازاریابی
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==========================================
+         Size Variants
+         ========================================== -->
+    <h2>اندازه‌ها — Sizes</h2>
+
+    <div class="demo-row">
+      <div class="demo-col">
+        <label>کوچک (Small)</label>
+        <div class="select select--basic select--sm" data-type="basic" data-placeholder="کوچک">
+          <input type="hidden" name="size_sm" />
+          <button class="select__trigger" type="button">
+            <span class="select__value">کوچک</span>
+          </button>
+          <div class="select__dropdown">
+            <div class="select__search">
+              <input type="text" class="select__search-input" placeholder="جستجو..." />
+            </div>
+            <ul class="select__list" role="listbox">
+              <li class="select__item" data-value="a">گزینه الف</li>
+              <li class="select__item" data-value="b">گزینه ب</li>
+              <li class="select__item" data-value="c">گزینه ج</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-col">
+        <label>متوسط (Medium — پیش‌فرض)</label>
+        <div class="select select--basic" data-type="basic" data-placeholder="متوسط">
+          <input type="hidden" name="size_md" />
+          <button class="select__trigger" type="button">
+            <span class="select__value">متوسط</span>
+          </button>
+          <div class="select__dropdown">
+            <div class="select__search">
+              <input type="text" class="select__search-input" placeholder="جستجو..." />
+            </div>
+            <ul class="select__list" role="listbox">
+              <li class="select__item" data-value="a">گزینه الف</li>
+              <li class="select__item" data-value="b">گزینه ب</li>
+              <li class="select__item" data-value="c">گزینه ج</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-col">
+        <label>بزرگ (Large)</label>
+        <div class="select select--basic select--lg" data-type="basic" data-placeholder="بزرگ">
+          <input type="hidden" name="size_lg" />
+          <button class="select__trigger" type="button">
+            <span class="select__value">بزرگ</span>
+          </button>
+          <div class="select__dropdown">
+            <div class="select__search">
+              <input type="text" class="select__search-input" placeholder="جستجو..." />
+            </div>
+            <ul class="select__list" role="listbox">
+              <li class="select__item" data-value="a">گزینه الف</li>
+              <li class="select__item" data-value="b">گزینه ب</li>
+              <li class="select__item" data-value="c">گزینه ج</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="select.js"></script>
+</body>
+</html>

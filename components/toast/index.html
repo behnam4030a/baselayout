@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Toast Component Demo</title>
+  <link rel="stylesheet" href="../colors/colors.css">
+  <link rel="stylesheet" href="../typography/typography.css">
+  <link rel="stylesheet" href="toast.css">
+  <style>
+    body {
+      font-family: 'Peyda(FaNum)', Tahoma, sans-serif;
+      background-color: #f0f2f4;
+      padding: 40px;
+      direction: rtl;
+    }
+    h1 { font-size: 28px; color: #222323; margin-bottom: 8px; }
+    h2 { font-size: 20px; color: #222323; margin-top: 40px; margin-bottom: 16px; border-bottom: 2px solid #e2e4e6; padding-bottom: 8px; }
+    h3 { font-size: 16px; color: #59595a; margin-top: 24px; margin-bottom: 12px; }
+    p.desc { font-size: 14px; color: #59595a; margin-bottom: 24px; }
+    .demo-section { margin-bottom: 48px; }
+    .demo-row { display: flex; flex-direction: column; gap: 20px; margin-bottom: 24px; }
+    .demo-label { font-size: 13px; color: #888; margin-bottom: 4px; }
+    .demo-static .toast__progress-bar { animation: none; width: 70%; }
+
+    /* Buttons for interactive demo */
+    .demo-buttons { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+    .demo-btn {
+      font-family: inherit;
+      padding: 8px 16px;
+      border: 1px solid #e2e4e6;
+      border-radius: 6px;
+      background: #fff;
+      cursor: pointer;
+      font-size: 14px;
+      color: #222323;
+      transition: background 0.15s;
+    }
+    .demo-btn:hover { background: #f6f8fa; }
+    .demo-btn--success { border-color: #9fd89f; color: #107c10; }
+    .demo-btn--danger { border-color: #eeacb2; color: #c50f1f; }
+    .demo-btn--warning { border-color: #fdcfb4; color: #f7630c; }
+    .demo-btn--neutral { border-color: #e2e4e6; color: #454546; }
+
+    /* Code block */
+    pre {
+      background: #1e1e1e;
+      color: #d4d4d4;
+      padding: 16px;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-size: 13px;
+      line-height: 1.5;
+      direction: ltr;
+      text-align: left;
+      margin: 12px 0 24px;
+    }
+    code { font-family: 'Fira Code', 'Consolas', monospace; }
+  </style>
+</head>
+<body>
+
+  <h1>Toast Component</h1>
+  <p class="desc">کامپوننت اعلان برای نمایش پیام‌های موقتی و غیرمسدودکننده — 4 واریانت وضعیت با تایمر خودکار و دکمه بستن.</p>
+
+  <!-- ========================================
+       بخش 1: واریانت‌ها (استاتیک)
+       ======================================== -->
+  <div class="demo-section">
+    <h2>1. واریانت‌ها (Variants)</h2>
+    <p class="desc">نمایش استاتیک تمام واریانت‌ها — نوار تایمر و دکمه بستن غیرفعال شده‌اند.</p>
+
+    <div class="demo-row demo-static">
+      <div class="demo-label">Success</div>
+      <!-- Toast: Success -->
+      <div class="toast toast--success" role="status">
+        <div class="toast__icon">
+          <svg viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-dasharray="26 3.3"/><path d="M11.5 18.5L16 23L25 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="toast__content">
+          <p class="toast__title">عنوان اعلان موفقیت</p>
+          <p class="toast__description">لورم ایـــپسوم متن ســــاختگی با تولیــــد سـادگی نامفهوم از صنعت چاپ و با استفاده.</p>
+        </div>
+        <button class="toast__dismiss" aria-label="بستن" disabled>
+          <svg viewBox="0 0 14 14" fill="none"><path d="M3.5 3.5L10.5 10.5M10.5 3.5L3.5 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="toast__progress">
+          <div class="toast__progress-bar"></div>
+        </div>
+      </div>
+
+      <div class="demo-label">Danger</div>
+      <!-- Toast: Danger -->
+      <div class="toast toast--danger" role="alert">
+        <div class="toast__icon">
+          <svg viewBox="0 0 36 36" fill="none"><rect x="5" y="5" width="26" height="26" rx="5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-dasharray="20 3.85" fill="none"/><path d="M13 13L23 23M23 13L13 23" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <div class="toast__content">
+          <p class="toast__title">عنوان اعلان اخطار</p>
+          <p class="toast__description">لورم ایـــپسوم متن ســــاختگی با تولیــــد سـادگی نامفهوم از صنعت چاپ و با استفاده.</p>
+        </div>
+        <button class="toast__dismiss" aria-label="بستن" disabled>
+          <svg viewBox="0 0 14 14" fill="none"><path d="M3.5 3.5L10.5 10.5M10.5 3.5L3.5 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="toast__progress">
+          <div class="toast__progress-bar"></div>
+        </div>
+      </div>
+
+      <div class="demo-label">Warning</div>
+      <!-- Toast: Warning -->
+      <div class="toast toast--warning" role="alert">
+        <div class="toast__icon">
+          <svg viewBox="0 0 36 36" fill="none"><path d="M18 5L31 30H5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="22 4" fill="none"/><path d="M18 15V22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="18" cy="26" r="1.2" fill="currentColor"/></svg>
+        </div>
+        <div class="toast__content">
+          <p class="toast__title">عنوان اعلان هشدار</p>
+          <p class="toast__description">لورم ایـــپسوم متن ســــاختگی با تولیــــد سـادگی نامفهوم از صنعت چاپ و با استفاده.</p>
+        </div>
+        <button class="toast__dismiss" aria-label="بستن" disabled>
+          <svg viewBox="0 0 14 14" fill="none"><path d="M3.5 3.5L10.5 10.5M10.5 3.5L3.5 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="toast__progress">
+          <div class="toast__progress-bar"></div>
+        </div>
+      </div>
+
+      <div class="demo-label">Neutral</div>
+      <!-- Toast: Neutral -->
+      <div class="toast toast--neutral" role="status">
+        <div class="toast__icon">
+          <svg viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-dasharray="26 3.3"/><path d="M18 17V25" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="18" cy="12" r="1.5" fill="currentColor"/></svg>
+        </div>
+        <div class="toast__content">
+          <p class="toast__title">عنوان اعلان خنثی</p>
+          <p class="toast__description">لورم ایـــپسوم متن ســــاختگی با تولیــــد سـادگی نامفهوم از صنعت چاپ و با استفاده.</p>
+        </div>
+        <button class="toast__dismiss" aria-label="بستن" disabled>
+          <svg viewBox="0 0 14 14" fill="none"><path d="M3.5 3.5L10.5 10.5M10.5 3.5L3.5 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="toast__progress">
+          <div class="toast__progress-bar"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================
+       بخش 2: بدون Description
+       ======================================== -->
+  <div class="demo-section">
+    <h2>2. بدون Description</h2>
+    <p class="desc">Toast فقط با عنوان — بدون فضای خالی اضافی.</p>
+
+    <div class="demo-row demo-static">
+      <div class="toast toast--success" role="status">
+        <div class="toast__icon">
+          <svg viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-dasharray="26 3.3"/><path d="M11.5 18.5L16 23L25 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="toast__content">
+          <p class="toast__title">عملیات با موفقیت انجام شد</p>
+        </div>
+        <button class="toast__dismiss" aria-label="بستن" disabled>
+          <svg viewBox="0 0 14 14" fill="none"><path d="M3.5 3.5L10.5 10.5M10.5 3.5L3.5 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="toast__progress">
+          <div class="toast__progress-bar"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================
+       بخش 3: دمو تعاملی
+       ======================================== -->
+  <div class="demo-section">
+    <h2>3. دمو تعاملی (Interactive)</h2>
+    <p class="desc">روی دکمه‌ها کلیک کنید — Toast در گوشه بالا-چپ ظاهر می‌شود و بعد از 5 ثانیه خودکار حذف می‌شود.</p>
+
+    <div class="demo-buttons">
+      <button class="demo-btn demo-btn--success" onclick="Toast.show({variant:'success', title:'عنوان اعلان موفقیت', description:'لورم ایـــپسوم متن ســــاختگی با تولیــــد سـادگی نامفهوم از صنعت چاپ و با استفاده.', position:'top-left'})">Success</button>
+      <button class="demo-btn demo-btn--danger" onclick="Toast.show({variant:'danger', title:'عنوان اعلان اخطار', description:'لورم ایـــپسوم متن ســــاختگی با تولیــــد سـادگی نامفهوم از صنعت چاپ و با استفاده.', position:'top-left'})">Danger</button>
+      <button class="demo-btn demo-btn--warning" onclick="Toast.show({variant:'warning', title:'عنوان اعلان هشدار', description:'لورم ایـــپسوم متن ســــاختگی با تولیــــد سـادگی نامفهوم از صنعت چاپ و با استفاده.', position:'top-left'})">Warning</button>
+      <button class="demo-btn demo-btn--neutral" onclick="Toast.show({variant:'neutral', title:'عنوان اعلان خنثی', description:'لورم ایـــپسوم متن ســــاختگی با تولیــــد سـادگی نامفهوم از صنعت چاپ و با استفاده.', position:'top-left'})">Neutral</button>
+      <button class="demo-btn" onclick="Toast.show({variant:'success', title:'عنوان اعلان موفقیت', description:'لورم ایـــپسوم متن ســــاختگی با تولیــــد سـادگی نامفهوم از صنعت چاپ و با استفاده.', position:'top-left', duration:3000})">Success (3s)</button>
+      <button class="demo-btn" onclick="Toast.show({variant:'danger', title:'عنوان اعلان اخطار', description:'لورم ایـــپسوم متن ســــاختگی با تولیــــد سـادگی نامفهوم از صنعت چاپ و با استفاده.', position:'top-left', duration:8000})">Danger (8s)</button>
+    </div>
+
+    <h3>کد نمونه:</h3>
+    <pre><code>Toast.show({
+  variant: 'success',
+  title: 'عملیات با موفقیت انجام شد',
+  description: 'تغییرات شما ذخیره شد.',
+  duration: 3000,          // اختیاری (پیش‌فرض: 5000ms)
+  position: 'top-left'     // اختیاری (پیش‌فرض: 'top-left')
+});</code></pre>
+  </div>
+
+  <!-- ========================================
+       بخش 4: موقعیت‌ها (Positions)
+       ======================================== -->
+  <div class="demo-section">
+    <h2>4. موقعیت‌ها (Positions)</h2>
+    <p class="desc">انتخاب موقعیت نمایش Toast — 6 موقعیت پشتیبانی می‌شود.</p>
+
+    <div class="demo-buttons">
+      <button class="demo-btn" onclick="Toast.show({variant:'success', title:'بالا-چپ', description:'نمایش در گوشه بالا-چپ صفحه.', position:'top-left'})">Top Left</button>
+      <button class="demo-btn" onclick="Toast.show({variant:'neutral', title:'بالا-وسط', description:'نمایش در وسط بالای صفحه.', position:'top-center'})">Top Center</button>
+      <button class="demo-btn" onclick="Toast.show({variant:'warning', title:'بالا-راست', description:'نمایش در گوشه بالا-راست صفحه.', position:'top-right'})">Top Right</button>
+      <button class="demo-btn" onclick="Toast.show({variant:'danger', title:'پایین-چپ', description:'نمایش در گوشه پایین-چپ صفحه.', position:'bottom-left'})">Bottom Left</button>
+      <button class="demo-btn" onclick="Toast.show({variant:'neutral', title:'پایین-وسط', description:'نمایش در وسط پایین صفحه.', position:'bottom-center'})">Bottom Center</button>
+      <button class="demo-btn" onclick="Toast.show({variant:'success', title:'پایین-راست', description:'نمایش در گوشه پایین-راست صفحه.', position:'bottom-right'})">Bottom Right</button>
+    </div>
+  </div>
+
+  <!-- ========================================
+       بخش 5: LTR Support
+       ======================================== -->
+  <div class="demo-section">
+    <h2>5. پشتیبانی LTR</h2>
+
+    <div class="demo-row demo-static">
+      <div class="toast toast--success" dir="ltr" role="status">
+        <div class="toast__icon">
+          <svg viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-dasharray="26 3.3"/><path d="M11.5 18.5L16 23L25 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="toast__content">
+          <p class="toast__title">Success Notification</p>
+          <p class="toast__description">This is a success toast message with left-to-right text direction.</p>
+        </div>
+        <button class="toast__dismiss" aria-label="Close" disabled>
+          <svg viewBox="0 0 14 14" fill="none"><path d="M3.5 3.5L10.5 10.5M10.5 3.5L3.5 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="toast__progress">
+          <div class="toast__progress-bar"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="toast.js"></script>
+
+</body>
+</html>

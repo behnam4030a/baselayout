@@ -1,0 +1,350 @@
+/**
+ * Tooltip Component Styles
+ * کامپوننت تولتیپ (Tooltip) - استایل‌ها
+ *
+ * مطابق با Design Tokens استخراج شده از Figma
+ *
+ * نحوه استفاده:
+ * <span class="tooltip" data-tooltip="متن tooltip" data-tooltip-position="top">
+ *   <button>trigger</button>
+ * </span>
+ */
+
+/* ==========================================
+   CSS Custom Properties از Design Tokens
+   ========================================== */
+
+:root {
+  /* Colors — Default */
+  --tooltip-color-bg: var(--neutral-800);
+  --tooltip-color-text: var(--neutral-0);
+
+  /* Colors — Variants */
+  --tooltip-color-primary: var(--lavender-500);
+  --tooltip-color-secondary: var(--neutral-520);
+  --tooltip-color-success: var(--green-200);
+  --tooltip-color-danger: var(--cranberry-400);
+  --tooltip-color-warning: var(--orange-300);
+  --tooltip-color-info: var(--blue-300);
+  --tooltip-color-dark: var(--neutral-1000);
+
+  /* Radius */
+  --tooltip-radius: 4px;
+
+  /* Spacing */
+  --tooltip-padding-x: 12px;
+  --tooltip-padding-y: 8px;
+  --tooltip-offset: 9px;
+
+  /* Size */
+  --tooltip-arrow-size: 6px;
+  --tooltip-max-width: 240px;
+
+  /* Transition */
+  --tooltip-transition: 0.15s ease;
+}
+
+/* ==========================================
+   Base Component (ساختار پایه)
+   ========================================== */
+
+.tooltip {
+  position: relative;
+  display: inline-flex;
+  font-family: var(--typo-font-family);
+}
+
+/* ==========================================
+   Bubble (بدنه تولتیپ)
+   ========================================== */
+
+.tooltip__bubble {
+  --_tooltip-bg: var(--tooltip-color-bg);
+  --_tooltip-text: var(--tooltip-color-text);
+
+  position: absolute;
+  background: var(--_tooltip-bg);
+  color: var(--_tooltip-text);
+  font-size: var(--typo-body-small-150-size);
+  font-weight: var(--typo-body-small-150-weight);
+  line-height: var(--typo-body-small-150-line-height);
+  padding: var(--tooltip-padding-y) var(--tooltip-padding-x);
+  border-radius: var(--tooltip-radius);
+  white-space: nowrap;
+  max-width: var(--tooltip-max-width);
+  text-align: right;
+  direction: rtl;
+  z-index: 1000;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--tooltip-transition);
+}
+
+.tooltip--visible .tooltip__bubble {
+  opacity: 1;
+}
+
+/* ==========================================
+   Arrow (فلش/مثلث)
+   ========================================== */
+
+.tooltip__arrow {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+}
+
+/* ==========================================
+   Position: Top (بالا)
+   ========================================== */
+
+.tooltip--top .tooltip__bubble {
+  bottom: calc(100% + var(--tooltip-offset));
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.tooltip--top .tooltip__arrow {
+  position: absolute;
+  bottom: calc(-1 * var(--tooltip-arrow-size));
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: var(--tooltip-arrow-size) var(--tooltip-arrow-size) 0 var(--tooltip-arrow-size);
+  border-color: var(--_tooltip-bg) transparent transparent transparent;
+}
+
+/* ==========================================
+   Position: Bottom (پایین)
+   ========================================== */
+
+.tooltip--bottom .tooltip__bubble {
+  top: calc(100% + var(--tooltip-offset));
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.tooltip--bottom .tooltip__arrow {
+  position: absolute;
+  top: calc(-1 * var(--tooltip-arrow-size));
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 0 var(--tooltip-arrow-size) var(--tooltip-arrow-size) var(--tooltip-arrow-size);
+  border-color: transparent transparent var(--_tooltip-bg) transparent;
+}
+
+/* ==========================================
+   Position: Right (راست)
+   ========================================== */
+
+.tooltip--right .tooltip__bubble {
+  left: calc(100% + var(--tooltip-offset));
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.tooltip--right .tooltip__arrow {
+  position: absolute;
+  left: calc(-1 * var(--tooltip-arrow-size));
+  top: 50%;
+  transform: translateY(-50%);
+  border-width: var(--tooltip-arrow-size) var(--tooltip-arrow-size) var(--tooltip-arrow-size) 0;
+  border-color: transparent var(--_tooltip-bg) transparent transparent;
+}
+
+/* ==========================================
+   Position: Left (چپ)
+   ========================================== */
+
+.tooltip--left .tooltip__bubble {
+  right: calc(100% + var(--tooltip-offset));
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.tooltip--left .tooltip__arrow {
+  position: absolute;
+  right: calc(-1 * var(--tooltip-arrow-size));
+  top: 50%;
+  transform: translateY(-50%);
+  border-width: var(--tooltip-arrow-size) 0 var(--tooltip-arrow-size) var(--tooltip-arrow-size);
+  border-color: transparent transparent transparent var(--_tooltip-bg);
+}
+
+/* ==========================================
+   Color Variants (رنگ‌ها)
+   ========================================== */
+
+.tooltip--primary .tooltip__bubble   { --_tooltip-bg: var(--tooltip-color-primary); }
+.tooltip--secondary .tooltip__bubble { --_tooltip-bg: var(--tooltip-color-secondary); }
+.tooltip--success .tooltip__bubble   { --_tooltip-bg: var(--tooltip-color-success); }
+.tooltip--danger .tooltip__bubble    { --_tooltip-bg: var(--tooltip-color-danger); }
+.tooltip--warning .tooltip__bubble   { --_tooltip-bg: var(--tooltip-color-warning); }
+.tooltip--info .tooltip__bubble      { --_tooltip-bg: var(--tooltip-color-info); }
+.tooltip--dark .tooltip__bubble      { --_tooltip-bg: var(--tooltip-color-dark); }
+
+/* ==========================================
+   Mobile — در موبایل tooltip نمایش داده نمی‌شود
+   ========================================== */
+
+@media (hover: none), (max-width: 768px) {
+  .tooltip__bubble {
+    display: none;
+  }
+}
+
+/* ==========================================
+   RTL / LTR Support
+   ========================================== */
+
+[dir="ltr"] .tooltip__bubble,
+.tooltip[dir="ltr"] .tooltip__bubble {
+  text-align: left;
+  direction: ltr;
+}
+
+/* ==========================================
+   Demo Button — دکمه دمو (مطابق Figma)
+   ========================================== */
+
+.demo-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 45px;
+  padding: 0 16px;
+  border-radius: 8px;
+  border: none;
+  color: var(--neutral-0);
+  font-family: var(--typo-font-family);
+  font-size: var(--typo-button-large-size);
+  font-weight: var(--typo-button-large-weight);
+  line-height: var(--typo-button-large-line-height);
+  cursor: pointer;
+  outline: none;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+
+.demo-btn:focus-visible {
+  outline: 2px solid var(--neutral-880);
+  outline-offset: 2px;
+}
+
+/* دکمه پیشفرض — سبز brand (مطابق Figma Tooltip 1) */
+.demo-btn--default {
+  background: var(--brand-400);
+  border: 1px solid var(--brand-600);
+  box-shadow:
+    0px 2px 3px 1px rgba(13, 56, 47, 0.05),
+    inset 0px -2px 4px 1px rgba(13, 56, 47, 0.15),
+    inset 0px 0px 0px 2px rgba(170, 228, 215, 0.55);
+}
+
+/* دکمه‌های variant — flat بدون border و shadow (مطابق Figma Tooltip 2) */
+.demo-btn--primary   { background: var(--tooltip-color-primary); }
+.demo-btn--secondary { background: var(--tooltip-color-secondary); }
+.demo-btn--success   { background: var(--tooltip-color-success); }
+.demo-btn--danger    { background: var(--tooltip-color-danger); }
+.demo-btn--warning   { background: var(--tooltip-color-warning); }
+.demo-btn--info      { background: var(--tooltip-color-info); }
+.demo-btn--dark      { background: var(--tooltip-color-dark); }
+
+/* ==========================================
+   Demo Icon — آیکن دمو
+   ========================================== */
+
+.demo-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  color: var(--neutral-460);
+  cursor: help;
+}
+
+.demo-icon:focus-visible {
+  outline: 2px solid var(--tooltip-color-bg);
+  outline-offset: 2px;
+  border-radius: 50%;
+}
+
+.demo-icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* ==========================================
+   Demo Layout — صفحه‌بندی دمو
+   ========================================== */
+
+.demo-page {
+  font-family: var(--typo-font-family);
+  background: var(--neutral-20);
+  margin: 0;
+  padding: 40px 24px;
+  direction: rtl;
+}
+
+.demo-page__container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.demo-page__title {
+  font-size: 28px;
+  color: var(--neutral-880);
+  margin: 0 0 8px;
+}
+
+.demo-page__subtitle {
+  font-size: 20px;
+  color: var(--neutral-820);
+  margin: 40px 0 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--neutral-100);
+}
+
+.demo-page__desc {
+  color: var(--neutral-600);
+  font-size: 14px;
+  margin: 0 0 32px;
+}
+
+.demo-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 48px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  padding: 48px 24px;
+  background: var(--neutral-0);
+  border-radius: 8px;
+  border: 1px solid var(--neutral-100);
+}
+
+.demo-row--vertical {
+  flex-direction: column;
+  gap: 24px;
+}
+
+.demo-col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
+
+.demo-col__label {
+  font-size: 13px;
+  color: var(--neutral-460);
+}
+
+.demo-inline {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}

@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Typography Component - دمو کامپوننت تایپوگرافی</title>
+  <link rel="stylesheet" href="../colors/colors.css">
+  <link rel="stylesheet" href="typography.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Peyda(FaNum)', sans-serif;
+      background: #f6f8fa;
+      padding: 40px 20px;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    h1.page-title {
+      font-size: 32px;
+      margin-bottom: 16px;
+      color: #222323;
+    }
+
+    h2.section-title {
+      font-size: 24px;
+      margin-top: 48px;
+      margin-bottom: 24px;
+      color: #222323;
+      border-bottom: 2px solid #e2e4e6;
+      padding-bottom: 8px;
+    }
+
+    .intro {
+      background: white;
+      padding: 24px;
+      border-radius: 8px;
+      margin-bottom: 32px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    .intro p {
+      margin-bottom: 12px;
+      color: #4a4a4a;
+    }
+
+    .intro ul {
+      margin-right: 24px;
+      color: #4a4a4a;
+    }
+
+    .section {
+      background: white;
+      padding: 32px;
+      border-radius: 8px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    .demo-item {
+      display: flex;
+      align-items: baseline;
+      gap: 24px;
+      margin-bottom: 24px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .demo-item:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .demo-item .demo-label {
+      font-weight: 500;
+      min-width: 160px;
+      color: #59595a;
+      font-size: 13px;
+      flex-shrink: 0;
+      font-family: 'Courier New', monospace;
+      direction: ltr;
+      text-align: left;
+    }
+
+    .demo-item .demo-text {
+      flex: 1;
+      color: #222323;
+    }
+
+    .code-block {
+      background: #222323;
+      color: #f6f8fa;
+      padding: 16px;
+      border-radius: 8px;
+      font-family: 'Courier New', monospace;
+      font-size: 14px;
+      overflow-x: auto;
+      margin-top: 16px;
+      direction: ltr;
+      text-align: left;
+      white-space: pre;
+      line-height: 1.6;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 16px;
+    }
+
+    th, td {
+      padding: 10px 16px;
+      text-align: right;
+      border-bottom: 1px solid #e2e4e6;
+      font-size: 14px;
+    }
+
+    th {
+      background: #f6f8fa;
+      font-weight: 500;
+      color: #222323;
+    }
+
+    td {
+      color: #4a4a4a;
+    }
+
+    td code {
+      background: #f0f0f0;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+      direction: ltr;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="page-title">Typography Component</h1>
+    <p style="margin-bottom: 32px; color: #666;">کامپوننت تایپوگرافی - Pure CSS Component</p>
+
+    <div class="intro">
+      <p><strong>درباره این کامپوننت:</strong></p>
+      <p>تایپوگرافی تو UI یعنی «سیستم کنترل متن»؛ نه فقط انتخاب فونت.</p>
+      <p><strong>تایپوگرافی شامل چیه؟</strong></p>
+      <ul>
+        <li><strong>Family name</strong> — اسم خانواده‌ی فونت: <code>Peyda(FaNum)</code></li>
+        <li><strong>Weight</strong> — ضخامت حروف: Regular, Medium, SemiBold, Bold</li>
+        <li><strong>Size</strong> — اندازه‌ی متن: از 12px تا 58px</li>
+        <li><strong>Line height</strong> — فاصله‌ی عمودی بین خط‌ها</li>
+      </ul>
+      <br>
+      <p>این کامپوننت <strong>22 استایل متنی</strong> ارائه می‌دهد و فقط CSS است (بدون JavaScript).</p>
+    </div>
+
+    <!-- ===== Display & Title ===== -->
+    <h2 class="section-title">Display & Large Title</h2>
+    <div class="section">
+      <div class="demo-item">
+        <span class="demo-label">typo--display</span>
+        <div class="demo-text">
+          <p class="typo typo--display">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ</p>
+        </div>
+      </div>
+      <div class="demo-item">
+        <span class="demo-label">typo--large-title</span>
+        <div class="demo-text">
+          <p class="typo typo--large-title">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== Headings ===== -->
+    <h2 class="section-title">Headings (سرتیترها)</h2>
+    <div class="section">
+      <div class="demo-item">
+        <span class="demo-label">typo--heading-1</span>
+        <div class="demo-text">
+          <p class="typo typo--heading-1">لورم ایپسوم متن</p>
+        </div>
+      </div>
+      <div class="demo-item">
+        <span class="demo-label">typo--heading-2</span>
+        <div class="demo-text">
+          <p class="typo typo--heading-2">لورم ایپسوم متن</p>
+        </div>
+      </div>
+      <div class="demo-item">
+        <span class="demo-label">typo--heading-3</span>
+        <div class="demo-text">
+          <p class="typo typo--heading-3">لورم ایپسوم متن</p>
+        </div>
+      </div>
+      <div class="demo-item">
+        <span class="demo-label">typo--heading-4</span>
+        <div class="demo-text">
+          <p class="typo typo--heading-4">لورم ایپسوم متن</p>
+        </div>
+      </div>
+      <div class="demo-item">
+        <span class="demo-label">typo--heading-5</span>
+        <div class="demo-text">
+          <p class="typo typo--heading-5">لورم ایپسوم متن</p>
+        </div>
+      </div>
+      <div class="demo-item">
+        <span class="demo-label">typo--heading-6</span>
+        <div class="demo-text">
+          <p class="typo typo--heading-6">لورم ایپسوم متن</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== Body Large ===== -->
+    <h2 class="section-title">Body Large (16px)</h2>
+    <div class="section">
+      <div class="demo-item">
+        <span class="demo-label">typo--body-large-200</span>
+        <div class="demo-text">
+          <p class="typo typo--body-large-200">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ</p>
+        </div>
+      </div>
+      <div class="demo-item">
+        <span class="demo-label">typo--body-large-150</span>
+        <div class="demo-text">
+          <p class="typo typo--body-large-150">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ</p>
+        </div>
+      </div>
+      <div class="demo-item">
+        <span class="demo-label">typo--body-large-emp</span>
+        <div class="demo-text">
+          <p class="typo typo--body-large-emp">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== Body Medium ===== -->
+    <h2 class="section-title">Body Medium (14px)</h2>
+    <div class="section">
+      <div class="demo-item">
+        <span class="demo-label">typo--body-medium-200</span>
+        <div class="demo-text">
+          <p class="typo typo--body-medium-200">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ</p>
+        </div>
+      </div>
+      <div class="demo-item">
+        <span class="demo-label">typo--body-medium-150</span>
+        <div class="demo-text">
+          <p class="typo typo--body-medium-150">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ</p>
+        </div>
+      </div>
+      <div class="demo-item">
+        <span class="demo-label">typo--body-medium-emp</span>
+        <div class="demo-text">
+          <p class="typo typo--body-medium-emp">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== Body Small ===== -->
+    <h2 class="section-title">Body Small (12px)</h2>
+    <div class="section">
+      <div class="demo-item">
+        <span class="demo-label">typo--body-small-200</span>
+        <div class="demo-text">
+          <p class="typo typo--body-small-200">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ</p>
+        </div>
+      </div>
+      <div class="demo-item">
+        <span class="demo-label">typo--body-small-150</span>
+        <div class="demo-text">
+          <p class="typo typo--body-small-150">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ</p>
+        </div>
+      </div>
+      <div class="demo-item">
+        <span class="demo-label">typo--body-small-emp</span>
+        <div class="demo-text">
+          <p class="typo typo--body-small-emp">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== Caption ===== -->
+    <h2 class="section-title">Caption (13px)</h2>
+    <div class="section">
+      <div class="demo-item">
+        <span class="demo-label">typo--caption</span>
+        <div class="demo-text">
+          <p class="typo typo--caption">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ</p>
+        </div>
+      </div>
+      <div class="demo-item">
+        <span class="demo-label">typo--caption-emp</span>
+        <div class="demo-text">
+          <p class="typo typo--caption-emp">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== Button ===== -->
+    <h2 class="section-title">Button</h2>
+    <div class="section">
+      <div class="demo-item">
+        <span class="demo-label">typo--button-large</span>
+        <div class="demo-text">
+          <span class="typo typo--button-large">پیش‌نمایش تفسیر</span>
+        </div>
+      </div>
+      <div class="demo-item">
+        <span class="demo-label">typo--button-medium</span>
+        <div class="demo-text">
+          <span class="typo typo--button-medium">پیش‌نمایش تفسیر</span>
+        </div>
+      </div>
+      <div class="demo-item">
+        <span class="demo-label">typo--button-small</span>
+        <div class="demo-text">
+          <span class="typo typo--button-small">پیش‌نمایش تفسیر</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== Reference Table ===== -->
+    <h2 class="section-title">جدول مرجع</h2>
+    <div class="section">
+      <p style="margin-bottom: 8px; color: #59595a; font-size: 14px;">Family name: <strong>Peyda</strong> <span style="color: #999;">FaNum</span></p>
+      <table>
+        <thead>
+          <tr>
+            <th>Style</th>
+            <th>Weight</th>
+            <th>Size</th>
+            <th>Line Height</th>
+            <th>Class</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>display</td><td>Bold</td><td>58</td><td>75</td><td><code>.typo--display</code></td></tr>
+          <tr><td>large-title</td><td>SemiBold</td><td>40</td><td>52</td><td><code>.typo--large-title</code></td></tr>
+          <tr><td>heading-1</td><td>Bold</td><td>32</td><td>130</td><td><code>.typo--heading-1</code></td></tr>
+          <tr><td>heading-2</td><td>SemiBold</td><td>28</td><td>130</td><td><code>.typo--heading-2</code></td></tr>
+          <tr><td>heading-3</td><td>SemiBold</td><td>24</td><td>130</td><td><code>.typo--heading-3</code></td></tr>
+          <tr><td>heading-4</td><td>SemiBold</td><td>20</td><td>130</td><td><code>.typo--heading-4</code></td></tr>
+          <tr><td>heading-5</td><td>Medium</td><td>18</td><td>130</td><td><code>.typo--heading-5</code></td></tr>
+          <tr><td>heading-6</td><td>Medium</td><td>16</td><td>130</td><td><code>.typo--heading-6</code></td></tr>
+          <tr><td>body-large-200</td><td>Regular</td><td>16</td><td>200</td><td><code>.typo--body-large-200</code></td></tr>
+          <tr><td>body-large-150</td><td>Regular</td><td>16</td><td>150</td><td><code>.typo--body-large-150</code></td></tr>
+          <tr><td>body-large-emp</td><td>Medium</td><td>16</td><td>150</td><td><code>.typo--body-large-emp</code></td></tr>
+          <tr><td>body-medium-200</td><td>Regular</td><td>14</td><td>200</td><td><code>.typo--body-medium-200</code></td></tr>
+          <tr><td>body-medium-150</td><td>Regular</td><td>14</td><td>150</td><td><code>.typo--body-medium-150</code></td></tr>
+          <tr><td>body-medium-emp</td><td>Medium</td><td>14</td><td>150</td><td><code>.typo--body-medium-emp</code></td></tr>
+          <tr><td>body-small-200</td><td>Regular</td><td>12</td><td>200</td><td><code>.typo--body-small-200</code></td></tr>
+          <tr><td>body-small-150</td><td>Regular</td><td>12</td><td>150</td><td><code>.typo--body-small-150</code></td></tr>
+          <tr><td>body-small-emp</td><td>Medium</td><td>12</td><td>150</td><td><code>.typo--body-small-emp</code></td></tr>
+          <tr><td>caption</td><td>Regular</td><td>13</td><td>130</td><td><code>.typo--caption</code></td></tr>
+          <tr><td>caption-emp</td><td>Medium</td><td>13</td><td>130</td><td><code>.typo--caption-emp</code></td></tr>
+          <tr><td>button-large</td><td>Medium</td><td>14</td><td>140</td><td><code>.typo--button-large</code></td></tr>
+          <tr><td>button-medium</td><td>Medium</td><td>14</td><td>140</td><td><code>.typo--button-medium</code></td></tr>
+          <tr><td>button-small</td><td>Medium</td><td>12</td><td>140</td><td><code>.typo--button-small</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ===== Usage ===== -->
+    <h2 class="section-title">نحوه استفاده</h2>
+    <div class="section">
+      <div class="code-block">&lt;link rel="stylesheet" href="typography.css"&gt;
+
+&lt;!-- عنوان display --&gt;
+&lt;h1 class="typo typo--display"&gt;عنوان اصلی&lt;/h1&gt;
+
+&lt;!-- سرتیتر --&gt;
+&lt;h2 class="typo typo--heading-1"&gt;سرتیتر اول&lt;/h2&gt;
+
+&lt;!-- متن بدنه --&gt;
+&lt;p class="typo typo--body-medium-150"&gt;متن بدنه&lt;/p&gt;
+
+&lt;!-- متن تأکیدی --&gt;
+&lt;p class="typo typo--body-medium-emp"&gt;متن تأکیدی&lt;/p&gt;
+
+&lt;!-- زیرنویس --&gt;
+&lt;span class="typo typo--caption"&gt;زیرنویس&lt;/span&gt;</div>
+    </div>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,214 @@
+/**
+ * Design System Colors
+ */
+
+:root {
+  /* --- Blue --- */
+  --blue-1000: #001322;
+  --blue-900: #002440;
+  --blue-800: #004377;
+  --blue-700: #005BA1;
+  --blue-600: #006CBF;
+  --blue-500: #0078D4;
+  --blue-400: #1A86D9;
+  --blue-300: #3595DE;
+  --blue-200: #4EAEF7;
+  --blue-100: #A9D3F2;
+  --blue-75: #D0E7F8;
+  --blue-50: #F3F9FD;
+
+  /* --- Cranberry --- */
+  --cranberry-1000: #200205;
+  --cranberry-900: #3B0509;
+  --cranberry-800: #6E0811;
+  --cranberry-700: #960B18;
+  --cranberry-600: #B10E1C;
+  --cranberry-500: #C50F1F;
+  --cranberry-400: #CC2635;
+  --cranberry-300: #D33F4C;
+  --cranberry-200: #DC626D;
+  --cranberry-100: #EEACB2;
+  --cranberry-75: #F6D1D5;
+  --cranberry-50: #F9E7E9;
+  --cranberry-25: #FDF3F4;
+
+  /* --- Gold --- */
+  --gold-1000: #1F1900;
+  --gold-900: #3A2F00;
+  --gold-800: #6C5700;
+  --gold-700: #937700;
+  --gold-600: #AE8C00;
+  --gold-500: #C19C00;
+  --gold-400: #C8A718;
+  --gold-300: #D0B232;
+  --gold-200: #DAC157;
+  --gold-100: #ECDFA5;
+  --gold-75: #F5EECE;
+  --gold-50: #FDFBF2;
+
+  /* --- Green --- */
+  --green-1000: #031403;
+  --green-900: #052505;
+  --green-800: #094509;
+  --green-700: #0C5E0C;
+  --green-600: #0E700E;
+  --green-500: #107C10;
+  --green-400: #218C21;
+  --green-300: #359B35;
+  --green-200: #54B054;
+  --green-100: #9FD89F;
+  --green-75: #C9EAC9;
+  --green-50: #E7F2E7;
+  --green-25: #F1FAF1;
+
+  /* --- Lavender --- */
+  --lavender-1000: #120F25;
+  --lavender-900: #221D46;
+  --lavender-800: #3F3682;
+  --lavender-700: #5649B0;
+  --lavender-600: #6656D1;
+  --lavender-500: #7160E8;
+  --lavender-400: #8172EB;
+  --lavender-300: #9184EE;
+  --lavender-200: #A79CF1;
+  --lavender-100: #D2CCF8;
+  --lavender-75: #E7E4FB;
+  --lavender-50: #F9F8FE;
+
+  /* --- Orange --- */
+  --orange-1000: #271002;
+  --orange-900: #4A1E04;
+  --orange-800: #8A3707;
+  --orange-700: #BC4B09;
+  --orange-600: #DE590B;
+  --orange-500: #F7630C;
+  --orange-400: #F87528;
+  --orange-300: #F98845;
+  --orange-200: #FAA06B;
+  --orange-100: #FDCFB4;
+  --orange-75: #FEE5D7;
+  --orange-50: #FEEFE7;
+  --orange-25: #FFF9F5;
+
+  /* --- Neutral --- */
+  --neutral-1000: #000000;
+  --neutral-980: #0A0A0A;
+  --neutral-960: #0F0F0F;
+  --neutral-940: #141414;
+  --neutral-920: #191919;
+  --neutral-900: #1E1E1E;
+  --neutral-880: #222323;
+  --neutral-860: #272828;
+  --neutral-840: #2C2D2D;
+  --neutral-820: #313232;
+  --neutral-800: #363737;
+  --neutral-780: #3B3C3C;
+  --neutral-760: #404041;
+  --neutral-740: #454546;
+  --neutral-720: #4A4A4B;
+  --neutral-700: #4F4F50;
+  --neutral-680: #545455;
+  --neutral-660: #59595A;
+  --neutral-640: #5D5E5F;
+  --neutral-620: #626364;
+  --neutral-600: #676869;
+  --neutral-580: #6C6D6E;
+  --neutral-560: #717273;
+  --neutral-540: #767778;
+  --neutral-520: #7B7C7D;
+  --neutral-500: #808182;
+  --neutral-480: #858687;
+  --neutral-460: #8A8B8C;
+  --neutral-440: #8F9091;
+  --neutral-420: #949596;
+  --neutral-400: #999A9B;
+  --neutral-380: #9D9FA0;
+  --neutral-360: #A2A4A5;
+  --neutral-340: #A7A9AA;
+  --neutral-320: #ACAEAF;
+  --neutral-300: #B1B3B4;
+  --neutral-280: #B6B8B9;
+  --neutral-260: #BBBCBE;
+  --neutral-240: #C0C1C3;
+  --neutral-220: #C5C6C8;
+  --neutral-200: #CACBCD;
+  --neutral-180: #CFD0D2;
+  --neutral-160: #D4D5D7;
+  --neutral-140: #D8DADC;
+  --neutral-120: #DDDFE1;
+  --neutral-100: #E2E4E6;
+  --neutral-80: #E7E9EB;
+  --neutral-60: #ECEEF0;
+  --neutral-40: #F1F3F5;
+  --neutral-20: #F6F8FA;
+  --neutral-0: #FFFFFF;
+
+  /* --- Brand --- */
+  --brand-1000: #0D382F;
+  --brand-900: #114B3E;
+  --brand-800: #155E4E;
+  --brand-700: #19705E;
+  --brand-600: #1D836D;
+  --brand-500: #22967D;
+  --brand-400: #26A88C;
+  --brand-300: #2ABB9C;
+  --brand-200: #3FC2A6;
+  --brand-100: #55C9B0;
+  --brand-75: #6ACFBA;
+  --brand-50: #7FD6C4;
+  --brand-25: #95DDCE;
+  --brand-10: #AAE4D7;
+  --brand-5: #EAF8F5;
+
+
+  /* ==========================================
+     Semantic Tokens
+     ========================================== */
+  --primary: var(--brand-400);
+  --secondary: var(--neutral-880);
+
+  /* --- Success --- */
+  --success-bg-1-rest: var(--green-25);
+  --success-bg-1-hover: var(--green-50);
+  --success-bg-2-rest: var(--green-500);
+  --success-text-1-rest: var(--green-500);
+  --success-text-1-hover: var(--green-700);
+  --success-bg-inverted-hover: var(--green-300);
+  --success-stroke-1-rest: var(--green-100);
+  --success-stroke-2-rest: var(--green-500);
+
+  /* --- Warning --- */
+  --warning-bg-1-rest: var(--orange-25);
+  --warning-bg-1-hover: var(--orange-50);
+  --warning-bg-2-rest: var(--orange-500);
+  --warning-text-1-rest: var(--orange-500);
+  --warning-text-1-hover: var(--orange-700);
+  --warning-bg-inverted-hover: var(--orange-300);
+  --warning-stroke-1-rest: var(--orange-100);
+  --warning-stroke-2-rest: var(--orange-500);
+
+  /* --- Danger --- */
+  --danger-bg-1-rest: var(--cranberry-25);
+  --danger-bg-1-hover: var(--cranberry-50);
+  --danger-bg-2-rest: var(--cranberry-500);
+  --danger-text-1-rest: var(--cranberry-500);
+  --danger-text-1-hover: var(--cranberry-700);
+  --danger-bg-inverted-hover: var(--cranberry-300);
+  --danger-stroke-1-rest: var(--cranberry-100);
+  --danger-stroke-2-rest: var(--cranberry-500);
+
+  /* --- Info --- */
+  --info-bg-1-rest: var(--blue-50);
+  --info-bg-1-hover: var(--blue-75);
+  --info-bg-2-rest: var(--blue-500);
+  --info-text-1-rest: var(--blue-500);
+  --info-text-1-hover: var(--blue-700);
+  --info-bg-inverted-hover: var(--blue-300);
+  --info-stroke-1-rest: var(--blue-100);
+  --info-stroke-2-rest: var(--blue-500);
+  --neutral: var(--neutral-1000);
+  --inverse: var(--neutral-0);
+  --disabled: var(--neutral-80);
+
+  /* --- Brand --- */
+}

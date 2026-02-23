@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Button Component - دمو کامپوننت دکمه</title>
+  <link rel="stylesheet" href="../colors/colors.css">
+  <link rel="stylesheet" href="../typography/typography.css">
+  <link rel="stylesheet" href="button.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Peyda(FaNum)', sans-serif;
+      background: #f6f8fa;
+      padding: 40px 20px;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: 32px;
+      margin-bottom: 16px;
+      color: #222323;
+    }
+
+    h2 {
+      font-size: 24px;
+      margin-top: 48px;
+      margin-bottom: 24px;
+      color: #222323;
+      border-bottom: 2px solid #e2e4e6;
+      padding-bottom: 8px;
+    }
+
+    h3 {
+      font-size: 18px;
+      margin-top: 32px;
+      margin-bottom: 16px;
+      color: #222323;
+    }
+
+    .intro {
+      background: white;
+      padding: 24px;
+      border-radius: 8px;
+      margin-bottom: 32px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    .intro p {
+      margin-bottom: 12px;
+      color: #4a4a4a;
+    }
+
+    .intro ul {
+      margin-right: 24px;
+      color: #4a4a4a;
+    }
+
+    .section {
+      background: white;
+      padding: 32px;
+      border-radius: 8px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    .demo-row {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .demo-row label {
+      font-weight: 500;
+      min-width: 120px;
+      color: #222323;
+    }
+
+    .code-block {
+      background: #222323;
+      color: #f6f8fa;
+      padding: 16px;
+      border-radius: 8px;
+      font-family: 'Courier New', monospace;
+      font-size: 14px;
+      overflow-x: auto;
+      margin-top: 16px;
+      direction: ltr;
+      text-align: left;
+    }
+
+    .rtl-demo {
+      direction: rtl;
+      text-align: right;
+    }
+
+    .ltr-demo {
+      direction: ltr;
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Button Component</h1>
+    <p style="margin-bottom: 32px; color: #666;">کامپوننت دکمه - Pure CSS Component</p>
+
+    <div class="intro">
+      <p><strong>درباره این کامپوننت:</strong></p>
+      <ul>
+        <li>6 نوع دکمه: Primary, AI, Secondary, Subtle, Outline, Transparent</li>
+        <li>3 سایز: Large (45px), Medium (37px), Small (24px)</li>
+        <li>4 حالت: Rest, Hover, Pressed, Selected</li>
+        <li>پشتیبانی کامل از RTL/LTR</li>
+        <li>بدون نیاز به JavaScript - فقط CSS classes</li>
+      </ul>
+    </div>
+
+    <!-- Button Types -->
+    <h2>انواع دکمه (Button Types)</h2>
+    <div class="section">
+      <h3>Large Size</h3>
+      <div class="demo-row">
+        <button class="btn btn--primary btn--large">Primary</button>
+        <button class="btn btn--ai btn--large">AI</button>
+        <button class="btn btn--secondary btn--large">Secondary</button>
+        <button class="btn btn--subtle btn--large">Subtle</button>
+        <button class="btn btn--outline btn--large">Outline</button>
+        <button class="btn btn--transparent btn--large">Transparent</button>
+      </div>
+
+      <h3>Medium Size</h3>
+      <div class="demo-row">
+        <button class="btn btn--primary btn--medium">Primary</button>
+        <button class="btn btn--ai btn--medium">AI</button>
+        <button class="btn btn--secondary btn--medium">Secondary</button>
+        <button class="btn btn--subtle btn--medium">Subtle</button>
+        <button class="btn btn--outline btn--medium">Outline</button>
+        <button class="btn btn--transparent btn--medium">Transparent</button>
+      </div>
+
+      <h3>Small Size</h3>
+      <div class="demo-row">
+        <button class="btn btn--primary btn--small">Primary</button>
+        <button class="btn btn--ai btn--small">AI</button>
+        <button class="btn btn--secondary btn--small">Secondary</button>
+        <button class="btn btn--subtle btn--small">Subtle</button>
+        <button class="btn btn--outline btn--small">Outline</button>
+        <button class="btn btn--transparent btn--small">Transparent</button>
+      </div>
+    </div>
+
+    <!-- Button States -->
+    <h2>حالت‌های دکمه (Button States)</h2>
+    <div class="section">
+      <h3>Primary Button States</h3>
+      <div class="demo-row">
+        <label>Rest:</label>
+        <button class="btn btn--primary btn--medium">Rest State</button>
+      </div>
+      <div class="demo-row">
+        <label>Disabled:</label>
+        <button class="btn btn--primary btn--medium btn--disabled" disabled>Disabled State</button>
+      </div>
+      <div class="demo-row">
+        <label>Selected:</label>
+        <button class="btn btn--primary btn--medium btn--selected" aria-pressed="true">Selected State</button>
+      </div>
+      <p style="margin-top: 16px; color: #666; font-size: 14px;">
+        <strong>نکته:</strong> برای مشاهده حالت Hover و Pressed، ماوس را روی دکمه‌ها ببرید یا کلیک کنید.
+      </p>
+    </div>
+
+    <!-- RTL/LTR Support -->
+    <h2>پشتیبانی RTL/LTR</h2>
+    <div class="section">
+      <h3>متن فارسی (RTL)</h3>
+      <div class="demo-row rtl-demo">
+        <button class="btn btn--primary btn--medium">ذخیره تغییرات</button>
+        <button class="btn btn--secondary btn--medium">دکمه فارسی</button>
+      </div>
+
+      <h3>English Text (LTR)</h3>
+      <div class="demo-row ltr-demo">
+        <button class="btn btn--primary btn--medium">Save Changes</button>
+        <button class="btn btn--secondary btn--medium">English Button</button>
+      </div>
+
+      <div class="code-block">
+&lt;!-- فقط HTML + CSS - بدون JavaScript! --&gt;
+&lt;button class="btn btn--primary btn--large"&gt;
+  ذخیره تغییرات
+&lt;/button&gt;
+
+&lt;!-- لینک فایل --&gt;
+&lt;link rel="stylesheet" href="button.css"&gt;
+      </div>
+    </div>
+
+    <!-- Icon Integration -->
+    <h2>یکپارچگی آیکن (Icon Integration)</h2>
+    <div class="section">
+      <h3>Icon Before Text</h3>
+      <div class="demo-row">
+        <button class="btn btn--primary btn--medium">
+          <span class="btn__inner">
+            <span class="btn__icon"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="8"/></svg></span>
+            <span class="btn__text">با آیکن قبل</span>
+          </span>
+        </button>
+      </div>
+
+      <h3>Icon After Text</h3>
+      <div class="demo-row">
+        <button class="btn btn--primary btn--medium">
+          <span class="btn__inner">
+            <span class="btn__text">با آیکن بعد</span>
+            <span class="btn__icon"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="8"/></svg></span>
+          </span>
+        </button>
+      </div>
+
+      <p style="margin-top: 16px; color: #666; font-size: 14px;">
+        <strong>نکته:</strong> آیکن‌ها به صورت inline SVG در HTML قرار می‌گیرند. پس از پیاده‌سازی Icon Component، می‌توانید از آن استفاده کنید.
+      </p>
+    </div>
+
+    <!-- Link as Button -->
+    <h2>لینک با ظاهر دکمه (Link as Button)</h2>
+    <div class="section">
+      <div class="demo-row">
+        <a href="#" class="btn btn--primary btn--large">لینک Primary</a>
+        <a href="#" class="btn btn--secondary btn--medium">لینک Secondary</a>
+        <a href="#" class="btn btn--outline btn--small">لینک Outline</a>
+      </div>
+
+      <div class="code-block">
+&lt;a href="page.html" class="btn btn--primary btn--large"&gt;
+  برو به صفحه دیگر
+&lt;/a&gt;
+      </div>
+    </div>
+
+    <!-- Usage Example -->
+    <h2>نحوه استفاده</h2>
+    <div class="section">
+      <h3>استفاده ساده (توصیه می‌شود)</h3>
+      <div class="code-block">
+&lt;!DOCTYPE html&gt;
+&lt;html lang="fa" dir="rtl"&gt;
+&lt;head&gt;
+  &lt;link rel="stylesheet" href="button.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;!-- فقط HTML + CSS classes - بدون JavaScript! --&gt;
+  &lt;button class="btn btn--primary btn--large"&gt;
+    ذخیره
+  &lt;/button&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+      </div>
+
+      <h3>گزینه‌های موجود (CSS Classes)</h3>
+      <div class="code-block">
+&lt;!-- Type (نوع) --&gt;
+btn--primary | btn--ai | btn--secondary | btn--subtle | btn--outline | btn--transparent
+
+&lt;!-- Size (سایز) --&gt;
+btn--small | btn--medium | btn--large
+
+&lt;!-- State (حالت) --&gt;
+btn--disabled  (+ disabled attribute)
+btn--selected  (+ aria-pressed="true")
+      </div>
+    </div>
+  </div>
+</body>
+</html>

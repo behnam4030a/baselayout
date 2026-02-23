@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Color System — دمو سیستم رنگی</title>
+  <link rel="stylesheet" href="colors.css">
+  <link rel="stylesheet" href="../typography/typography.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Peyda(FaNum)', sans-serif;
+      background: #f6f8fa;
+      padding: 40px 20px;
+      direction: rtl;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* ---- Page Header ---- */
+    .page-title {
+      font-size: 32px;
+      font-weight: 700;
+      color: #222323;
+      margin-bottom: 8px;
+    }
+
+    .page-desc {
+      font-size: 14px;
+      color: #676869;
+      margin-bottom: 40px;
+    }
+
+    /* ---- Section ---- */
+    .section-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: #222323;
+      margin-top: 48px;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #e2e4e6;
+    }
+
+    .section {
+      background: white;
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+
+    /* ---- Palette Grid ---- */
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(88px, 1fr));
+      gap: 8px;
+    }
+
+    .palette-grid--neutral {
+      grid-template-columns: repeat(auto-fill, minmax(56px, 1fr));
+    }
+
+    /* ---- Swatch ---- */
+    .swatch {
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid rgba(0,0,0,0.08);
+    }
+
+    .swatch__color {
+      height: 72px;
+    }
+
+    .swatch--neutral .swatch__color {
+      height: 56px;
+    }
+
+    .swatch__info {
+      background: white;
+      padding: 6px 8px;
+    }
+
+    .swatch__name {
+      display: block;
+      font-size: 10px;
+      color: #222323;
+      font-family: 'Courier New', monospace;
+      direction: ltr;
+      text-align: left;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .swatch__hex {
+      display: block;
+      font-size: 10px;
+      color: #8A8B8C;
+      font-family: 'Courier New', monospace;
+      direction: ltr;
+      text-align: left;
+    }
+
+    /* ---- Semantic Token Cards ---- */
+    .semantic-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
+    }
+
+    .semantic-card {
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid #e2e4e6;
+    }
+
+    .semantic-card__header {
+      padding: 14px 16px;
+      font-weight: 600;
+      font-size: 14px;
+      color: white;
+    }
+
+    .semantic-card__body {
+      background: white;
+    }
+
+    .semantic-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 16px;
+      border-bottom: 1px solid #f1f3f5;
+    }
+
+    .semantic-row:last-child {
+      border-bottom: none;
+    }
+
+    .semantic-row__dot {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      border: 1px solid rgba(0,0,0,0.1);
+    }
+
+    .semantic-row__name {
+      font-size: 11px;
+      font-family: 'Courier New', monospace;
+      color: #222323;
+      direction: ltr;
+      text-align: left;
+      flex: 1;
+    }
+
+    .semantic-row__ref {
+      font-size: 10px;
+      color: #8A8B8C;
+      font-family: 'Courier New', monospace;
+      direction: ltr;
+    }
+
+    /* ---- Brand + Primary ---- */
+    .brand-section {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .brand-chip {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      background: white;
+      border: 1px solid #e2e4e6;
+      border-radius: 8px;
+    }
+
+    .brand-chip__dot {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+    }
+
+    .brand-chip__info .name {
+      font-size: 12px;
+      font-weight: 600;
+      color: #222323;
+      font-family: 'Courier New', monospace;
+      direction: ltr;
+      text-align: left;
+      display: block;
+    }
+
+    .brand-chip__info .hex {
+      font-size: 11px;
+      color: #8A8B8C;
+      font-family: 'Courier New', monospace;
+      direction: ltr;
+      text-align: left;
+      display: block;
+    }
+
+    /* ---- Reference Table ---- */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 8px;
+      font-size: 13px;
+    }
+
+    th, td {
+      padding: 10px 16px;
+      text-align: right;
+      border-bottom: 1px solid #e2e4e6;
+    }
+
+    th {
+      background: #f6f8fa;
+      font-weight: 600;
+      color: #222323;
+    }
+
+    td { color: #4a4a4a; }
+
+    td code {
+      background: #f1f3f5;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+      direction: ltr;
+      display: inline-block;
+    }
+
+    .dot-td {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .dot-sm {
+      width: 16px;
+      height: 16px;
+      border-radius: 4px;
+      border: 1px solid rgba(0,0,0,0.1);
+      flex-shrink: 0;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <h1 class="page-title">Color System</h1>
+    <p class="page-desc">سیستم رنگی EsanjUiKit — ۸ پالت رنگی + توکن‌های سمانتیک</p>
+
+    <!-- ===== Brand / Primary ===== -->
+    <h2 class="section-title">Brand & Primary</h2>
+    <div class="section">
+      <div class="brand-section">
+        <div class="brand-chip">
+          <div class="brand-chip__dot" style="background:#26A88C;"></div>
+          <div class="brand-chip__info">
+            <span class="name">--primary</span>
+            <span class="hex">var(--brand-400) · #26A88C</span>
+          </div>
+        </div>
+        <div class="brand-chip">
+          <div class="brand-chip__dot" style="background:#222323;"></div>
+          <div class="brand-chip__info">
+            <span class="name">--secondary</span>
+            <span class="hex">var(--neutral-880) · #222323</span>
+          </div>
+        </div>
+      </div>
+      <div class="palette-grid">
+        <div class="swatch"><div class="swatch__color" style="background:#0D382F;"></div><div class="swatch__info"><span class="swatch__name">brand-1000</span><span class="swatch__hex">#0D382F</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#114B3E;"></div><div class="swatch__info"><span class="swatch__name">brand-900</span><span class="swatch__hex">#114B3E</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#155E4E;"></div><div class="swatch__info"><span class="swatch__name">brand-800</span><span class="swatch__hex">#155E4E</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#19705E;"></div><div class="swatch__info"><span class="swatch__name">brand-700</span><span class="swatch__hex">#19705E</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#1D836D;"></div><div class="swatch__info"><span class="swatch__name">brand-600</span><span class="swatch__hex">#1D836D</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#22967D;"></div><div class="swatch__info"><span class="swatch__name">brand-500</span><span class="swatch__hex">#22967D</span></div></div>
+        <div class="swatch" style="outline: 2px solid #26A88C; outline-offset: 2px; border-radius: 8px;"><div class="swatch__color" style="background:#26A88C;"></div><div class="swatch__info"><span class="swatch__name">brand-400 ★</span><span class="swatch__hex">#26A88C</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#2ABB9C;"></div><div class="swatch__info"><span class="swatch__name">brand-300</span><span class="swatch__hex">#2ABB9C</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#3FC2A6;"></div><div class="swatch__info"><span class="swatch__name">brand-200</span><span class="swatch__hex">#3FC2A6</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#55C9B0;"></div><div class="swatch__info"><span class="swatch__name">brand-100</span><span class="swatch__hex">#55C9B0</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#6ACFBA;"></div><div class="swatch__info"><span class="swatch__name">brand-75</span><span class="swatch__hex">#6ACFBA</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#7FD6C4;"></div><div class="swatch__info"><span class="swatch__name">brand-50</span><span class="swatch__hex">#7FD6C4</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#95DDCE;"></div><div class="swatch__info"><span class="swatch__name">brand-25</span><span class="swatch__hex">#95DDCE</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#AAE4D7;"></div><div class="swatch__info"><span class="swatch__name">brand-10</span><span class="swatch__hex">#AAE4D7</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#EAF8F5;"></div><div class="swatch__info"><span class="swatch__name">brand-5</span><span class="swatch__hex">#EAF8F5</span></div></div>
+      </div>
+    </div>
+
+    <!-- ===== Neutral ===== -->
+    <h2 class="section-title">Neutral (خنثی)</h2>
+    <div class="section">
+      <div class="palette-grid palette-grid--neutral">
+        <div class="swatch swatch--neutral"><div class="swatch__color" style="background:#000000;"></div><div class="swatch__info"><span class="swatch__name">1000</span><span class="swatch__hex">#000</span></div></div>
+        <div class="swatch swatch--neutral"><div class="swatch__color" style="background:#0A0A0A;"></div><div class="swatch__info"><span class="swatch__name">980</span><span class="swatch__hex">#0A0A0A</span></div></div>
+        <div class="swatch swatch--neutral"><div class="swatch__color" style="background:#0F0F0F;"></div><div class="swatch__info"><span class="swatch__name">960</span><span class="swatch__hex">#0F0F0F</span></div></div>
+        <div class="swatch swatch--neutral"><div class="swatch__color" style="background:#141414;"></div><div class="swatch__info"><span class="swatch__name">940</span><span class="swatch__hex">#141414</span></div></div>
+        <div class="swatch swatch--neutral"><div class="swatch__color" style="background:#191919;"></div><div class="swatch__info"><span class="swatch__name">920</span><span class="swatch__hex">#191919</span></div></div>
+        <div class="swatch swatch--neutral"><div class="swatch__color" style="background:#1E1E1E;"></div><div class="swatch__info"><span class="swatch__name">900</span><span class="swatch__hex">#1E1E1E</span></div></div>
+        <div class="swatch swatch--neutral"><div class="swatch__color" style="background:#222323;"></div><div class="swatch__info"><span class="swatch__name">880</span><span class="swatch__hex">#222323</span></div></div>
+        <div class="swatch swatch--neutral"><div class="swatch__color" style="background:#272828;"></div><div class="swatch__info"><span class="swatch__name">860</span><span class="swatch__hex">#272828</span></div></div>
+        <div class="swatch swatch--neutral"><div class="swatch__color" style="background:#2C2D2D;"></div><div class="swatch__info"><span class="swatch__name">840</span><span class="swatch__hex">#2C2D2D</span></div></div>
+        <div class="swatch swatch--neutral"><div class="swatch__color" style="background:#313232;"></div><div class="swatch__info"><span class="swatch__name">820</span><span class="swatch__hex">#313232</span></div></div>
+        <div class="swatch swatch--neutral"><div class="swatch__color" style="background:#363737;"></div><div class="swatch__info"><span class="swatch__name">800</span><span class="swatch__hex">#363737</span></div></div>
+        <div class="swatch swatch--neutral"><div class="swatch__color" style="background:#3B3C3C;"></div><div class="swatch__info"><span class="swatch__name">780</span><span class="swatch__hex">#3B3C3C</span></div></div>
+        <div class="swatch swatch--neutral"><div class="swatch__color" style="background:#404041;"></div><div class="swatch__info"><span class="swatch__name">760</span><span class="swatch__hex">#404041</span></div></div>
+        <div class="swatch swatch--neutral"><div class="swatch__color" style="background:#454546;"></div><div class="swatch__info"><span class="swatch__name">740</span><span class="swatch__hex">#454546</span></div></div>
+        <div class="swatch swatch--neutral"><div class="swatch__color" style="background:#4A4A4B;"></div><div class="swatch__info"><span class="swatch__name">720</span><span class="swatch__hex">#4A4A4B</span></div></div>
+        <div class="swatch swatch--neutral"><div class="swatch__color" style="background:#4F4F50;"></div><div class="swatch__info"><span class="swatch__name">700</span><span class="swatch__hex">#4F4F50</span></div></div>
+        <div class="swatch swatch--neutral"><div class="swatch__color" style="background:#545455;"></div><div class="swatch__info"><span class="swatch__name">680</span><span class="swatch__hex">#545455</span></div></div>
+        <div class="swatch swatch--neutral"><div class="swatch__color" style="background:#59595A;"></div><div class="swatch__info"><span class="swatch__name">660</span><span class="swatch__hex">#59595A</span></div></div>
+        <div class="swatch swatch--neutral"><div class="swatch__color" style="background:#5D5E5F;"></div><div class="swatch__info"><span class="swatch__name">640</span><span class="swatch__hex">#5D5E5F</span></div></div>
+        <div class="swatch swatch--neutral"><div class="swatch__color" style="background:#626364;"></div><div class="swatch__info"><span class="swatch__name">620</span><span class="swatch__hex">#626364</span></div></div>
+        <div class="swatch swatch--neutral"><div class="swatch__color" style="background:#676869;"></div><div class="swatch__info"><span class="swatch__name">600</span><span class="swatch__hex">#676869</span></div></div>
+        <div class="swatch swatch--neutral"><div class="swatch__color" style="background:#6C6D6E;"></div><div class="swatch__info"><span class="swatch__name">580</span><span class="swatch__hex">#6C6D6E</span></div></div>
+        <div class="swatch swatch--neutral"><div class="swatch__color" style="background:#717273;"></div><div class="swatch__info"><span class="swatch__name">560</span><span class="swatch__hex">#717273</span></div></div>
+        <div class="swatch swatch--neutral"><div class="swatch__color" style="background:#767778;"></div><div class="swatch__info"><span class="swatch__name">540</span><span class="swatch__hex">#767778</span></div></div>
+        <div class="swatch swatch--neutral"><div class="swatch__color" style="background:#7B7C7D;"></div><div class="swatch__info"><span class="swatch__name">520</span><span class="swatch__hex">#7B7C7D</span></div></div>
+        <div class="swatch swatch--neutral"><div class="swatch__color" style="background:#808182;"></div><div class="swatch__info"><span class="swatch__name">500</span><span class="swatch__hex">#808182</span></div></div>
+        <div class="swatch swatch--neutral"><div class="swatch__color" style="background:#858687;"></div><div class="swatch__info"><span class="swatch__name">480</span><span class="swatch__hex">#858687</span></div></div>
+        <div class="swatch swatch--neutral"><div class="swatch__color" style="background:#8A8B8C;"></div><div class="swatch__info"><span class="swatch__name">460</span><span class="swatch__hex">#8A8B8C</span></div></div>
+        <div class="swatch swatch--neutral"><div class="swatch__color" style="background:#8F9091;"></div><div class="swatch__info"><span class="swatch__name">440</span><span class="swatch__hex">#8F9091</span></div></div>
+        <div class="swatch swatch--neutral"><div class="swatch__color" style="background:#949596;"></div><div class="swatch__info"><span class="swatch__name">420</span><span class="swatch__hex">#949596</span></div></div>
+        <div class="swatch swatch--neutral"><div class="swatch__color" style="background:#999A9B;"></div><div class="swatch__info"><span class="swatch__name">400</span><span class="swatch__hex">#999A9B</span></div></div>
+        <div class="swatch swatch--neutral"><div class="swatch__color" style="background:#9D9FA0;"></div><div class="swatch__info"><span class="swatch__name">380</span><span class="swatch__hex">#9D9FA0</span></div></div>
+        <div class="swatch swatch--neutral"><div class="swatch__color" style="background:#A2A4A5;"></div><div class="swatch__info"><span class="swatch__name">360</span><span class="swatch__hex">#A2A4A5</span></div></div>
+        <div class="swatch swatch--neutral"><div class="swatch__color" style="background:#A7A9AA;"></div><div class="swatch__info"><span class="swatch__name">340</span><span class="swatch__hex">#A7A9AA</span></div></div>
+        <div class="swatch swatch--neutral"><div class="swatch__color" style="background:#ACAEAF;"></div><div class="swatch__info"><span class="swatch__name">320</span><span class="swatch__hex">#ACAEAF</span></div></div>
+        <div class="swatch swatch--neutral"><div class="swatch__color" style="background:#B1B3B4;"></div><div class="swatch__info"><span class="swatch__name">300</span><span class="swatch__hex">#B1B3B4</span></div></div>
+        <div class="swatch swatch--neutral"><div class="swatch__color" style="background:#B6B8B9;"></div><div class="swatch__info"><span class="swatch__name">280</span><span class="swatch__hex">#B6B8B9</span></div></div>
+        <div class="swatch swatch--neutral"><div class="swatch__color" style="background:#BBBCBE;"></div><div class="swatch__info"><span class="swatch__name">260</span><span class="swatch__hex">#BBBCBE</span></div></div>
+        <div class="swatch swatch--neutral"><div class="swatch__color" style="background:#C0C1C3;"></div><div class="swatch__info"><span class="swatch__name">240</span><span class="swatch__hex">#C0C1C3</span></div></div>
+        <div class="swatch swatch--neutral"><div class="swatch__color" style="background:#C5C6C8;"></div><div class="swatch__info"><span class="swatch__name">220</span><span class="swatch__hex">#C5C6C8</span></div></div>
+        <div class="swatch swatch--neutral"><div class="swatch__color" style="background:#CACBCD;"></div><div class="swatch__info"><span class="swatch__name">200</span><span class="swatch__hex">#CACBCD</span></div></div>
+        <div class="swatch swatch--neutral"><div class="swatch__color" style="background:#CFD0D2;"></div><div class="swatch__info"><span class="swatch__name">180</span><span class="swatch__hex">#CFD0D2</span></div></div>
+        <div class="swatch swatch--neutral"><div class="swatch__color" style="background:#D4D5D7;"></div><div class="swatch__info"><span class="swatch__name">160</span><span class="swatch__hex">#D4D5D7</span></div></div>
+        <div class="swatch swatch--neutral"><div class="swatch__color" style="background:#D8DADC;"></div><div class="swatch__info"><span class="swatch__name">140</span><span class="swatch__hex">#D8DADC</span></div></div>
+        <div class="swatch swatch--neutral"><div class="swatch__color" style="background:#DDDFE1;"></div><div class="swatch__info"><span class="swatch__name">120</span><span class="swatch__hex">#DDDFE1</span></div></div>
+        <div class="swatch swatch--neutral"><div class="swatch__color" style="background:#E2E4E6;"></div><div class="swatch__info"><span class="swatch__name">100</span><span class="swatch__hex">#E2E4E6</span></div></div>
+        <div class="swatch swatch--neutral"><div class="swatch__color" style="background:#E7E9EB;"></div><div class="swatch__info"><span class="swatch__name">80</span><span class="swatch__hex">#E7E9EB</span></div></div>
+        <div class="swatch swatch--neutral"><div class="swatch__color" style="background:#ECEEF0;"></div><div class="swatch__info"><span class="swatch__name">60</span><span class="swatch__hex">#ECEEF0</span></div></div>
+        <div class="swatch swatch--neutral"><div class="swatch__color" style="background:#F1F3F5;"></div><div class="swatch__info"><span class="swatch__name">40</span><span class="swatch__hex">#F1F3F5</span></div></div>
+        <div class="swatch swatch--neutral"><div class="swatch__color" style="background:#F6F8FA;"></div><div class="swatch__info"><span class="swatch__name">20</span><span class="swatch__hex">#F6F8FA</span></div></div>
+        <div class="swatch swatch--neutral"><div class="swatch__color" style="background:#FFFFFF; border-bottom: 1px solid #e2e4e6;"></div><div class="swatch__info"><span class="swatch__name">0</span><span class="swatch__hex">#FFFFFF</span></div></div>
+      </div>
+    </div>
+
+    <!-- ===== Blue ===== -->
+    <h2 class="section-title">Blue (آبی)</h2>
+    <div class="section">
+      <div class="palette-grid">
+        <div class="swatch"><div class="swatch__color" style="background:#001322;"></div><div class="swatch__info"><span class="swatch__name">blue-1000</span><span class="swatch__hex">#001322</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#002440;"></div><div class="swatch__info"><span class="swatch__name">blue-900</span><span class="swatch__hex">#002440</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#004377;"></div><div class="swatch__info"><span class="swatch__name">blue-800</span><span class="swatch__hex">#004377</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#005BA1;"></div><div class="swatch__info"><span class="swatch__name">blue-700</span><span class="swatch__hex">#005BA1</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#006CBF;"></div><div class="swatch__info"><span class="swatch__name">blue-600</span><span class="swatch__hex">#006CBF</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#0078D4;"></div><div class="swatch__info"><span class="swatch__name">blue-500</span><span class="swatch__hex">#0078D4</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#1A86D9;"></div><div class="swatch__info"><span class="swatch__name">blue-400</span><span class="swatch__hex">#1A86D9</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#3595DE;"></div><div class="swatch__info"><span class="swatch__name">blue-300</span><span class="swatch__hex">#3595DE</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#4EAEF7;"></div><div class="swatch__info"><span class="swatch__name">blue-200</span><span class="swatch__hex">#4EAEF7</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#A9D3F2;"></div><div class="swatch__info"><span class="swatch__name">blue-100</span><span class="swatch__hex">#A9D3F2</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#D0E7F8;"></div><div class="swatch__info"><span class="swatch__name">blue-75</span><span class="swatch__hex">#D0E7F8</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#F3F9FD;"></div><div class="swatch__info"><span class="swatch__name">blue-50</span><span class="swatch__hex">#F3F9FD</span></div></div>
+      </div>
+    </div>
+
+    <!-- ===== Green ===== -->
+    <h2 class="section-title">Green (سبز)</h2>
+    <div class="section">
+      <div class="palette-grid">
+        <div class="swatch"><div class="swatch__color" style="background:#031403;"></div><div class="swatch__info"><span class="swatch__name">green-1000</span><span class="swatch__hex">#031403</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#052505;"></div><div class="swatch__info"><span class="swatch__name">green-900</span><span class="swatch__hex">#052505</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#094509;"></div><div class="swatch__info"><span class="swatch__name">green-800</span><span class="swatch__hex">#094509</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#0C5E0C;"></div><div class="swatch__info"><span class="swatch__name">green-700</span><span class="swatch__hex">#0C5E0C</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#0E700E;"></div><div class="swatch__info"><span class="swatch__name">green-600</span><span class="swatch__hex">#0E700E</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#107C10;"></div><div class="swatch__info"><span class="swatch__name">green-500</span><span class="swatch__hex">#107C10</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#218C21;"></div><div class="swatch__info"><span class="swatch__name">green-400</span><span class="swatch__hex">#218C21</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#359B35;"></div><div class="swatch__info"><span class="swatch__name">green-300</span><span class="swatch__hex">#359B35</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#54B054;"></div><div class="swatch__info"><span class="swatch__name">green-200</span><span class="swatch__hex">#54B054</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#9FD89F;"></div><div class="swatch__info"><span class="swatch__name">green-100</span><span class="swatch__hex">#9FD89F</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#C9EAC9;"></div><div class="swatch__info"><span class="swatch__name">green-75</span><span class="swatch__hex">#C9EAC9</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#E7F2E7;"></div><div class="swatch__info"><span class="swatch__name">green-50</span><span class="swatch__hex">#E7F2E7</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#F1FAF1;"></div><div class="swatch__info"><span class="swatch__name">green-25</span><span class="swatch__hex">#F1FAF1</span></div></div>
+      </div>
+    </div>
+
+    <!-- ===== Lavender ===== -->
+    <h2 class="section-title">Lavender (بنفش)</h2>
+    <div class="section">
+      <div class="palette-grid">
+        <div class="swatch"><div class="swatch__color" style="background:#120F25;"></div><div class="swatch__info"><span class="swatch__name">lavender-1000</span><span class="swatch__hex">#120F25</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#221D46;"></div><div class="swatch__info"><span class="swatch__name">lavender-900</span><span class="swatch__hex">#221D46</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#3F3682;"></div><div class="swatch__info"><span class="swatch__name">lavender-800</span><span class="swatch__hex">#3F3682</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#5649B0;"></div><div class="swatch__info"><span class="swatch__name">lavender-700</span><span class="swatch__hex">#5649B0</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#6656D1;"></div><div class="swatch__info"><span class="swatch__name">lavender-600</span><span class="swatch__hex">#6656D1</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#7160E8;"></div><div class="swatch__info"><span class="swatch__name">lavender-500</span><span class="swatch__hex">#7160E8</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#8172EB;"></div><div class="swatch__info"><span class="swatch__name">lavender-400</span><span class="swatch__hex">#8172EB</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#9184EE;"></div><div class="swatch__info"><span class="swatch__name">lavender-300</span><span class="swatch__hex">#9184EE</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#A79CF1;"></div><div class="swatch__info"><span class="swatch__name">lavender-200</span><span class="swatch__hex">#A79CF1</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#D2CCF8;"></div><div class="swatch__info"><span class="swatch__name">lavender-100</span><span class="swatch__hex">#D2CCF8</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#E7E4FB;"></div><div class="swatch__info"><span class="swatch__name">lavender-75</span><span class="swatch__hex">#E7E4FB</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#F9F8FE;"></div><div class="swatch__info"><span class="swatch__name">lavender-50</span><span class="swatch__hex">#F9F8FE</span></div></div>
+      </div>
+    </div>
+
+    <!-- ===== Cranberry ===== -->
+    <h2 class="section-title">Cranberry (قرمز)</h2>
+    <div class="section">
+      <div class="palette-grid">
+        <div class="swatch"><div class="swatch__color" style="background:#200205;"></div><div class="swatch__info"><span class="swatch__name">cranberry-1000</span><span class="swatch__hex">#200205</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#3B0509;"></div><div class="swatch__info"><span class="swatch__name">cranberry-900</span><span class="swatch__hex">#3B0509</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#6E0811;"></div><div class="swatch__info"><span class="swatch__name">cranberry-800</span><span class="swatch__hex">#6E0811</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#960B18;"></div><div class="swatch__info"><span class="swatch__name">cranberry-700</span><span class="swatch__hex">#960B18</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#B10E1C;"></div><div class="swatch__info"><span class="swatch__name">cranberry-600</span><span class="swatch__hex">#B10E1C</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#C50F1F;"></div><div class="swatch__info"><span class="swatch__name">cranberry-500</span><span class="swatch__hex">#C50F1F</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#CC2635;"></div><div class="swatch__info"><span class="swatch__name">cranberry-400</span><span class="swatch__hex">#CC2635</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#D33F4C;"></div><div class="swatch__info"><span class="swatch__name">cranberry-300</span><span class="swatch__hex">#D33F4C</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#DC626D;"></div><div class="swatch__info"><span class="swatch__name">cranberry-200</span><span class="swatch__hex">#DC626D</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#EEACB2;"></div><div class="swatch__info"><span class="swatch__name">cranberry-100</span><span class="swatch__hex">#EEACB2</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#F6D1D5;"></div><div class="swatch__info"><span class="swatch__name">cranberry-75</span><span class="swatch__hex">#F6D1D5</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#F9E7E9;"></div><div class="swatch__info"><span class="swatch__name">cranberry-50</span><span class="swatch__hex">#F9E7E9</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#FDF3F4;"></div><div class="swatch__info"><span class="swatch__name">cranberry-25</span><span class="swatch__hex">#FDF3F4</span></div></div>
+      </div>
+    </div>
+
+    <!-- ===== Orange ===== -->
+    <h2 class="section-title">Orange (نارنجی)</h2>
+    <div class="section">
+      <div class="palette-grid">
+        <div class="swatch"><div class="swatch__color" style="background:#271002;"></div><div class="swatch__info"><span class="swatch__name">orange-1000</span><span class="swatch__hex">#271002</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#4A1E04;"></div><div class="swatch__info"><span class="swatch__name">orange-900</span><span class="swatch__hex">#4A1E04</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#8A3707;"></div><div class="swatch__info"><span class="swatch__name">orange-800</span><span class="swatch__hex">#8A3707</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#BC4B09;"></div><div class="swatch__info"><span class="swatch__name">orange-700</span><span class="swatch__hex">#BC4B09</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#DE590B;"></div><div class="swatch__info"><span class="swatch__name">orange-600</span><span class="swatch__hex">#DE590B</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#F7630C;"></div><div class="swatch__info"><span class="swatch__name">orange-500</span><span class="swatch__hex">#F7630C</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#F87528;"></div><div class="swatch__info"><span class="swatch__name">orange-400</span><span class="swatch__hex">#F87528</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#F98845;"></div><div class="swatch__info"><span class="swatch__name">orange-300</span><span class="swatch__hex">#F98845</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#FAA06B;"></div><div class="swatch__info"><span class="swatch__name">orange-200</span><span class="swatch__hex">#FAA06B</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#FDCFB4;"></div><div class="swatch__info"><span class="swatch__name">orange-100</span><span class="swatch__hex">#FDCFB4</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#FEE5D7;"></div><div class="swatch__info"><span class="swatch__name">orange-75</span><span class="swatch__hex">#FEE5D7</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#FEEFE7;"></div><div class="swatch__info"><span class="swatch__name">orange-50</span><span class="swatch__hex">#FEEFE7</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#FFF9F5;"></div><div class="swatch__info"><span class="swatch__name">orange-25</span><span class="swatch__hex">#FFF9F5</span></div></div>
+      </div>
+    </div>
+
+    <!-- ===== Gold ===== -->
+    <h2 class="section-title">Gold (طلایی)</h2>
+    <div class="section">
+      <div class="palette-grid">
+        <div class="swatch"><div class="swatch__color" style="background:#1F1900;"></div><div class="swatch__info"><span class="swatch__name">gold-1000</span><span class="swatch__hex">#1F1900</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#3A2F00;"></div><div class="swatch__info"><span class="swatch__name">gold-900</span><span class="swatch__hex">#3A2F00</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#6C5700;"></div><div class="swatch__info"><span class="swatch__name">gold-800</span><span class="swatch__hex">#6C5700</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#937700;"></div><div class="swatch__info"><span class="swatch__name">gold-700</span><span class="swatch__hex">#937700</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#AE8C00;"></div><div class="swatch__info"><span class="swatch__name">gold-600</span><span class="swatch__hex">#AE8C00</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#C19C00;"></div><div class="swatch__info"><span class="swatch__name">gold-500</span><span class="swatch__hex">#C19C00</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#C8A718;"></div><div class="swatch__info"><span class="swatch__name">gold-400</span><span class="swatch__hex">#C8A718</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#D0B232;"></div><div class="swatch__info"><span class="swatch__name">gold-300</span><span class="swatch__hex">#D0B232</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#DAC157;"></div><div class="swatch__info"><span class="swatch__name">gold-200</span><span class="swatch__hex">#DAC157</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#ECDFA5;"></div><div class="swatch__info"><span class="swatch__name">gold-100</span><span class="swatch__hex">#ECDFA5</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#F5EECE;"></div><div class="swatch__info"><span class="swatch__name">gold-75</span><span class="swatch__hex">#F5EECE</span></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#FDFBF2;"></div><div class="swatch__info"><span class="swatch__name">gold-50</span><span class="swatch__hex">#FDFBF2</span></div></div>
+      </div>
+    </div>
+
+    <!-- ===== Semantic Tokens ===== -->
+    <h2 class="section-title">Semantic Tokens (توکن‌های سمانتیک)</h2>
+    <div class="semantic-grid">
+
+      <!-- Success -->
+      <div class="semantic-card">
+        <div class="semantic-card__header" style="background:#107C10;">Success (موفقیت)</div>
+        <div class="semantic-card__body">
+          <div class="semantic-row"><div class="semantic-row__dot" style="background:#F1FAF1;"></div><span class="semantic-row__name">--success-bg-1-rest</span><span class="semantic-row__ref">green-25</span></div>
+          <div class="semantic-row"><div class="semantic-row__dot" style="background:#E7F2E7;"></div><span class="semantic-row__name">--success-bg-1-hover</span><span class="semantic-row__ref">green-50</span></div>
+          <div class="semantic-row"><div class="semantic-row__dot" style="background:#107C10;"></div><span class="semantic-row__name">--success-bg-2-rest</span><span class="semantic-row__ref">green-500</span></div>
+          <div class="semantic-row"><div class="semantic-row__dot" style="background:#107C10;"></div><span class="semantic-row__name">--success-text-1-rest</span><span class="semantic-row__ref">green-500</span></div>
+          <div class="semantic-row"><div class="semantic-row__dot" style="background:#0C5E0C;"></div><span class="semantic-row__name">--success-text-1-hover</span><span class="semantic-row__ref">green-700</span></div>
+          <div class="semantic-row"><div class="semantic-row__dot" style="background:#9FD89F;"></div><span class="semantic-row__name">--success-stroke-1-rest</span><span class="semantic-row__ref">green-100</span></div>
+          <div class="semantic-row"><div class="semantic-row__dot" style="background:#107C10;"></div><span class="semantic-row__name">--success-stroke-2-rest</span><span class="semantic-row__ref">green-500</span></div>
+        </div>
+      </div>
+
+      <!-- Warning -->
+      <div class="semantic-card">
+        <div class="semantic-card__header" style="background:#BC4B09;">Warning (هشدار)</div>
+        <div class="semantic-card__body">
+          <div class="semantic-row"><div class="semantic-row__dot" style="background:#FFF9F5;"></div><span class="semantic-row__name">--warning-bg-1-rest</span><span class="semantic-row__ref">orange-25</span></div>
+          <div class="semantic-row"><div class="semantic-row__dot" style="background:#FEEFE7;"></div><span class="semantic-row__name">--warning-bg-1-hover</span><span class="semantic-row__ref">orange-50</span></div>
+          <div class="semantic-row"><div class="semantic-row__dot" style="background:#F7630C;"></div><span class="semantic-row__name">--warning-bg-2-rest</span><span class="semantic-row__ref">orange-500</span></div>
+          <div class="semantic-row"><div class="semantic-row__dot" style="background:#F7630C;"></div><span class="semantic-row__name">--warning-text-1-rest</span><span class="semantic-row__ref">orange-500</span></div>
+          <div class="semantic-row"><div class="semantic-row__dot" style="background:#BC4B09;"></div><span class="semantic-row__name">--warning-text-1-hover</span><span class="semantic-row__ref">orange-700</span></div>
+          <div class="semantic-row"><div class="semantic-row__dot" style="background:#FDCFB4;"></div><span class="semantic-row__name">--warning-stroke-1-rest</span><span class="semantic-row__ref">orange-100</span></div>
+          <div class="semantic-row"><div class="semantic-row__dot" style="background:#F7630C;"></div><span class="semantic-row__name">--warning-stroke-2-rest</span><span class="semantic-row__ref">orange-500</span></div>
+        </div>
+      </div>
+
+      <!-- Danger -->
+      <div class="semantic-card">
+        <div class="semantic-card__header" style="background:#C50F1F;">Danger (خطر)</div>
+        <div class="semantic-card__body">
+          <div class="semantic-row"><div class="semantic-row__dot" style="background:#FDF3F4;"></div><span class="semantic-row__name">--danger-bg-1-rest</span><span class="semantic-row__ref">cranberry-25</span></div>
+          <div class="semantic-row"><div class="semantic-row__dot" style="background:#F9E7E9;"></div><span class="semantic-row__name">--danger-bg-1-hover</span><span class="semantic-row__ref">cranberry-50</span></div>
+          <div class="semantic-row"><div class="semantic-row__dot" style="background:#C50F1F;"></div><span class="semantic-row__name">--danger-bg-2-rest</span><span class="semantic-row__ref">cranberry-500</span></div>
+          <div class="semantic-row"><div class="semantic-row__dot" style="background:#C50F1F;"></div><span class="semantic-row__name">--danger-text-1-rest</span><span class="semantic-row__ref">cranberry-500</span></div>
+          <div class="semantic-row"><div class="semantic-row__dot" style="background:#960B18;"></div><span class="semantic-row__name">--danger-text-1-hover</span><span class="semantic-row__ref">cranberry-700</span></div>
+          <div class="semantic-row"><div class="semantic-row__dot" style="background:#EEACB2;"></div><span class="semantic-row__name">--danger-stroke-1-rest</span><span class="semantic-row__ref">cranberry-100</span></div>
+          <div class="semantic-row"><div class="semantic-row__dot" style="background:#C50F1F;"></div><span class="semantic-row__name">--danger-stroke-2-rest</span><span class="semantic-row__ref">cranberry-500</span></div>
+        </div>
+      </div>
+
+      <!-- Info -->
+      <div class="semantic-card">
+        <div class="semantic-card__header" style="background:#0078D4;">Info (اطلاعات)</div>
+        <div class="semantic-card__body">
+          <div class="semantic-row"><div class="semantic-row__dot" style="background:#F3F9FD;"></div><span class="semantic-row__name">--info-bg-1-rest</span><span class="semantic-row__ref">blue-50</span></div>
+          <div class="semantic-row"><div class="semantic-row__dot" style="background:#D0E7F8;"></div><span class="semantic-row__name">--info-bg-1-hover</span><span class="semantic-row__ref">blue-75</span></div>
+          <div class="semantic-row"><div class="semantic-row__dot" style="background:#0078D4;"></div><span class="semantic-row__name">--info-bg-2-rest</span><span class="semantic-row__ref">blue-500</span></div>
+          <div class="semantic-row"><div class="semantic-row__dot" style="background:#0078D4;"></div><span class="semantic-row__name">--info-text-1-rest</span><span class="semantic-row__ref">blue-500</span></div>
+          <div class="semantic-row"><div class="semantic-row__dot" style="background:#005BA1;"></div><span class="semantic-row__name">--info-text-1-hover</span><span class="semantic-row__ref">blue-700</span></div>
+          <div class="semantic-row"><div class="semantic-row__dot" style="background:#A9D3F2;"></div><span class="semantic-row__name">--info-stroke-1-rest</span><span class="semantic-row__ref">blue-100</span></div>
+          <div class="semantic-row"><div class="semantic-row__dot" style="background:#0078D4;"></div><span class="semantic-row__name">--info-stroke-2-rest</span><span class="semantic-row__ref">blue-500</span></div>
+        </div>
+      </div>
+
+      <!-- Utility -->
+      <div class="semantic-card">
+        <div class="semantic-card__header" style="background:#222323;">Utility (عمومی)</div>
+        <div class="semantic-card__body">
+          <div class="semantic-row"><div class="semantic-row__dot" style="background:#26A88C;"></div><span class="semantic-row__name">--primary</span><span class="semantic-row__ref">brand-400</span></div>
+          <div class="semantic-row"><div class="semantic-row__dot" style="background:#222323;"></div><span class="semantic-row__name">--secondary</span><span class="semantic-row__ref">neutral-880</span></div>
+          <div class="semantic-row"><div class="semantic-row__dot" style="background:#000000;"></div><span class="semantic-row__name">--neutral</span><span class="semantic-row__ref">neutral-1000</span></div>
+          <div class="semantic-row"><div class="semantic-row__dot" style="background:#FFFFFF; border: 1px solid #e2e4e6;"></div><span class="semantic-row__name">--inverse</span><span class="semantic-row__ref">neutral-0</span></div>
+          <div class="semantic-row"><div class="semantic-row__dot" style="background:#E7E9EB;"></div><span class="semantic-row__name">--disabled</span><span class="semantic-row__ref">neutral-80</span></div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</body>
+</html>

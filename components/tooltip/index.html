@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tooltip Component — Demo</title>
+  <link rel="stylesheet" href="../colors/colors.css">
+  <link rel="stylesheet" href="../typography/typography.css">
+  <link rel="stylesheet" href="tooltip.css">
+</head>
+<body class="demo-page">
+  <div class="demo-page__container">
+
+    <h1 class="demo-page__title">Tooltip Component</h1>
+    <p class="demo-page__desc">تولتیپ یک پیام کوچک است که هنگام hover یا focus روی یک عنصر، اطلاعات ساده و مفید ارائه می‌کند.</p>
+
+    <!-- ==========================================
+         جهت‌ها — Positions
+         ========================================== -->
+    <h2 class="demo-page__subtitle">جهت‌ها — Positions</h2>
+
+    <div class="demo-row">
+      <div class="demo-col">
+        <span class="demo-col__label">بالا (Top)</span>
+        <span class="tooltip" data-tooltip="اطلاعات ساده در مورد کلید" data-tooltip-position="top">
+          <button class="demo-btn demo-btn--default" type="button">متن پیشفرض</button>
+        </span>
+      </div>
+
+      <div class="demo-col">
+        <span class="demo-col__label">پایین (Bottom)</span>
+        <span class="tooltip" data-tooltip="اطلاعات ساده در مورد کلید" data-tooltip-position="bottom">
+          <button class="demo-btn demo-btn--default" type="button">متن پیشفرض</button>
+        </span>
+      </div>
+
+      <div class="demo-col">
+        <span class="demo-col__label">راست (Right)</span>
+        <span class="tooltip" data-tooltip="اطلاعات ساده در مورد کلید" data-tooltip-position="right">
+          <button class="demo-btn demo-btn--default" type="button">متن پیشفرض</button>
+        </span>
+      </div>
+
+      <div class="demo-col">
+        <span class="demo-col__label">چپ (Left)</span>
+        <span class="tooltip" data-tooltip="اطلاعات ساده در مورد کلید" data-tooltip-position="left">
+          <button class="demo-btn demo-btn--default" type="button">متن پیشفرض</button>
+        </span>
+      </div>
+    </div>
+
+    <!-- ==========================================
+         روی آیکن — On Icon
+         ========================================== -->
+    <h2 class="demo-page__subtitle">روی آیکن — On Icon</h2>
+
+    <div class="demo-row">
+      <div class="demo-col">
+        <span class="demo-col__label">آیکن info (بالا)</span>
+        <span class="tooltip" data-tooltip="راهنمای این بخش" data-tooltip-position="top">
+          <span class="demo-icon" tabindex="0">
+            <svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.3"/><path d="M8 7V11" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><circle cx="8" cy="5" r="0.8" fill="currentColor"/></svg>
+          </span>
+        </span>
+      </div>
+
+      <div class="demo-col">
+        <span class="demo-col__label">آیکن info (راست)</span>
+        <span class="tooltip" data-tooltip="اطلاعات بیشتر" data-tooltip-position="right">
+          <span class="demo-icon" tabindex="0">
+            <svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.3"/><path d="M8 7V11" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><circle cx="8" cy="5" r="0.8" fill="currentColor"/></svg>
+          </span>
+        </span>
+      </div>
+
+      <div class="demo-col">
+        <span class="demo-col__label">آیکن info (چپ)</span>
+        <span class="tooltip" data-tooltip="توضیحات تکمیلی" data-tooltip-position="left">
+          <span class="demo-icon" tabindex="0">
+            <svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.3"/><path d="M8 7V11" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><circle cx="8" cy="5" r="0.8" fill="currentColor"/></svg>
+          </span>
+        </span>
+      </div>
+    </div>
+
+    <!-- ==========================================
+         ترکیب دکمه و آیکن — Button + Icon (مطابق Figma)
+         ========================================== -->
+    <h2 class="demo-page__subtitle">ترکیب دکمه و آیکن — مطابق Figma</h2>
+
+    <div class="demo-row demo-row--vertical">
+      <div class="demo-inline">
+        <span class="tooltip" data-tooltip="اطلاعات ساده در مورد کلید" data-tooltip-position="right">
+          <span class="demo-icon" tabindex="0">
+            <svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.3"/><path d="M8 7V11" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><circle cx="8" cy="5" r="0.8" fill="currentColor"/></svg>
+          </span>
+        </span>
+        <button class="demo-btn demo-btn--default" type="button">متن پیشفرض</button>
+      </div>
+
+      <div class="demo-inline">
+        <button class="demo-btn demo-btn--default" type="button">متن پیشفرض</button>
+        <span class="tooltip" data-tooltip="اطلاعات ساده در مورد کلید" data-tooltip-position="left">
+          <span class="demo-icon" tabindex="0">
+            <svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.3"/><path d="M8 7V11" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><circle cx="8" cy="5" r="0.8" fill="currentColor"/></svg>
+          </span>
+        </span>
+      </div>
+    </div>
+
+    <!-- ==========================================
+         رنگ‌ها — Color Variants (مطابق Figma Tooltip 2)
+         ========================================== -->
+    <h2 class="demo-page__subtitle">رنگ‌ها — Color Variants</h2>
+
+    <div class="demo-row">
+      <div class="demo-col">
+        <span class="tooltip" data-tooltip="این متن نمونه است" data-tooltip-position="top" data-tooltip-variant="primary">
+          <button class="demo-btn demo-btn--primary" type="button">primary</button>
+        </span>
+      </div>
+
+      <div class="demo-col">
+        <span class="tooltip" data-tooltip="این متن نمونه است" data-tooltip-position="top" data-tooltip-variant="secondary">
+          <button class="demo-btn demo-btn--secondary" type="button">Secondary</button>
+        </span>
+      </div>
+
+      <div class="demo-col">
+        <span class="tooltip" data-tooltip="این متن نمونه است" data-tooltip-position="top" data-tooltip-variant="success">
+          <button class="demo-btn demo-btn--success" type="button">Success</button>
+        </span>
+      </div>
+
+      <div class="demo-col">
+        <span class="tooltip" data-tooltip="این متن نمونه است" data-tooltip-position="top" data-tooltip-variant="danger">
+          <button class="demo-btn demo-btn--danger" type="button">Danger</button>
+        </span>
+      </div>
+
+      <div class="demo-col">
+        <span class="tooltip" data-tooltip="این متن نمونه است" data-tooltip-position="top" data-tooltip-variant="warning">
+          <button class="demo-btn demo-btn--warning" type="button">Warning</button>
+        </span>
+      </div>
+
+      <div class="demo-col">
+        <span class="tooltip" data-tooltip="این متن نمونه است" data-tooltip-position="top" data-tooltip-variant="info">
+          <button class="demo-btn demo-btn--info" type="button">Info</button>
+        </span>
+      </div>
+
+      <div class="demo-col">
+        <span class="tooltip" data-tooltip="این متن نمونه است" data-tooltip-position="top" data-tooltip-variant="dark">
+          <button class="demo-btn demo-btn--dark" type="button">Dark</button>
+        </span>
+      </div>
+    </div>
+
+    <!-- ==========================================
+         تأخیر — Delay
+         ========================================== -->
+    <h2 class="demo-page__subtitle">تأخیر نمایش — Delay</h2>
+
+    <div class="demo-row">
+      <div class="demo-col">
+        <span class="demo-col__label">بدون تأخیر</span>
+        <span class="tooltip" data-tooltip="بدون تأخیر" data-tooltip-position="top">
+          <button class="demo-btn demo-btn--default" type="button">فوری</button>
+        </span>
+      </div>
+
+      <div class="demo-col">
+        <span class="demo-col__label">تأخیر 500ms</span>
+        <span class="tooltip" data-tooltip="با تأخیر نیم ثانیه" data-tooltip-position="top" data-tooltip-delay="500">
+          <button class="demo-btn demo-btn--default" type="button">نیم ثانیه</button>
+        </span>
+      </div>
+
+      <div class="demo-col">
+        <span class="demo-col__label">تأخیر 1000ms</span>
+        <span class="tooltip" data-tooltip="با تأخیر یک ثانیه" data-tooltip-position="top" data-tooltip-delay="1000">
+          <button class="demo-btn demo-btn--default" type="button">یک ثانیه</button>
+        </span>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="tooltip.js"></script>
+</body>
+</html>

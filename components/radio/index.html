@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Radio Component - دمو کامپوننت رادیو</title>
+  <link rel="stylesheet" href="../colors/colors.css">
+  <link rel="stylesheet" href="../typography/typography.css">
+  <link rel="stylesheet" href="radio.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Peyda(FaNum)', sans-serif;
+      background: #f6f8fa;
+      padding: 40px 20px;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: 32px;
+      margin-bottom: 16px;
+      color: #222323;
+    }
+
+    h2 {
+      font-size: 24px;
+      margin-top: 48px;
+      margin-bottom: 24px;
+      color: #222323;
+      border-bottom: 2px solid #e2e4e6;
+      padding-bottom: 8px;
+    }
+
+    h3 {
+      font-size: 18px;
+      margin-top: 32px;
+      margin-bottom: 16px;
+      color: #59595a;
+    }
+
+    .demo-row {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .demo-item {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .demo-label {
+      font-size: 11px;
+      color: #9a9b9d;
+      font-family: monospace;
+      direction: ltr;
+      text-align: left;
+    }
+
+    .section-desc {
+      color: #59595a;
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    .demo-card {
+      background: #ffffff;
+      border: 1px solid #e2e4e6;
+      border-radius: 8px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .demo-card__title {
+      font-size: 11px;
+      color: #9a9b9d;
+      font-family: monospace;
+      direction: ltr;
+      text-align: left;
+      border-bottom: 1px solid #f0f0f0;
+      padding-bottom: 4px;
+    }
+
+    .radio-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 24px;
+      font-size: 14px;
+    }
+
+    .comparison-table th,
+    .comparison-table td {
+      padding: 12px 16px;
+      border: 1px solid #e2e4e6;
+      text-align: right;
+    }
+
+    .comparison-table th {
+      background: #f6f8fa;
+      font-weight: 500;
+      color: #222323;
+    }
+
+    .comparison-table td {
+      background: #ffffff;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <h1>Radio Component</h1>
+  <p class="section-desc">
+    گروه دکمه‌های رادیویی به افراد اجازه می‌دهند یک مورد واحد را از فهرست کوتاه انتخاب کنند.
+    از گروه رادیویی در طرح‌بندی‌هایی استفاده کنید که فضای کافی را برای فهرست کردن حداکثر پنج گزینه ارائه می‌دهند
+    یا در صورتی که مهم است کاربران بتوانند همه گزینه‌ها را همزمان مشاهده کنند.
+  </p>
+
+  <!-- ==========================================
+       1. حالت‌های Unchecked
+       ========================================== -->
+
+  <h2>۱. حالت‌های Unchecked</h2>
+  <p class="section-desc">وضعیت‌های مختلف Radio در حالت انتخاب نشده</p>
+
+  <div class="demo-row">
+    <div class="demo-item">
+      <span class="demo-label">Rest</span>
+      <label class="radio">
+        <input type="radio" class="radio__input" name="unchecked-demo" />
+        <span class="radio__box">
+          <span class="radio__circle">
+            <span class="radio__dot"></span>
+          </span>
+        </span>
+        <span class="radio__label">برچسب</span>
+      </label>
+    </div>
+    <div class="demo-item">
+      <span class="demo-label">Hover (mouse over)</span>
+      <label class="radio">
+        <input type="radio" class="radio__input" name="unchecked-demo2" />
+        <span class="radio__box">
+          <span class="radio__circle">
+            <span class="radio__dot"></span>
+          </span>
+        </span>
+        <span class="radio__label">برچسب</span>
+      </label>
+    </div>
+    <div class="demo-item">
+      <span class="demo-label">Disabled</span>
+      <label class="radio">
+        <input type="radio" class="radio__input" name="unchecked-disabled" disabled />
+        <span class="radio__box">
+          <span class="radio__circle">
+            <span class="radio__dot"></span>
+          </span>
+        </span>
+        <span class="radio__label">برچسب</span>
+      </label>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       2. حالت‌های Checked
+       ========================================== -->
+
+  <h2>۲. حالت‌های Checked</h2>
+  <p class="section-desc">وضعیت‌های مختلف Radio در حالت انتخاب شده</p>
+
+  <div class="demo-row">
+    <div class="demo-item">
+      <span class="demo-label">Checked — Rest</span>
+      <label class="radio">
+        <input type="radio" class="radio__input" name="checked-demo" checked />
+        <span class="radio__box">
+          <span class="radio__circle">
+            <span class="radio__dot"></span>
+          </span>
+        </span>
+        <span class="radio__label">برچسب</span>
+      </label>
+    </div>
+    <div class="demo-item">
+      <span class="demo-label">Checked — Hover (mouse over)</span>
+      <label class="radio">
+        <input type="radio" class="radio__input" name="checked-demo2" checked />
+        <span class="radio__box">
+          <span class="radio__circle">
+            <span class="radio__dot"></span>
+          </span>
+        </span>
+        <span class="radio__label">برچسب</span>
+      </label>
+    </div>
+    <div class="demo-item">
+      <span class="demo-label">Checked — Disabled</span>
+      <label class="radio">
+        <input type="radio" class="radio__input" name="checked-disabled" checked disabled />
+        <span class="radio__box">
+          <span class="radio__circle">
+            <span class="radio__dot"></span>
+          </span>
+        </span>
+        <span class="radio__label">برچسب</span>
+      </label>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       3. بدون Label
+       ========================================== -->
+
+  <h2>۳. بدون Label</h2>
+  <p class="section-desc">فقط کنترل دایره‌ای بدون متن برچسب</p>
+
+  <div class="demo-row">
+    <div class="demo-item">
+      <span class="demo-label">Unchecked</span>
+      <label class="radio">
+        <input type="radio" class="radio__input" name="no-label" />
+        <span class="radio__box">
+          <span class="radio__circle">
+            <span class="radio__dot"></span>
+          </span>
+        </span>
+      </label>
+    </div>
+    <div class="demo-item">
+      <span class="demo-label">Checked</span>
+      <label class="radio">
+        <input type="radio" class="radio__input" name="no-label2" checked />
+        <span class="radio__box">
+          <span class="radio__circle">
+            <span class="radio__dot"></span>
+          </span>
+        </span>
+      </label>
+    </div>
+    <div class="demo-item">
+      <span class="demo-label">Disabled</span>
+      <label class="radio">
+        <input type="radio" class="radio__input" name="no-label3" disabled />
+        <span class="radio__box">
+          <span class="radio__circle">
+            <span class="radio__dot"></span>
+          </span>
+        </span>
+      </label>
+    </div>
+    <div class="demo-item">
+      <span class="demo-label">Checked + Disabled</span>
+      <label class="radio">
+        <input type="radio" class="radio__input" name="no-label4" checked disabled />
+        <span class="radio__box">
+          <span class="radio__circle">
+            <span class="radio__dot"></span>
+          </span>
+        </span>
+      </label>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       4. Radio Group
+       ========================================== -->
+
+  <h2>۴. Radio Group</h2>
+  <p class="section-desc">چند گزینه با name مشترک — فقط یک انتخاب مجاز</p>
+
+  <h3>انتخاب رنگ</h3>
+  <div class="radio-group">
+    <label class="radio">
+      <input type="radio" class="radio__input" name="color" value="red" checked />
+      <span class="radio__box">
+        <span class="radio__circle">
+          <span class="radio__dot"></span>
+        </span>
+      </span>
+      <span class="radio__label">قرمز</span>
+    </label>
+    <label class="radio">
+      <input type="radio" class="radio__input" name="color" value="blue" />
+      <span class="radio__box">
+        <span class="radio__circle">
+          <span class="radio__dot"></span>
+        </span>
+      </span>
+      <span class="radio__label">آبی</span>
+    </label>
+    <label class="radio">
+      <input type="radio" class="radio__input" name="color" value="green" />
+      <span class="radio__box">
+        <span class="radio__circle">
+          <span class="radio__dot"></span>
+        </span>
+      </span>
+      <span class="radio__label">سبز</span>
+    </label>
+    <label class="radio">
+      <input type="radio" class="radio__input" name="color" value="yellow" disabled />
+      <span class="radio__box">
+        <span class="radio__circle">
+          <span class="radio__dot"></span>
+        </span>
+      </span>
+      <span class="radio__label">زرد (غیرفعال)</span>
+    </label>
+  </div>
+
+  <h3>انتخاب سایز</h3>
+  <div class="radio-group">
+    <label class="radio">
+      <input type="radio" class="radio__input" name="size" value="small" />
+      <span class="radio__box">
+        <span class="radio__circle">
+          <span class="radio__dot"></span>
+        </span>
+      </span>
+      <span class="radio__label">کوچک</span>
+    </label>
+    <label class="radio">
+      <input type="radio" class="radio__input" name="size" value="medium" checked />
+      <span class="radio__box">
+        <span class="radio__circle">
+          <span class="radio__dot"></span>
+        </span>
+      </span>
+      <span class="radio__label">متوسط</span>
+    </label>
+    <label class="radio">
+      <input type="radio" class="radio__input" name="size" value="large" />
+      <span class="radio__box">
+        <span class="radio__circle">
+          <span class="radio__dot"></span>
+        </span>
+      </span>
+      <span class="radio__label">بزرگ</span>
+    </label>
+  </div>
+
+  <!-- ==========================================
+       5. ماتریس state × checked
+       ========================================== -->
+
+  <h2>۵. ماتریس state × checked</h2>
+  <p class="section-desc">تمام ترکیب‌های حالت و وضعیت انتخاب</p>
+
+  <div class="demo-grid">
+    <div class="demo-card">
+      <span class="demo-card__title">Rest / Unchecked</span>
+      <label class="radio">
+        <input type="radio" class="radio__input" name="m1" />
+        <span class="radio__box"><span class="radio__circle"><span class="radio__dot"></span></span></span>
+        <span class="radio__label">برچسب</span>
+      </label>
+    </div>
+    <div class="demo-card">
+      <span class="demo-card__title">Rest / Checked</span>
+      <label class="radio">
+        <input type="radio" class="radio__input" name="m2" checked />
+        <span class="radio__box"><span class="radio__circle"><span class="radio__dot"></span></span></span>
+        <span class="radio__label">برچسب</span>
+      </label>
+    </div>
+    <div class="demo-card">
+      <span class="demo-card__title">Disabled / Unchecked</span>
+      <label class="radio">
+        <input type="radio" class="radio__input" name="m3" disabled />
+        <span class="radio__box"><span class="radio__circle"><span class="radio__dot"></span></span></span>
+        <span class="radio__label">برچسب</span>
+      </label>
+    </div>
+    <div class="demo-card">
+      <span class="demo-card__title">Disabled / Checked</span>
+      <label class="radio">
+        <input type="radio" class="radio__input" name="m4" checked disabled />
+        <span class="radio__box"><span class="radio__circle"><span class="radio__dot"></span></span></span>
+        <span class="radio__label">برچسب</span>
+      </label>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       6. پشتیبانی LTR
+       ========================================== -->
+
+  <h2>۶. پشتیبانی LTR</h2>
+  <p class="section-desc">نمایش در جهت چپ‌به‌راست</p>
+
+  <div dir="ltr" style="margin-bottom: 24px;">
+    <div class="radio-group">
+      <label class="radio">
+        <input type="radio" class="radio__input" name="ltr-group" value="opt1" checked />
+        <span class="radio__box"><span class="radio__circle"><span class="radio__dot"></span></span></span>
+        <span class="radio__label">Option 1</span>
+      </label>
+      <label class="radio">
+        <input type="radio" class="radio__input" name="ltr-group" value="opt2" />
+        <span class="radio__box"><span class="radio__circle"><span class="radio__dot"></span></span></span>
+        <span class="radio__label">Option 2</span>
+      </label>
+      <label class="radio">
+        <input type="radio" class="radio__input" name="ltr-group" value="opt3" disabled />
+        <span class="radio__box"><span class="radio__circle"><span class="radio__dot"></span></span></span>
+        <span class="radio__label">Option 3 (Disabled)</span>
+      </label>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       7. جدول رنگ‌ها
+       ========================================== -->
+
+  <h2>۷. جدول رنگ‌ها</h2>
+
+  <table class="comparison-table">
+    <thead>
+      <tr>
+        <th>State</th>
+        <th>Unchecked (border)</th>
+        <th>Checked (border + dot)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Rest</td>
+        <td><code>#626364</code></td>
+        <td><code>#26a88c</code></td>
+      </tr>
+      <tr>
+        <td>Hover</td>
+        <td><code>#59595a</code></td>
+        <td><code>#1d836d</code></td>
+      </tr>
+      <tr>
+        <td>Pressed</td>
+        <td><code>#4f4f50</code></td>
+        <td><code>#155e4e</code></td>
+      </tr>
+      <tr>
+        <td>Disabled</td>
+        <td><code>#bbbcbe</code></td>
+        <td><code>#bbbcbe</code></td>
+      </tr>
+      <tr>
+        <td>Focus Ring</td>
+        <td colspan="2"><code>#222323</code> (border روی wrapper)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ==========================================
+       8. CSS Classes
+       ========================================== -->
+
+  <h2>۸. CSS Classes</h2>
+
+  <table class="comparison-table">
+    <thead>
+      <tr>
+        <th>کلاس</th>
+        <th>توضیح</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><code>radio</code></td><td>کلاس پایه (روی <code>&lt;label&gt;</code> wrapper)</td></tr>
+      <tr><td><code>radio__input</code></td><td>input بومی مخفی (<code>&lt;input type="radio"&gt;</code>)</td></tr>
+      <tr><td><code>radio__label</code></td><td>متن برچسب (اختیاری)</td></tr>
+      <tr><td><code>radio__box</code></td><td>کانتینر دایره (25px × 25px)</td></tr>
+      <tr><td><code>radio__circle</code></td><td>دایره بیرونی (17px، border)</td></tr>
+      <tr><td><code>radio__dot</code></td><td>نقطه داخلی (9px، فقط در checked)</td></tr>
+      <tr><td><code>radio--disabled</code></td><td>حالت غیرفعال (fallback برای :has())</td></tr>
+    </tbody>
+  </table>
+
+  <!-- ==========================================
+       9. نحوه استفاده
+       ========================================== -->
+
+  <h2>۹. نحوه استفاده</h2>
+
+  <h3>Radio تکی با Label</h3>
+  <pre dir="ltr" style="background:#fff;border:1px solid #e2e4e6;border-radius:8px;padding:16px;overflow-x:auto;font-size:13px;line-height:1.6;margin-bottom:16px;"><code>&lt;label class="radio"&gt;
+  &lt;input type="radio" class="radio__input" name="group" /&gt;
+  &lt;span class="radio__box"&gt;
+    &lt;span class="radio__circle"&gt;
+      &lt;span class="radio__dot"&gt;&lt;/span&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  &lt;span class="radio__label"&gt;برچسب&lt;/span&gt;
+&lt;/label&gt;</code></pre>
+
+  <h3>Radio بدون Label</h3>
+  <pre dir="ltr" style="background:#fff;border:1px solid #e2e4e6;border-radius:8px;padding:16px;overflow-x:auto;font-size:13px;line-height:1.6;margin-bottom:16px;"><code>&lt;label class="radio"&gt;
+  &lt;input type="radio" class="radio__input" name="group" /&gt;
+  &lt;span class="radio__box"&gt;
+    &lt;span class="radio__circle"&gt;
+      &lt;span class="radio__dot"&gt;&lt;/span&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+&lt;/label&gt;</code></pre>
+
+  <h3>Radio Group</h3>
+  <pre dir="ltr" style="background:#fff;border:1px solid #e2e4e6;border-radius:8px;padding:16px;overflow-x:auto;font-size:13px;line-height:1.6;margin-bottom:16px;"><code>&lt;!-- name مشترک = فقط یک انتخاب --&gt;
+&lt;label class="radio"&gt;
+  &lt;input type="radio" class="radio__input" name="options" value="a" checked /&gt;
+  &lt;span class="radio__box"&gt;&lt;span class="radio__circle"&gt;&lt;span class="radio__dot"&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+  &lt;span class="radio__label"&gt;گزینه اول&lt;/span&gt;
+&lt;/label&gt;
+
+&lt;label class="radio"&gt;
+  &lt;input type="radio" class="radio__input" name="options" value="b" /&gt;
+  &lt;span class="radio__box"&gt;&lt;span class="radio__circle"&gt;&lt;span class="radio__dot"&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+  &lt;span class="radio__label"&gt;گزینه دوم&lt;/span&gt;
+&lt;/label&gt;
+
+&lt;label class="radio"&gt;
+  &lt;input type="radio" class="radio__input" name="options" value="c" disabled /&gt;
+  &lt;span class="radio__box"&gt;&lt;span class="radio__circle"&gt;&lt;span class="radio__dot"&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+  &lt;span class="radio__label"&gt;گزینه سوم (غیرفعال)&lt;/span&gt;
+&lt;/label&gt;</code></pre>
+
+</div>
+
+</body>
+</html>
