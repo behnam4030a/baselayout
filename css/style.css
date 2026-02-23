@@ -388,7 +388,6 @@ img { display: block; max-width: 100%; }
   overflow: hidden;
   opacity: 0;
   height: 0;
-  transition-delay: 0ms; /* no delay when closing */
 }
 
 .subscription-icon { color: #fff; flex-shrink: 0; }
@@ -400,7 +399,7 @@ img { display: block; max-width: 100%; }
   align-items: flex-start; /* RTL column: flex-start = inline-start = RIGHT side */
   gap: 4px;
   min-width: 0;
-  transition-delay: 300ms; /* show text only after sidebar open animation completes */
+  max-width: 200px; /* explicit value enables CSS to animate 0→200px on open, mirroring 200px→0 on close */
 }
 
 .subscription-label {
