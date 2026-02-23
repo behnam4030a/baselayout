@@ -65,7 +65,6 @@ function initSidebarToggle() {
       $sidebar.classList.remove('mini', 'peek');
       $sidebarSlot.classList.remove('mini');
       document.documentElement.style.setProperty('--current-sidebar-w', '280px');
-      _showSubAfterOpen();
     } else {
       state.sidebarMini = !state.sidebarMini;
       $sidebar.classList.toggle('mini', state.sidebarMini);
@@ -74,25 +73,12 @@ function initSidebarToggle() {
         '--current-sidebar-w',
         state.sidebarMini ? '72px' : '280px'
       );
-      if (state.sidebarMini) {
-        // Going mini: hide text immediately
-        $sidebar.classList.remove('sub-visible');
-        if (state.openDrawerId) closeSubDrawer();
-      } else {
-        // Going open: show text only after sidebar width animation ends
-        _showSubAfterOpen();
+      // Close any open drawer when going mini
+      if (state.openDrawerId && state.sidebarMini) {
+        closeSubDrawer();
       }
     }
   });
-
-  function _showSubAfterOpen() {
-    $sidebar.addEventListener('transitionend', function handler(e) {
-      if (e.target === $sidebar && e.propertyName === 'width') {
-        if (!state.sidebarMini) $sidebar.classList.add('sub-visible');
-        $sidebar.removeEventListener('transitionend', handler);
-      }
-    });
-  }
 
   // Hover: expand sidebar as overlay when in mini mode (peek)
   $sidebar.addEventListener('mouseenter', () => {

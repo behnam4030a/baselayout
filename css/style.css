@@ -399,12 +399,7 @@ img { display: block; max-width: 100%; }
   align-items: flex-start; /* RTL column: flex-start = inline-start = RIGHT side */
   gap: 4px;
   min-width: 0;
-  opacity: 0;
-  transition: opacity 200ms ease-in-out;
-}
-/* Show text only when sidebar has finished opening */
-.sidebar.sub-visible .subscription-info {
-  opacity: 1;
+  max-width: 200px; /* explicit value enables CSS to animate 0→200px on open, mirroring 200px→0 on close */
 }
 
 .subscription-label {
