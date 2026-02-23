@@ -153,8 +153,8 @@ img { display: block; max-width: 100%; }
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 34px;
+  height: 34px;
   background: var(--sidebar-bg-2);
   border-radius: var(--radius-full);
   color: var(--sidebar-text);
@@ -192,12 +192,11 @@ img { display: block; max-width: 100%; }
 
 /* Mini: toggle slides outside sidebar to the left */
 .sidebar.mini .sidebar-toggle {
-    left: calc(-1 * (10px + 8px));
-    top: 51px;
-    transform: rotate(180deg); /* Flip icon direction in mini mode */
+    left: calc(-1 * (3px + 8px));
+    top: 56px;
+    transform: rotate(180deg);
     transition: all 0.3s;
 }
-
 /* --- Divider --- */
 .sidebar-divider {
   height: 1px;
