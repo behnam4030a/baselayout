@@ -1154,6 +1154,8 @@ img { display: block; max-width: 100%; }
     border-radius: var(--radius-card);
     cursor: pointer;
     transition: background var(--transition);
+    text-decoration: none;
+    color: inherit;
 }
 .sub-drawer-item:hover { background: var(--page-bg); }
 
