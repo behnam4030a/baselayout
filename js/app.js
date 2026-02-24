@@ -15,6 +15,7 @@ const state = {
   openDrawerId: null,        // which sub-drawer is open (desktop and mobile)
   mobileDrawerOpen: false,
   mobileProfileOpen: false,
+  userDropdownOpen: false,
 };
 
 /* ===================================================
@@ -28,6 +29,7 @@ let $mobileDrawer, $mobileDrawerBack;
 let $mobileBackdrop;
 let $headerUser;
 let $mobileProfileSheet;
+let $userDropdownPopup;
 
 /* ===================================================
    SIDEBAR + MOBILE MENU EVENT DELEGATION
@@ -252,25 +254,47 @@ function closeMobileProfile() {
   document.body.style.overflow = '';
 }
 
+function openUserDropdown() {
+  state.userDropdownOpen = true;
+  $userDropdownPopup.classList.add('open');
+  $userDropdownPopup.setAttribute('aria-hidden', 'false');
+}
+
+function closeUserDropdown() {
+  state.userDropdownOpen = false;
+  $userDropdownPopup.classList.remove('open');
+  $userDropdownPopup.setAttribute('aria-hidden', 'true');
+}
+
 function initUserDropdown() {
-  // Wire header avatar click → unified profile panel
   $headerUser.addEventListener('click', e => {
     e.stopPropagation();
-    if (state.mobileProfileOpen) {
-      closeMobileProfile();
+    if (window.innerWidth >= 1024) {
+      // Desktop: toggle compact dropdown popup
+      if (state.userDropdownOpen) {
+        closeUserDropdown();
+      } else {
+        closeSubDrawer();
+        openUserDropdown();
+      }
     } else {
-      closeSubDrawer();
-      openMobileProfile();
+      // Mobile: toggle full-screen sheet
+      if (state.mobileProfileOpen) {
+        closeMobileProfile();
+      } else {
+        closeSubDrawer();
+        openMobileProfile();
+      }
     }
   });
 
-  // Stop clicks inside the panel from closing it
-  $mobileProfileSheet.addEventListener('click', e => {
-    e.stopPropagation();
-  });
+  // Stop clicks inside panels from closing them
+  $userDropdownPopup.addEventListener('click', e => { e.stopPropagation(); });
+  $mobileProfileSheet.addEventListener('click', e => { e.stopPropagation(); });
 
-  // Click outside → close (desktop dropdown behaviour)
+  // Click outside → close
   document.addEventListener('click', () => {
+    if (state.userDropdownOpen) closeUserDropdown();
     if (state.mobileProfileOpen && window.innerWidth >= 1024) closeMobileProfile();
   });
 }
@@ -281,6 +305,7 @@ function initUserDropdown() {
 function closeAllMobilePanels() {
   if (state.mobileDrawerOpen)  closeMobileDrawer();
   if (state.mobileProfileOpen) closeMobileProfile();
+  if (state.userDropdownOpen)  closeUserDropdown();
   Modal.closeAll();
 }
 
@@ -367,9 +392,10 @@ function initBackdrops() {
 function initKeyboard() {
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') {
+      if (state.userDropdownOpen)  { closeUserDropdown(); return; }
       if (state.mobileProfileOpen) { closeMobileProfile(); return; }
-      if (state.openDrawerId) { closeSubDrawer(); return; }
-      if (state.mobileDrawerOpen) { closeMobileDrawer(); return; }
+      if (state.openDrawerId)      { closeSubDrawer(); return; }
+      if (state.mobileDrawerOpen)  { closeMobileDrawer(); return; }
     }
   });
 }
@@ -734,8 +760,9 @@ document.addEventListener('DOMContentLoaded', () => {
   $mobileDrawer    = document.getElementById('mobileDrawer');
   $mobileDrawerBack = document.getElementById('mobileDrawerBack');
   $mobileBackdrop  = document.getElementById('mobileBackdrop');
-  $headerUser      = document.querySelector('.header-user');
+  $headerUser         = document.querySelector('.header-user');
   $mobileProfileSheet = document.getElementById('mobileProfileSheet');
+  $userDropdownPopup  = document.getElementById('userDropdownPopup');
 
   // Wire nav interactions
   initSidebarNav();

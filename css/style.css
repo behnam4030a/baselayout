@@ -574,6 +574,15 @@ img { display: block; max-width: 100%; }
   padding: 2px;
 }
 .user-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%;}
+.user-avatar--inactive {
+  width: 41px;
+  height: 41px;
+  border-color: var(--stroke);
+  background: var(--page-bg);
+  color: var(--text-2);
+  font-size: 15px;
+  font-weight: 500;
+}
 
 .user-avatar-verified {
   position: absolute;
@@ -846,8 +855,20 @@ img { display: block; max-width: 100%; }
   padding: 0 8px;
   cursor: pointer;
 }
-.mobile-profile-account-row.is-active { position: relative;; }
+.mobile-profile-account-row.is-active { position: relative; }
 .mobile-profile-account-check {
+    width: 28px;
+    height: 28px;
+    border-radius: var(--radius-card);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    position: absolute;
+    overflow: hidden;
+    left: 10px;
+}
+.mobile-profile-account-check-inner {
   width: 18px;
   height: 18px;
   border-radius: var(--radius-full);
@@ -856,8 +877,6 @@ img { display: block; max-width: 100%; }
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  position: absolute;
-  left: 10px;
 }
 .mobile-profile-account-details {
   display: flex;
@@ -868,6 +887,17 @@ img { display: block; max-width: 100%; }
 .mobile-profile-account-role { font-size: 12px; color: var(--text-2); }
 
 .mobile-profile-account-divider { height: 1px; background: var(--stroke); margin: 0 8px; }
+.mobile-profile-add-icon {
+  width: 41px;
+  height: 41px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--stroke);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--text-1);
+}
 .mobile-profile-add-account {
     display: flex;
     align-items: center;
@@ -902,6 +932,160 @@ img { display: block; max-width: 100%; }
   justify-content: flex-end;
 }
 .mobile-profile-logout-btn:hover { background: var(--page-bg); }
+
+/* ===================================================
+   DESKTOP USER DROPDOWN POPUP
+   =================================================== */
+.user-dropdown-popup {
+  position: fixed;
+  top: calc(var(--header-h) + 20px);
+  left: 16px;
+  width: 250px;
+  background: var(--card-bg);
+  border-radius: var(--radius-card);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+  z-index: 400;
+  opacity: 0;
+  transform: translateY(-8px);
+  pointer-events: none;
+  transition: transform var(--transition), opacity var(--transition);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding-bottom: 16px;
+}
+.user-dropdown-popup.open {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: all;
+}
+/* Override avatar size inside dropdown */
+.user-dropdown-popup .user-avatar {
+  width: 41px;
+  height: 41px;
+  flex-shrink: 0;
+}
+.user-dropdown-box {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-top: 16px;
+}
+.user-dropdown-section-title {
+  padding: 0 24px 8px;
+  font-size: 13px;
+  color: var(--text-2);
+  text-align: right;
+}
+.user-dropdown-account {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 24px;
+  cursor: pointer;
+  transition: background var(--transition);
+}
+.user-dropdown-account:hover { background: var(--page-bg); }
+/* Active row: permanent bg + space-between for checkmark */
+.user-dropdown-account.is-active {
+  background: var(--page-bg);
+  justify-content: space-between;
+}
+.user-dropdown-account.is-active:hover { background: var(--page-bg); }
+/* Active checkmark badge */
+.user-dropdown-check {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.user-dropdown-check-inner {
+  width: 18px;
+  height: 18px;
+  border-radius: var(--radius-full);
+  background: var(--brand);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.user-dropdown-account-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+}
+.user-dropdown-account-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-1);
+  text-align: right;
+}
+.user-dropdown-account-role {
+  font-size: 12px;
+  color: var(--text-2);
+  text-align: right;
+}
+.user-dropdown-add-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 24px;
+  height: 45px;
+  cursor: pointer;
+  transition: background var(--transition);
+}
+.user-dropdown-add-row:hover { background: var(--page-bg); }
+.user-dropdown-add-label {
+  flex: 1;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-1);
+  text-align: right;
+}
+.user-dropdown-add-icon {
+  width: 41px;
+  height: 41px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--stroke);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--text-1);
+}
+/* Dividers: horizontal margin on both sides */
+.user-dropdown-divider {
+  height: 1px;
+  background: var(--stroke);
+  margin: 8px 16px;
+}
+/* Actions: hover on full-width wrapper */
+.user-dropdown-actions {
+  cursor: pointer;
+  transition: background var(--transition);
+}
+.user-dropdown-actions:hover { background: var(--page-bg); }
+.user-dropdown-action-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  height: 45px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-1);
+  padding: 0 24px;
+  cursor: pointer;
+}
+
+/* Mobile: hide desktop dropdown */
+@media (max-width: 1023px) {
+  .user-dropdown-popup { display: none; }
+}
 
 /* ===================================================
    PAGE CONTENT
