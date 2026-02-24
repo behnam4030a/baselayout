@@ -121,7 +121,7 @@ img { display: block; max-width: 100%; }
   overflow: visible; /* Allow toggle button to protrude from sidebar edge in mini mode */
   transition: width var(--transition);
   /* Sidebar stays ABOVE the desktop backdrop */
-  z-index: 400;
+  z-index: 700;
 }
 
 .sidebar.mini { width: var(--sidebar-mini-w); justify-content: center; }
@@ -136,7 +136,7 @@ img { display: block; max-width: 100%; }
   top: var(--sidebar-gap);
   height: calc(100vh - calc(var(--sidebar-gap) * 2));
   width: var(--sidebar-w);
-  z-index: 500;
+  z-index: 700;
   justify-content: flex-start;
   box-shadow: -8px 0 32px rgba(0,0,0,0.35);
 }
@@ -601,7 +601,6 @@ img { display: block; max-width: 100%; }
 .user-info {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
   gap: 1px;
 }
 .user-name { font-size: 15px; font-weight: 500; color: var(--text-1); line-height: 1.5; }
@@ -1093,8 +1092,6 @@ img { display: block; max-width: 100%; }
 .page-content {
   flex: 1;
   border-radius: var(--radius-card);
-  background: var(--card-bg);
-  padding: 24px;
   min-height: 400px;
   box-shadow: var(--shadow-card);
 }
@@ -1251,7 +1248,6 @@ img { display: block; max-width: 100%; }
   align-items: flex-start;
   justify-content: space-around;
   padding: 14px 16px 0;
-  border-radius:  0 0 16px 16px;
 }
 
 .bottom-nav-pattern {
@@ -1342,7 +1338,8 @@ img { display: block; max-width: 100%; }
     display: none;
     position: fixed;
     top: 0;
-    height: 88%;
+    border-bottom: 2px solid #fff;
+    height: calc(100% - 80px);
     right: 0;
     width: 100%;
     background: var(--sidebar-bg);
@@ -1629,6 +1626,8 @@ img { display: block; max-width: 100%; }
     background: transparent;
     border-radius: 0;
   }
+.modal--notif { --modal-width: 100%; }
+
 }
 
 /* Tabs */

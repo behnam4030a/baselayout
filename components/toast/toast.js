@@ -38,14 +38,14 @@
     neutral: 'status'
   };
 
-  /* --- استایل‌های موقعیت container --- */
-  var POSITION_STYLES = {
-    'top-left':      'position:fixed;top:24px;left:24px;display:flex;flex-direction:column;gap:12px;z-index:1000;',
-    'top-center':    'position:fixed;top:24px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;gap:12px;z-index:1000;',
-    'top-right':     'position:fixed;top:24px;right:24px;display:flex;flex-direction:column;gap:12px;z-index:1000;',
-    'bottom-left':   'position:fixed;bottom:24px;left:24px;display:flex;flex-direction:column-reverse;gap:12px;z-index:1000;',
-    'bottom-center': 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column-reverse;gap:12px;z-index:1000;',
-    'bottom-right':  'position:fixed;bottom:24px;right:24px;display:flex;flex-direction:column-reverse;gap:12px;z-index:1000;'
+  /* --- موقعیت‌های معتبر container (استایل‌ها در toast.css تعریف شده‌اند) --- */
+  var VALID_POSITIONS = {
+    'top-left': true,
+    'top-center': true,
+    'top-right': true,
+    'bottom-left': true,
+    'bottom-center': true,
+    'bottom-right': true
   };
 
   var DEFAULT_POSITION = 'top-left';
@@ -56,15 +56,14 @@
    * @returns {HTMLElement}
    */
   function getContainer(position) {
-    var pos = POSITION_STYLES[position] ? position : DEFAULT_POSITION;
+    var pos = VALID_POSITIONS[position] ? position : DEFAULT_POSITION;
     var id = 'toast-container--' + pos;
     var container = document.getElementById(id);
 
     if (!container) {
       container = document.createElement('div');
       container.id = id;
-      container.className = 'toast-container';
-      container.style.cssText = POSITION_STYLES[pos];
+      container.className = 'toast-container toast-container--' + pos;
       document.body.appendChild(container);
     }
 

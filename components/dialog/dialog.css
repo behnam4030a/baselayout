@@ -402,15 +402,21 @@
     gap: 12px;
   }
 
+
+
   /* Both buttons full width — danger on top (first in DOM) */
-  .dialog__btn--danger {
+  .dialog__btn {
+    flex: none;
     width: 100%;
+  }
+
+  .dialog__btn--danger {
     min-width: unset;
   }
 
-  .dialog__btn--primary {
+  /* Fix single action: override flex: 1 in column direction */
+  .dialog__actions--single .dialog__btn {
     flex: none;
-    width: 100%;
   }
 }
 

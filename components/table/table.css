@@ -254,7 +254,6 @@
   outline: none;
   background: none;
   font-family: var(--typo-font-family);
-  font-size: var(--typo-body-medium-200-size);
   font-weight: var(--typo-body-medium-200-weight);
   color: var(--table-primary-text);
   line-height: var(--typo-body-medium-200-line-height);
@@ -1558,15 +1557,15 @@
   }
 
   /* --- Mobile Search + Filter Row --- */
-  .table__search {
+.table__search {
     background: transparent;
     border: none;
     border-radius: 0;
     padding: 0;
     height: auto;
     gap: 4px;
-  }
-
+    flex-direction: row-reverse;
+}
   .table__search--focused {
     border-bottom: none;
   }
@@ -1576,25 +1575,24 @@
   }
 
   /* Search inner wrapper (created by JS on mobile) */
-  .table__search-inner {
+.table__search-inner {
     display: flex;
     flex: 1 1 0;
     min-width: 0;
     align-items: center;
     height: var(--table-search-height);
     background: var(--table-white);
-    border: 1px solid var(--table-stroke);
-    border-radius: var(--table-radius);
     padding: 0 var(--table-cell-padding-x);
     gap: var(--table-btn-gap);
-  }
+    border-bottom-right-radius: 8px;
+}
 
   /* Filter button next to search (moved by JS) */
   .table__search .table__btn--filter {
     flex-shrink: 0;
     background: var(--table-white);
     border: none;
-    border-radius: var(--table-radius);
+    border-bottom-left-radius: 8px;
     height: var(--table-search-height);
     padding: 0 16px;
   }

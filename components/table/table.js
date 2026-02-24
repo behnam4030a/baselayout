@@ -308,11 +308,11 @@
       var countEl = actionBar.querySelector('.table__action-count-text');
       if (countEl) countEl.textContent = toPersianNum(selected.length) + ' \u0631\u062F\u06CC\u0641 \u0627\u0646\u062A\u062E\u0627\u0628 \u0634\u062F\u0647';
 
-      if (isMobile() && state.actionBarDismissed) {
-        // User dismissed the bottom sheet; don't re-show until re-triggered
-      } else {
+      if (!isMobile()) {
+        // Desktop: نمایش خودکار action bar
         actionBar.classList.add('table__action-bar--visible');
       }
+      // Mobile: action bar فقط با کلیک دکمه فعالیت گروهی نمایش داده می‌شود
     } else {
       actionBar.classList.remove('table__action-bar--visible');
       state.actionBarDismissed = false;
