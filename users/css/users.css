@@ -121,17 +121,29 @@
 
 /* ----- Modal: اعطای دسترسی به مدیران ----- */
 
+#users-access-modal {
+  --modal-width: 600px;
+}
+
 #users-access-modal .modal__body {
   justify-content: flex-start;
   gap: 16px;
+  overflow: hidden;
 }
 
 .users-access-modal__toolbar {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 4px;
   width: 100%;
-  flex-wrap: wrap;
+}
+
+.users-access-modal__row2 {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+  flex-direction: row-reverse;
 }
 
 .users-access-modal__level-select {
@@ -146,11 +158,12 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  min-height: 170px;
+  min-height: 270px;
   border: 1.5px dashed var(--stroke);
   border-radius: 4px;
   padding: 24px;
   text-align: center;
+  width: 100%;
 }
 
 .users-access-modal__empty-title {
@@ -173,8 +186,17 @@
     align-items: stretch;
   }
 
-  .users-access-modal__level-select {
+  .users-access-modal__row2 {
     width: 100%;
+  }
+
+  .users-access-modal__row2 .btn {
+    flex: 1;
+  }
+
+  .users-access-modal__level-select {
+    flex: 1;
+    width: auto;
   }
 }
 
@@ -189,9 +211,9 @@
 #users-add-group-modal .modal__content {
   flex: 1;
   min-height: 0;
-  overflow-y: auto;
+  overflow: hidden;
   gap: 12px;
-  padding-bottom: 8px;
+  padding-bottom: 0;
 }
 
 #users-add-group-modal .modal__actions {
@@ -199,17 +221,15 @@
   border-top: 1px solid var(--stroke);
 }
 
-.users-add-group-modal__toolbar {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  width: 100%;
+#users-add-group-modal .users-add-group-modal__list {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding-bottom: 8px;
 }
+#users-add-exam-modal .input__container {
+  height: 45px;
 
-.users-add-group-modal__actions-select {
-  width: 160px;
-  min-width: 0;
-  flex-shrink: 0;
 }
 
 .users-add-group-modal__list {
@@ -219,6 +239,7 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+  width: 100%;
 }
 
 .users-add-group-modal__item {
@@ -233,39 +254,28 @@
   user-select: none;
 }
 
+.users-add-group-modal__item[hidden] {
+  display: none;
+}
+
 .users-add-group-modal__item:hover {
   background: #edf0f2;
 }
-
-.users-add-group-modal__item--selected {
-  background: var(--brand-light);
-}
-
-.users-add-group-modal__item--selected:hover {
-  background: rgba(63, 194, 166, 0.22);
-}
-
 .users-add-group-modal__item-name {
   font-size: 14px;
   font-weight: 400;
   color: var(--text-1);
   line-height: 1.5;
+  display: list-item;
+  list-style-type: disc;
+  margin-inline-start: 20px;
 }
 
 .users-add-group-modal__item-action {
   display: flex;
   align-items: center;
   flex-shrink: 0;
-}
-
-@media (max-width: 767px) {
-  .users-add-group-modal__toolbar {
-    flex-wrap: wrap;
-  }
-
-  .users-add-group-modal__actions-select {
-    width: 100%;
-  }
+  padding-inline-end: 12px;
 }
 
 /* ---------------------------------------------------------------
@@ -310,6 +320,7 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+  width: 100%;
 }
 
 /* ---- Exam item ---- */
@@ -321,6 +332,10 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
+}
+
+.exam-bulk__item[hidden] {
+  display: none;
 }
 
 .exam-bulk__item-header {
@@ -335,7 +350,7 @@
   display: flex;
   align-items: center;
   flex-shrink: 0;
-  padding-inline-start: 12px;
+  padding-inline-end: 12px;
   opacity: 0;
   transition: opacity var(--transition);
 }
@@ -353,15 +368,16 @@
   line-height: 1.5;
   display: list-item;
   list-style-type: disc;
-  margin-inline-end: 20px;
+  margin-inline-start: 20px;
 }
 
 /* ---- Plans row ---- */
 
 .exam-bulk__item-plans {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-direction: row-reverse;
 }
 
 /* ---- Plan button ---- */
@@ -371,6 +387,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-direction: row-reverse;
   height: 35px;
   padding: 0 12px;
   border-radius: var(--radius-btn);
@@ -382,11 +399,6 @@
   color: var(--text-2);
   background: var(--card-bg);
   transition: background var(--transition), border-color var(--transition), color var(--transition);
-}
-
-/* No plan selected on this item → gray bg */
-.exam-bulk__item:not(.exam-bulk__item--has-plan) .exam-bulk__plan {
-  background: var(--page-bg);
 }
 
 /* Active/selected plan → green */
@@ -403,6 +415,7 @@
   align-items: center;
   gap: 3px;
   flex-shrink: 0;
+  flex-direction: row-reverse;
 }
 
 .exam-bulk__plan-label {
@@ -410,6 +423,7 @@
   align-items: center;
   gap: 4px;
   flex-shrink: 0;
+  flex-direction: row-reverse;
 }
 
 .exam-bulk__plan-icon {
@@ -446,6 +460,7 @@
   gap: 8px;
   font-size: 14px;
   color: var(--text-1);
+  flex-direction: row-reverse;
 }
 
 .exam-bulk__summary-price {
@@ -453,6 +468,7 @@
   align-items: center;
   gap: 3px;
   font-weight: 400;
+  flex-direction: row-reverse;
 }
 
 .exam-bulk__summary-dot {
@@ -463,7 +479,6 @@
 
 @media (max-width: 767px) {
   .exam-bulk__summary {
-    flex-direction: column;
     align-items: flex-end;
     gap: 6px;
     padding: 10px 12px;
@@ -482,10 +497,29 @@
   --modal-width: 500px;
 }
 
-/* Mobile container offset for bottom nav */
 @media (max-width: 1023px) {
-  #add-user-modal .modal__container {
-    bottom: calc(var(--bottom-nav-h) + 8px);
+  #add-user-modal .modal__container,
+  #add-user-modal .modal__expanded {
+    bottom: 8px;
+  }
+}
+
+/* Mobile: form content scrollable; submit button pinned at bottom */
+@media (max-width: 767px) {
+  #add-user-modal .modal__body {
+    justify-content: flex-start;
+    overflow: hidden;
+  }
+
+  #add-user-modal .modal__content {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+  }
+
+  #add-user-modal .modal__expanded-inner {
+    padding: 16px;
+    gap: 16px;
   }
 }
 
@@ -494,22 +528,53 @@
 .add-user-divider {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 4px;
+  padding: 8px 0;
   width: 100%;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-2);
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
-.add-user-divider__line {
+.add-user-divider::before {
+  content: '';
+  width: 8px;
+  flex-shrink: 0;
+  height: 1px;
+  background: var(--stroke);
+}
+
+.add-user-divider::after {
+  content: '';
   flex: 1;
   height: 1px;
   background: var(--stroke);
 }
 
-.add-user-divider__text {
+/* ---- Field label row (label + price meta) ---- */
+
+.add-user-field-label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.add-user-field-meta {
+  display: flex;
+  align-items: center;
+  gap: 4px;
   font-size: 12px;
   font-weight: 400;
   color: var(--text-2);
-  white-space: nowrap;
-  flex-shrink: 0;
+}
+
+.add-user-field-meta__icon {
+  display: flex;
+  align-items: center;
+  color: var(--text-2);
 }
 
 /* ---- Select Trigger Buttons (آزمون / گروه) ---- */
@@ -605,7 +670,6 @@
   height: 100%;
   flex-shrink: 0;
   color: var(--text-2);
-  border-right: 1px solid var(--stroke);
 }
 
 .add-user-trigger__chevron svg {
@@ -745,28 +809,60 @@
   display: flex;
   align-items: center;
   gap: 8px;
+  flex-direction: row-reverse;
   width: 100%;
 }
 
 .add-user-group-toolbar__create-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
   width: 160px;
   flex-shrink: 0;
+  height: 44px;
+  padding: 0 16px;
+  background: var(--card-bg);
+  border: 1px solid var(--stroke);
+  border-radius: var(--radius-btn);
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--text-1);
   cursor: pointer;
+  transition: border-color var(--transition);
+  flex-direction: row-reverse;
 }
 
-.add-user-group-toolbar__create-btn .input__field {
-  cursor: pointer;
+.add-user-group-toolbar__create-btn:hover {
+  border-color: var(--text-2);
+}
+
+.add-user-group-toolbar__create-chevron {
+  flex-shrink: 0;
+  color: var(--text-2);
+  transition: transform var(--transition);
+  line-height: 0;
+  transform: rotate(180deg);
+}
+
+.add-user-group-toolbar__create-btn--open .add-user-group-toolbar__create-chevron {
+  transform: rotate(0deg);
 }
 
 /* ---- Create Group Form ---- */
 
 .add-user-group-create-form {
-  display: flex;
+  display: none;
   flex-direction: column;
   gap: 8px;
   border: 1.5px dashed var(--stroke);
   border-radius: var(--radius-card);
-  padding: 14px;
+  padding: 16px;
+}
+
+.add-user-group-create-form.is-open {
+  display: flex;
+  width: 100%;
 }
 
 .add-user-group-create-form__label {
@@ -776,12 +872,28 @@
 }
 
 .add-user-group-create-form__submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
-  height: 33px;
+  height: 37px;
   padding: 0 12px;
-  font-size: 13px;
-  border-radius: calc(var(--radius-btn) - 2px);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--brand);
+  background: var(--brand-light);
+  border: none;
+  border-radius: var(--radius-btn);
   margin-inline-end: 4px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background var(--transition);
+  position: absolute;
+  left: 0;
+}
+
+.add-user-group-create-form__submit:hover {
+  background: rgba(63, 194, 166, 0.25);
 }
 
 /* ---- Group List ---- */
@@ -840,6 +952,21 @@
 
   .add-user-group-toolbar__create-btn {
     width: 100%;
+    order: 1;
+    justify-content: center;
+  }
+
+  /* Confirm items: tighter spacing on mobile */
+  .confirm-item__icon-holder {
+    width: 56px;
+  }
+
+  .confirm-item__body {
+    padding: 12px 16px;
+  }
+
+  .confirm-item__chevron {
+    margin-inline-end: 16px;
   }
 }
 
@@ -863,10 +990,13 @@
 }
 
 @media (max-width: 1023px) {
-  .modal--bulk-import .modal__container {
-    bottom: calc(var(--bottom-nav-h) + 8px);
+  .modal--bulk-import .modal__container,
+  .modal--bulk-import .modal__expanded {
+    bottom: 8px;
   }
+}
 
+@media (max-width: 1023px) {
   .modal--bulk-import .modal__expanded {
     width: 100%;
     max-width: calc(100vw - 16px);
@@ -887,6 +1017,7 @@
   align-items: center;
 }
 
+
 .bulk-import__icon-holder {
   width: 54px;
   height: 54px;
@@ -900,7 +1031,7 @@
 }
 
 .bulk-import__title {
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 600;
   color: #ffffff;
   margin: 0;
@@ -910,10 +1041,12 @@
 
 .bulk-import__stepper {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   width: 100%;
-  overflow-x: auto;
   scrollbar-width: none;
+  border-bottom: 1px dashed var(--stroke);
+  padding: 16px;
+  box-sizing: border-box;
 }
 
 .bulk-import__stepper::-webkit-scrollbar {
@@ -929,31 +1062,29 @@
 }
 
 .bulk-import__step-dot {
-  width: 32px;
-  height: 32px;
+  width: 25px;
+  height: 25px;
   border-radius: var(--radius-full);
-  border: 2px solid var(--stroke);
-  background: var(--card-bg);
+  border: 1px solid #e2e4e6;
+  background: var(--page-bg);
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: border-color var(--transition), background var(--transition);
+  transition: border-color var(--transition), background var(--transition), box-shadow var(--transition);
 }
 
-.bulk-import__step-num {
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--text-2);
-  transition: color var(--transition);
-}
-
-.bulk-import__step-check {
-  display: none;
+.bulk-import__step-inner-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+  background: #e2e4e6;
+  transition: background var(--transition);
 }
 
 .bulk-import__step-label {
-  font-size: 11px;
-  color: var(--text-2);
+  font-size: 12px;
+  font-weight: 500;
+  color: #bbbcbe;
   white-space: nowrap;
   transition: color var(--transition);
 }
@@ -961,29 +1092,26 @@
 /* Active */
 .bulk-import__step-item--active .bulk-import__step-dot {
   border-color: var(--brand);
+  box-shadow: 0 0 0 4px rgba(38, 168, 140, 0.25);
 }
 
-.bulk-import__step-item--active .bulk-import__step-num {
-  color: var(--brand);
+.bulk-import__step-item--active .bulk-import__step-inner-dot {
+  background: var(--brand);
 }
 
 .bulk-import__step-item--active .bulk-import__step-label {
-  color: var(--brand);
-  font-weight: 500;
+  color: var(--text-1);
 }
 
 /* Done */
 .bulk-import__step-item--done .bulk-import__step-dot {
   border-color: var(--brand);
   background: var(--brand);
+  box-shadow: none;
 }
 
-.bulk-import__step-item--done .bulk-import__step-num {
-  display: none;
-}
-
-.bulk-import__step-item--done .bulk-import__step-check {
-  display: block;
+.bulk-import__step-item--done .bulk-import__step-inner-dot {
+  background: #ffffff;
 }
 
 .bulk-import__step-item--done .bulk-import__step-label {
@@ -993,15 +1121,34 @@
 /* Connector */
 .bulk-import__step-connector {
   flex: 1;
+  position: relative;
   height: 1px;
   background: var(--stroke);
-  min-width: 16px;
-  margin-top: 16px;
+  min-width: 20px;
+  margin-bottom: 22px;
   transition: background var(--transition);
+}
+
+.bulk-import__step-connector::after {
+  content: '';
+  position: absolute;
+  left: -1px;
+  top: -4px;
+  width: 8px;
+  height: 8px;
+  border-top: 1px solid var(--stroke);
+  border-left: 1px solid var(--stroke);
+  transform: rotate(-45deg);
+  background: transparent;
+  transition: border-color var(--transition);
 }
 
 .bulk-import__step-item--done + .bulk-import__step-connector {
   background: var(--brand);
+}
+
+.bulk-import__step-item--done + .bulk-import__step-connector::after {
+  border-color: var(--brand);
 }
 
 /* ----- Panels ----- */
@@ -1010,6 +1157,13 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
+}
+
+/* Upload panel fills remaining height so dropzone stretches */
+.bulk-import__panel--upload {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
 }
 
 .bulk-import__panel[hidden] {
@@ -1021,17 +1175,19 @@
   flex: 1;
   min-height: 0;
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Actions wrap — gap between buttons */
 .bulk-import__actions-wrap {
-  gap: 8px;
+  gap: 16px;
 }
 
 .bulk-import__actions {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 16px;
   width: 100%;
 }
 
@@ -1041,75 +1197,66 @@
 
 .bulk-import__actions-row {
   display: flex;
-  gap: 8px;
+  gap: 16px;
 }
 
-/* ----- Step 0: Instruction cards ----- */
+/* ----- Step 0: Instruction blocks ----- */
 
-.bulk-import__instruction-cards {
+.bulk-import__instruction-blocks {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 16px;
 }
 
-.bulk-import__instruction-card {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  padding: 14px 16px;
+.bulk-import__instruction-block {
   background: var(--page-bg);
+  padding: 24px;
   border-radius: var(--radius-card);
 }
 
-.bulk-import__instruction-card-icon {
-  width: 40px;
-  height: 40px;
-  min-width: 40px;
-  background: var(--brand-light);
-  border-radius: var(--radius-card);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--brand);
-}
-
-.bulk-import__instruction-card-body {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.bulk-import__instruction-card-title {
-  font-size: 14px;
-  font-weight: 600;
+.bulk-import__instruction-block-title {
+  font-size: 16px;
+  font-weight: 500;
   color: var(--text-1);
+  margin: 0 0 8px;
+}
+
+.bulk-import__instruction-block-desc {
+  font-size: 14px;
+  color: var(--text-2);
+  line-height: 2;
   margin: 0;
 }
 
-.bulk-import__instruction-card-desc {
-  font-size: 13px;
+.bulk-import__instruction-link {
+  color: #22967d;
+  cursor: pointer;
+}
+
+.bulk-import__instruction-optional {
   color: var(--text-2);
-  line-height: 1.7;
-  margin: 0;
 }
 
 /* ----- Step 1: Dropzone ----- */
 
 .bulk-import__dropzone {
   position: relative;
-  border: 1.5px dashed var(--stroke);
+  flex: 1;                              /* fills upload panel height */
+  min-height: 0;
+  border: 1px dashed var(--stroke);
   border-radius: var(--radius-card);
-  padding: 36px 24px;
-  text-align: center;
+  padding: 24px;
   cursor: pointer;
   transition: border-color var(--transition), background var(--transition);
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .bulk-import__dropzone:hover,
 .bulk-import__dropzone--dragover {
   border-color: var(--brand);
-  background: var(--brand-light);
+  background: rgba(38, 168, 140, 0.04);
 }
 
 .bulk-import__file-input {
@@ -1121,49 +1268,63 @@
   height: 100%;
 }
 
+/* Inner body: centers icon + text, leaves preview slot at bottom */
 .bulk-import__dropzone-body {
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
+  justify-content: center;
+  gap: 16px;
   pointer-events: none;
 }
 
+/* Plain + icon — 34px, dark, no background */
 .bulk-import__dropzone-icon {
-  width: 56px;
-  height: 56px;
-  background: var(--brand-light);
-  border-radius: var(--radius-full);
+  width: 34px;
+  height: 34px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 4px;
+  color: var(--text-1);
+  flex-shrink: 0;
+}
+
+.bulk-import__dropzone-icon svg {
+  width: 34px;
+  height: 34px;
+}
+
+/* Text group: title + sub centered */
+.bulk-import__dropzone-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 0 8px;
+  text-align: center;
 }
 
 .bulk-import__dropzone-title {
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 500;
+  line-height: 1.5;
   color: var(--text-1);
   margin: 0;
 }
 
 .bulk-import__dropzone-sub {
-  font-size: 13px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 2;
   color: var(--text-2);
   margin: 0;
+  text-align: center;
 }
 
-.bulk-import__dropzone-browse {
-  color: var(--brand);
-  text-decoration: underline;
-}
-
-.bulk-import__dropzone-hint {
-  font-size: 12px;
-  color: var(--text-2);
-  margin: 2px 0 0;
-}
-
+/* File preview card — direct child of dropzone, shown after file selected */
+/* position: relative + z-index: 1 ensures it stacks above the absolute file input */
+/* pointer-events: auto so the remove button is clickable */
 .bulk-import__file-preview {
   display: flex;
   align-items: center;
@@ -1172,6 +1333,12 @@
   background: var(--brand-light);
   border-radius: var(--radius-card);
   border: 1px solid rgba(38, 168, 140, 0.3);
+  width: 100%;
+  box-sizing: border-box;
+  pointer-events: auto;
+  position: relative;
+  z-index: 1;
+  margin: auto 0; /* vertically centers in dropzone flex column when body is hidden */
 }
 
 .bulk-import__file-preview[hidden] {
@@ -1222,180 +1389,147 @@
 
 /* ----- Step 2: Manage ----- */
 
+/* Info box — dashed border */
 .bulk-import__info-box {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 12px 16px;
-  background: var(--brand-light);
-  border-radius: var(--radius-card);
-  border: 1px solid rgba(38, 168, 140, 0.25);
-}
-
-.bulk-import__info-box-icon {
-  flex-shrink: 0;
-}
-
-.bulk-import__info-box-text {
-  font-size: 13px;
-  color: var(--text-1);
-  line-height: 1.6;
-}
-
-.bulk-import__fields {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  padding: 24px;
+  background: var(--card-bg);
+  border: 1px dashed var(--stroke);
+  border-radius: var(--radius-card);
 }
 
-.bulk-import__field-row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.bulk-import__field-label {
-  font-size: 13px;
+.bulk-import__info-title {
+  font-size: 16px;
   font-weight: 500;
+  color: var(--text-1);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.bulk-import__info-subtitle {
+  font-size: 14px;
+  font-weight: 400;
   color: var(--text-2);
-  flex-shrink: 0;
-  width: 44px;
+  line-height: 1.5;
+  margin: 0;
+  white-space: normal;
   text-align: right;
 }
 
-.bulk-import__field-trigger {
-  flex: 1;
+/* Fields container */
+.bulk-import__fields {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 14px;
-  background: var(--page-bg);
-  border: 1px solid var(--stroke);
-  border-radius: var(--radius-btn);
-  cursor: pointer;
-  transition: border-color var(--transition);
-  user-select: none;
+  flex-direction: column;
+  gap: 16px;
 }
 
-.bulk-import__field-trigger:hover {
-  border-color: var(--brand);
-}
-
-.bulk-import__field-trigger--active {
-  border-color: var(--brand);
-  background: var(--brand-light);
-}
-
-.bulk-import__field-trigger-text {
-  font-size: 13px;
-  color: var(--text-2);
-}
-
-.bulk-import__field-trigger--active .bulk-import__field-trigger-text {
-  color: var(--text-1);
-}
-
-.bulk-import__field-trigger-chevron {
-  color: var(--text-2);
-  transition: transform var(--transition);
-  display: flex;
-}
-
-.bulk-import__field-trigger--active .bulk-import__field-trigger-chevron {
-  transform: rotate(180deg);
-}
-
-/* ----- Step 3: Success ----- */
-
-.bulk-import__panel--success {
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 8px 0 4px;
-}
-
-.bulk-import__success-icon-holder {
-  width: 72px;
-  height: 72px;
-  background: var(--brand-light);
-  border-radius: var(--radius-full);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 4px;
-}
-
-.bulk-import__success-title {
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--text-1);
-  margin: 0;
-  text-align: center;
-}
-
-.bulk-import__success-subtitle {
-  font-size: 13px;
-  color: var(--text-2);
-  margin: 0;
-  text-align: center;
-}
-
-.bulk-import__success-nav {
+/* Single field (label row + trigger) */
+.bulk-import__field {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  width: 100%;
-  margin-top: 8px;
 }
 
-.bulk-import__success-nav-item {
+/* Label row */
+.bulk-import__field-header {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 14px 16px;
-  background: var(--page-bg);
-  border-radius: var(--radius-card);
-  text-decoration: none;
-  transition: background var(--transition);
+  justify-content: space-between;
+  padding: 0 8px;
+  flex-direction: row-reverse;
 }
 
-.bulk-import__success-nav-item:hover {
-  background: var(--brand-light);
+.bulk-import__field-header--end {
+  justify-content: flex-end;
 }
 
-.bulk-import__success-nav-icon {
-  width: 40px;
-  height: 40px;
-  min-width: 40px;
-  background: var(--brand-light);
-  border-radius: var(--radius-card);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.bulk-import__success-nav-body {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.bulk-import__success-nav-title {
-  font-size: 14px;
-  font-weight: 500;
+.bulk-import__field-header-label {
+  font-size: 12px;
+  font-weight: 400;
   color: var(--text-1);
 }
 
-.bulk-import__success-nav-desc {
+/* Price counter (آزمون label row — left side) */
+.bulk-import__field-price {
+  display: flex;
+  align-items: center;
+  gap: 2px;
   font-size: 12px;
+  color: var(--text-1);
+}
+
+/* Trigger button */
+.bulk-import__field-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 45px;
+  padding: 0 16px;
+  background: var(--card-bg);
+  border: 1px solid var(--stroke);
+  border-radius: var(--radius-btn);
+  font-family: inherit;
+  font-size: 14px;
+  cursor: pointer;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.bulk-import__field-trigger:hover {
+  border-color: var(--text-2);
+}
+
+/* Active (item selected) */
+.bulk-import__field-trigger--active {
+  border-color: var(--brand);
+  box-shadow: 0 2px 3px 1px rgba(42, 187, 156, 0.2);
+}
+
+/* Content area: text + divider + icon */
+.bulk-import__field-trigger-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+}
+
+.bulk-import__field-trigger-text {
+  flex: 1;
+  font-size: 14px;
+  color: var(--text-1);
+  text-align: right;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bulk-import__field-trigger-divider {
+  width: 1px;
+  height: 16px;
+  background: var(--stroke);
+  flex-shrink: 0;
+}
+
+.bulk-import__field-trigger-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
   color: var(--text-2);
 }
 
-.bulk-import__success-nav-chevron {
-  color: var(--text-2);
+.bulk-import__field-trigger-chevron {
   flex-shrink: 0;
   display: flex;
+  align-items: center;
+  color: var(--text-2);
+}
+
+/* Actions row for step 2 */
+.bulk-import__actions--row {
+  flex-direction: row !important;
 }
 
 /* ----- Expanded assign panel ----- */
@@ -1588,18 +1722,895 @@
   color: var(--text-1);
 }
 
+/* ----- Expanded panel title row (mobile back button) ----- */
+
+.modal__expanded-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.modal__expanded-back-btn {
+  display: none;
+  align-items: center;
+  gap: 4px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-1);
+  font-family: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+  transition: color var(--transition);
+}
+
+.modal__expanded-back-btn:hover {
+  color: var(--brand);
+}
+
+@media (max-width: 1023px) {
+  .modal__expanded-back-btn {
+    display: flex;
+  }
+}
+
 /* ----- Mobile ----- */
 
 @media (max-width: 767px) {
-  .bulk-import__instruction-card-desc {
+  /* Step label */
+  .bulk-import__step-label {
+    font-size: 10px;
+  }
+
+  /* Header title: 18px on mobile */
+  .bulk-import__title {
+    font-size: 18px;
+  }
+
+  /* Step 0: instruction blocks — reduced padding */
+  .bulk-import__instruction-block {
+    padding: 16px;
+  }
+
+  /* Panel gap */
+  .bulk-import__panel {
+    gap: 16px;
+  }
+
+  /* Step 2: info box — reduced padding */
+  .bulk-import__info-box {
+    padding: 16px;
+  }
+
+  /* Step 2: info subtitle — smaller font */
+  .bulk-import__info-subtitle {
     font-size: 12px;
   }
 
-  .bulk-import__success-title {
-    font-size: 15px;
+  /* Step 2 actions: stack vertically — primary (last DOM) on top via column-reverse */
+  .bulk-import__actions--row {
+    flex-direction: column-reverse !important;
   }
 
-  .bulk-import__step-label {
-    font-size: 10px;
+  .bulk-import__actions--row > .btn {
+    width: 100%;
+    flex: none !important;
+  }
+}
+
+/* =================================================================
+   Bulk Import Success Modal
+   ================================================================= */
+
+/* Centered overlay, 600px wide */
+.modal--bi-success {
+  --modal-width: 600px;
+}
+
+/* Icon holder: dark bg + green border */
+.bi-success__icon-holder {
+  background: var(--sidebar-bg-2);
+  border-color: #107c10;
+}
+
+/* Header: align items from top so close btn stays at top when subtitle wraps */
+.modal--bi-success .modal__header {
+  align-items: flex-start;
+}
+
+/* Subtitle color matches sidebar text */
+.bi-success__subtitle {
+  color: var(--sidebar-text);
+}
+
+/* Body: stack from top */
+.bi-success__body {
+  justify-content: flex-start;
+}
+
+/* Mobile: full-width bottom sheet */
+@media (max-width: 1023px) {
+  .modal--bi-success .modal__container {
+    bottom: calc(var(--bottom-nav-h) + 8px);
+  }
+}
+
+/* =================================================================
+   Add User Confirm Modal
+   ================================================================= */
+
+.modal--add-user-confirm {
+  --modal-width: 600px;
+}
+
+/* Success green-bordered icon holder */
+.modal--add-user-confirm .modal__icon-holder {
+  background: var(--sidebar-bg-2);
+  border-color: #107c10;
+}
+
+/* Body: items stack from top, no stretch */
+.modal--add-user-confirm .modal__body {
+  justify-content: flex-start;
+}
+
+/* Actions: side-by-side row */
+.add-user-confirm__actions {
+  flex-direction: row !important;
+  gap: 16px;
+}
+
+/* خروج (primary) fills remaining width on physical left */
+.add-user-confirm__actions .btn--primary {
+  flex: 1 0 0;
+}
+
+/* Mobile: stack action buttons vertically — primary (خروج) on top */
+@media (max-width: 767px) {
+  .add-user-confirm__actions {
+    flex-direction: column-reverse !important;
+    gap: 12px;
+  }
+  .modal--bi-success .modal__container {
+      bottom: 8px;
+  }
+  .add-user-confirm__actions .btn--primary,
+  .add-user-confirm__actions .btn--outline {
+    flex: none;
+    width: 100%;
+  }
+  #users-access-modal .input {
+      width: 100%;
+  }
+  #users-access-modal .input__container {
+      height: 45px;
+  }
+  .users-access-modal__row2 {
+      flex-direction: row-reverse;
+  }
+}
+
+/* ---------------------------------------------------------------
+   Confirm Items — 4 navigation links in body
+   --------------------------------------------------------------- */
+
+.confirm-item {
+  display: flex;
+  align-items: stretch;
+  background: var(--page-bg);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  width: 100%;
+  text-decoration: none;
+  transition: background 0.15s ease;
+}
+
+.confirm-item:hover {
+  background: var(--stroke);
+}
+
+/* First child (RTL = physical right): icon holder, 70px, white right-edge divider */
+.confirm-item__icon-holder {
+  width: 70px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-inline-end: 4px solid var(--card-bg);
+  color: var(--text-2);
+}
+
+/* Middle: text */
+.confirm-item__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 16px 24px;
+}
+
+.confirm-item__title {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--text-1);
+}
+
+.confirm-item__desc {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.3;
+  color: var(--text-2);
+}
+
+/* Last child (RTL = physical left): chevron */
+.confirm-item__chevron {
+  flex-shrink: 0;
+  align-self: center;
+  color: var(--text-2);
+  margin-inline-end: 24px;
+}
+
+/* ---------------------------------------------------------------
+   Filter Modal
+   --------------------------------------------------------------- */
+
+/* Body: stack content from top, allow inner scroll */
+#users-table-filter .modal__body {
+  justify-content: flex-start;
+  overflow: hidden;
+  padding-bottom: 16px;
+}
+
+#users-table-filter .modal__content {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding-bottom: 8px;
+}
+
+#users-table-filter .modal__actions {
+  padding-top: 16px;
+  border-top: 1px solid var(--stroke);
+  flex-shrink: 0;
+}
+
+/* Reset browser button defaults for filter rows used as buttons */
+button.table__filter-row {
+  font-family: var(--typo-font-family);
+  text-align: inherit;
+}
+
+/* Outline button: shrink to content, don't grow */
+.table__filter-actions .btn--outline {
+  flex-shrink: 0;
+}
+
+/* Count badge in filter row value area */
+.table__filter-row-count {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--text-1);
+  line-height: 1.5;
+  white-space: nowrap;
+}
+
+/* Chevron rotates 180° when the row's panel is open */
+#users-table-filter .table__filter-row--focused .table__filter-row-chevron {
+  transform: rotate(180deg);
+}
+
+
+/* ---------------------------------------------------------------
+   Filter Expanded Panel — header content
+   --------------------------------------------------------------- */
+
+/* Wrapper grouping title-row + search (gap 8px between them) */
+.filter-panel__header-top {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+/* Title row: RTL flex — count (right) + title (flex-1) + select-all (left) */
+.filter-panel__title-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  width: 100%;
+  box-sizing: border-box;
+  flex-direction: row-reverse;
+}
+
+.filter-panel__count {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-2);
+  white-space: nowrap;
+  flex-shrink: 0;
+  line-height: 1.5;
+}
+
+.filter-panel__title-row .modal__expanded-title {
+  flex: 1;
+}
+
+/* Select-all click target */
+.filter-panel__select-all {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 4px;
+  flex-shrink: 0;
+  border-radius: 3px;
+}
+
+/* Visual checkbox box (shared by select-all and exam items) */
+.filter-panel__checkbox-box {
+  width: 16px;
+  height: 16px;
+  border: 1px solid #626364;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--card-bg);
+  transition: background 0.15s ease, border-color 0.15s ease;
+  flex-shrink: 0;
+}
+
+.filter-panel__checkbox-mark {
+  color: var(--card-bg);
+  display: none;
+}
+
+.filter-panel__checkbox-box--indeterminate,
+.filter-panel__checkbox-box--checked {
+  background: var(--brand);
+  border-color: var(--brand);
+}
+
+.filter-panel__checkbox-box--indeterminate .filter-panel__checkbox-mark,
+.filter-panel__checkbox-box--checked .filter-panel__checkbox-mark {
+  display: block;
+}
+
+/* Search input */
+.filter-panel__search {
+  position: relative;
+  width: 100%;
+}
+
+.filter-panel__search-input {
+  width: 100%;
+  height: 45px;
+  border: 1px solid var(--stroke);
+  border-radius: var(--radius-card);
+  padding: 0 16px;
+  padding-inline-start: 52px;
+  font-family: var(--typo-font-family);
+  font-size: 14px;
+  color: var(--text-1);
+  background: var(--card-bg);
+  direction: rtl;
+  text-align: right;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.15s ease;
+}
+
+.filter-panel__search-input:focus {
+  border-color: var(--brand);
+}
+
+.filter-panel__search-input::placeholder {
+  color: var(--text-2);
+}
+
+.filter-panel__search-icon {
+  position: absolute;
+  top: 50%;
+  inset-inline-start: 12px;
+  transform: translateY(-50%);
+  color: var(--text-2);
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+}
+
+.filter-panel__search-divider {
+  position: absolute;
+  top: 50%;
+  inset-inline-start: 36px;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 16px;
+  background: var(--stroke);
+  pointer-events: none;
+}
+
+/* Divider line between header and list */
+.filter-panel__divider {
+  width: 100%;
+  height: 1px;
+  background: var(--stroke);
+  flex-shrink: 0;
+}
+
+/* ---------------------------------------------------------------
+   Filter Exam Items (inside expanded panel)
+   --------------------------------------------------------------- */
+
+.filter-exam-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  background: var(--page-bg);
+  border-radius: var(--radius-card);
+  cursor: pointer;
+  gap: 8px;
+  transition: background 0.15s ease;
+}
+
+.filter-exam-item[hidden] {
+  display: none;
+}
+
+.filter-exam-item:hover {
+  background: var(--stroke);
+}
+
+.filter-exam-item__name {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-1);
+  line-height: 1.5;
+  text-align: right;
+  flex: 1;
+}
+
+.filter-exam-item__checkbox-box {
+  width: 16px;
+  height: 16px;
+  border: 1px solid #626364;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--card-bg);
+  flex-shrink: 0;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.filter-exam-item__check-mark {
+  color: var(--card-bg);
+  display: none;
+}
+
+.filter-exam-item--checked .filter-exam-item__checkbox-box {
+  background: var(--brand);
+  border-color: var(--brand);
+}
+
+.filter-exam-item--checked .filter-exam-item__check-mark {
+  display: block;
+}
+
+/* ---------------------------------------------------------------
+   Progress Column — align to start like other cells (RTL: right)
+   table.css base uses align-items: center which mismatches text-align: start
+   --------------------------------------------------------------- */
+[data-table="users-table"] .table__progress {
+  align-items: flex-start;
+}
+
+/* ---------------------------------------------------------------
+   Active Filters Bar — Figma layout overrides
+   --------------------------------------------------------------- */
+
+/* Desktop: label | vert-divider | chips(flex) ... | reset-btn */
+#activeFiltersBar {
+  gap: 8px;
+  align-items: center;
+}
+
+/* Chips fill remaining space between divider and reset btn */
+#activeFiltersBar .table__active-filters-chips {
+  flex: 1;
+}
+
+/* Vertical divider between label and chips (desktop) */
+#activeFiltersBar .table__active-filters-divider {
+  width: 1px;
+  height: 16px;
+  background: var(--stroke);
+  flex-shrink: 0;
+}
+
+/* Reset btn at far RTL-end (physical left) */
+#activeFiltersBar .table__active-filters-reset {
+  margin-inline-start: auto;
+  flex-shrink: 0;
+}
+
+/* ---------------------------------------------------------------
+   Mobile Active Filters Bar — Figma node 11019-47006
+   Column layout: header row / dashed divider / chips row
+   --------------------------------------------------------------- */
+@media (max-width: 768px) {
+  #activeFiltersBar {
+    flex-wrap: wrap;
+    gap: 0;
+    padding: 16px;
+    border-radius: 0 0 var(--radius-card, 8px) var(--radius-card, 8px);
+    align-items: center;
+  }
+
+  /* Row 1 – label on right (RTL start) */
+  #activeFiltersBar .table__active-filters-label {
+    order: 1;
+    flex: 1;
+    font-size: 14px;
+    line-height: 2;
+  }
+
+  /* Row 1 – reset on left (RTL end); row-reverse so × appears left of text */
+  #activeFiltersBar .table__active-filters-reset {
+    order: 2;
+    margin-inline-start: 0;
+    flex-shrink: 0;
+    flex-direction: row-reverse;
+  }
+
+  /* Row 2 – full-width dashed horizontal separator */
+  #activeFiltersBar .table__active-filters-divider {
+    order: 3;
+    width: 100%;
+    height: 0;
+    background: none;
+    border-top: 1px dashed var(--stroke, #e2e4e6);
+    margin-block: 12px;
+    flex-shrink: 0;
+  }
+
+  /* Row 3 – chips with 4px gap (Figma: gap-[4px]) */
+  #activeFiltersBar .table__active-filters-chips {
+    order: 4;
+    flex: none;
+    width: 100%;
+    gap: 4px;
+    /* Override table.css mobile defaults */
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+  }
+}
+
+#users-access-modal .input{
+  border-radius: unset;
+  border-bottom-right-radius: var(--input-radius);
+  border-top-right-radius: var(--input-radius);
+}
+#users-access-modal .input__container {
+    border-radius: unset;
+    border-bottom-right-radius: var(--input-radius);
+    border-top-right-radius: var(--input-radius);
+}
+#users-access-modal .select__trigger{
+  border-radius: unset;
+}
+#users-access-modal .btn{
+  border-radius: unset;
+  border-bottom-left-radius: var(--input-radius);
+  border-top-left-radius: var(--input-radius);
+}
+
+/* ---------------------------------------------------------------
+   Desktop — hide row-action (⋯) button entirely
+   On mobile it stays visible via the table.css card styles
+   --------------------------------------------------------------- */
+
+@media (min-width: 769px) {
+  [data-table="users-table"] .table__row-action {
+    display: none;
+  }
+
+  /* Remove hover gradient since button is gone */
+  [data-table="users-table"] .table__tbody .table__row:hover .table__cell--action::after {
+    display: none;
+  }
+}
+
+/* ---------------------------------------------------------------
+   Mobile — Group Activities Bottom Sheet (فعالیت‌های گروهی)
+   Override table defaults to match Figma design
+   --------------------------------------------------------------- */
+
+@media (max-width: 768px) {
+  /* Overlay must sit above bottom-nav (z-index: 9999) */
+  .table__action-bar-overlay {
+    z-index: 10000;
+  }
+
+  /* Sheet panel: above overlay and above bottom-nav */
+  [data-table="users-table"] .table__action-bar {
+    z-index: 10001;
+    padding-inline: 24px;
+  }
+
+  /* Handle bar: 4px height per Figma (table default: 3px) */
+  [data-table="users-table"] .table__action-bar::before {
+    height: 4px;
+  }
+
+  /* Icon SVGs: fix hardcoded fill="white" to use currentColor */
+  [data-table="users-table"] .table__action-btn-icon path,
+  [data-table="users-table"] .table__action-btn-icon g path {
+    fill: currentColor;
+  }
+
+  /* Action buttons: 45px height per Figma (table default: 55px) */
+  [data-table="users-table"] .table__action-btn {
+    height: 45px;
+  }
+
+  /* Delete button: danger red */
+  [data-table="users-table"] .table__action-btn[data-bulk-action="delete"] {
+    color: #e74c3c;
+  }
+
+  /* Subtitle: Regular weight per Figma (table default: 500) */
+  [data-table="users-table"] .table__action-count-text {
+    font-weight: 400;
+  }
+}
+
+/* ---------------------------------------------------------------
+   Mobile — Page content extra horizontal padding
+   Global app-layout gives 8px each side; Figma shows 16px
+   --------------------------------------------------------------- */
+
+@media (max-width: 1023px) {
+  .page-content {
+    padding-inline: 8px;
+  }
+}
+
+/* ---------------------------------------------------------------
+   Mobile — Custom Bottom Sheets (.users-mobile-sheet)
+   Row actions + page size picker
+   --------------------------------------------------------------- */
+
+.users-mobile-sheet {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 10100;
+}
+
+.users-mobile-sheet--open {
+  display: block;
+}
+
+.users-mobile-sheet__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(34, 35, 35, 0.4);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.users-mobile-sheet--open .users-mobile-sheet__overlay {
+  opacity: 1;
+}
+
+.users-mobile-sheet__panel {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--card-bg);
+  border-radius: 16px 16px 0 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 -3px 12px rgba(0, 0, 0, 0.08);
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+
+.users-mobile-sheet--open .users-mobile-sheet__panel {
+  transform: translateY(0);
+}
+
+.users-mobile-sheet__handle {
+  display: flex;
+  justify-content: center;
+  padding: 10px 0 6px;
+  flex-shrink: 0;
+}
+
+.users-mobile-sheet__handle::after {
+  content: '';
+  width: 40px;
+  height: 4px;
+  background: var(--stroke);
+  border-radius: 360px;
+}
+
+.users-mobile-sheet__header {
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--stroke);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.users-mobile-sheet__header--center {
+  align-items: center;
+}
+
+.users-mobile-sheet__title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-1);
+  line-height: 1.5;
+}
+
+.users-mobile-sheet__subtitle {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--text-2);
+  line-height: 1.5;
+  min-height: 1em;
+}
+
+.users-mobile-sheet__body {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 0 24px;
+  overflow-y: auto;
+}
+
+/* Row action items */
+.users-mobile-sheet__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  height: 52px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: var(--text-1);
+  flex-shrink: 0;
+  width: 100%;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 400;
+  text-align: right;
+  transition: background 0.15s;
+}
+
+.users-mobile-sheet__item:active {
+  background: var(--page-bg);
+}
+
+.users-mobile-sheet__item--danger {
+  color: #e74c3c;
+}
+
+.users-mobile-sheet__item-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.users-mobile-sheet__item-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.users-mobile-sheet__item-chevron {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-2);
+  flex-shrink: 0;
+}
+
+/* Page size items */
+.users-mobile-sheet__size-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  height: 52px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: var(--text-1);
+  flex-shrink: 0;
+  width: 100%;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 400;
+  text-align: right;
+  transition: background 0.15s;
+}
+
+.users-mobile-sheet__size-item:active {
+  background: var(--page-bg);
+}
+
+.users-mobile-sheet__size-item--active {
+  color: var(--brand);
+  font-weight: 500;
+}
+
+.users-mobile-sheet__size-check {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  color: var(--brand);
+}
+
+/* ---------------------------------------------------------------
+   Mobile: مخفی کردن bottom-nav فقط برای مودال‌های تمام‌صفحه
+   مودال‌های اعلان، جستجو، منو و اعطای دسترسی bottom-nav را حفظ می‌کنند
+   --------------------------------------------------------------- */
+/* ---------------------------------------------------------------
+   Mobile: دکمه‌های بازگشت در پنل‌های افزودن آزمون و افزودن گروه — سبز
+   --------------------------------------------------------------- */
+@media (max-width: 767px) {
+  #add-user-test-panel .modal__expanded-footer .btn--secondary,
+  #add-user-group-panel .modal__expanded-footer .btn--secondary,
+  #bi-test-panel .modal__expanded-footer .btn--secondary,
+  #bi-group-panel .modal__expanded-footer .btn--secondary {
+    background: var(--btn-color-brand-bg-rest);
+    color: var(--btn-color-neutral-fg-inverted-rest);
+    border-color: var(--btn-color-brand-stroke-rest);
+    box-shadow: var(--btn-shadow-primary);
+  }
+
+  #add-user-test-panel .modal__expanded-footer .btn--secondary:hover:not(:disabled),
+  #add-user-group-panel .modal__expanded-footer .btn--secondary:hover:not(:disabled),
+  #bi-test-panel .modal__expanded-footer .btn--secondary:hover:not(:disabled),
+  #bi-group-panel .modal__expanded-footer .btn--secondary:hover:not(:disabled) {
+    background: var(--btn-color-brand-bg-hover);
+  }
+
+  #add-user-test-panel .modal__expanded-footer .btn--secondary:active:not(:disabled),
+  #add-user-group-panel .modal__expanded-footer .btn--secondary:active:not(:disabled),
+  #bi-test-panel .modal__expanded-footer .btn--secondary:active:not(:disabled),
+  #bi-group-panel .modal__expanded-footer .btn--secondary:active:not(:disabled) {
+    background: var(--btn-color-brand-bg-pressed);
+  }
+}
+
+@media (max-width: 1023px) {
+  body:has(#users-table-filter:is(.modal--open, .modal--closing)) .bottom-nav,
+  body:has(#users-add-group-modal:is(.modal--open, .modal--closing)) .bottom-nav,
+  body:has(#users-add-exam-modal:is(.modal--open, .modal--closing)) .bottom-nav,
+  body:has(#users-access-modal:is(.modal--open, .modal--closing)) .bottom-nav,
+  body:has(#add-user-modal:is(.modal--open, .modal--closing)) .bottom-nav,
+  body:has(#bulk-import-modal:is(.modal--open, .modal--closing)) .bottom-nav,
+  body:has(#bulk-import-success-modal:is(.modal--open, .modal--closing)) .bottom-nav,
+  body:has(#add-user-confirm-modal:is(.modal--open, .modal--closing)) .bottom-nav {
+    display: none;
   }
 }
