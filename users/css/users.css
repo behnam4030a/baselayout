@@ -2149,13 +2149,13 @@ button.table__filter-row {
 .filter-exam-item {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   padding: 16px;
   background: var(--page-bg);
   border-radius: var(--radius-card);
   cursor: pointer;
   gap: 8px;
   transition: background 0.15s ease;
+  flex-direction: row-reverse;
 }
 
 .filter-exam-item[hidden] {
