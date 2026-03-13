@@ -4,11 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>داشبورد مدیریت — ای‌سنج</title>
-  <link rel="stylesheet" href="components/colors/colors.css" />
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="components/credit-modal/credit-modal.css" />
-  <link rel="stylesheet" href="components/modal/modal.css" />
-  <link rel="stylesheet" href="components/typography/typography.css">
+  <link rel="stylesheet" href="../components/colors/colors.css" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../components/credit-modal/credit-modal.css" />
+  <link rel="stylesheet" href="../components/modal/modal.css" />
+  <link rel="stylesheet" href="../components/typography/typography.css">
+  <link rel="stylesheet" href="../components/button/button.css" />
+  <link rel="stylesheet" href="../components/input/input.css" />
+  <link rel="stylesheet" href="css/groups.css" />
 </head>
 <body>
 
@@ -31,7 +34,7 @@
     <!-- Top: Brand (right in RTL) + Toggle (left in RTL) -->
     <div class="sidebar-top">
       <div class="sidebar-brand">
-        <img src="assets/images/Brand Logo.png" alt="ای‌سنج" class="brand-logo-img" />
+        <img src="../assets/images/Brand Logo.png" alt="ای‌سنج" class="brand-logo-img" />
       </div>
 
       <button class="sidebar-toggle" id="sidebarToggle" title="جمع/گسترش منو" aria-label="تغییر حالت منو">
@@ -242,13 +245,13 @@
 
       <!-- RIGHT: Title + Breadcrumb -->
       <div class="header-right">
-        <h1 class="page-title">مدیریت کاربران</h1>
+        <h1 class="page-title">گروه کاربران</h1>
         <nav class="breadcrumb" aria-label="مسیر صفحه">
           <a href="#">پیشخوان</a>
           <span class="breadcrumb-sep">/</span>
           <a href="#">کاربران</a>
           <span class="breadcrumb-sep">/</span>
-          <span class="breadcrumb-current">مدیریت کاربران</span>
+          <span class="breadcrumb-current">مدیریت گروهی کاربران</span>
         </nav>
       </div>
 
@@ -311,7 +314,7 @@
         <div class="header-user" role="button" tabindex="0" aria-label="پروفایل کاربر">
           <div class="user-avatar-wrapper">
             <div class="user-avatar">
-              <img src="assets/images/imageuser.jpg" alt="علی میرهادی">
+              <img src="../assets/images/imageuser.jpg" alt="علی میرهادی">
             </div>
             <div class="user-avatar-verified" aria-hidden="true">
               <svg viewBox="0 0 12 12" fill="none" width="10" height="10">
@@ -336,9 +339,164 @@
 
     <!-- === PAGE CONTENT === -->
     <main class="page-content" id="pageContent">
-      <div class="page-content-placeholder">
-        محتوای صفحه اینجا قرار می‌گیرد
+
+      <!-- ===== GROUPS HEAD ===== -->
+      <div class="groups-head">
+        <div class="groups-head__title-block">
+          <span class="groups-head__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <h1 class="groups-head__title">لیست گروه‌ها</h1>
+          <span class="groups-head__dot"></span>
+          <span class="groups-head__count" id="groupsCount">تعداد: ۴ عدد</span>
+        </div>
+        <div class="groups-head__add-btn">
+          <button class="btn btn--primary btn--large" type="button" id="openAddGroupBtn">
+            <svg viewBox="0 0 24 24" fill="none" width="18" height="18"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            افزودن گروه جدید
+          </button>
+        </div>
       </div>
+
+      <!-- ===== SEARCH BAR ===== -->
+      <div class="groups-search">
+        <div class="input input--large input--full-width groups-search__input-wrap">
+          <div class="input__container">
+            <span class="input__icon input__icon--before">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M9.90135 3.125C6.37229 3.125 3.51172 5.98557 3.51172 9.51458C3.51172 13.0437 6.37239 15.905 9.90135 15.905C11.5669 15.905 13.0835 15.2677 14.2209 14.2235C14.2246 14.2196 14.2284 14.2157 14.2323 14.2117C14.2476 14.1964 14.2635 14.1821 14.2799 14.1687C15.5179 13.0032 16.2909 11.3491 16.2909 9.51458C16.2909 5.98557 13.4304 3.125 9.90135 3.125ZM15.5574 14.6507C16.7899 13.2938 17.5409 11.4919 17.5409 9.51458C17.5409 5.29522 14.1207 1.875 9.90135 1.875C5.68193 1.875 2.26172 5.29522 2.26172 9.51458C2.26172 13.7339 5.68184 17.155 9.90135 17.155C11.6932 17.155 13.3409 16.538 14.6438 15.5049L17.0876 17.9425C17.332 18.1862 17.7277 18.1857 17.9715 17.9413C18.2153 17.697 18.2148 17.3012 17.9704 17.0575L15.5574 14.6507Z" fill="#59595A"/>
+              </svg>
+            </span>
+            <span class="input__divider"></span>
+            <input type="text" class="input__field" id="groupsSearchInput" placeholder="جستجو در گروه‌ها...">
+          </div>
+          <span class="input__indicator"></span>
+        </div>
+      </div>
+
+      <!-- ===== NO RESULTS ===== -->
+      <div class="groups-no-results hidden" id="groupsNoResults">
+        <p class="groups-no-results__text">نتیجه‌ای یافت نشد.</p>
+      </div>
+
+      <!-- ===== GROUPS LIST ===== -->
+      <div class="groups-list" id="groupsList">
+
+        <!-- Group Card: کارمندان جدید -->
+        <article class="group-card" data-group-id="1" data-group-name="کارمندان جدید">
+          <a href="list-groups-user.html" class="group-card__name">کارمندان جدید</a>
+          <span class="group-card__h-divider"></span>
+          <div class="group-card__stats">
+            <div class="group-card__stat">
+              <span class="group-card__stat-num">۵۱۴۱</span>
+              <span class="group-card__stat-label">تعداد کاربران</span>
+            </div>
+            <span class="group-card__v-divider"></span>
+            <div class="group-card__stat">
+              <span class="group-card__stat-num">۱۶۷</span>
+              <span class="group-card__stat-label">آزمون‌های متصل</span>
+            </div>
+          </div>
+          <span class="group-card__divider"></span>
+          <div class="group-card__btns">
+            <a href="list-groups-user.html" class="btn btn--outline btn--large group-card__members-btn">اعضای گروه</a>
+            <button class="btn btn--outline btn--large group-card__edit-btn" type="button" data-open-edit-group="1" data-group-name="کارمندان جدید">ویرایش گروه</button>
+            <button class="group-card__delete-btn" type="button" aria-label="حذف گروه کارمندان جدید">
+              <svg viewBox="0 0 24 24" fill="none" width="18" height="18"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+        </article>
+
+        <!-- Group Card: کارمندان مالی -->
+        <article class="group-card" data-group-id="2" data-group-name="کارمندان مالی">
+          <a href="list-groups-user.html" class="group-card__name">کارمندان مالی</a>
+          <span class="group-card__h-divider"></span>
+          <div class="group-card__stats">
+            <div class="group-card__stat">
+              <span class="group-card__stat-num">۲۳</span>
+              <span class="group-card__stat-label">تعداد کاربران</span>
+            </div>
+            <span class="group-card__v-divider"></span>
+            <div class="group-card__stat">
+              <span class="group-card__stat-num">۱۵۷</span>
+              <span class="group-card__stat-label">آزمون‌های متصل</span>
+            </div>
+          </div>
+          <span class="group-card__divider"></span>
+          <div class="group-card__btns">
+            <a href="list-groups-user.html" class="btn btn--outline btn--large group-card__members-btn">اعضای گروه</a>
+            <button class="btn btn--outline btn--large group-card__edit-btn" type="button" data-open-edit-group="2" data-group-name="کارمندان مالی">ویرایش گروه</button>
+            <button class="group-card__delete-btn" type="button" aria-label="حذف گروه کارمندان مالی">
+              <svg viewBox="0 0 24 24" fill="none" width="18" height="18"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+        </article>
+
+        <!-- Group Card: مشتریان قدیمی -->
+        <article class="group-card" data-group-id="3" data-group-name="مشتریان قدیمی">
+          <a href="list-groups-user.html" class="group-card__name">مشتریان قدیمی</a>
+          <span class="group-card__h-divider"></span>
+          <div class="group-card__stats">
+            <div class="group-card__stat">
+              <span class="group-card__stat-num">۴۹</span>
+              <span class="group-card__stat-label">تعداد کاربران</span>
+            </div>
+            <span class="group-card__v-divider"></span>
+            <div class="group-card__stat">
+              <span class="group-card__stat-num">۳۸</span>
+              <span class="group-card__stat-label">آزمون‌های متصل</span>
+            </div>
+          </div>
+          <span class="group-card__divider"></span>
+          <div class="group-card__btns">
+            <a href="list-groups-user.html" class="btn btn--outline btn--large group-card__members-btn">اعضای گروه</a>
+            <button class="btn btn--outline btn--large group-card__edit-btn" type="button" data-open-edit-group="3" data-group-name="مشتریان قدیمی">ویرایش گروه</button>
+            <button class="group-card__delete-btn" type="button" aria-label="حذف گروه مشتریان قدیمی">
+              <svg viewBox="0 0 24 24" fill="none" width="18" height="18"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+        </article>
+
+        <!-- Group Card: مدیران -->
+        <article class="group-card" data-group-id="4" data-group-name="مدیران">
+          <a href="list-groups-user.html" class="group-card__name">مدیران</a>
+          <span class="group-card__h-divider"></span>
+          <div class="group-card__stats">
+            <div class="group-card__stat">
+              <span class="group-card__stat-num">۱۸</span>
+              <span class="group-card__stat-label">تعداد کاربران</span>
+            </div>
+            <span class="group-card__v-divider"></span>
+            <div class="group-card__stat">
+              <span class="group-card__stat-num">۲۵</span>
+              <span class="group-card__stat-label">آزمون‌های متصل</span>
+            </div>
+          </div>
+          <span class="group-card__divider"></span>
+          <div class="group-card__btns">
+            <a href="list-groups-user.html" class="btn btn--outline btn--large group-card__members-btn">اعضای گروه</a>
+            <button class="btn btn--outline btn--large group-card__edit-btn" type="button" data-open-edit-group="4" data-group-name="مدیران">ویرایش گروه</button>
+            <button class="group-card__delete-btn" type="button" aria-label="حذف گروه مدیران">
+              <svg viewBox="0 0 24 24" fill="none" width="18" height="18"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+        </article>
+
+      </div><!-- /.groups-list -->
+
+      <!-- ===== EMPTY STATE ===== -->
+      <div class="groups-empty hidden" id="groupsEmpty">
+        <div class="groups-empty__card">
+          <img src="https://www.figma.com/api/mcp/asset/97e10ff2-e95a-4257-91a2-c4946ac52da0" alt="" class="groups-empty__img" aria-hidden="true" width="150" height="150">
+          <h2 class="groups-empty__title">هنوز گروهی ساخته نشده است</h2>
+          <p class="groups-empty__subtitle">میتوانید با کلیک بر روی «افزودن گروه جدید» اقدام به افزودن اولین گروه کاربران خود کنید</p>
+        </div>
+      </div>
+
     </main>
 
   </div><!-- /.main-wrapper -->
@@ -427,7 +585,7 @@
   <div class="mobile-drawer-header">
     <!-- Logo/Brand on right -->
     <div class="mobile-drawer-brand">
-      <img src="assets/images/Brand Logo.png" alt="ای‌سنج" class="mobile-drawer-brand-img" />
+      <img src="../assets/images/Brand Logo.png" alt="ای‌سنج" class="mobile-drawer-brand-img" />
     </div>
 
     <!-- Back/Close on left -->
@@ -470,7 +628,7 @@
         <!-- avatar first=RIGHT, texts second=LEFT -->
         <div class="user-avatar-wrapper">
           <div class="user-avatar">
-            <img src="assets/images/imageuser.jpg" alt="علی میرهادی">
+            <img src="../assets/images/imageuser.jpg" alt="علی میرهادی">
           </div>
           <div class="user-avatar-verified" aria-hidden="true">
             <svg viewBox="0 0 12 12" fill="none" width="10" height="10">
@@ -484,7 +642,7 @@
         </div>
       </div>
       <!-- edit-link last=LEFT; text first=RIGHT, chevron last=LEFT inside link -->
-      <a href="profile/profile.html" class="mobile-profile-edit-link">
+      <a href="../profile/profile.html" class="mobile-profile-edit-link">
         ویرایش پروفایل
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
           <path fill-rule="evenodd" clip-rule="evenodd" d="M11.2752 7.05806C11.5192 7.30213 11.5192 7.69786 11.2752 7.94194L9.21717 10L11.2752 12.0581C11.5192 12.3022 11.5192 12.6978 11.2752 12.9419C11.0311 13.186 10.6354 13.186 10.3913 12.9419L7.89131 10.4419C7.64723 10.1978 7.64723 9.80216 7.89131 9.55808L10.3913 7.05806C10.6354 6.81398 11.0311 6.81398 11.2752 7.05806Z" fill="#22967D"/>
@@ -554,7 +712,7 @@
       <div class="mobile-profile-account-row is-active">
         <div class="user-avatar-wrapper">
           <div class="user-avatar">
-            <img src="assets/images/imageuser.jpg" alt="علی میرهادی">
+            <img src="../assets/images/imageuser.jpg" alt="علی میرهادی">
           </div>
           <div class="user-avatar-verified" aria-hidden="true">
             <svg viewBox="0 0 12 12" fill="none" width="10" height="10">
@@ -581,7 +739,7 @@
       <div class="mobile-profile-account-row">
         <div class="user-avatar-wrapper">
             <div class="user-avatar">
-              <img src="assets/images/imageuser.jpg" alt="امیر همتی‌نژاد">
+              <img src="../assets/images/imageuser.jpg" alt="امیر همتی‌نژاد">
             </div> 
         </div>
         <div class="mobile-profile-account-details">
@@ -629,7 +787,7 @@
     <!-- Active account: avatar first=RIGHT, info middle, check last=LEFT (space-between) -->
     <a href="#" class="user-dropdown-account is-active">
       <div class="user-avatar">
-        <img src="assets/images/imageuser.jpg" alt="علی میرهادی">
+        <img src="../assets/images/imageuser.jpg" alt="علی میرهادی">
       </div>
       <div class="user-dropdown-account-info">
         <span class="user-dropdown-account-name">علی میرهادی</span>
@@ -647,7 +805,7 @@
     <!-- Inactive account: avatar first=RIGHT, info second=LEFT -->
     <a href="#" class="user-dropdown-account">
       <div class="user-avatar user-avatar--inactive">
-        <img src="assets/images/imageuser.jpg" alt="امیر همتی‌نژاد">
+        <img src="../assets/images/imageuser.jpg" alt="امیر همتی‌نژاد">
       </div>
       <div class="user-dropdown-account-info">
         <span class="user-dropdown-account-name">امیر همتی‌نژاد</span>
@@ -671,7 +829,7 @@
 
   <!-- Edit profile: icon first=RIGHT, text second=LEFT -->
   <div class="user-dropdown-actions">
-    <a href="profile/profile.html" class="user-dropdown-action-btn">
+    <a href="../profile/profile.html" class="user-dropdown-action-btn">
       <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
       <path fill-rule="evenodd" clip-rule="evenodd" d="M15.5629 15.3297C15.8734 15.3297 16.1254 15.5817 16.1254 15.8922C16.1254 16.2027 15.8734 16.4547 15.5629 16.4547H10.1231C9.81261 16.4547 9.56061 16.2027 9.56061 15.8922C9.56061 15.5817 9.81261 15.3297 10.1231 15.3297H15.5629ZM12.0872 2.74023C12.1247 2.76948 13.3795 3.74448 13.3795 3.74448C13.8355 4.01598 14.1917 4.50123 14.3267 5.07573C14.461 5.64423 14.3635 6.23073 14.0507 6.72648C14.0486 6.72979 14.0465 6.73305 14.0393 6.74277L14.0337 6.75028C13.9829 6.81719 13.7622 7.09623 12.6484 8.49167C12.6381 8.50996 12.6264 8.52709 12.6136 8.54373C12.5948 8.56827 12.5743 8.59082 12.5525 8.61135C12.4765 8.707 12.3963 8.80751 12.3119 8.91318L12.141 9.12728C11.7883 9.56901 11.3699 10.0928 10.8735 10.7141L10.6188 11.0329C9.66056 12.2323 8.43333 13.7679 6.86121 15.7347C6.51696 16.1637 6.00096 16.4135 5.44671 16.4202L2.71746 16.4547H2.70996C2.44971 16.4547 2.22321 16.2762 2.16246 16.022L1.54821 13.4187C1.42146 12.8795 1.54746 12.323 1.89321 11.891L8.95821 3.05448C8.96121 3.05148 8.96346 3.04773 8.96646 3.04473C9.74121 2.11848 11.1422 1.98198 12.0872 2.74023ZM8.1705 5.84025L2.77146 12.5937C2.64321 12.7542 2.59596 12.9612 2.64321 13.16L3.15396 15.3237L5.43321 15.2952C5.64996 15.293 5.85021 15.1962 5.98296 15.0312C6.66657 14.1759 7.52575 13.1009 8.4091 11.9955L8.72162 11.6044L9.03468 11.2127C9.86312 10.1759 10.6815 9.15155 11.3663 8.29415L8.1705 5.84025ZM9.83271 3.76248L8.87325 4.96125L12.0688 7.41445C12.6839 6.64402 13.0885 6.1366 13.126 6.08823C13.249 5.88873 13.297 5.60673 13.2325 5.33523C13.1665 5.05698 12.9932 4.82073 12.7435 4.66998C12.6902 4.63323 11.4265 3.65223 11.3875 3.62148C10.912 3.24048 10.2182 3.30648 9.83271 3.76248Z" fill="#222323"/>
       </svg>
@@ -1164,6 +1322,166 @@
 </div><!-- /#search-modal -->
 
 <!-- ===================================================
+     GROUPS — افزودن گروه جدید Modal
+     =================================================== -->
+<div class="modal modal--centered modal--add-group" id="add-group-modal">
+  <div class="modal__overlay"></div>
+  <div class="modal__container">
+    <div class="modal__header">
+      <div class="modal__title-block">
+        <div class="modal__icon-holder">
+          <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none">
+            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="9" cy="7" r="4" stroke="white" stroke-width="1.5"/>
+            <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="modal__title-wrap">
+          <h2 class="modal__title">افزودن گروه جدید</h2>
+          <p class="modal__subtitle">از گروه‌ها برای انجام عملیات‌های دسته‌جمعی استفاده می‌شود.</p>
+        </div>
+      </div>
+      <button class="modal__close" type="button" aria-label="بستن">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M5.25 5.25L18.75 18.75M18.75 5.25L5.25 18.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <div class="modal__body">
+      <div class="modal__content">
+        <form class="group-form" id="addGroupForm" novalidate>
+          <div class="group-form__field">
+            <label class="group-form__label" for="addGroupName">نام گروه</label>
+            <div class="input input--large input--full-width">
+              <div class="input__container">
+                <span class="input__icon input__icon--before">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none">
+                    <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="1.5"/>
+                    <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                <span class="input__divider"></span>
+                <input type="text" class="input__field" id="addGroupName" placeholder="مانند گروه کارمندان جدید یا ...">
+              </div>
+              <span class="input__indicator"></span>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal__actions">
+        <button class="btn btn--primary btn--large" type="button" id="addGroupSubmit" style="width:100%">
+          ذخیره گروه
+        </button>
+      </div>
+    </div>
+  </div>
+</div><!-- /#add-group-modal -->
+
+<!-- ===================================================
+     GROUPS — موفقیت ایجاد گروه Modal
+     =================================================== -->
+<div class="modal modal--centered modal--group-success" id="group-success-modal">
+  <div class="modal__overlay"></div>
+  <div class="modal__container">
+    <div class="modal__header">
+      <div class="modal__title-block">
+        <div class="modal__icon-holder modal__icon-holder--success">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M22 4L12 14.01l-3-3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="modal__title-wrap">
+          <h2 class="modal__title">افزودن گروه جدید با موفقیت انجام شد</h2>
+          <p class="modal__subtitle">همچنین میتوانید از بخش‌های زیر مدیریت گروه جدید را ادامه دهید.</p>
+        </div>
+      </div>
+      <button class="modal__close" type="button" aria-label="بستن">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M5.25 5.25L18.75 18.75M18.75 5.25L5.25 18.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <div class="modal__body">
+      <div class="modal__content">
+        <div class="group-success-actions">
+          <a href="list-groups-user.html" class="group-success-action-item">
+            <span class="group-success-action-item__icon-holder">
+              <svg viewBox="0 0 24 24" fill="none" width="22" height="22"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <span class="group-success-action-item__texts">
+              <span class="group-success-action-item__title">افزودن کاربران به گروه</span>
+              <span class="group-success-action-item__desc">افزودن کاربران به گروه جهت انجام عملیات گروهی.</span>
+            </span>
+            <span class="group-success-action-item__chevron">
+              <svg viewBox="0 0 24 24" fill="none" width="18" height="18"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </a>
+          <a href="#" class="group-success-action-item">
+            <span class="group-success-action-item__icon-holder">
+              <svg viewBox="0 0 24 24" fill="none" width="22" height="22"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <span class="group-success-action-item__texts">
+              <span class="group-success-action-item__title">افزودن آزمون به کاربران گروه</span>
+              <span class="group-success-action-item__desc">افزودن و مدیریت گروه آزمون برای تمام کاربران گروه.</span>
+            </span>
+            <span class="group-success-action-item__chevron">
+              <svg viewBox="0 0 24 24" fill="none" width="18" height="18"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </a>
+        </div>
+      </div>
+      <div class="modal__actions">
+        <button class="btn btn--primary btn--large" type="button" data-modal-close="group-success-modal" style="width:100%">خروج</button>
+      </div>
+    </div>
+  </div>
+</div><!-- /#group-success-modal -->
+
+<!-- ===================================================
+     GROUPS — ویرایش گروه Modal
+     =================================================== -->
+<div class="modal modal--centered modal--add-group" id="edit-group-modal">
+  <div class="modal__overlay"></div>
+  <div class="modal__container">
+    <div class="modal__header">
+      <div class="modal__title-block">
+        <div class="modal__icon-holder">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none">
+            <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="modal__title-wrap">
+          <h2 class="modal__title">ویرایش گروه</h2>
+          <p class="modal__subtitle" id="editGroupModalSubtitle">نام گروه را ویرایش کنید</p>
+        </div>
+      </div>
+      <button class="modal__close" type="button" aria-label="بستن">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M5.25 5.25L18.75 18.75M18.75 5.25L5.25 18.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <div class="modal__body">
+      <div class="modal__content">
+        <form class="group-form" id="editGroupForm" novalidate>
+          <div class="group-form__field">
+            <label class="group-form__label" for="editGroupName">نام گروه</label>
+            <div class="input input--large input--full-width">
+              <div class="input__container">
+                <input type="text" class="input__field" id="editGroupName" placeholder="نام گروه...">
+              </div>
+              <span class="input__indicator"></span>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal__actions">
+        <button class="btn btn--primary btn--large" type="button" id="editGroupSubmit" style="width:100%">
+          ذخیره تغییرات
+        </button>
+      </div>
+    </div>
+  </div>
+</div><!-- /#edit-group-modal -->
+
+<!-- ===================================================
      SEARCH MODAL — HTML TEMPLATES
      Cloned by SearchModal JS; never rendered directly.
      =================================================== -->
@@ -1315,7 +1633,7 @@
      =================================================== -->
 
 <template id="submenu-desktop-users">
-  <a class="sub-drawer-item" href="users/users.html">
+  <a class="sub-drawer-item" href="../users/users.html">
     <div class="sub-drawer-item-info">
       <span class="sub-drawer-item-name">لیست کاربران</span>
       <span class="sub-drawer-item-desc">مدیریت کاربران، افزودن، پروفایل و ...</span>
@@ -1345,7 +1663,7 @@
       </svg>
     </div>
   </a>
-  <a class="sub-drawer-item" href="labels/labels.html">
+  <a class="sub-drawer-item" href="../labels/labels.html">
     <div class="sub-drawer-item-info">
       <span class="sub-drawer-item-name">برچسب‌ها</span>
       <span class="sub-drawer-item-desc">لیست برچسب‌ها، دسته‌بندی و ویرایش</span>
@@ -1425,7 +1743,7 @@
      =================================================== -->
 
 <template id="notif-detail-1">
-  <img class="notif-detail-img" src="assets/images/notificationimg.png" alt="انتشار نسخه جدید" />
+  <img class="notif-detail-img" src="../assets/images/notificationimg.png" alt="انتشار نسخه جدید" />
   <p class="notif-detail-text">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است.</p>
 </template>
 
@@ -1441,8 +1759,9 @@
   <p class="notif-detail-text">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.</p>
 </template>
 
-<script src="components/modal/modal.js"></script>
-<script src="components/credit-modal/credit-modal.js"></script>
-<script src="js/app.js"></script>
+<script src="../components/modal/modal.js"></script>
+<script src="../components/credit-modal/credit-modal.js"></script>
+<script src="js/groups.js"></script>
+<script src="../js/app.js"></script>
 </body>
 </html>

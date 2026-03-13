@@ -1626,3 +1626,56 @@ const UsersPageSizeSheet = (() => {
 
   return { open, close };
 })();
+
+/* =================================================================
+   UsersAccessModal — مودال اعطای دسترسی به مدیران
+   ================================================================= */
+const UsersAccessModal = (() => {
+  function _onSearch(e) {
+    var q = e.target.value.trim().toLowerCase();
+    var list = document.getElementById('usersAccessList');
+    var empty = document.getElementById('usersAccessEmpty');
+    if (!list) return;
+
+    var visible = 0;
+    list.querySelectorAll('.users-access-modal__row').forEach(function (row) {
+      var nameEl = row.querySelector('.users-access-modal__name');
+      var text = nameEl ? nameEl.textContent.toLowerCase() : '';
+      var match = !q || text.includes(q);
+      row.style.display = match ? '' : 'none';
+      if (match) visible++;
+    });
+
+    if (empty) empty.style.display = visible === 0 ? '' : 'none';
+  }
+
+  function _onDeleteClick(e) {
+    var btn = e.target.closest('.users-access-modal__delete-btn');
+    if (!btn) return;
+    var row = btn.closest('.users-access-modal__row');
+    if (!row) return;
+    row.remove();
+
+    var list = document.getElementById('usersAccessList');
+    var empty = document.getElementById('usersAccessEmpty');
+    if (list && empty) {
+      var remaining = list.querySelectorAll('.users-access-modal__row');
+      empty.style.display = remaining.length === 0 ? '' : 'none';
+    }
+  }
+
+  function _init() {
+    var searchInput = document.getElementById('usersAccessSearch');
+    if (searchInput) searchInput.addEventListener('input', _onSearch);
+
+    var list = document.getElementById('usersAccessList');
+    if (list) list.addEventListener('click', _onDeleteClick);
+  }
+
+  document.addEventListener('DOMContentLoaded', _init);
+
+  function open()  { Modal.open('users-access-modal');  }
+  function close() { Modal.close('users-access-modal'); }
+
+  return { open, close };
+})();

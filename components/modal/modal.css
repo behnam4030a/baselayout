@@ -34,8 +34,8 @@
 
 :root {
   /* --- Overlay --- */
-  --modal-overlay-start: rgba(0, 0, 0, 0.05);
-  --modal-overlay-end: rgba(34, 35, 35, 0.3);
+  --modal-overlay-start: rgba(34, 35, 35, 0.05);
+  --modal-overlay-end: rgba(0, 0, 0, 0.3);
 
   /* --- Header --- */
   --modal-header-bg: var(--neutral-880);
@@ -116,9 +116,6 @@
   justify-content: center;
 }
 
-.modal--centered .modal__overlay {
-  background: linear-gradient(to bottom, var(--modal-overlay-start) 20%, var(--modal-overlay-end));
-}
 
 .modal--centered .modal__container {
   position: relative;
@@ -140,7 +137,7 @@
 .modal__overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to right, var(--modal-overlay-start), var(--modal-overlay-end));
+  background: linear-gradient(to bottom, var(--modal-overlay-start) 20%, var(--modal-overlay-end));
   animation: modal-fade-in var(--modal-animation-duration) ease forwards;
 }
 
@@ -165,7 +162,6 @@
   box-shadow: var(--modal-shadow);
   display: flex;
   flex-direction: column;
-  overflow: hidden;
   animation: modal-slide-in-right var(--modal-animation-duration) ease forwards;
   z-index: 1;
 }
@@ -291,6 +287,7 @@
   flex-direction: column;
   gap: var(--modal-content-gap);
   align-items: flex-end;
+  overflow-y: auto;
 }
 
 /* Custom scrollbar */

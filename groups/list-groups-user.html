@@ -4,11 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>داشبورد مدیریت — ای‌سنج</title>
-  <link rel="stylesheet" href="components/colors/colors.css" />
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="components/credit-modal/credit-modal.css" />
-  <link rel="stylesheet" href="components/modal/modal.css" />
-  <link rel="stylesheet" href="components/typography/typography.css">
+  <link rel="stylesheet" href="../components/colors/colors.css" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../components/credit-modal/credit-modal.css" />
+  <link rel="stylesheet" href="../components/modal/modal.css" />
+  <link rel="stylesheet" href="../components/typography/typography.css">
+  <link rel="stylesheet" href="../components/button/button.css" />
+  <link rel="stylesheet" href="../components/input/input.css" />
+  <link rel="stylesheet" href="../components/table/table.css" />
+  <link rel="stylesheet" href="css/groups.css" />
 </head>
 <body>
 
@@ -31,7 +35,7 @@
     <!-- Top: Brand (right in RTL) + Toggle (left in RTL) -->
     <div class="sidebar-top">
       <div class="sidebar-brand">
-        <img src="assets/images/Brand Logo.png" alt="ای‌سنج" class="brand-logo-img" />
+        <img src="../assets/images/Brand Logo.png" alt="ای‌سنج" class="brand-logo-img" />
       </div>
 
       <button class="sidebar-toggle" id="sidebarToggle" title="جمع/گسترش منو" aria-label="تغییر حالت منو">
@@ -242,13 +246,15 @@
 
       <!-- RIGHT: Title + Breadcrumb -->
       <div class="header-right">
-        <h1 class="page-title">مدیریت کاربران</h1>
+        <h1 class="page-title">گروه کارمندان جدید</h1>
         <nav class="breadcrumb" aria-label="مسیر صفحه">
           <a href="#">پیشخوان</a>
           <span class="breadcrumb-sep">/</span>
           <a href="#">کاربران</a>
           <span class="breadcrumb-sep">/</span>
-          <span class="breadcrumb-current">مدیریت کاربران</span>
+          <a href="#">مدیریت گروهی کاربران</a>
+          <span class="breadcrumb-sep">/</span>
+          <span class="breadcrumb-current">کارمندان جدید</span>
         </nav>
       </div>
 
@@ -311,7 +317,7 @@
         <div class="header-user" role="button" tabindex="0" aria-label="پروفایل کاربر">
           <div class="user-avatar-wrapper">
             <div class="user-avatar">
-              <img src="assets/images/imageuser.jpg" alt="علی میرهادی">
+              <img src="../assets/images/imageuser.jpg" alt="علی میرهادی">
             </div>
             <div class="user-avatar-verified" aria-hidden="true">
               <svg viewBox="0 0 12 12" fill="none" width="10" height="10">
@@ -336,9 +342,308 @@
 
     <!-- === PAGE CONTENT === -->
     <main class="page-content" id="pageContent">
-      <div class="page-content-placeholder">
-        محتوای صفحه اینجا قرار می‌گیرد
+
+      <!-- ===== STATS CARDS ===== -->
+      <div class="group-stats">
+
+        <!-- کارت ۱: آزمون‌های در انتظار انجام -->
+        <div class="group-stat-card">
+          <div class="group-stat-card__text">
+            <span class="group-stat-card__num">۳۵۴</span>
+            <span class="group-stat-card__label">آزمون‌های در انتظار انجام</span>
+          </div>
+          <div class="group-stat-card__icon-wrap">
+            <div class="group-stat-card__icon-holder">
+              <svg viewBox="0 0 30 30" fill="none" width="30" height="30">
+                <path d="M17.5 3.75H8.75a2.5 2.5 0 00-2.5 2.5v17.5a2.5 2.5 0 002.5 2.5h12.5a2.5 2.5 0 002.5-2.5V10l-6.25-6.25z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M17.5 3.75V10H23.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M12.5 20l2.5-2.5 2.5 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M15 17.5v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- کارت ۲: آزمون‌های انجام شده -->
+        <div class="group-stat-card">
+          <div class="group-stat-card__text">
+            <span class="group-stat-card__num">۳۹۱</span>
+            <span class="group-stat-card__label">آزمون‌های انجام شده</span>
+          </div>
+          <div class="group-stat-card__icon-wrap">
+            <div class="group-stat-card__icon-holder">
+              <svg viewBox="0 0 30 30" fill="none" width="30" height="30">
+                <path d="M17.5 3.75H8.75a2.5 2.5 0 00-2.5 2.5v17.5a2.5 2.5 0 002.5 2.5h12.5a2.5 2.5 0 002.5-2.5V10l-6.25-6.25z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M17.5 3.75V10H23.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M11.25 18.75l2.5 2.5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- کارت ۳: مجموع آزمون‌های متصل (با آیکن فلش) -->
+        <div class="group-stat-card">
+          <div class="group-stat-card__text">
+            <span class="group-stat-card__num">۷۴۵</span>
+            <span class="group-stat-card__label">مجموع آزمون‌های متصل</span>
+          </div>
+          <div class="group-stat-card__icon-wrap">
+            <div class="group-stat-card__icon-holder">
+              <svg viewBox="0 0 30 30" fill="none" width="30" height="30">
+                <path d="M20 8.75H12.5a2.5 2.5 0 00-2.5 2.5v13.75a2.5 2.5 0 002.5 2.5H20a2.5 2.5 0 002.5-2.5V11.25L20 8.75z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M20 8.75v3.75h3.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M8.75 6.25H16.25L20 8.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M6.25 3.75H13.75L17.5 6.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+          </div>
+          <div class="group-stat-card__arrow">
+            <svg viewBox="0 0 20 20" fill="none" width="20" height="20">
+              <path d="M5 15L15 5M15 5H7M15 5v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+
       </div>
+
+      <!-- ===== GROUP USERS TABLE ===== -->
+      <div class="group-users-list" id="groupUsersList">
+        <div class="table-container" data-table="group-users-table" data-page-size="10">
+
+          <!-- Row Action Menu -->
+          <div class="table__row-menu">
+            <button class="table__row-menu-item" type="button" data-action="delete">حذف از گروه</button>
+            <button class="table__row-menu-item" type="button" data-action="profile">پروفایل کاربر</button>
+          </div>
+
+          <!-- Table Header -->
+          <div class="table__header">
+            <div class="table__title-section">
+              <h2 class="table__title">لیست کاربران گروه</h2>
+              <span class="table__dot" id="groupUsersCountDot"></span>
+              <span class="table__count" id="groupUsersCount">تعداد: ۴۷ نفر</span>
+            </div>
+            <div class="table__actions">
+              <button class="table__btn table__btn--secondary" type="button" id="addGroupExamBtnTable">
+                <span class="table__btn-icon">
+                  <svg viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+                <span class="table__btn-text">افزودن آزمون به گروه</span>
+              </button>
+              <button class="table__btn table__btn--primary" type="button" id="addGroupUserBtnTable">
+                <span class="table__btn-icon">
+                  <svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </span>
+                <span class="table__btn-text">افزودن کاربر به گروه</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Search Box -->
+          <div class="table__search">
+            <span class="table__search-icon">
+              <svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.5"/><path d="M20 20l-3.5-3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </span>
+            <span class="table__search-divider"></span>
+            <input type="text" class="table__search-input" placeholder="جستجو...">
+            <button type="button" class="table__search-clear" aria-label="پاک کردن">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+
+          <!-- Select All Row (mobile) -->
+          <div class="table__select-all">
+            <div class="table__select-all-right">
+              <label class="table__checkbox-wrapper">
+                <input type="checkbox" class="table__checkbox-input table__select-all-checkbox">
+                <span class="table__checkbox-box">
+                  <svg class="table__icon--check" viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <svg class="table__icon--indeterminate" viewBox="0 0 10 10" fill="none" style="display:none"><path d="M2.5 5H7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </span>
+              </label>
+              <span class="table__select-all-text">انتخاب همه</span>
+            </div>
+            <button class="table__btn table__btn--secondary table__select-all-bulk" type="button" disabled>
+              <span class="table__btn-text">عملیات گروهی</span>
+            </button>
+          </div>
+
+          <!-- Table -->
+          <div class="table__scroll-wrapper">
+            <table class="table__grid">
+              <thead class="table__thead">
+                <tr class="table__row">
+                  <th class="table__cell table__cell--checkbox">
+                    <label class="table__checkbox-wrapper">
+                      <input type="checkbox" class="table__checkbox-input">
+                      <span class="table__checkbox-box">
+                        <svg class="table__icon--check" viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        <svg class="table__icon--indeterminate" viewBox="0 0 10 10" fill="none" style="display:none"><path d="M2.5 5H7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                      </span>
+                    </label>
+                  </th>
+                  <th class="table__cell">
+                    <div class="table__cell-inner">
+                      <span class="table__cell-icon">
+                        <svg viewBox="0 0 18 18" fill="none"><path d="M9 2.25a4.5 4.5 0 110 9 4.5 4.5 0 010-9zM3 15.75c0-3.314 2.686-6 6-6s6 2.686 6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                      </span>
+                      <span class="table__cell-text">نام و نام خانوادگی</span>
+                    </div>
+                  </th>
+                  <th class="table__cell" style="width:200px">
+                    <div class="table__cell-inner">
+                      <span class="table__cell-icon">
+                        <svg viewBox="0 0 18 18" fill="none"><path d="M2.25 3.75h2.25M2.25 9h2.25M2.25 14.25h2.25M6.75 3.75h9M6.75 9h9M6.75 14.25h9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                      </span>
+                      <span class="table__cell-text">کد اختصاصی</span>
+                    </div>
+                  </th>
+                  <th class="table__cell" style="width:200px">
+                    <div class="table__cell-inner">
+                      <span class="table__cell-icon">
+                        <svg viewBox="0 0 18 18" fill="none"><path d="M10.5 1.5H4.5a1.5 1.5 0 00-1.5 1.5v12a1.5 1.5 0 001.5 1.5h9a1.5 1.5 0 001.5-1.5V6l-4.5-4.5z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M10.5 1.5V6H15M12 9.75H6M12 12.75H6M7.5 6.75H6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      </span>
+                      <span class="table__cell-text">وضعیت آزمون</span>
+                    </div>
+                  </th>
+                  <th class="table__cell table__cell--action"></th>
+                </tr>
+              </thead>
+              <tbody class="table__tbody">
+                <tr class="table__row" data-row-id="1">
+                  <td class="table__cell table__cell--checkbox">
+                    <label class="table__checkbox-wrapper">
+                      <input type="checkbox" class="table__checkbox-input">
+                      <span class="table__checkbox-box">
+                        <svg class="table__icon--check" viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      </span>
+                    </label>
+                  </td>
+                  <td class="table__cell" data-label="نام و نام خانوادگی">علی میرهادی</td>
+                  <td class="table__cell table__cell--code" data-label="کد اختصاصی">۱۲۵۴۹۸۵۳۱۶</td>
+                  <td class="table__cell" data-label="وضعیت آزمون">۳ از ۴ انجام شده</td>
+                  <td class="table__cell table__cell--action">
+                    <button class="table__row-action" type="button" aria-label="عملیات">
+                      <span class="table__row-action__dots">&#8942;</span>
+                      <span class="table__row-action__delete" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" width="18" height="18"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                    </button>
+                  </td>
+                </tr>
+                <tr class="table__row" data-row-id="2">
+                  <td class="table__cell table__cell--checkbox">
+                    <label class="table__checkbox-wrapper">
+                      <input type="checkbox" class="table__checkbox-input">
+                      <span class="table__checkbox-box">
+                        <svg class="table__icon--check" viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      </span>
+                    </label>
+                  </td>
+                  <td class="table__cell" data-label="نام و نام خانوادگی">اختر شریعتمداری</td>
+                  <td class="table__cell table__cell--code" data-label="کد اختصاصی">۵۸۹۴۶۳۳۲۱۸</td>
+                  <td class="table__cell" data-label="وضعیت آزمون">۴ از ۴ انجام شده</td>
+                  <td class="table__cell table__cell--action">
+                    <button class="table__row-action" type="button" aria-label="عملیات">
+                      <span class="table__row-action__dots">&#8942;</span>
+                      <span class="table__row-action__delete" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" width="18" height="18"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                    </button>
+                  </td>
+                </tr>
+                <tr class="table__row" data-row-id="3">
+                  <td class="table__cell table__cell--checkbox">
+                    <label class="table__checkbox-wrapper">
+                      <input type="checkbox" class="table__checkbox-input">
+                      <span class="table__checkbox-box">
+                        <svg class="table__icon--check" viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      </span>
+                    </label>
+                  </td>
+                  <td class="table__cell" data-label="نام و نام خانوادگی">علی میرهادی</td>
+                  <td class="table__cell table__cell--code" data-label="کد اختصاصی">۱۲۵۴۹۸۵۳۱۶</td>
+                  <td class="table__cell" data-label="وضعیت آزمون">۳ از ۴ انجام شده</td>
+                  <td class="table__cell table__cell--action">
+                    <button class="table__row-action" type="button" aria-label="عملیات">
+                      <span class="table__row-action__dots">&#8942;</span>
+                      <span class="table__row-action__delete" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" width="18" height="18"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <!-- No Search Results -->
+            <div class="table__no-results">
+              <div class="table__no-results__icon">
+                <svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="var(--stroke)" stroke-width="1"/><path d="M20 20l-3.5-3.5" stroke="var(--stroke)" stroke-width="1" stroke-linecap="round"/><path d="M8 11h6M11 8v6" stroke="var(--stroke)" stroke-width="1" stroke-linecap="round"/></svg>
+              </div>
+              <p class="table__no-results__title">نتیجه‌ای یافت نشد</p>
+            </div>
+          </div>
+
+          <!-- Bulk Action Bar -->
+          <div class="table__action-bar">
+            <div class="table__action-count">
+              <span class="table__action-count-icon">
+                <svg viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+              <span class="table__action-count-text">۰ ردیف انتخاب شده</span>
+            </div>
+            <div class="table__action-buttons">
+              <button class="table__action-btn" type="button" data-bulk-action="delete">
+                <span class="table__action-btn-icon">
+                  <svg viewBox="0 0 24 24" fill="none"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+                <span>حذف از گروه</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Pagination -->
+          <div class="table__pagination">
+            <div class="table__page-size">
+              <button class="table__page-size-btn" type="button">
+                <span class="table__page-size-text">۱۰ ردیف در هر صفحه</span>
+                <span class="table__page-size-arrow">
+                  <svg viewBox="0 0 24 24" fill="none" width="16" height="16"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+              </button>
+              <div class="table__page-size-dropdown">
+                <button class="table__page-size-option" type="button" data-size="5">۵</button>
+                <button class="table__page-size-option table__page-size-option--active" type="button" data-size="10">۱۰</button>
+                <button class="table__page-size-option" type="button" data-size="15">۱۵</button>
+                <button class="table__page-size-option" type="button" data-size="20">۲۰</button>
+              </div>
+            </div>
+            <div class="table__page-numbers">
+              <!-- JS renders page buttons -->
+            </div>
+          </div>
+
+          <!-- Empty State Body — no separate header; shared with .table__header above -->
+          <div class="group-users-empty__body hidden" id="groupUsersEmptyBody">
+          <svg xmlns="http://www.w3.org/2000/svg" width="150" height="150" viewBox="0 0 150 150" fill="none" aria-hidden="true" class="group-users-empty__illustration">
+            <g clip-path="url(#clip0_10263_19879)">
+            <path d="M122.071 94.1406H27.9297C25.5027 94.1406 23.5352 96.1082 23.5352 98.5352V145.606C23.5352 148.033 25.5027 150 27.9297 150H122.07C124.497 150 126.465 148.033 126.465 145.606V98.5352C126.465 96.1082 124.497 94.1406 122.071 94.1406Z" fill="#7FD6C4"/>
+            <path d="M126.465 145.606V98.5352C126.465 96.1082 124.497 94.1406 122.07 94.1406H75V150H122.07C124.497 150 126.465 148.033 126.465 145.606Z" fill="#2ABB9C"/>
+            <path d="M75.0014 74.6874C72.575 74.6874 70.608 72.7213 70.6068 70.2952C70.6068 70.1701 70.5547 57.6501 67.1923 45.4175C63.0872 30.4828 56.2127 22.9102 46.7592 22.9102C38.3123 22.9102 34.5312 27.9381 34.5312 32.9212C34.5312 39.7356 41.3038 47.0701 56.1731 47.0701C58.6001 47.0701 60.5677 49.0377 60.5677 51.4646C60.5677 53.8916 58.6001 55.8592 56.1731 55.8592C37.0098 55.8592 25.7422 45.2022 25.7422 32.9212C25.7422 23.5787 32.9612 14.1211 46.7592 14.1211C56.3428 14.1211 69.1452 19.1745 75.7106 43.248C79.354 56.6065 79.3959 69.7403 79.3959 70.2929C79.3959 72.7198 77.4283 74.6874 75.0014 74.6874Z" fill="#EAF8F5"/>
+            <path d="M89.1211 55.8594C86.6941 55.8594 84.7266 53.8918 84.7266 51.4648C84.7266 49.0379 86.6941 47.0703 89.1211 47.0703C110.14 47.0703 117.786 36.258 117.786 28.2922C117.786 20.2326 110.799 13.4961 98.5354 13.4961C96.1084 13.4961 94.1408 11.5285 94.1408 9.10156C94.1408 6.67461 96.1084 4.70703 98.5354 4.70703C118.54 4.70703 126.575 18.0052 126.575 28.2922C126.575 42.9875 112.85 55.8594 89.1211 55.8594Z" fill="#F1F3F5"/>
+            <path d="M149.665 73.3184C149.332 72.5154 148.769 71.829 148.047 71.3461C147.324 70.8632 146.474 70.6055 145.605 70.6055H98.5347C97.3692 70.6056 96.2515 71.0686 95.4275 71.8928L74.9996 92.3206L54.5718 71.8928C53.7478 71.0686 52.6301 70.6056 51.4646 70.6055H4.39447C3.52531 70.6055 2.67567 70.8632 1.95299 71.3461C1.23032 71.829 0.667067 72.5154 0.334473 73.3184C0.00187817 74.1214 -0.0851239 75.005 0.0844687 75.8575C0.254061 76.7099 0.672631 77.4929 1.28725 78.1075L23.535 100.355H126.465L148.712 78.1075C149.327 77.4929 149.746 76.7099 149.915 75.8574C150.085 75.005 149.998 74.1214 149.665 73.3184Z" fill="#55C9B0"/>
+            <path d="M148.713 78.1075C149.327 77.4929 149.746 76.7099 149.915 75.8575C150.085 75.005 149.998 74.1214 149.665 73.3184C149.333 72.5154 148.77 71.829 148.047 71.3461C147.324 70.8632 146.475 70.6055 145.605 70.6055H98.5351C97.3696 70.6056 96.2519 71.0686 95.4278 71.8928L75 92.3209V100.356H126.465L148.713 78.1075Z" fill="#1D836D"/>
+            </g>
+            <defs>
+            <clipPath id="clip0_10263_19879">
+            <rect width="150" height="150" fill="white"/>
+            </clipPath>
+            </defs>
+          </svg>
+          <div class="group-users-empty__content">
+            <h3 class="group-users-empty__title">هنوز کاربری به این گروه اضافه نشده است</h3>
+            <p class="group-users-empty__subtitle">میتوانید با کلیک بر روی «افزودن کاربر به گروه» اقدام به افزودن اولین کاربر به این گروه کنید</p>
+          </div>
+          </div><!-- /.group-users-empty__body -->
+
+        </div><!-- /.table-container -->
+      </div><!-- /.group-users-list -->
+
     </main>
 
   </div><!-- /.main-wrapper -->
@@ -427,7 +732,7 @@
   <div class="mobile-drawer-header">
     <!-- Logo/Brand on right -->
     <div class="mobile-drawer-brand">
-      <img src="assets/images/Brand Logo.png" alt="ای‌سنج" class="mobile-drawer-brand-img" />
+      <img src="../assets/images/Brand Logo.png" alt="ای‌سنج" class="mobile-drawer-brand-img" />
     </div>
 
     <!-- Back/Close on left -->
@@ -470,7 +775,7 @@
         <!-- avatar first=RIGHT, texts second=LEFT -->
         <div class="user-avatar-wrapper">
           <div class="user-avatar">
-            <img src="assets/images/imageuser.jpg" alt="علی میرهادی">
+            <img src="../assets/images/imageuser.jpg" alt="علی میرهادی">
           </div>
           <div class="user-avatar-verified" aria-hidden="true">
             <svg viewBox="0 0 12 12" fill="none" width="10" height="10">
@@ -484,7 +789,7 @@
         </div>
       </div>
       <!-- edit-link last=LEFT; text first=RIGHT, chevron last=LEFT inside link -->
-      <a href="profile/profile.html" class="mobile-profile-edit-link">
+      <a href="../profile/profile.html" class="mobile-profile-edit-link">
         ویرایش پروفایل
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
           <path fill-rule="evenodd" clip-rule="evenodd" d="M11.2752 7.05806C11.5192 7.30213 11.5192 7.69786 11.2752 7.94194L9.21717 10L11.2752 12.0581C11.5192 12.3022 11.5192 12.6978 11.2752 12.9419C11.0311 13.186 10.6354 13.186 10.3913 12.9419L7.89131 10.4419C7.64723 10.1978 7.64723 9.80216 7.89131 9.55808L10.3913 7.05806C10.6354 6.81398 11.0311 6.81398 11.2752 7.05806Z" fill="#22967D"/>
@@ -554,7 +859,7 @@
       <div class="mobile-profile-account-row is-active">
         <div class="user-avatar-wrapper">
           <div class="user-avatar">
-            <img src="assets/images/imageuser.jpg" alt="علی میرهادی">
+            <img src="../assets/images/imageuser.jpg" alt="علی میرهادی">
           </div>
           <div class="user-avatar-verified" aria-hidden="true">
             <svg viewBox="0 0 12 12" fill="none" width="10" height="10">
@@ -581,7 +886,7 @@
       <div class="mobile-profile-account-row">
         <div class="user-avatar-wrapper">
             <div class="user-avatar">
-              <img src="assets/images/imageuser.jpg" alt="امیر همتی‌نژاد">
+              <img src="../assets/images/imageuser.jpg" alt="امیر همتی‌نژاد">
             </div> 
         </div>
         <div class="mobile-profile-account-details">
@@ -629,7 +934,7 @@
     <!-- Active account: avatar first=RIGHT, info middle, check last=LEFT (space-between) -->
     <a href="#" class="user-dropdown-account is-active">
       <div class="user-avatar">
-        <img src="assets/images/imageuser.jpg" alt="علی میرهادی">
+        <img src="../assets/images/imageuser.jpg" alt="علی میرهادی">
       </div>
       <div class="user-dropdown-account-info">
         <span class="user-dropdown-account-name">علی میرهادی</span>
@@ -647,7 +952,7 @@
     <!-- Inactive account: avatar first=RIGHT, info second=LEFT -->
     <a href="#" class="user-dropdown-account">
       <div class="user-avatar user-avatar--inactive">
-        <img src="assets/images/imageuser.jpg" alt="امیر همتی‌نژاد">
+        <img src="../assets/images/imageuser.jpg" alt="امیر همتی‌نژاد">
       </div>
       <div class="user-dropdown-account-info">
         <span class="user-dropdown-account-name">امیر همتی‌نژاد</span>
@@ -671,7 +976,7 @@
 
   <!-- Edit profile: icon first=RIGHT, text second=LEFT -->
   <div class="user-dropdown-actions">
-    <a href="profile/profile.html" class="user-dropdown-action-btn">
+    <a href="../profile/profile.html" class="user-dropdown-action-btn">
       <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
       <path fill-rule="evenodd" clip-rule="evenodd" d="M15.5629 15.3297C15.8734 15.3297 16.1254 15.5817 16.1254 15.8922C16.1254 16.2027 15.8734 16.4547 15.5629 16.4547H10.1231C9.81261 16.4547 9.56061 16.2027 9.56061 15.8922C9.56061 15.5817 9.81261 15.3297 10.1231 15.3297H15.5629ZM12.0872 2.74023C12.1247 2.76948 13.3795 3.74448 13.3795 3.74448C13.8355 4.01598 14.1917 4.50123 14.3267 5.07573C14.461 5.64423 14.3635 6.23073 14.0507 6.72648C14.0486 6.72979 14.0465 6.73305 14.0393 6.74277L14.0337 6.75028C13.9829 6.81719 13.7622 7.09623 12.6484 8.49167C12.6381 8.50996 12.6264 8.52709 12.6136 8.54373C12.5948 8.56827 12.5743 8.59082 12.5525 8.61135C12.4765 8.707 12.3963 8.80751 12.3119 8.91318L12.141 9.12728C11.7883 9.56901 11.3699 10.0928 10.8735 10.7141L10.6188 11.0329C9.66056 12.2323 8.43333 13.7679 6.86121 15.7347C6.51696 16.1637 6.00096 16.4135 5.44671 16.4202L2.71746 16.4547H2.70996C2.44971 16.4547 2.22321 16.2762 2.16246 16.022L1.54821 13.4187C1.42146 12.8795 1.54746 12.323 1.89321 11.891L8.95821 3.05448C8.96121 3.05148 8.96346 3.04773 8.96646 3.04473C9.74121 2.11848 11.1422 1.98198 12.0872 2.74023ZM8.1705 5.84025L2.77146 12.5937C2.64321 12.7542 2.59596 12.9612 2.64321 13.16L3.15396 15.3237L5.43321 15.2952C5.64996 15.293 5.85021 15.1962 5.98296 15.0312C6.66657 14.1759 7.52575 13.1009 8.4091 11.9955L8.72162 11.6044L9.03468 11.2127C9.86312 10.1759 10.6815 9.15155 11.3663 8.29415L8.1705 5.84025ZM9.83271 3.76248L8.87325 4.96125L12.0688 7.41445C12.6839 6.64402 13.0885 6.1366 13.126 6.08823C13.249 5.88873 13.297 5.60673 13.2325 5.33523C13.1665 5.05698 12.9932 4.82073 12.7435 4.66998C12.6902 4.63323 11.4265 3.65223 11.3875 3.62148C10.912 3.24048 10.2182 3.30648 9.83271 3.76248Z" fill="#222323"/>
       </svg>
@@ -1164,6 +1469,337 @@
 </div><!-- /#search-modal -->
 
 <!-- ===================================================
+     GROUP USERS — افزودن کاربر به گروه Modal
+     =================================================== -->
+<div class="modal modal--add-group-user" id="add-group-user-modal">
+  <div class="modal__overlay"></div>
+  <div class="modal__container">
+    <div class="modal__header">
+      <div class="modal__title-block">
+        <div class="modal__icon-holder">
+          <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none">
+            <path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="9" cy="7" r="4" stroke="white" stroke-width="1.5"/>
+            <path d="M19 8v6M22 11h-6" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="modal__title-wrap">
+          <h2 class="modal__title">افزودن کاربر به گروه</h2>
+        </div>
+      </div>
+      <button class="modal__close" type="button" aria-label="بستن">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M5.25 5.25L18.75 18.75M18.75 5.25L5.25 18.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <form class="modal__body" id="addGroupUserForm" novalidate>
+      <div class="modal__content">
+        <!-- Search -->
+        <div class="input input--large input--full-width">
+          <div class="input__container">
+            <span class="input__icon input__icon--before">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M9.90135 3.125C6.37229 3.125 3.51172 5.98557 3.51172 9.51458C3.51172 13.0437 6.37239 15.905 9.90135 15.905C11.5669 15.905 13.0835 15.2677 14.2209 14.2235L14.2323 14.2117C14.2476 14.1964 14.2635 14.1821 14.2799 14.1687C15.5179 13.0032 16.2909 11.3491 16.2909 9.51458C16.2909 5.98557 13.4304 3.125 9.90135 3.125ZM15.5574 14.6507C16.7899 13.2938 17.5409 11.4919 17.5409 9.51458C17.5409 5.29522 14.1207 1.875 9.90135 1.875C5.68193 1.875 2.26172 5.29522 2.26172 9.51458C2.26172 13.7339 5.68184 17.155 9.90135 17.155C11.6932 17.155 13.3409 16.538 14.6438 15.5049L17.0876 17.9425C17.332 18.1862 17.7277 18.1857 17.9715 17.9413C18.2153 17.697 18.2148 17.3012 17.9704 17.0575L15.5574 14.6507Z" fill="#59595A"/>
+              </svg>
+            </span>
+            <span class="input__divider"></span>
+            <input type="text" class="input__field" id="addGroupUserSearch" placeholder="جستجو نام یا کد اختصاصی کاربر..">
+          </div>
+          <span class="input__indicator"></span>
+        </div>
+        <div class="exam-bulk__separator"></div>
+        <!-- Users List -->
+        <ul class="group-user-select-list" id="addGroupUserList" role="list">
+          <li class="group-user-select-item" role="listitem" data-user-id="u1">
+            <label class="group-user-select-item__label">
+              <input type="checkbox" class="group-user-select-item__checkbox" name="users" value="u1">
+              <span class="group-user-select-item__info">
+                <span class="group-user-select-item__code">۱۳۴۵۲۶۷۹</span>
+                <span class="group-user-select-item__sep">|</span>
+                <span class="group-user-select-item__name">علی میرهادی</span>
+              </span>
+              <span class="group-user-select-item__action" aria-hidden="true">
+                <span class="group-user-select-item__action-plus">
+                  <svg viewBox="0 0 24 24" fill="none" width="24" height="24"><circle cx="12" cy="12" r="9.25" stroke="currentColor" stroke-width="1.5"/><path d="M12 8.5v7M8.5 12h7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </span>
+                <span class="group-user-select-item__action-check">
+                  <svg viewBox="0 0 24 24" fill="none" width="24" height="24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2.5C6.762 2.5 2.5 6.762 2.5 12C2.5 17.239 6.762 21.5 12 21.5C17.238 21.5 21.5 17.239 21.5 12C21.5 6.762 17.238 2.5 12 2.5ZM15.993 10.222L11.375 14.84C11.228 14.987 11.037 15.06 10.845 15.06C10.652 15.06 10.461 14.987 10.314 14.84L8.005 12.531C7.712 12.238 7.712 11.763 8.005 11.47C8.298 11.177 8.772 11.177 9.065 11.47L10.845 13.249L14.932 9.161C15.225 8.868 15.7 8.868 15.993 9.161C16.286 9.454 16.286 9.929 15.993 10.222Z" fill="currentColor"/></svg>
+                </span>
+              </span>
+            </label>
+          </li>
+          <li class="group-user-select-item" role="listitem" data-user-id="u2">
+            <label class="group-user-select-item__label">
+              <input type="checkbox" class="group-user-select-item__checkbox" name="users" value="u2">
+              <span class="group-user-select-item__info">
+                <span class="group-user-select-item__code">۱۳۴۵۲۶۸۰</span>
+                <span class="group-user-select-item__sep">|</span>
+                <span class="group-user-select-item__name">سارا احمدی</span>
+              </span>
+              <span class="group-user-select-item__action" aria-hidden="true">
+                <span class="group-user-select-item__action-plus">
+                  <svg viewBox="0 0 24 24" fill="none" width="24" height="24"><circle cx="12" cy="12" r="9.25" stroke="currentColor" stroke-width="1.5"/><path d="M12 8.5v7M8.5 12h7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </span>
+                <span class="group-user-select-item__action-check">
+                  <svg viewBox="0 0 24 24" fill="none" width="24" height="24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2.5C6.762 2.5 2.5 6.762 2.5 12C2.5 17.239 6.762 21.5 12 21.5C17.238 21.5 21.5 17.239 21.5 12C21.5 6.762 17.238 2.5 12 2.5ZM15.993 10.222L11.375 14.84C11.228 14.987 11.037 15.06 10.845 15.06C10.652 15.06 10.461 14.987 10.314 14.84L8.005 12.531C7.712 12.238 7.712 11.763 8.005 11.47C8.298 11.177 8.772 11.177 9.065 11.47L10.845 13.249L14.932 9.161C15.225 8.868 15.7 8.868 15.993 9.161C16.286 9.454 16.286 9.929 15.993 10.222Z" fill="currentColor"/></svg>
+                </span>
+              </span>
+            </label>
+          </li>
+          <li class="group-user-select-item" role="listitem" data-user-id="u3">
+            <label class="group-user-select-item__label">
+              <input type="checkbox" class="group-user-select-item__checkbox" name="users" value="u3">
+              <span class="group-user-select-item__info">
+                <span class="group-user-select-item__code">۱۳۴۵۲۶۸۱</span>
+                <span class="group-user-select-item__sep">|</span>
+                <span class="group-user-select-item__name">امیر حسینی</span>
+              </span>
+              <span class="group-user-select-item__action" aria-hidden="true">
+                <span class="group-user-select-item__action-plus">
+                  <svg viewBox="0 0 24 24" fill="none" width="24" height="24"><circle cx="12" cy="12" r="9.25" stroke="currentColor" stroke-width="1.5"/><path d="M12 8.5v7M8.5 12h7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </span>
+                <span class="group-user-select-item__action-check">
+                  <svg viewBox="0 0 24 24" fill="none" width="24" height="24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2.5C6.762 2.5 2.5 6.762 2.5 12C2.5 17.239 6.762 21.5 12 21.5C17.238 21.5 21.5 17.239 21.5 12C21.5 6.762 17.238 2.5 12 2.5ZM15.993 10.222L11.375 14.84C11.228 14.987 11.037 15.06 10.845 15.06C10.652 15.06 10.461 14.987 10.314 14.84L8.005 12.531C7.712 12.238 7.712 11.763 8.005 11.47C8.298 11.177 8.772 11.177 9.065 11.47L10.845 13.249L14.932 9.161C15.225 8.868 15.7 8.868 15.993 9.161C16.286 9.454 16.286 9.929 15.993 10.222Z" fill="currentColor"/></svg>
+                </span>
+              </span>
+            </label>
+          </li>
+          <li class="group-user-select-item" role="listitem" data-user-id="u4">
+            <label class="group-user-select-item__label">
+              <input type="checkbox" class="group-user-select-item__checkbox" name="users" value="u4">
+              <span class="group-user-select-item__info">
+                <span class="group-user-select-item__code">۱۳۴۵۲۶۸۲</span>
+                <span class="group-user-select-item__sep">|</span>
+                <span class="group-user-select-item__name">زهره کریمی</span>
+
+              </span>
+              <span class="group-user-select-item__action" aria-hidden="true">
+                <span class="group-user-select-item__action-plus">
+                  <svg viewBox="0 0 24 24" fill="none" width="24" height="24"><circle cx="12" cy="12" r="9.25" stroke="currentColor" stroke-width="1.5"/><path d="M12 8.5v7M8.5 12h7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </span>
+                <span class="group-user-select-item__action-check">
+                  <svg viewBox="0 0 24 24" fill="none" width="24" height="24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2.5C6.762 2.5 2.5 6.762 2.5 12C2.5 17.239 6.762 21.5 12 21.5C17.238 21.5 21.5 17.239 21.5 12C21.5 6.762 17.238 2.5 12 2.5ZM15.993 10.222L11.375 14.84C11.228 14.987 11.037 15.06 10.845 15.06C10.652 15.06 10.461 14.987 10.314 14.84L8.005 12.531C7.712 12.238 7.712 11.763 8.005 11.47C8.298 11.177 8.772 11.177 9.065 11.47L10.845 13.249L14.932 9.161C15.225 8.868 15.7 8.868 15.993 9.161C16.286 9.454 16.286 9.929 15.993 10.222Z" fill="currentColor"/></svg>
+                </span>
+              </span>
+            </label>
+          </li>
+          <li class="group-user-select-item" role="listitem" data-user-id="u5">
+            <label class="group-user-select-item__label">
+              <input type="checkbox" class="group-user-select-item__checkbox" name="users" value="u5">
+              <span class="group-user-select-item__info">
+                <span class="group-user-select-item__code">۱۳۴۵۲۶۸۳</span>
+                <span class="group-user-select-item__sep">|</span>
+                <span class="group-user-select-item__name">علی حسینی</span>
+              </span>
+              <span class="group-user-select-item__action" aria-hidden="true">
+                <span class="group-user-select-item__action-plus">
+                  <svg viewBox="0 0 24 24" fill="none" width="24" height="24"><circle cx="12" cy="12" r="9.25" stroke="currentColor" stroke-width="1.5"/><path d="M12 8.5v7M8.5 12h7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </span>
+                <span class="group-user-select-item__action-check">
+                  <svg viewBox="0 0 24 24" fill="none" width="24" height="24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2.5C6.762 2.5 2.5 6.762 2.5 12C2.5 17.239 6.762 21.5 12 21.5C17.238 21.5 21.5 17.239 21.5 12C21.5 6.762 17.238 2.5 12 2.5ZM15.993 10.222L11.375 14.84C11.228 14.987 11.037 15.06 10.845 15.06C10.652 15.06 10.461 14.987 10.314 14.84L8.005 12.531C7.712 12.238 7.712 11.763 8.005 11.47C8.298 11.177 8.772 11.177 9.065 11.47L10.845 13.249L14.932 9.161C15.225 8.868 15.7 8.868 15.993 9.161C16.286 9.454 16.286 9.929 15.993 10.222Z" fill="currentColor"/></svg>
+                </span>
+              </span>
+            </label>
+          </li>
+          <li class="group-user-select-item" role="listitem" data-user-id="u6">
+            <label class="group-user-select-item__label">
+              <input type="checkbox" class="group-user-select-item__checkbox" name="users" value="u6">
+              <span class="group-user-select-item__info">
+                <span class="group-user-select-item__code">۱۳۴۵۲۶۸۵</span>
+                <span class="group-user-select-item__sep">|</span>
+                <span class="group-user-select-item__name">حمیدرضا نیکو</span>
+              </span>
+              <span class="group-user-select-item__action" aria-hidden="true">
+                <span class="group-user-select-item__action-plus">
+                  <svg viewBox="0 0 24 24" fill="none" width="24" height="24"><circle cx="12" cy="12" r="9.25" stroke="currentColor" stroke-width="1.5"/><path d="M12 8.5v7M8.5 12h7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </span>
+                <span class="group-user-select-item__action-check">
+                  <svg viewBox="0 0 24 24" fill="none" width="24" height="24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2.5C6.762 2.5 2.5 6.762 2.5 12C2.5 17.239 6.762 21.5 12 21.5C17.238 21.5 21.5 17.239 21.5 12C21.5 6.762 17.238 2.5 12 2.5ZM15.993 10.222L11.375 14.84C11.228 14.987 11.037 15.06 10.845 15.06C10.652 15.06 10.461 14.987 10.314 14.84L8.005 12.531C7.712 12.238 7.712 11.763 8.005 11.47C8.298 11.177 8.772 11.177 9.065 11.47L10.845 13.249L14.932 9.161C15.225 8.868 15.7 8.868 15.993 9.161C16.286 9.454 16.286 9.929 15.993 10.222Z" fill="currentColor"/></svg>
+                </span>
+              </span>
+            </label>
+          </li>
+        </ul>
+      </div>
+      <div class="modal__actions">
+        <button class="btn btn--primary btn--large" type="submit" style="width:100%">
+          تایید و افزودن
+        </button>
+      </div>
+    </form>
+  </div>
+</div><!-- /#add-group-user-modal -->
+
+<!-- ===================================================
+     GROUP USERS — افزودن آزمون به گروه Modal
+     =================================================== -->
+<div class="modal modal--group-add-exam" id="group-add-exam-modal">
+  <div class="modal__overlay"></div>
+  <div class="modal__container">
+    <div class="modal__header">
+      <div class="modal__title-block">
+        <div class="modal__icon-holder">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9318 1.5C14.2898 1.5 15.8737 3.115 15.8737 5.518V12.415C15.8737 14.839 14.3385 16.415 11.9625 16.43L6.19275 16.433C3.83475 16.433 2.25 14.818 2.25 12.415V5.518C2.25 3.093 3.78525 1.517 6.16125 1.503L11.931 1.5H11.9318ZM11.9318 2.625L6.165 2.628C4.419 2.639 3.375 3.719 3.375 5.518V12.415C3.375 14.226 4.42875 15.308 6.192 15.308L11.9588 15.305C13.7048 15.295 14.7487 14.213 14.7487 12.415V5.518C14.7487 3.707 13.6958 2.625 11.9318 2.625ZM11.7871 11.605C12.0976 11.605 12.3496 11.857 12.3496 12.168C12.3496 12.478 12.0976 12.73 11.7871 12.73H6.37207C6.06157 12.73 5.80957 12.478 5.80957 12.168C5.80957 11.857 6.06157 11.605 6.37207 11.605H11.7871ZM11.7871 8.465C12.0976 8.465 12.3496 8.717 12.3496 9.028C12.3496 9.338 12.0976 9.59 11.7871 9.59H6.37207C6.06157 9.59 5.80957 9.338 5.80957 9.028C5.80957 8.717 6.06157 8.465 6.37207 8.465H11.7871ZM8.4381 5.333C8.7486 5.333 9.0006 5.585 9.0006 5.895C9.0006 6.206 8.7486 6.458 8.4381 6.458H6.37185C6.06135 6.458 5.80935 6.206 5.80935 5.895C5.80935 5.585 6.06135 5.333 6.37185 5.333H8.4381Z" fill="white"/>
+          </svg>
+        </div>
+        <div class="modal__title-wrap">
+          <h2 class="modal__title">افزودن آزمون به گروه</h2>
+          <p class="modal__subtitle" id="groupAddExamModalSubtitle">گروه انتخاب شده</p>
+        </div>
+      </div>
+      <button class="modal__close" type="button" aria-label="بستن">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M5.25 5.25L18.75 18.75M18.75 5.25L5.25 18.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <div class="modal__body">
+      <div class="modal__content">
+        <!-- Search -->
+        <div class="input input--large input--full-width">
+          <div class="input__container">
+            <span class="input__icon input__icon--before">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M9.90135 3.125C6.37229 3.125 3.51172 5.98557 3.51172 9.51458C3.51172 13.0437 6.37239 15.905 9.90135 15.905C11.5669 15.905 13.0835 15.2677 14.2209 14.2235L14.2323 14.2117C14.2476 14.1964 14.2635 14.1821 14.2799 14.1687C15.5179 13.0032 16.2909 11.3491 16.2909 9.51458C16.2909 5.98557 13.4304 3.125 9.90135 3.125ZM15.5574 14.6507C16.7899 13.2938 17.5409 11.4919 17.5409 9.51458C17.5409 5.29522 14.1207 1.875 9.90135 1.875C5.68193 1.875 2.26172 5.29522 2.26172 9.51458C2.26172 13.7339 5.68184 17.155 9.90135 17.155C11.6932 17.155 13.3409 16.538 14.6438 15.5049L17.0876 17.9425C17.332 18.1862 17.7277 18.1857 17.9715 17.9413C18.2153 17.697 18.2148 17.3012 17.9704 17.0575L15.5574 14.6507Z" fill="#59595A"/>
+              </svg>
+            </span>
+            <span class="input__divider"></span>
+            <input type="text" class="input__field" id="groupExamBulkSearch" placeholder="جستجو نام آزمون...">
+          </div>
+          <span class="input__indicator"></span>
+        </div>
+        <div class="exam-bulk__separator"></div>
+        <!-- Exam List -->
+        <ul class="exam-bulk__list" role="list" id="groupExamBulkList">
+          <li class="exam-bulk__item exam-bulk__item--has-plan" role="listitem" data-exam-id="ge1">
+            <div class="exam-bulk__item-header">
+              <span class="exam-bulk__item-name">تست آسیب‌های روانی مرتبط با جنگ (WPT)</span>
+              <span class="exam-bulk__item-check" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" width="24" height="24"><path fill-rule="evenodd" clip-rule="evenodd" d="M15.993 10.222L11.375 14.84C11.228 14.987 11.037 15.06 10.845 15.06C10.652 15.06 10.461 14.987 10.314 14.84L8.005 12.531C7.712 12.238 7.712 11.763 8.005 11.47C8.298 11.177 8.772 11.177 9.065 11.47L10.845 13.249L14.932 9.161C15.225 8.868 15.7 8.868 15.993 9.161C16.286 9.454 16.286 9.929 15.993 10.222ZM12 2.5C6.762 2.5 2.5 6.762 2.5 12C2.5 17.239 6.762 21.5 12 21.5C17.238 21.5 21.5 17.239 21.5 12C21.5 6.762 17.238 2.5 12 2.5Z" fill="var(--brand)"/></svg>
+              </span>
+            </div>
+            <div class="exam-bulk__item-plans">
+              <button class="exam-bulk__plan exam-bulk__plan--active" type="button" data-plan="advanced" data-price="98000" aria-pressed="true">
+                <span class="exam-bulk__plan-price">
+                  <span class="exam-bulk__toman" aria-hidden="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8.152 14.371C10.24 14.028 10.629 12.792 10.645 12.737L10.708 12.524H10.485C9.031 12.524 8.131 12.267 8.131 10.991C8.131 9.393 9.265 8.731 9.871 8.731C11.588 8.731 11.658 11.327 11.658 11.353L11.661 11.517H12.945C13.353 11.517 13.845 11.477 14.018 11.165C14.367 10.547 14.089 9.298 13.97 8.847L14.863 8.607C14.996 9.089 15.355 10.601 14.927 11.499C14.573 12.245 13.937 12.523 12.579 12.523C12.32 12.523 12.04 12.513 11.74 12.497L11.575 12.489L11.565 12.653C11.559 12.737 11.402 14.679 8.502 15.241L8.152 14.371ZM6.072 12.617C5.738 12.628 5.405 12.569 5.095 12.443C4.785 12.317 4.506 12.127 4.275 11.885L4.131 11.758L4.025 11.919C3.866 12.123 3.661 12.286 3.426 12.395C3.192 12.503 2.934 12.554 2.676 12.543C2.477 12.541 2.278 12.516 2.084 12.468C0.691 12.129 0.691 10.937 0.691 10.297V6.593L1.618 7.525V10.416C1.595 10.541 1.597 10.669 1.625 10.793C1.652 10.917 1.704 11.034 1.778 11.138C1.851 11.241 1.945 11.329 2.053 11.396C2.161 11.462 2.281 11.507 2.407 11.526C2.469 11.538 2.533 11.544 2.596 11.544C2.87 11.515 3.13 11.41 3.346 11.239C3.563 11.069 3.726 10.841 3.818 10.581C4.325 9.383 4.883 8.849 5.631 8.849C5.89 8.835 6.148 8.878 6.387 8.975C6.627 9.072 6.842 9.221 7.017 9.411C7.222 9.675 7.37 9.979 7.454 10.303C7.538 10.626 7.556 10.964 7.506 11.295C7.502 11.477 7.461 11.656 7.386 11.822C7.311 11.988 7.203 12.137 7.069 12.26C6.936 12.383 6.778 12.479 6.607 12.54C6.435 12.601 6.253 12.627 6.072 12.617ZM5.791 9.863C4.982 9.863 4.703 10.797 4.691 10.837L4.665 10.928L4.729 10.997C4.867 11.184 5.042 11.341 5.243 11.458C5.444 11.574 5.667 11.648 5.898 11.674C6.02 11.673 6.14 11.653 6.256 11.615C6.541 11.518 6.677 11.179 6.605 10.753C6.534 10.325 6.249 9.863 5.792 9.863H5.791Z" fill="#59595A"/></svg>
+                  </span>
+                  <span>۹۸،۰۰۰</span>
+                </span>
+                <span class="exam-bulk__plan-label">
+                  <span>پیشرفته</span>
+                  <span class="exam-bulk__plan-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3.333C8.276 3.333 8.5 3.557 8.5 3.833V7.333H12C12.276 7.333 12.5 7.557 12.5 7.833C12.5 8.11 12.276 8.333 12 8.333H8.5V11.833C8.5 12.11 8.276 12.333 8 12.333C7.724 12.333 7.5 12.11 7.5 11.833V8.333H4C3.724 8.333 3.5 8.11 3.5 7.833C3.5 7.557 3.724 7.333 4 7.333H7.5V3.833C7.5 3.557 7.724 3.333 8 3.333Z" fill="currentColor"/></svg></span>
+                </span>
+              </button>
+              <button class="exam-bulk__plan" type="button" data-plan="limited" data-price="67000" aria-pressed="false">
+                <span class="exam-bulk__plan-price">
+                  <span class="exam-bulk__toman" aria-hidden="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8.152 14.371C10.24 14.028 10.629 12.792 10.645 12.737L10.708 12.524H10.485C9.031 12.524 8.131 12.267 8.131 10.991C8.131 9.393 9.265 8.731 9.871 8.731C11.588 8.731 11.658 11.327 11.658 11.353L11.661 11.517H12.945C13.353 11.517 13.845 11.477 14.018 11.165C14.367 10.547 14.089 9.298 13.97 8.847L14.863 8.607C14.996 9.089 15.355 10.601 14.927 11.499C14.573 12.245 13.937 12.523 12.579 12.523C12.32 12.523 12.04 12.513 11.74 12.497L11.575 12.489L11.565 12.653C11.559 12.737 11.402 14.679 8.502 15.241L8.152 14.371ZM6.072 12.617C5.738 12.628 5.405 12.569 5.095 12.443C4.785 12.317 4.506 12.127 4.275 11.885L4.131 11.758L4.025 11.919C3.866 12.123 3.661 12.286 3.426 12.395C3.192 12.503 2.934 12.554 2.676 12.543C2.477 12.541 2.278 12.516 2.084 12.468C0.691 12.129 0.691 10.937 0.691 10.297V6.593L1.618 7.525V10.416C1.595 10.541 1.597 10.669 1.625 10.793C1.652 10.917 1.704 11.034 1.778 11.138C1.851 11.241 1.945 11.329 2.053 11.396C2.161 11.462 2.281 11.507 2.407 11.526C2.469 11.538 2.533 11.544 2.596 11.544C2.87 11.515 3.13 11.41 3.346 11.239C3.563 11.069 3.726 10.841 3.818 10.581C4.325 9.383 4.883 8.849 5.631 8.849C5.89 8.835 6.148 8.878 6.387 8.975C6.627 9.072 6.842 9.221 7.017 9.411C7.222 9.675 7.37 9.979 7.454 10.303C7.538 10.626 7.556 10.964 7.506 11.295C7.502 11.477 7.461 11.656 7.386 11.822C7.311 11.988 7.203 12.137 7.069 12.26C6.936 12.383 6.778 12.479 6.607 12.54C6.435 12.601 6.253 12.627 6.072 12.617ZM5.791 9.863C4.982 9.863 4.703 10.797 4.691 10.837L4.665 10.928L4.729 10.997C4.867 11.184 5.042 11.341 5.243 11.458C5.444 11.574 5.667 11.648 5.898 11.674C6.02 11.673 6.14 11.653 6.256 11.615C6.541 11.518 6.677 11.179 6.605 10.753C6.534 10.325 6.249 9.863 5.792 9.863H5.791Z" fill="#59595A"/></svg>
+                  </span>
+                  <span>۶۷،۰۰۰</span>
+                </span>
+                <span class="exam-bulk__plan-label">
+                  <span>محدود</span>
+                  <span class="exam-bulk__plan-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3.333C8.276 3.333 8.5 3.557 8.5 3.833V7.333H12C12.276 7.333 12.5 7.557 12.5 7.833C12.5 8.11 12.276 8.333 12 8.333H8.5V11.833C8.5 12.11 8.276 12.333 8 12.333C7.724 12.333 7.5 12.11 7.5 11.833V8.333H4C3.724 8.333 3.5 8.11 3.5 7.833C3.5 7.557 3.724 7.333 4 7.333H7.5V3.833C7.5 3.557 7.724 3.333 8 3.333Z" fill="currentColor"/></svg></span>
+                </span>
+              </button>
+            </div>
+          </li>
+          <li class="exam-bulk__item" role="listitem" data-exam-id="ge2">
+            <div class="exam-bulk__item-header">
+              <span class="exam-bulk__item-name">تست اختلال دوقطبی (BDSQ)</span>
+              <span class="exam-bulk__item-check" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" width="24" height="24"><path fill-rule="evenodd" clip-rule="evenodd" d="M15.993 10.222L11.375 14.84C11.228 14.987 11.037 15.06 10.845 15.06C10.652 15.06 10.461 14.987 10.314 14.84L8.005 12.531C7.712 12.238 7.712 11.763 8.005 11.47C8.298 11.177 8.772 11.177 9.065 11.47L10.845 13.249L14.932 9.161C15.225 8.868 15.7 8.868 15.993 9.161C16.286 9.454 16.286 9.929 15.993 10.222ZM12 2.5C6.762 2.5 2.5 6.762 2.5 12C2.5 17.239 6.762 21.5 12 21.5C17.238 21.5 21.5 17.239 21.5 12C21.5 6.762 17.238 2.5 12 2.5Z" fill="var(--brand)"/></svg>
+              </span>
+            </div>
+            <div class="exam-bulk__item-plans">
+              <button class="exam-bulk__plan" type="button" data-plan="advanced" data-price="98000" aria-pressed="false">
+                <span class="exam-bulk__plan-price">
+                  <span class="exam-bulk__toman" aria-hidden="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8.152 14.371C10.24 14.028 10.629 12.792 10.645 12.737L10.708 12.524H10.485C9.031 12.524 8.131 12.267 8.131 10.991C8.131 9.393 9.265 8.731 9.871 8.731C11.588 8.731 11.658 11.327 11.658 11.353L11.661 11.517H12.945C13.353 11.517 13.845 11.477 14.018 11.165C14.367 10.547 14.089 9.298 13.97 8.847L14.863 8.607C14.996 9.089 15.355 10.601 14.927 11.499C14.573 12.245 13.937 12.523 12.579 12.523C12.32 12.523 12.04 12.513 11.74 12.497L11.575 12.489L11.565 12.653C11.559 12.737 11.402 14.679 8.502 15.241L8.152 14.371Z" fill="#59595A"/></svg>
+                  </span>
+                  <span>۹۸،۰۰۰</span>
+                </span>
+                <span class="exam-bulk__plan-label">
+                  <span>پیشرفته</span>
+                  <span class="exam-bulk__plan-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3.333C8.276 3.333 8.5 3.557 8.5 3.833V7.333H12C12.276 7.333 12.5 7.557 12.5 7.833C12.5 8.11 12.276 8.333 12 8.333H8.5V11.833C8.5 12.11 8.276 12.333 8 12.333C7.724 12.333 7.5 12.11 7.5 11.833V8.333H4C3.724 8.333 3.5 8.11 3.5 7.833C3.5 7.557 3.724 7.333 4 7.333H7.5V3.833C7.5 3.557 7.724 3.333 8 3.333Z" fill="currentColor"/></svg></span>
+                </span>
+              </button>
+              <button class="exam-bulk__plan" type="button" data-plan="limited" data-price="67000" aria-pressed="false">
+                <span class="exam-bulk__plan-price">
+                  <span class="exam-bulk__toman" aria-hidden="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8.152 14.371C10.24 14.028 10.629 12.792 10.645 12.737L10.708 12.524H10.485C9.031 12.524 8.131 12.267 8.131 10.991C8.131 9.393 9.265 8.731 9.871 8.731C11.588 8.731 11.658 11.327 11.658 11.353L11.661 11.517H12.945C13.353 11.517 13.845 11.477 14.018 11.165C14.367 10.547 14.089 9.298 13.97 8.847L14.863 8.607C14.996 9.089 15.355 10.601 14.927 11.499C14.573 12.245 13.937 12.523 12.579 12.523C12.32 12.523 12.04 12.513 11.74 12.497L11.575 12.489L11.565 12.653C11.559 12.737 11.402 14.679 8.502 15.241L8.152 14.371Z" fill="#59595A"/></svg>
+                  </span>
+                  <span>۶۷،۰۰۰</span>
+                </span>
+                <span class="exam-bulk__plan-label">
+                  <span>محدود</span>
+                  <span class="exam-bulk__plan-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3.333C8.276 3.333 8.5 3.557 8.5 3.833V7.333H12C12.276 7.333 12.5 7.557 12.5 7.833C12.5 8.11 12.276 8.333 12 8.333H8.5V11.833C8.5 12.11 8.276 12.333 8 12.333C7.724 12.333 7.5 12.11 7.5 11.833V8.333H4C3.724 8.333 3.5 8.11 3.5 7.833C3.5 7.557 3.724 7.333 4 7.333H7.5V3.833C7.5 3.557 7.724 3.333 8 3.333Z" fill="currentColor"/></svg></span>
+                </span>
+              </button>
+            </div>
+          </li>
+          <li class="exam-bulk__item" role="listitem" data-exam-id="ge3">
+            <div class="exam-bulk__item-header">
+              <span class="exam-bulk__item-name">مقیاس افسردگی بک (BDI-II)</span>
+              <span class="exam-bulk__item-check" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" width="24" height="24"><path fill-rule="evenodd" clip-rule="evenodd" d="M15.993 10.222L11.375 14.84C11.228 14.987 11.037 15.06 10.845 15.06C10.652 15.06 10.461 14.987 10.314 14.84L8.005 12.531C7.712 12.238 7.712 11.763 8.005 11.47C8.298 11.177 8.772 11.177 9.065 11.47L10.845 13.249L14.932 9.161C15.225 8.868 15.7 8.868 15.993 9.161C16.286 9.454 16.286 9.929 15.993 10.222ZM12 2.5C6.762 2.5 2.5 6.762 2.5 12C2.5 17.239 6.762 21.5 12 21.5C17.238 21.5 21.5 17.239 21.5 12C21.5 6.762 17.238 2.5 12 2.5Z" fill="var(--brand)"/></svg>
+              </span>
+            </div>
+            <div class="exam-bulk__item-plans">
+              <button class="exam-bulk__plan" type="button" data-plan="advanced" data-price="115000" aria-pressed="false">
+                <span class="exam-bulk__plan-price">
+                  <span class="exam-bulk__toman" aria-hidden="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8.152 14.371C10.24 14.028 10.629 12.792 10.645 12.737L10.708 12.524H10.485C9.031 12.524 8.131 12.267 8.131 10.991C8.131 9.393 9.265 8.731 9.871 8.731C11.588 8.731 11.658 11.327 11.658 11.353L11.661 11.517H12.945C13.353 11.517 13.845 11.477 14.018 11.165C14.367 10.547 14.089 9.298 13.97 8.847L14.863 8.607C14.996 9.089 15.355 10.601 14.927 11.499C14.573 12.245 13.937 12.523 12.579 12.523C12.32 12.523 12.04 12.513 11.74 12.497L11.575 12.489L11.565 12.653C11.559 12.737 11.402 14.679 8.502 15.241L8.152 14.371Z" fill="#59595A"/></svg>
+                  </span>
+                  <span>۱۱۵،۰۰۰</span>
+                </span>
+                <span class="exam-bulk__plan-label">
+                  <span>پیشرفته</span>
+                  <span class="exam-bulk__plan-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3.333C8.276 3.333 8.5 3.557 8.5 3.833V7.333H12C12.276 7.333 12.5 7.557 12.5 7.833C12.5 8.11 12.276 8.333 12 8.333H8.5V11.833C8.5 12.11 8.276 12.333 8 12.333C7.724 12.333 7.5 12.11 7.5 11.833V8.333H4C3.724 8.333 3.5 8.11 3.5 7.833C3.5 7.557 3.724 7.333 4 7.333H7.5V3.833C7.5 3.557 7.724 3.333 8 3.333Z" fill="currentColor"/></svg></span>
+                </span>
+              </button>
+              <button class="exam-bulk__plan" type="button" data-plan="limited" data-price="79000" aria-pressed="false">
+                <span class="exam-bulk__plan-price">
+                  <span class="exam-bulk__toman" aria-hidden="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8.152 14.371C10.24 14.028 10.629 12.792 10.645 12.737L10.708 12.524H10.485C9.031 12.524 8.131 12.267 8.131 10.991C8.131 9.393 9.265 8.731 9.871 8.731C11.588 8.731 11.658 11.327 11.658 11.353L11.661 11.517H12.945C13.353 11.517 13.845 11.477 14.018 11.165C14.367 10.547 14.089 9.298 13.97 8.847L14.863 8.607C14.996 9.089 15.355 10.601 14.927 11.499C14.573 12.245 13.937 12.523 12.579 12.523C12.32 12.523 12.04 12.513 11.74 12.497L11.575 12.489L11.565 12.653C11.559 12.737 11.402 14.679 8.502 15.241L8.152 14.371Z" fill="#59595A"/></svg>
+                  </span>
+                  <span>۷۹،۰۰۰</span>
+                </span>
+                <span class="exam-bulk__plan-label">
+                  <span>محدود</span>
+                  <span class="exam-bulk__plan-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3.333C8.276 3.333 8.5 3.557 8.5 3.833V7.333H12C12.276 7.333 12.5 7.557 12.5 7.833C12.5 8.11 12.276 8.333 12 8.333H8.5V11.833C8.5 12.11 8.276 12.333 8 12.333C7.724 12.333 7.5 12.11 7.5 11.833V8.333H4C3.724 8.333 3.5 8.11 3.5 7.833C3.5 7.557 3.724 7.333 4 7.333H7.5V3.833C7.5 3.557 7.724 3.333 8 3.333Z" fill="currentColor"/></svg></span>
+                </span>
+              </button>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="modal__actions">
+        <div class="exam-bulk__summary">
+          <div class="exam-bulk__summary-right">
+            <span>جمع هزینه انتخابی:</span>
+          </div>
+          <div class="exam-bulk__summary-left">
+            <span class="exam-bulk__summary-price" id="groupExamBulkTotalPrice">
+              <span class="exam-bulk__toman" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8.152 14.371C10.24 14.028 10.629 12.792 10.645 12.737L10.708 12.524H10.485C9.031 12.524 8.131 12.267 8.131 10.991C8.131 9.393 9.265 8.731 9.871 8.731C11.588 8.731 11.658 11.327 11.658 11.353L11.661 11.517H12.945C13.353 11.517 13.845 11.477 14.018 11.165C14.367 10.547 14.089 9.298 13.97 8.847L14.863 8.607C14.996 9.089 15.355 10.601 14.927 11.499C14.573 12.245 13.937 12.523 12.579 12.523C12.32 12.523 12.04 12.513 11.74 12.497L11.575 12.489L11.565 12.653C11.559 12.737 11.402 14.679 8.502 15.241L8.152 14.371Z" fill="#59595A"/></svg>
+              </span>
+              <span id="groupExamBulkPriceVal">۹۸،۰۰۰</span>
+            </span>
+            <span class="exam-bulk__summary-dot" aria-hidden="true">•</span>
+            <span id="groupExamBulkCountVal">۱ آزمون</span>
+          </div>
+        </div>
+        <div class="exam-add-actions-row">
+          <button class="btn btn--primary btn--large" type="button" id="groupAddExamSubmit">
+            تایید و ذخیره
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div><!-- /#group-add-exam-modal -->
+
+<!-- ===================================================
      SEARCH MODAL — HTML TEMPLATES
      Cloned by SearchModal JS; never rendered directly.
      =================================================== -->
@@ -1315,7 +1951,7 @@
      =================================================== -->
 
 <template id="submenu-desktop-users">
-  <a class="sub-drawer-item" href="users/users.html">
+  <a class="sub-drawer-item" href="../users/users.html">
     <div class="sub-drawer-item-info">
       <span class="sub-drawer-item-name">لیست کاربران</span>
       <span class="sub-drawer-item-desc">مدیریت کاربران، افزودن، پروفایل و ...</span>
@@ -1345,7 +1981,7 @@
       </svg>
     </div>
   </a>
-  <a class="sub-drawer-item" href="labels/labels.html">
+  <a class="sub-drawer-item" href="../labels/labels.html">
     <div class="sub-drawer-item-info">
       <span class="sub-drawer-item-name">برچسب‌ها</span>
       <span class="sub-drawer-item-desc">لیست برچسب‌ها، دسته‌بندی و ویرایش</span>
@@ -1425,7 +2061,7 @@
      =================================================== -->
 
 <template id="notif-detail-1">
-  <img class="notif-detail-img" src="assets/images/notificationimg.png" alt="انتشار نسخه جدید" />
+  <img class="notif-detail-img" src="../assets/images/notificationimg.png" alt="انتشار نسخه جدید" />
   <p class="notif-detail-text">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است.</p>
 </template>
 
@@ -1441,8 +2077,10 @@
   <p class="notif-detail-text">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.</p>
 </template>
 
-<script src="components/modal/modal.js"></script>
-<script src="components/credit-modal/credit-modal.js"></script>
-<script src="js/app.js"></script>
+<script src="../components/modal/modal.js"></script>
+<script src="../components/credit-modal/credit-modal.js"></script>
+<script src="../components/table/table.js"></script>
+<script src="js/groups.js"></script>
+<script src="../js/app.js"></script>
 </body>
 </html>

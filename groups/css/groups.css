@@ -1,0 +1,1154 @@
+/* ===========================================
+   Groups Pages Styles
+   groups/css/groups.css
+   =========================================== */
+
+.hidden { display: none !important; }
+
+/* ===== PAGE CONTENT ===== */
+.page-content {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== GROUPS HEAD CARD ===== */
+.groups-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--card-bg);
+  border-radius: var(--radius-card) var(--radius-card) 4px 4px;
+  padding: 16px 24px;
+}
+
+.groups-head__title-block {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-1);
+}
+
+.groups-head__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-1);
+  flex-shrink: 0;
+}
+
+.groups-head__title {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.3;
+  margin: 0;
+  color: var(--text-1);
+  white-space: nowrap;
+}
+
+.groups-head__dot {
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: var(--text-2);
+  flex-shrink: 0;
+}
+
+.groups-head__count {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-1);
+  white-space: nowrap;
+}
+
+.groups-head__add-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+/* ===== GROUP USERS HEAD CARD ===== */
+.group-users-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--card-bg);
+  border-radius: var(--radius-card) var(--radius-card) 4px 4px;
+  padding: 16px 24px;
+  gap: 12px;
+}
+
+.group-users-head__title-block {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-1);
+  min-width: 0;
+}
+
+.group-users-head__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.group-users-head__title {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.3;
+  margin: 0;
+  color: var(--text-1);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.group-users-head__actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+/* ===== SEARCH BAR ===== */
+.groups-search {
+  border-radius: 4px;
+  margin-top: 4px;
+}
+
+.groups-search .groups-search__input-wrap {
+  height: 47px;
+}
+
+.groups-search .input__container {
+  background-color: var(--card-bg);
+  border-radius: 0;
+  border: none;
+  border-bottom: 1.5px solid var(--stroke);
+  padding: 0 24px;
+}
+
+.groups-search .input__field {
+  background: transparent;
+}
+
+/* ===== STATS CARDS (group-users page) ===== */
+.group-stats {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+  flex-direction: row-reverse;
+}
+
+.group-stat-card {
+    flex: 1;
+    background: var(--card-bg);
+    border-radius: var(--radius-card);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    min-width: 0;
+    position: relative;
+    min-width: 300px;
+}
+
+.group-stat-card__icon-wrap {
+  padding: 16px;
+  flex-shrink: 0;
+}
+
+.group-stat-card__icon-holder {
+  width: 65px;
+  height: 65px;
+  background: var(--page-bg);
+  border-radius: var(--radius-card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--brand);
+  flex-shrink: 0;
+}
+
+.group-stat-card__text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 16px 24px 16px 8px;
+  text-align: right;
+  min-width: 0;
+}
+
+.group-stat-card__num {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-1);
+  line-height: 1.3;
+  white-space: nowrap;
+}
+
+.group-stat-card__label {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-2);
+  line-height: 1.5;
+}
+.group-users-list .table__action-bar,
+.table__bottom-sheet {
+    z-index: 10000;
+}
+.group-stat-card__arrow {
+  display: flex;
+  align-items: flex-start;
+  align-self: flex-start;
+  padding: 12px;
+  flex-shrink: 0;
+  color: var(--text-2);
+  position:absolute;
+}
+.table__bottom-sheet-item {
+    justify-content: flex-start;
+}
+/* ===== EMPTY STATE (groups list page) ===== */
+.groups-empty {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 0 0;
+}
+
+.groups-empty__card {
+  background-color: var(--card-bg);
+  border-radius: var(--radius-card);
+  padding: 0 24px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  text-align: center;
+}
+
+.groups-empty__title {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--text-1);
+  margin: 0;
+}
+
+.groups-empty__subtitle {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-2);
+  margin: 0;
+  max-width: 320px;
+}
+
+.groups-empty__img {
+  display: block;
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+}
+
+/* ===== EMPTY STATE (group users page — body inside table-container) ===== */
+.group-users-empty__body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  padding: 64px 24px;
+  min-height: 420px;
+}
+
+.group-users-empty__illustration {
+  display: block;
+  flex-shrink: 0;
+}
+
+.group-users-empty__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+}
+
+.group-users-empty__title {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--text-1);
+  margin: 0;
+}
+
+.group-users-empty__subtitle {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-2);
+  margin: 0;
+  max-width: 460px;
+  line-height: 1.7;
+}
+
+/* ===== GROUPS LIST ===== */
+.groups-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+/* ===== NO RESULTS ===== */
+.groups-no-results {
+  background-color: var(--card-bg);
+  border-radius: var(--radius-card);
+  padding: 32px 24px;
+  text-align: center;
+}
+
+.groups-no-results__text {
+  font-size: 14px;
+  color: var(--text-2);
+  margin: 0;
+}
+
+/* ===== GROUP CARD ===== */
+.group-card {
+  background-color: var(--card-bg);
+  border-radius: var(--radius-card);
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 16px;
+  transition: box-shadow var(--transition);
+}
+
+.group-card:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+/* RIGHT: name with bullet */
+.group-card__name {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--text-1);
+  white-space: nowrap;
+  text-decoration: none;
+  flex-shrink: 0;
+  transition: color var(--transition);
+}
+
+.group-card__name::before {
+  content: '';
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: var(--text-1);
+  vertical-align: middle;
+  margin-inline-end: 10px;
+  flex-shrink: 0;
+  transition: background-color var(--transition);
+}
+
+.group-card__name:hover {
+  color: var(--brand);
+}
+
+.group-card__name:hover::before {
+  background-color: var(--brand);
+}
+
+/* Horizontal dashed divider — hidden on desktop, shown on mobile */
+.group-card__h-divider {
+  display: none;
+}
+
+/* MIDDLE: stats — pushed to left of name via margin-right: auto */
+.group-card__stats {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-right: auto;
+}
+
+/* Vertical dashed divider between stats — hidden on desktop, shown on mobile */
+.group-card__v-divider {
+  display: none;
+}
+
+.group-card__stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  white-space: nowrap;
+}
+
+.group-card__stat-num {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-1);
+  line-height: 1.5;
+}
+
+.group-card__stat-label {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-2);
+  line-height: 1.3;
+}
+
+/* Vertical solid divider before buttons — shown on desktop, hidden on mobile */
+.group-card__divider {
+  width: 1px;
+  height: 32px;
+  background-color: var(--stroke);
+  flex-shrink: 0;
+}
+
+/* BUTTONS */
+.group-card__btns {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
+}
+
+.group-card__delete-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  min-width: 45px;
+  border: 1px solid var(--stroke);
+  border-radius: var(--radius-btn);
+  background: transparent;
+  color: var(--text-2);
+  cursor: pointer;
+  transition: border-color var(--transition), color var(--transition), background-color var(--transition);
+  flex-shrink: 0;
+}
+
+.group-card__delete-btn:hover {
+  border-color: #e53e3e;
+  color: #e53e3e;
+  background-color: rgba(229, 62, 62, 0.06);
+}
+
+/* ===== GROUP USERS TABLE WRAPPER ===== */
+.group-users-list {
+  margin-top: 16px;
+}
+
+/* Delete icon hidden on desktop — shown only on mobile */
+.table__row-action__delete {
+  display: none;
+}
+
+/* ===== MODAL: افزودن گروه جدید ===== */
+.modal--add-group {
+  --modal-width: 500px;
+}
+
+.modal--add-group .modal__body {
+  justify-content: flex-start;
+  overflow: visible;
+}
+
+.modal--add-group .modal__content {
+  overflow: visible;
+}
+
+.modal--add-group .modal__subtitle {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--modal-subtitle-color, #cfd0d2);
+  margin: 4px 0 0 0;
+  line-height: 2;
+}
+
+/* ===== MODAL: موفقیت ایجاد گروه ===== */
+.modal--group-success {
+  --modal-width:600px;
+}
+
+.modal--group-success .modal__body {
+  justify-content: flex-start;
+}
+
+.modal--group-success .modal__subtitle {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--modal-subtitle-color, #cfd0d2);
+  margin: 4px 0 0 0;
+  line-height: 2;
+}
+
+/* ===== GROUP FORM ===== */
+.group-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.group-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.group-form__label {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--text-1);
+  line-height: 1.5;
+}
+
+/* ===== SUCCESS ICON — dark bg + green border variant ===== */
+.modal__icon-holder--success {
+  background: #2c2d2d !important;
+  border-color: #107c10 !important;
+}
+
+/* ===== SUCCESS ACTION ITEMS ===== */
+.group-success-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.group-success-action-item {
+  display: flex;
+  align-items: stretch;
+  background-color: var(--page-bg);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--text-1);
+  transition: background-color var(--transition);
+}
+
+.group-success-action-item:hover {
+  background-color: var(--brand-light);
+}
+
+.group-success-action-item__icon-holder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 70px;
+  flex-shrink: 0;
+  background-color: var(--page-bg);
+  border-left: 4px solid #fff;
+  color: var(--text-2);
+  transition: background-color var(--transition);
+}
+
+.group-success-action-item:hover .group-success-action-item__icon-holder {
+  background-color: var(--brand-light);
+}
+
+.group-success-action-item__texts {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 16px 12px;
+  text-align: right;
+}
+
+.group-success-action-item__title {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-1);
+  line-height: 1.5;
+}
+
+.group-success-action-item__desc {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-2);
+  line-height: 1.5;
+}
+
+.group-success-action-item__chevron {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  padding-inline-start: 16px;
+  padding-inline-end: 20px;
+  color: var(--text-2);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 767px) {
+  /* STATS */
+  .group-stats {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .group-stat-card__label {
+    white-space: normal;
+  }
+
+  /* HEAD */
+  .groups-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px;
+  }
+
+.groups-head__title-block {
+    width: 100%;
+    padding-bottom: 16px;
+    border-bottom: 1px dashed var(--stroke);
+}
+.groups-head__add-btn .btn.btn--primary{
+  width: 100%;
+}
+  .groups-head__dot {
+    display: none;
+  }
+
+  .groups-head__count {
+    margin-right: auto;
+  }
+
+  .groups-head__title {
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  .groups-head__add-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* GROUP USERS HEAD */
+  .group-users-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px;
+  }
+
+  .group-users-head__actions {
+    width: 100%;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .group-users-head__actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* SEARCH */
+  .groups-search {
+    border-radius: 0;
+  }
+
+  .groups-search .input__container {
+    padding: 0 16px;
+  }
+
+  /* STATS — horizontal scroll row */
+  .group-stats {
+    flex-direction: row-reverse;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 2px;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .group-stats::-webkit-scrollbar {
+    display: none;
+  }
+
+  .stat-card {
+    flex: 0 0 180px;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 14px 16px;
+    scroll-snap-align: start;
+  }
+
+  .stat-card__value {
+    font-size: 20px;
+  }
+
+  /* GROUP CARD — vertical card on mobile */
+  .group-card {
+    border-radius: 4px;
+    padding: 16px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+
+  .group-card__name {
+    flex-shrink: unset;
+    white-space: normal;
+  }
+
+  /* Show horizontal dashed divider */
+  .group-card__h-divider {
+    display: block;
+    width: 100%;
+    height: 0;
+    border-top: 1px dashed var(--stroke);
+  }
+
+  /* Stats: centered with dashed vertical divider */
+  .group-card__stats {
+    margin-right: 0;
+    justify-content: center;
+    gap: 0;
+  }
+
+  .group-card__stat {
+    flex: 1;
+  }
+
+  /* Show vertical dashed divider between stats */
+  .group-card__v-divider {
+    display: block;
+    width: 1px;
+    height: 32px;
+    border-right: 1px dashed var(--stroke);
+    flex-shrink: 0;
+    margin: 0 16px;
+  }
+
+  /* Hide solid vertical divider before buttons */
+  .group-card__divider {
+    display: none;
+  }
+
+  /* Buttons: members + edit stretch equally, delete fixed */
+  .group-card__btns {
+    flex-shrink: unset;
+    gap: 8px;
+  }
+
+  .group-card__members-btn,
+  .group-card__edit-btn {
+    flex: 1;
+  }
+
+  .groups-head__count {
+    display: none;
+  }
+
+  /* MODAL */
+  .modal--add-group .modal__body,
+  .modal--group-success .modal__body {
+    padding: 16px;
+  }
+
+  /* === group-success modal: mobile layout === */
+  .modal--group-success .modal__title-block {
+    align-items: stretch;
+  }
+
+  /* Icon holder becomes a slim column with green border separator */
+  .modal--group-success .modal__icon-holder--success {
+    width: auto !important;
+    min-width: auto !important;
+    height: auto !important;
+    align-self: stretch;
+    background: transparent !important;
+    border: none !important;
+    border-left: 1px solid #107c10 !important;
+    border-radius: 0 !important;
+    padding: 0 12px;
+  }
+
+  /* Action items: remove white border between icon and text */
+  .modal--group-success .group-success-action-item__icon-holder {
+    border-left: none;
+  }
+
+  /* Hide separate chevron; show inline arrow on title */
+  .modal--group-success .group-success-action-item__chevron {
+    display: none;
+  }
+
+  .modal--group-success .group-success-action-item__title::after {
+    content: ' ‹';
+    font-size: 13px;
+    color: var(--text-2);
+  }
+}
+
+/* ===== MODAL: افزودن کاربر به گروه ===== */
+.modal--add-group-user {
+  --modal-width: 500px;
+}
+
+.modal--add-group-user .modal__body {
+  justify-content: flex-start;
+  overflow: hidden;
+  padding-bottom: 16px;
+}
+
+.modal--add-group-user .modal__content {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  gap: 16px;
+  padding-bottom: 8px;
+}
+
+.modal--add-group-user .modal__actions {
+  padding-top: 16px;
+  border-top: 1px solid var(--stroke);
+}
+
+@media (max-width: 1023px) {
+  .modal--add-group-user .modal__container {
+    bottom: calc(var(--bottom-nav-h) + 8px);
+  }
+}
+
+/* ===== GROUP USER SELECT LIST ===== */
+.group-user-select-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.group-user-select-item {
+  border-radius: var(--radius-card);
+  overflow: hidden;
+}
+
+.group-user-select-item__checkbox {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.group-user-select-item__label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 16px;
+  background: var(--page-bg);
+  cursor: pointer;
+  border-radius: var(--radius-card);
+  transition: background var(--transition);
+  text-align: right;
+}
+
+.group-user-select-item__label:hover {
+  background: var(--brand-light);
+}
+.group-user-select-item__info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+}
+
+.group-user-select-item__name {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-1);
+  line-height: 1.4;
+}
+
+.group-user-select-item__sep {
+  font-size: 14px;
+  color: #c0c1c3;
+  line-height: 1.4;
+  flex-shrink: 0;
+}
+.group-user-select-item__code {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--text-1);
+    line-height: 1.4;
+    direction: ltr;
+    display: inline-flex;
+    align-items: center;
+    flex-direction: row-reverse;
+}
+
+.group-user-select-item__code::before {
+  content: '';
+  width: 3px;
+  height: 3px;
+  background-color: var(--text-1);
+  font-size: 10px;
+  margin-inline-start: 5px;
+  color: var(--text-1);
+  flex-shrink: 0;
+  border-radius: 50%;
+}
+
+.group-user-select-item__action {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  padding-inline-start: 12px;
+}
+
+.group-user-select-item__action-plus {
+  display: flex;
+  color: var(--text-2);
+}
+
+.group-user-select-item__action-check {
+  display: none;
+  color: var(--brand);
+}
+
+.group-user-select-item__checkbox:checked ~ .group-user-select-item__action .group-user-select-item__action-plus {
+  display: none;
+}
+
+.group-user-select-item__checkbox:checked ~ .group-user-select-item__action .group-user-select-item__action-check {
+  display: flex;
+}
+
+/* ===== MODAL: افزودن آزمون به گروه ===== */
+.modal--group-add-exam {
+  --modal-width: 580px;
+}
+
+.modal--group-add-exam .modal__body {
+  justify-content: flex-start;
+  overflow: hidden;
+  padding-bottom: 16px;
+}
+
+.modal--group-add-exam .modal__content {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  gap: 12px;
+  padding-bottom: 8px;
+}
+
+.modal--group-add-exam .modal__actions {
+  padding-top: 16px;
+  border-top: 1px solid var(--stroke);
+  gap: 12px;
+}
+
+@media (max-width: 1023px) {
+  .modal--group-add-exam .modal__container {
+    bottom: calc(var(--bottom-nav-h) + 8px);
+  }
+}
+
+/* ===== EXAM BULK (shared with users / profile) ===== */
+.exam-bulk__separator {
+  width: 100%;
+  height: 1px;
+  background: var(--stroke);
+  flex-shrink: 0;
+}
+
+.exam-bulk__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.exam-bulk__item {
+  background: var(--page-bg);
+  border-radius: var(--radius-card);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.exam-bulk__item[hidden] { display: none; }
+
+.exam-bulk__item-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.exam-bulk__item-check {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  padding-inline-end: 12px;
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+
+.exam-bulk__item--has-plan .exam-bulk__item-check { opacity: 1; }
+
+.exam-bulk__item-name {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-1);
+  line-height: 1.5;
+  display: list-item;
+  list-style-type: disc;
+  margin-inline-start: 20px;
+}
+
+.exam-bulk__item-plans {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-direction: row-reverse;
+}
+
+.exam-bulk__plan {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row-reverse;
+  height: 35px;
+  padding: 0 12px;
+  border-radius: var(--radius-btn);
+  border: 1px solid transparent;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+  font-family: inherit;
+  color: var(--text-2);
+  background: var(--card-bg);
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+
+.exam-bulk__plan--active {
+  background: #eaf8f5;
+  border-color: var(--brand);
+  color: var(--brand);
+}
+
+.exam-bulk__plan-price {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  flex-shrink: 0;
+  flex-direction: row-reverse;
+}
+
+.exam-bulk__plan-label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+  flex-direction: row-reverse;
+}
+
+.exam-bulk__plan-icon { display: flex; align-items: center; }
+
+.exam-bulk__toman { display: flex; align-items: center; color: inherit; }
+
+.exam-bulk__summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border: 1.5px dashed var(--stroke);
+  border-radius: var(--radius-card);
+}
+
+.exam-bulk__summary-right {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-1);
+}
+
+.exam-bulk__summary-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--text-1);
+  flex-direction: row-reverse;
+}
+
+.exam-bulk__summary-price {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-weight: 400;
+  flex-direction: row-reverse;
+}
+
+.exam-bulk__summary-dot {
+  color: var(--text-2);
+  font-size: 10px;
+  margin-inline: 2px;
+}
+
+/* ===== EXAM ADD ACTIONS ROW ===== */
+.exam-add-actions-row {
+  display: flex;
+  align-items: stretch;
+}
+
+.exam-add-actions-row .btn--primary {
+  flex: 1;
+  border-radius: var(--radius-btn);
+}
+
+/* ===== RESPONSIVE: add-group-user + group-add-exam ===== */
+@media (max-width: 767px) {
+  .modal--add-group-user .modal__body,
+  .modal--group-add-exam .modal__body {
+    padding: 16px;
+  }
+
+  .exam-bulk__summary {
+    align-items: flex-end;
+    gap: 6px;
+    padding: 10px 12px;
+  }
+
+  .exam-bulk__item-name {
+    font-size: 13px;
+  }
+
+  /* ===== GROUP USERS PAGE (list-groups-user.html) — mobile ===== */
+  /* Hide desktop three-dot, show trash icon on mobile */
+  .group-users-list .table__row-action__dots {
+    display: none;
+  }
+
+  .group-users-list .table__row-action__delete {
+    display: flex;
+    color: var(--text-2);
+  }
+}

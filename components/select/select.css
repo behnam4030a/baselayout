@@ -98,8 +98,6 @@
 .select {
   position: relative;
   width: 100%;
-  min-width: 250px;
-  max-width: var(--select-width);
   font-family: var(--typo-font-family);
   box-sizing: border-box;
   direction: rtl;
@@ -414,7 +412,7 @@
 
 .select--active .select__trigger {
   border-color: var(--select-color-accent);
-  box-shadow: var(--select-shadow-active);
+  /*box-shadow: var(--select-shadow-active);*/
 }
 
 /* ==========================================
