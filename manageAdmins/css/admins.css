@@ -1,0 +1,345 @@
+/* =========================================================
+   Admins Page — Page-Specific Styles
+   manageAdmins/css/admins.css
+   ========================================================= */
+
+/* ----------------------------------------------------------
+   Empty State (inside table-container)
+   ---------------------------------------------------------- */
+
+.admins-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 64px 24px;
+  background: var(--card-bg);
+  text-align: center;
+}
+
+.admins-empty.hidden {
+  display: none;
+}
+
+.admins-empty__icon {
+  width: 72px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--stroke);
+  margin-bottom: 4px;
+}
+
+.admins-empty__title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-1);
+}
+
+.admins-empty__subtitle {
+  font-size: 13px;
+  color: var(--text-2);
+  max-width: 440px;
+  line-height: 1.9;
+}
+
+/* ----------------------------------------------------------
+   Table Row — Clickable (navigate to profile)
+   ---------------------------------------------------------- */
+
+#adminsTableContainer .table__tbody .table__row {
+  cursor: pointer;
+}
+
+/* ----------------------------------------------------------
+   Add Admin Modal Overrides
+   ---------------------------------------------------------- */
+
+.modal--add-admin {
+  --modal-width: 500px;
+}
+
+.modal--add-admin .modal__body {
+  /* overflow: visible — prevents clipping of select dropdowns */
+  overflow: visible;
+}
+
+.modal--add-admin .modal__content {
+  align-items: stretch;
+  overflow: visible;
+}
+
+@media (max-width: 1023px) {
+  .modal--add-admin .modal__container {
+    bottom: calc(var(--bottom-nav-h) + 8px);
+  }
+}
+
+/* Mobile: body clips; content scrolls; button stays pinned */
+@media (max-width: 767px) {
+  .modal--add-admin .modal__body {
+    overflow: hidden;
+  }
+
+  .modal--add-admin .modal__content {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: visible;
+  }
+}
+
+/* ----------------------------------------------------------
+   Responsive
+   ---------------------------------------------------------- */
+
+@media (max-width: 767px) {
+  .admins-empty {
+    padding: 48px 16px;
+  }
+}
+
+/* =========================================================
+   Profile Admin Page
+   ========================================================= */
+
+/* ----------------------------------------------------------
+   Card outer container — flex-col, gap-4 (Figma: Tile gap)
+   ---------------------------------------------------------- */
+
+.profile-admin-card {
+  background: var(--card-bg);
+  border-radius: var(--radius-card);
+  border: 1px solid var(--stroke);
+  overflow: hidden;
+  max-width: 780px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* ----------------------------------------------------------
+   Head  —  px-24 py-16
+   ---------------------------------------------------------- */
+
+.profile-admin-card__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  background: var(--card-bg);
+}
+.table__row-menu--sheet .table__row-menu-item {
+    justify-content: flex-start;
+}
+/* Title: gap-8, 18px/500, text-1 */
+.profile-admin-card__title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--text-1);
+}
+
+.profile-admin-card__title svg {
+  color: var(--text-2);
+  flex-shrink: 0;
+}
+
+/* Hide edit button while in edit mode */
+#editAdminProfileBtn.is-active {
+  display: none;
+}
+
+/* ----------------------------------------------------------
+   Body  —  p-24, no separator (Figma spec)
+   ---------------------------------------------------------- */
+
+.profile-admin-card__body {
+  padding: 24px;
+  background: var(--card-bg);
+}
+
+/* ----------------------------------------------------------
+   Row  —  flex, gap-24
+   ---------------------------------------------------------- */
+
+.profile-admin-card__row {
+  display: flex;
+  gap: 24px;
+}
+
+/* ----------------------------------------------------------
+   Field  —  flex-col, gap-8, flex-1
+   ---------------------------------------------------------- */
+
+.profile-admin-card__field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1 0 0;
+  min-width: 0;
+  position: relative;
+}
+
+/* Label wrapper: px-8 overflow-clip */
+.profile-admin-card__label-wrap {
+  display: flex;
+  gap: 4px;
+  align-items: flex-start;
+  overflow: hidden;
+  padding-inline: 8px;
+}
+
+/* Label: 12px/400, color text-1 (#222323) */
+.profile-admin-card__label {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--text-1);
+  white-space: nowrap;
+}
+
+/* ----------------------------------------------------------
+   Input component override — full width inside card fields
+   ---------------------------------------------------------- */
+
+.profile-admin-card .input {
+  width: 100%;
+}
+
+/* ----------------------------------------------------------
+   Status view — minimal padding so tag sits at the edge
+   ---------------------------------------------------------- */
+
+.profile-admin-card__status-view {
+  cursor: default;
+}
+
+.profile-admin-card__status-view .input__container {
+  padding-inline: 4px;
+}
+
+.profile-admin-card__status-view.hidden {
+  display: none;
+}
+
+/* ----------------------------------------------------------
+   Status tag overrides — border-radius 4px (Figma), text-1 color
+   ---------------------------------------------------------- */
+
+.profile-admin-card__status-tag {
+  border-radius: 4px;
+  color: var(--text-1);
+  font-size: 16px;
+}
+
+.profile-admin-card__status-tag--active {
+  background-color: #f1faf1;
+  border-color: var(--card-bg);
+}
+
+.profile-admin-card__status-tag--inactive {
+  background-color: rgba(197, 15, 31, 0.08);
+  border-color: var(--card-bg);
+}
+
+/* ----------------------------------------------------------
+   Status select component overrides
+   ---------------------------------------------------------- */
+
+.profile-admin-card__status-select {
+  width: 100%;
+}
+
+.profile-admin-card__status-select.hidden {
+  display: none;
+}
+
+/* Hide the clear (×) button — status always has a selection */
+.profile-admin-card__status-select .select__clear {
+  display: none;
+}
+
+/* Value span when selected: styled as a tag */
+.profile-admin-card__status-select .select__value--selected {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  height: 37px;
+  padding-inline: 12px;
+  border-radius: 4px;
+  font-size: 16px;
+  color: var(--text-1);
+  background-color: #f1faf1;
+  border: 2px solid var(--card-bg);
+}
+
+/* Inactive state — red-tinted tag */
+.profile-admin-card__status-select[data-status="inactive"] .select__value--selected {
+  background-color: rgba(197, 15, 31, 0.08);
+}
+.table__bottom-sheet {
+    z-index: 10000;
+}
+.table__bottom-sheet-item {
+    justify-content: flex-start;
+}
+.table__action-bar {
+    z-index: 10000;
+}
+
+/* ----------------------------------------------------------
+   Actions  —  Figma: gap-16, padding py-16 px-24 (separate last body section)
+   save: w-130px, cancel: w-120px
+   ---------------------------------------------------------- */
+
+.profile-admin-card__actions {
+  display: flex;
+  gap: 16px;
+  padding: 16px 24px;
+}
+
+.profile-admin-card__actions.hidden {
+  display: none;
+}
+
+.profile-admin-card__save-btn {
+  width: 130px;
+}
+
+.profile-admin-card__cancel-btn {
+  width: 120px;
+}
+
+/* ----------------------------------------------------------
+   Responsive — Mobile
+   ---------------------------------------------------------- */
+
+@media (max-width: 767px) {
+  .profile-admin-card__head {
+    padding: 14px 16px;
+  }
+
+  .profile-admin-card__body {
+    padding: 16px;
+  }
+
+  .profile-admin-card__row {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .profile-admin-card__actions {
+    flex-direction: column-reverse;
+    padding: 16px;
+  }
+
+  .profile-admin-card__save-btn,
+  .profile-admin-card__cancel-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

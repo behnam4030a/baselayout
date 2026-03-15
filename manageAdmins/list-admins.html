@@ -4,11 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>داشبورد مدیریت — ای‌سنج</title>
-  <link rel="stylesheet" href="components/colors/colors.css" />
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="components/credit-modal/credit-modal.css" />
-  <link rel="stylesheet" href="components/modal/modal.css" />
-  <link rel="stylesheet" href="components/typography/typography.css">
+  <link rel="stylesheet" href="../components/colors/colors.css" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../components/credit-modal/credit-modal.css" />
+  <link rel="stylesheet" href="../components/modal/modal.css" />
+  <link rel="stylesheet" href="../components/typography/typography.css">
+  <link rel="stylesheet" href="../components/table/table.css" />
+  <link rel="stylesheet" href="../components/input/input.css" />
+  <link rel="stylesheet" href="../components/select/select.css" />
+  <link rel="stylesheet" href="../components/button/button.css" />
+  <link rel="stylesheet" href="css/admins.css" />
 </head>
 <body>
 
@@ -31,7 +36,7 @@
     <!-- Top: Brand (right in RTL) + Toggle (left in RTL) -->
     <div class="sidebar-top">
       <div class="sidebar-brand">
-        <img src="assets/images/Brand Logo.png" alt="ای‌سنج" class="brand-logo-img" />
+        <img src="../assets/images/Brand Logo.png" alt="ای‌سنج" class="brand-logo-img" />
       </div>
 
       <button class="sidebar-toggle" id="sidebarToggle" title="جمع/گسترش منو" aria-label="تغییر حالت منو">
@@ -49,7 +54,7 @@
       <!-- Main menu items -->
       <div class="sidebar-menu-group" id="sidebar-menu-1">
 
-        <a class="nav-item active" data-id="dashboard">
+        <a class="nav-item" data-id="dashboard">
           <div class="nav-item-inner">
             <span class="nav-icon">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -77,7 +82,7 @@
           <span class="nav-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M15 18l-6-6 6-6"/></svg></span>
         </a>
 
-        <a class="nav-item" data-id="admins" data-submenu="true">
+        <a class="nav-item active" data-id="admins" data-submenu="true">
           <div class="nav-item-inner">
             <span class="nav-icon">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -242,13 +247,13 @@
 
       <!-- RIGHT: Title + Breadcrumb -->
       <div class="header-right">
-        <h1 class="page-title">مدیریت کاربران</h1>
+        <h1 class="page-title">مدیریت مدیران</h1>
         <nav class="breadcrumb" aria-label="مسیر صفحه">
           <a href="#">پیشخوان</a>
           <span class="breadcrumb-sep">/</span>
-          <a href="#">کاربران</a>
+          <a href="#">مدیران</a>
           <span class="breadcrumb-sep">/</span>
-          <span class="breadcrumb-current">مدیریت کاربران</span>
+          <span class="breadcrumb-current">مدیریت مدیران</span>
         </nav>
       </div>
 
@@ -311,7 +316,7 @@
         <div class="header-user" role="button" tabindex="0" aria-label="پروفایل کاربر">
           <div class="user-avatar-wrapper">
             <div class="user-avatar">
-              <img src="assets/images/imageuser.jpg" alt="علی میرهادی">
+              <img src="../assets/images/imageuser.jpg" alt="علی میرهادی">
             </div>
             <div class="user-avatar-verified" aria-hidden="true">
               <svg viewBox="0 0 12 12" fill="none" width="10" height="10">
@@ -336,9 +341,443 @@
 
     <!-- === PAGE CONTENT === -->
     <main class="page-content" id="pageContent">
-      <div class="page-content-placeholder">
-        محتوای صفحه اینجا قرار می‌گیرد
-      </div>
+
+      <div
+        class="table-container"
+        id="adminsTableContainer"
+        data-table="admins-table"
+        data-page-size="10"
+      >
+
+        <!-- Row Action Menu -->
+        <div class="table__row-menu" id="adminsRowMenu">
+          <button class="table__row-menu-item" type="button" data-action="view">مشاهده پروفایل</button>
+          <button class="table__row-menu-item table__row-menu-item--danger" type="button" data-action="delete">حذف مدیر</button>
+        </div>
+
+        <!-- Tile Header -->
+        <div class="table__header">
+          <!-- RTL: title-section first=right, actions last=left -->
+          <div class="table__title-section">
+            <h2 class="table__title">لیست مدیران</h2>
+            <span class="table__dot" id="adminsCountDot"></span>
+            <span class="table__count" id="adminsCount">تعداد: ۱۴۷ مورد</span>
+          </div>
+          <div class="table__actions">
+            <button class="table__btn table__btn--primary" type="button" id="addAdminBtn">
+              <span class="table__btn-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" width="18" height="18">
+                  <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+              </span>
+              <span class="table__btn-text">افزودن مدیر جدید</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Empty State (hidden when table has data) -->
+        <div class="admins-empty hidden" id="adminsEmpty" role="status" aria-live="polite">
+          <span class="admins-empty__icon" aria-hidden="true">
+            <svg viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="1.5" width="80" height="80">
+              <rect x="16" y="10" width="48" height="60" rx="6"/>
+              <line stroke-linecap="round" x1="28" y1="30" x2="52" y2="30"/>
+              <line stroke-linecap="round" x1="28" y1="40" x2="52" y2="40"/>
+              <line stroke-linecap="round" x1="28" y1="50" x2="42" y2="50"/>
+            </svg>
+          </span>
+          <span class="admins-empty__title">هنوز مدیری به لیست شما اضافه نشده است!</span>
+          <span class="admins-empty__subtitle">میتوانید با کلیک بر روی «افزودن مدیر جدید» اقدام به افزودن اولین مدیر خود کنید.</span>
+        </div>
+
+        <!-- Search Box -->
+        <div class="table__search">
+          <span class="table__search-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M20 20l-3.5-3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <span class="table__search-divider" aria-hidden="true"></span>
+          <input
+            type="text"
+            class="table__search-input"
+            id="adminsSearchInput"
+            placeholder="جستجو..."
+            dir="rtl"
+            autocomplete="off"
+            aria-label="جستجو در مدیران"
+          />
+          <button type="button" class="table__search-clear" aria-label="پاک کردن جستجو">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Select All Row (mobile only) -->
+        <div class="table__select-all">
+          <div class="table__select-all-right">
+            <label class="table__checkbox-wrapper">
+              <input type="checkbox" class="table__checkbox-input table__select-all-checkbox" aria-label="انتخاب همه">
+              <span class="table__checkbox-box">
+                <svg class="table__icon--check" viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <svg class="table__icon--indeterminate" viewBox="0 0 10 10" fill="none" style="display:none"><path d="M2.5 5H7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </span>
+            </label>
+            <span class="table__select-all-text">انتخاب همه</span>
+          </div>
+          <button class="table__btn table__btn--secondary table__select-all-bulk" type="button" disabled>
+            <span class="table__btn-text">فعالیت گروهی</span>
+          </button>
+        </div>
+
+        <!-- Table -->
+        <div class="table__scroll-wrapper">
+          <table class="table__grid">
+            <thead class="table__thead">
+              <tr class="table__row">
+                <!-- RTL: checkbox first = rightmost visually -->
+                <th class="table__cell table__cell--checkbox">
+                  <label class="table__checkbox-wrapper">
+                    <input type="checkbox" class="table__checkbox-input" aria-label="انتخاب همه">
+                    <span class="table__checkbox-box">
+                      <svg class="table__icon--check" viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      <svg class="table__icon--indeterminate" viewBox="0 0 10 10" fill="none" style="display:none"><path d="M2.5 5H7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                    </span>
+                  </label>
+                </th>
+                <th class="table__cell">
+                  <div class="table__cell-inner">
+                    <span class="table__cell-icon">
+                      <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M5 20c0-3.314 3.134-6 7-6s7 2.686 7 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                    </span>
+                    <span class="table__cell-text">نام و نام خانوادگی</span>
+                  </div>
+                </th>
+                <th class="table__cell">
+                  <div class="table__cell-inner">
+                    <span class="table__cell-icon">
+                      <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M7 8h2M7 12h2M7 16h2M11 8h6M11 12h6M11 16h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                    </span>
+                    <span class="table__cell-text">کد اختصاصی</span>
+                  </div>
+                </th>
+                <th class="table__cell">
+                  <div class="table__cell-inner">
+                    <span class="table__cell-icon">
+                      <svg viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 015 12.84a19.79 19.79 0 01-3.07-8.67A2 2 0 013.89 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </span>
+                    <span class="table__cell-text">شماره تماس</span>
+                  </div>
+                </th>
+                <th class="table__cell">
+                  <div class="table__cell-inner">
+                    <span class="table__cell-icon">
+                      <svg viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </span>
+                    <span class="table__cell-text">وضعیت آزمون</span>
+                  </div>
+                </th>
+                <th class="table__cell">
+                  <div class="table__cell-inner">
+                    <span class="table__cell-icon">
+                      <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v4M12 16h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                    </span>
+                    <span class="table__cell-text">وضعیت</span>
+                  </div>
+                </th>
+                <!-- Action col last = leftmost visually in RTL -->
+                <th class="table__cell table__cell--action"></th>
+              </tr>
+            </thead>
+            <tbody class="table__tbody">
+
+              <!-- Row 1 -->
+              <tr class="table__row">
+                <td class="table__cell table__cell--checkbox">
+                  <label class="table__checkbox-wrapper">
+                    <input type="checkbox" class="table__checkbox-input" aria-label="انتخاب علی میرهادی">
+                    <span class="table__checkbox-box">
+                      <svg class="table__icon--check" viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </span>
+                  </label>
+                </td>
+                <td class="table__cell" data-label="نام و نام خانوادگی">علی میرهادی</td>
+                <td class="table__cell table__cell--code" data-label="کد اختصاصی">۱۲۵۴۹۸۵۳۱۶</td>
+                <td class="table__cell" data-label="شماره تماس">۰۹۱۲۵۸۶۳۶۲۲</td>
+                <td class="table__cell" data-label="وضعیت آزمون">
+                  <div class="table__progress">
+                    <span class="table__progress-text">۳ از ۴ انجام شده</span>
+                    <div class="table__progress-bar">
+                      <div class="table__progress-fill" style="width:75%"></div>
+                    </div>
+                  </div>
+                </td>
+                <td class="table__cell" data-label="وضعیت"><span class="table__tag table__tag--success">فعال</span></td>
+                <td class="table__cell table__cell--action">
+                  <button class="table__row-action" type="button" aria-label="عملیات">&#8942;</button>
+                </td>
+              </tr>
+
+              <!-- Row 2 -->
+              <tr class="table__row">
+                <td class="table__cell table__cell--checkbox">
+                  <label class="table__checkbox-wrapper">
+                    <input type="checkbox" class="table__checkbox-input" aria-label="انتخاب اختر شریعتمداری">
+                    <span class="table__checkbox-box">
+                      <svg class="table__icon--check" viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </span>
+                  </label>
+                </td>
+                <td class="table__cell" data-label="نام و نام خانوادگی">اختر شریعتمداری</td>
+                <td class="table__cell table__cell--code" data-label="کد اختصاصی">۵۸۱۹۶۴۳۳۳۱۸</td>
+                <td class="table__cell" data-label="شماره تماس">۰۹۱۱۲۳۵۸۴۶</td>
+                <td class="table__cell" data-label="وضعیت آزمون">
+                  <div class="table__progress">
+                    <span class="table__progress-text">۱ از ۵ انجام شده</span>
+                    <div class="table__progress-bar">
+                      <div class="table__progress-fill" style="width:20%"></div>
+                    </div>
+                  </div>
+                </td>
+                <td class="table__cell" data-label="وضعیت"><span class="table__tag table__tag--success">فعال</span></td>
+                <td class="table__cell table__cell--action">
+                  <button class="table__row-action" type="button" aria-label="عملیات">&#8942;</button>
+                </td>
+              </tr>
+
+              <!-- Row 3 -->
+              <tr class="table__row">
+                <td class="table__cell table__cell--checkbox">
+                  <label class="table__checkbox-wrapper">
+                    <input type="checkbox" class="table__checkbox-input">
+                    <span class="table__checkbox-box">
+                      <svg class="table__icon--check" viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </span>
+                  </label>
+                </td>
+                <td class="table__cell" data-label="نام و نام خانوادگی">اختر شریعتمداری</td>
+                <td class="table__cell table__cell--code" data-label="کد اختصاصی">۵۸۱۹۶۴۳۳۳۱۸</td>
+                <td class="table__cell" data-label="شماره تماس">۰۹۱۱۲۳۵۸۴۶</td>
+                <td class="table__cell" data-label="وضعیت آزمون">
+                  <div class="table__progress">
+                    <span class="table__progress-text">۵ از ۵ انجام شده</span>
+                    <div class="table__progress-bar">
+                      <div class="table__progress-fill" style="width:100%"></div>
+                    </div>
+                  </div>
+                </td>
+                <td class="table__cell" data-label="وضعیت"><span class="table__tag table__tag--success">فعال</span></td>
+                <td class="table__cell table__cell--action">
+                  <button class="table__row-action" type="button" aria-label="عملیات">&#8942;</button>
+                </td>
+              </tr>
+
+              <!-- Row 4 -->
+              <tr class="table__row">
+                <td class="table__cell table__cell--checkbox">
+                  <label class="table__checkbox-wrapper">
+                    <input type="checkbox" class="table__checkbox-input">
+                    <span class="table__checkbox-box">
+                      <svg class="table__icon--check" viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </span>
+                  </label>
+                </td>
+                <td class="table__cell" data-label="نام و نام خانوادگی">اختر شریعتمداری</td>
+                <td class="table__cell table__cell--code" data-label="کد اختصاصی">۵۸۱۹۶۴۳۳۳۱۸</td>
+                <td class="table__cell" data-label="شماره تماس">۰۹۱۱۲۳۵۸۴۶</td>
+                <td class="table__cell" data-label="وضعیت آزمون">
+                  <div class="table__progress">
+                    <span class="table__progress-text">۵ از ۵ انجام شده</span>
+                    <div class="table__progress-bar">
+                      <div class="table__progress-fill" style="width:100%"></div>
+                    </div>
+                  </div>
+                </td>
+                <td class="table__cell" data-label="وضعیت"><span class="table__tag table__tag--success">فعال</span></td>
+                <td class="table__cell table__cell--action">
+                  <button class="table__row-action" type="button" aria-label="عملیات">&#8942;</button>
+                </td>
+              </tr>
+
+              <!-- Row 5 -->
+              <tr class="table__row">
+                <td class="table__cell table__cell--checkbox">
+                  <label class="table__checkbox-wrapper">
+                    <input type="checkbox" class="table__checkbox-input">
+                    <span class="table__checkbox-box">
+                      <svg class="table__icon--check" viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </span>
+                  </label>
+                </td>
+                <td class="table__cell" data-label="نام و نام خانوادگی">اختر شریعتمداری</td>
+                <td class="table__cell table__cell--code" data-label="کد اختصاصی">۵۸۱۹۶۴۳۳۳۱۸</td>
+                <td class="table__cell" data-label="شماره تماس">۰۹۱۱۲۳۵۸۴۶</td>
+                <td class="table__cell" data-label="وضعیت آزمون">
+                  <div class="table__progress">
+                    <span class="table__progress-text">۵ از ۵ انجام شده</span>
+                    <div class="table__progress-bar">
+                      <div class="table__progress-fill" style="width:100%"></div>
+                    </div>
+                  </div>
+                </td>
+                <td class="table__cell" data-label="وضعیت"><span class="table__tag table__tag--success">فعال</span></td>
+                <td class="table__cell table__cell--action">
+                  <button class="table__row-action" type="button" aria-label="عملیات">&#8942;</button>
+                </td>
+              </tr>
+
+              <!-- Row 6 -->
+              <tr class="table__row">
+                <td class="table__cell table__cell--checkbox">
+                  <label class="table__checkbox-wrapper">
+                    <input type="checkbox" class="table__checkbox-input">
+                    <span class="table__checkbox-box">
+                      <svg class="table__icon--check" viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </span>
+                  </label>
+                </td>
+                <td class="table__cell" data-label="نام و نام خانوادگی">اختر شریعتمداری</td>
+                <td class="table__cell table__cell--code" data-label="کد اختصاصی">۵۸۱۹۶۴۳۳۳۱۸</td>
+                <td class="table__cell" data-label="شماره تماس">۰۹۱۱۲۳۵۸۴۶</td>
+                <td class="table__cell" data-label="وضعیت آزمون">
+                  <div class="table__progress">
+                    <span class="table__progress-text">۵ از ۵ انجام شده</span>
+                    <div class="table__progress-bar">
+                      <div class="table__progress-fill" style="width:100%"></div>
+                    </div>
+                  </div>
+                </td>
+                <td class="table__cell" data-label="وضعیت"><span class="table__tag table__tag--success">فعال</span></td>
+                <td class="table__cell table__cell--action">
+                  <button class="table__row-action" type="button" aria-label="عملیات">&#8942;</button>
+                </td>
+              </tr>
+
+              <!-- Row 7 -->
+              <tr class="table__row">
+                <td class="table__cell table__cell--checkbox">
+                  <label class="table__checkbox-wrapper">
+                    <input type="checkbox" class="table__checkbox-input">
+                    <span class="table__checkbox-box">
+                      <svg class="table__icon--check" viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </span>
+                  </label>
+                </td>
+                <td class="table__cell" data-label="نام و نام خانوادگی">ایراندخت عبدالکریمی</td>
+                <td class="table__cell table__cell--code" data-label="کد اختصاصی">۱۲۵۴۹۱۶۲۵۱۴۹</td>
+                <td class="table__cell" data-label="شماره تماس">۰۹۱۲۵۹۱۸۵۱۴۴</td>
+                <td class="table__cell" data-label="وضعیت آزمون">
+                  <div class="table__progress">
+                    <span class="table__progress-text">۴ از ۹ انجام شده</span>
+                    <div class="table__progress-bar">
+                      <div class="table__progress-fill" style="width:44%"></div>
+                    </div>
+                  </div>
+                </td>
+                <td class="table__cell" data-label="وضعیت"><span class="table__tag table__tag--danger">غیرفعال</span></td>
+                <td class="table__cell table__cell--action">
+                  <button class="table__row-action" type="button" aria-label="عملیات">&#8942;</button>
+                </td>
+              </tr>
+
+              <!-- Row 8 -->
+              <tr class="table__row">
+                <td class="table__cell table__cell--checkbox">
+                  <label class="table__checkbox-wrapper">
+                    <input type="checkbox" class="table__checkbox-input">
+                    <span class="table__checkbox-box">
+                      <svg class="table__icon--check" viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </span>
+                  </label>
+                </td>
+                <td class="table__cell" data-label="نام و نام خانوادگی">یزدان مهر دهقان</td>
+                <td class="table__cell table__cell--code" data-label="کد اختصاصی">۲۵۴۹۶۵۵۱۸۷</td>
+                <td class="table__cell" data-label="شماره تماس">۰۹۱۱۲۶۵۸۱۴۲</td>
+                <td class="table__cell" data-label="وضعیت آزمون">
+                  <div class="table__progress">
+                    <span class="table__progress-text">۱۲ از ۷ انجام شده</span>
+                    <div class="table__progress-bar">
+                      <div class="table__progress-fill" style="width:86%"></div>
+                    </div>
+                  </div>
+                </td>
+                <td class="table__cell" data-label="وضعیت"><span class="table__tag table__tag--danger">غیرفعال</span></td>
+                <td class="table__cell table__cell--action">
+                  <button class="table__row-action" type="button" aria-label="عملیات">&#8942;</button>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div><!-- /.table__scroll-wrapper -->
+
+        <!-- No Results Message -->
+        <div class="table__no-results">
+          <div class="table__no-results__rings">
+            <div class="table__no-results__ring table__no-results__ring--lg"></div>
+            <div class="table__no-results__ring table__no-results__ring--md"></div>
+            <div class="table__no-results__ring table__no-results__ring--sm"></div>
+            <div class="table__no-results__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z"/>
+                <path d="M14 2v6h6"/><circle cx="10.5" cy="14.5" r="2.5"/>
+                <path d="M16 20l-2-2"/>
+              </svg>
+            </div>
+          </div>
+          <p class="table__no-results__title">نتیجه‌ای برای جستجوی شما پیدا نشد.</p>
+          <p class="table__no-results__subtitle">لطفاً عبارت جستجو را اصلاح کرده یا فیلترهای اعمال‌شده را تغییر دهید.</p>
+        </div>
+
+        <!-- Pagination -->
+        <div class="table__pagination">
+          <div class="table__page-size">
+            <button class="table__page-size-btn" type="button">
+              <span class="table__page-size-text">۱۰ ردیف در هر صفحه</span>
+              <span class="table__page-size-arrow">
+                <svg viewBox="0 0 16 16" fill="none">
+                  <path d="M10 4L6 8L10 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </button>
+            <div class="table__page-size-dropdown">
+              <button class="table__page-size-option table__page-size-option--active" data-size="10">۱۰ ردیف</button>
+              <button class="table__page-size-option" data-size="20">۲۰ ردیف</button>
+              <button class="table__page-size-option" data-size="30">۳۰ ردیف</button>
+            </div>
+          </div>
+          <div class="table__page-numbers">
+            <!-- rendered by table.js -->
+          </div>
+        </div>
+
+        <!-- Bulk Action Bar -->
+        <div class="table__action-bar">
+          <div class="table__action-count">
+            <span class="table__action-count-icon">
+              <svg viewBox="0 0 10 10" fill="none"><path d="M2 5.2L4 7.5L8 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <span class="table__action-count-text">۰ ردیف انتخاب شده</span>
+          </div>
+          <div class="table__action-buttons">
+            <button class="table__action-btn" type="button">
+              <span class="table__action-btn-icon">
+                <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+              <span>تغییر وضعیت</span>
+            </button>
+            <button class="table__action-btn table__action-btn--danger" type="button" data-bulk-action="delete">
+              <span class="table__action-btn-icon">
+                <svg viewBox="0 0 24 24" fill="none"><polyline stroke-linecap="round" stroke-linejoin="round" points="3 6 5 6 21 6" stroke="currentColor" stroke-width="1.5"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a1 1 0 011-1h4a1 1 0 011 1v2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+              <span>حذف</span>
+            </button>
+          </div>
+        </div>
+
+      </div><!-- /.table-container -->
+
     </main>
 
   </div><!-- /.main-wrapper -->
@@ -427,7 +866,7 @@
   <div class="mobile-drawer-header">
     <!-- Logo/Brand on right -->
     <div class="mobile-drawer-brand">
-      <img src="assets/images/Brand Logo.png" alt="ای‌سنج" class="mobile-drawer-brand-img" />
+      <img src="../assets/images/Brand Logo.png" alt="ای‌سنج" class="mobile-drawer-brand-img" />
     </div>
 
     <!-- Back/Close on left -->
@@ -470,7 +909,7 @@
         <!-- avatar first=RIGHT, texts second=LEFT -->
         <div class="user-avatar-wrapper">
           <div class="user-avatar">
-            <img src="assets/images/imageuser.jpg" alt="علی میرهادی">
+            <img src="../assets/images/imageuser.jpg" alt="علی میرهادی">
           </div>
           <div class="user-avatar-verified" aria-hidden="true">
             <svg viewBox="0 0 12 12" fill="none" width="10" height="10">
@@ -484,7 +923,7 @@
         </div>
       </div>
       <!-- edit-link last=LEFT; text first=RIGHT, chevron last=LEFT inside link -->
-      <a href="profile/profile.html" class="mobile-profile-edit-link">
+      <a href="../profile/profile.html" class="mobile-profile-edit-link">
         ویرایش پروفایل
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
           <path fill-rule="evenodd" clip-rule="evenodd" d="M11.2752 7.05806C11.5192 7.30213 11.5192 7.69786 11.2752 7.94194L9.21717 10L11.2752 12.0581C11.5192 12.3022 11.5192 12.6978 11.2752 12.9419C11.0311 13.186 10.6354 13.186 10.3913 12.9419L7.89131 10.4419C7.64723 10.1978 7.64723 9.80216 7.89131 9.55808L10.3913 7.05806C10.6354 6.81398 11.0311 6.81398 11.2752 7.05806Z" fill="#22967D"/>
@@ -554,7 +993,7 @@
       <div class="mobile-profile-account-row is-active">
         <div class="user-avatar-wrapper">
           <div class="user-avatar">
-            <img src="assets/images/imageuser.jpg" alt="علی میرهادی">
+            <img src="../assets/images/imageuser.jpg" alt="علی میرهادی">
           </div>
           <div class="user-avatar-verified" aria-hidden="true">
             <svg viewBox="0 0 12 12" fill="none" width="10" height="10">
@@ -581,7 +1020,7 @@
       <div class="mobile-profile-account-row">
         <div class="user-avatar-wrapper">
             <div class="user-avatar">
-              <img src="assets/images/imageuser.jpg" alt="امیر همتی‌نژاد">
+              <img src="../assets/images/imageuser.jpg" alt="امیر همتی‌نژاد">
             </div> 
         </div>
         <div class="mobile-profile-account-details">
@@ -629,7 +1068,7 @@
     <!-- Active account: avatar first=RIGHT, info middle, check last=LEFT (space-between) -->
     <a href="#" class="user-dropdown-account is-active">
       <div class="user-avatar">
-        <img src="assets/images/imageuser.jpg" alt="علی میرهادی">
+        <img src="../assets/images/imageuser.jpg" alt="علی میرهادی">
       </div>
       <div class="user-dropdown-account-info">
         <span class="user-dropdown-account-name">علی میرهادی</span>
@@ -647,7 +1086,7 @@
     <!-- Inactive account: avatar first=RIGHT, info second=LEFT -->
     <a href="#" class="user-dropdown-account">
       <div class="user-avatar user-avatar--inactive">
-        <img src="assets/images/imageuser.jpg" alt="امیر همتی‌نژاد">
+        <img src="../assets/images/imageuser.jpg" alt="امیر همتی‌نژاد">
       </div>
       <div class="user-dropdown-account-info">
         <span class="user-dropdown-account-name">امیر همتی‌نژاد</span>
@@ -671,7 +1110,7 @@
 
   <!-- Edit profile: icon first=RIGHT, text second=LEFT -->
   <div class="user-dropdown-actions">
-    <a href="profile/profile.html" class="user-dropdown-action-btn">
+    <a href="../profile/profile.html" class="user-dropdown-action-btn">
       <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
       <path fill-rule="evenodd" clip-rule="evenodd" d="M15.5629 15.3297C15.8734 15.3297 16.1254 15.5817 16.1254 15.8922C16.1254 16.2027 15.8734 16.4547 15.5629 16.4547H10.1231C9.81261 16.4547 9.56061 16.2027 9.56061 15.8922C9.56061 15.5817 9.81261 15.3297 10.1231 15.3297H15.5629ZM12.0872 2.74023C12.1247 2.76948 13.3795 3.74448 13.3795 3.74448C13.8355 4.01598 14.1917 4.50123 14.3267 5.07573C14.461 5.64423 14.3635 6.23073 14.0507 6.72648C14.0486 6.72979 14.0465 6.73305 14.0393 6.74277L14.0337 6.75028C13.9829 6.81719 13.7622 7.09623 12.6484 8.49167C12.6381 8.50996 12.6264 8.52709 12.6136 8.54373C12.5948 8.56827 12.5743 8.59082 12.5525 8.61135C12.4765 8.707 12.3963 8.80751 12.3119 8.91318L12.141 9.12728C11.7883 9.56901 11.3699 10.0928 10.8735 10.7141L10.6188 11.0329C9.66056 12.2323 8.43333 13.7679 6.86121 15.7347C6.51696 16.1637 6.00096 16.4135 5.44671 16.4202L2.71746 16.4547H2.70996C2.44971 16.4547 2.22321 16.2762 2.16246 16.022L1.54821 13.4187C1.42146 12.8795 1.54746 12.323 1.89321 11.891L8.95821 3.05448C8.96121 3.05148 8.96346 3.04773 8.96646 3.04473C9.74121 2.11848 11.1422 1.98198 12.0872 2.74023ZM8.1705 5.84025L2.77146 12.5937C2.64321 12.7542 2.59596 12.9612 2.64321 13.16L3.15396 15.3237L5.43321 15.2952C5.64996 15.293 5.85021 15.1962 5.98296 15.0312C6.66657 14.1759 7.52575 13.1009 8.4091 11.9955L8.72162 11.6044L9.03468 11.2127C9.86312 10.1759 10.6815 9.15155 11.3663 8.29415L8.1705 5.84025ZM9.83271 3.76248L8.87325 4.96125L12.0688 7.41445C12.6839 6.64402 13.0885 6.1366 13.126 6.08823C13.249 5.88873 13.297 5.60673 13.2325 5.33523C13.1665 5.05698 12.9932 4.82073 12.7435 4.66998C12.6902 4.63323 11.4265 3.65223 11.3875 3.62148C10.912 3.24048 10.2182 3.30648 9.83271 3.76248Z" fill="#222323"/>
       </svg>
@@ -1315,7 +1754,7 @@
      =================================================== -->
 
 <template id="submenu-desktop-users">
-  <a class="sub-drawer-item" href="users/users.html">
+  <a class="sub-drawer-item" href="../users/users.html">
     <div class="sub-drawer-item-info">
       <span class="sub-drawer-item-name">لیست کاربران</span>
       <span class="sub-drawer-item-desc">مدیریت کاربران، افزودن، پروفایل و ...</span>
@@ -1329,7 +1768,7 @@
         </svg>
       </div>
   </a>
-  <a class="sub-drawer-item" href="groups/list-groups.html">
+  <a class="sub-drawer-item" href="../groups/list-groups.html">
     <div class="sub-drawer-item-info">
       <span class="sub-drawer-item-name">گروه‌ها</span>
       <span class="sub-drawer-item-desc">لیست گروه‌ها، مدیریت گروهی</span>
@@ -1345,7 +1784,7 @@
       </svg>
     </div>
   </a>
-  <a class="sub-drawer-item" href="labels/labels.html">
+  <a class="sub-drawer-item" href="../labels/labels.html">
     <div class="sub-drawer-item-info">
       <span class="sub-drawer-item-name">برچسب‌ها</span>
       <span class="sub-drawer-item-desc">لیست برچسب‌ها، دسته‌بندی و ویرایش</span>
@@ -1425,7 +1864,7 @@
      =================================================== -->
 
 <template id="notif-detail-1">
-  <img class="notif-detail-img" src="assets/images/notificationimg.png" alt="انتشار نسخه جدید" />
+  <img class="notif-detail-img" src="../assets/images/notificationimg.png" alt="انتشار نسخه جدید" />
   <p class="notif-detail-text">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است.</p>
 </template>
 
@@ -1441,8 +1880,178 @@
   <p class="notif-detail-text">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.</p>
 </template>
 
-<script src="components/modal/modal.js"></script>
-<script src="components/credit-modal/credit-modal.js"></script>
-<script src="js/app.js"></script>
+<!-- ===================================================
+     ADD ADMIN MODAL — uses base modal component
+     =================================================== -->
+<div class="modal modal--add-admin" id="add-admin-modal" role="dialog" aria-modal="true" aria-labelledby="addAdminModalTitle">
+  <div class="modal__overlay"></div>
+  <div class="modal__container">
+
+    <!-- Header (dark) -->
+    <div class="modal__header">
+      <!-- RTL: title-block first=right, close last=left -->
+      <div class="modal__title-block">
+        <div class="modal__icon-holder" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="22" height="22">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M16 11c0 2.21-1.343 4-3 4s-3-1.79-3-4 1.343-4 3-4 3 1.79 3 4z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 20c0-3.314 2.686-6 6-6h6c3.314 0 6 2.686 6 6"/>
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 8v6m3-3h-6"/>
+          </svg>
+        </div>
+        <h2 class="modal__title" id="addAdminModalTitle">افزودن مدیر جدید</h2>
+      </div>
+      <button class="modal__close" type="button" aria-label="بستن" onclick="AddAdminModal.close()">
+        <svg viewBox="0 0 24 24" fill="none">
+          <path d="M5.25 5.25L18.75 18.75M18.75 5.25L5.25 18.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Body (white) -->
+    <div class="modal__body">
+      <div class="modal__content" id="addAdminForm">
+
+        <!-- Field: نام و نام خانوادگی (required) -->
+        <div class="modal-field">
+          <label class="modal-field__label modal-field__label--required" for="adminNameInput">نام و نام خانوادگی</label>
+          <div class="input input--large input--full-width">
+            <div class="input__container">
+              <span class="input__icon input__icon--before" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M4.58425 14.4981C3.87892 15.1371 3.59692 15.9502 3.59692 16.6663C3.59692 17.0116 3.3171 17.2913 2.97192 17.2913C2.62674 17.2913 2.34692 17.0116 2.34692 16.6663C2.34692 15.6252 2.75811 14.4658 3.74495 13.5717C4.73333 12.6761 6.24249 12.0963 8.35425 12.0963C10.4644 12.0963 11.9731 12.6716 12.9617 13.5628C13.9492 14.4531 14.3607 15.6093 14.3607 16.6512C14.3607 16.9964 14.0809 17.2762 13.7357 17.2762C13.3906 17.2762 13.1107 16.9964 13.1107 16.6512C13.1107 15.9351 12.8291 15.1263 12.1247 14.4912C11.4212 13.8571 10.2392 13.3463 8.35425 13.3463C6.47003 13.3463 5.28803 13.8604 4.58425 14.4981Z" fill="currentColor"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M8.35425 3.95837C6.80143 3.95837 5.54199 5.21762 5.54199 6.77143C5.54199 8.32524 6.80143 9.58446 8.35425 9.58446C9.908 9.58446 11.1673 8.32515 11.1673 6.77143C11.1673 5.21772 9.908 3.95837 8.35425 3.95837ZM4.29199 6.77143C4.29199 4.52746 6.11089 2.70837 8.35425 2.70837C10.5983 2.70837 12.4173 4.52737 12.4173 6.77143C12.4173 9.01554 10.5983 10.8345 8.35425 10.8345C6.11089 10.8345 4.29199 9.01537 4.29199 6.77143Z" fill="currentColor"/>
+                </svg>
+              </span>
+              <span class="input__divider" aria-hidden="true"></span>
+              <input
+                type="text"
+                id="adminNameInput"
+                class="input__field"
+                placeholder="مانند علی میرهادی"
+                dir="rtl"
+                autocomplete="off"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Field: سطح دسترسی (required) -->
+        <div class="modal-field">
+          <label class="modal-field__label modal-field__label--required">سطح دسترسی</label>
+          <div class="select select--icon input--full-width" data-type="icon" data-placeholder="انتخاب کنید">
+            <input type="hidden" name="adminRole" />
+            <button class="select__trigger" type="button" aria-haspopup="listbox" aria-expanded="false">
+              <span class="select__trigger-icon select__trigger-icon--static" aria-hidden="true">
+                <svg viewBox="0 0 20 20" fill="none"><path d="M10 2L3 5.5V10C3 13.8 6.1 17.2 10 18.5C13.9 17.2 17 13.8 17 10V5.5L10 2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M7.5 10L9.5 12L13 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+              <span class="select__trigger-divider select__trigger-divider--static" aria-hidden="true"></span>
+              <span class="select__value">انتخاب کنید</span>
+              <svg class="select__chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="select__dropdown">
+              <ul class="select__list" role="listbox" aria-label="سطح دسترسی">
+                <li class="select__item" role="option" data-value="admin">مدیر کل</li>
+                <li class="select__item" role="option" data-value="support">مسئول پشتیبانی</li>
+                <li class="select__item" role="option" data-value="examiner">ناظر آزمون</li>
+                <li class="select__item" role="option" data-value="finance">مدیر مالی</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Divider: اطلاعات اختیاری -->
+        <div class="modal-divider" role="separator">
+          <span class="modal-divider__line" aria-hidden="true"></span>
+          <span class="modal-divider__text">اطلاعات اختیاری</span>
+          <span class="modal-divider__line" aria-hidden="true"></span>
+        </div>
+
+        <!-- Field: شماره تماس (optional) -->
+        <div class="modal-field">
+          <label class="modal-field__label" for="adminPhoneInput">شماره تماس</label>
+          <div class="input input--large input--full-width">
+            <div class="input__container">
+              <span class="input__icon input__icon--before" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M3.07614 3.57745C3.57866 3.07493 4.26166 2.79163 4.97461 2.79163H6.23617C6.9154 2.79163 7.52099 3.21643 7.75355 3.85319L8.59467 6.17587C8.79368 6.72441 8.65397 7.33819 8.23701 7.74354L7.35819 8.59087C7.30203 8.64488 7.28647 8.72748 7.31947 8.79754C8.11399 10.4865 9.50748 11.88 11.1965 12.6745C11.2665 12.7075 11.3491 12.692 11.4031 12.6358L12.2505 11.757C12.6558 11.34 13.2696 11.2003 13.8181 11.3993L16.1408 12.2405C16.7776 12.473 17.2024 13.0786 17.2024 13.7578V15.0194C17.2024 15.7323 16.9191 16.4153 16.4166 16.9179C15.9141 17.4204 15.2311 17.7037 14.5181 17.7037H14.1274C8.61166 17.7037 2.29163 11.3836 2.29163 5.86788V5.47716C2.29163 4.76421 2.57492 4.08122 3.07614 3.57745ZM4.97461 4.04163C4.59809 4.04163 4.23739 4.19114 3.97082 4.45771C3.70425 4.72428 3.55463 5.08499 3.55463 5.47716V5.86788C3.55463 10.6632 9.33234 16.4407 14.1274 16.4407H14.5181C14.9103 16.4407 15.271 16.2912 15.5376 16.0246C15.8041 15.758 15.9537 15.3973 15.9537 15.005V13.7578C15.9537 13.5657 15.8327 13.3952 15.6519 13.3303L13.3293 12.4892C13.1729 12.4325 12.9989 12.4713 12.8824 12.5934L12.035 13.4722C11.6585 13.8647 11.0893 14.0032 10.5716 13.7735C8.60768 12.878 7.11597 11.3863 6.22043 9.42237C5.99073 8.90466 6.12918 8.33551 6.52174 7.95898L7.37026 7.11046C7.49232 6.99396 7.53115 6.81995 7.47447 6.66357L6.63334 4.34089C6.56843 4.16009 6.39793 4.04163 6.20617 4.04163H4.97461Z" fill="currentColor"/>
+                </svg>
+              </span>
+              <span class="input__divider" aria-hidden="true"></span>
+              <input
+                type="tel"
+                id="adminPhoneInput"
+                class="input__field"
+                placeholder="۰۹۱۲۳۴۵۶۷۸۹"
+                dir="ltr"
+                autocomplete="off"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Field: ایمیل (optional) -->
+        <div class="modal-field">
+          <label class="modal-field__label" for="adminEmailInput">ایمیل</label>
+          <div class="input input--large input--full-width">
+            <div class="input__container">
+              <span class="input__icon input__icon--before" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M2.5 5.83329C2.5 4.91282 3.24619 4.16663 4.16667 4.16663H15.8333C16.7538 4.16663 17.5 4.91282 17.5 5.83329V14.1666C17.5 15.0871 16.7538 15.8333 15.8333 15.8333H4.16667C3.24619 15.8333 2.5 15.0871 2.5 14.1666V5.83329ZM4.16667 5.41663C3.93655 5.41663 3.75 5.60318 3.75 5.83329V6.47432L10 10.2424L16.25 6.47432V5.83329C16.25 5.60318 16.0635 5.41663 15.8333 5.41663H4.16667ZM16.25 7.90759L10.3317 11.4621C10.1271 11.5826 9.87293 11.5826 9.66832 11.4621L3.75 7.90759V14.1666C3.75 14.3967 3.93655 14.5833 4.16667 14.5833H15.8333C16.0635 14.5833 16.25 14.3967 16.25 14.1666V7.90759Z" fill="currentColor"/>
+                </svg>
+              </span>
+              <span class="input__divider" aria-hidden="true"></span>
+              <input
+                type="email"
+                id="adminEmailInput"
+                class="input__field"
+                placeholder="example@domain.com"
+                dir="ltr"
+                autocomplete="off"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Field: وضعیت (optional dropdown) -->
+        <div class="modal-field">
+          <label class="modal-field__label">وضعیت</label>
+          <div class="select select--icon input--full-width" data-type="icon" data-placeholder="وضعیت کاربر را انتخاب کنید">
+            <input type="hidden" name="adminStatus" value="active" />
+            <button class="select__trigger" type="button" aria-haspopup="listbox" aria-expanded="false">
+              <span class="select__trigger-icon select__trigger-icon--static" aria-hidden="true">
+                <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7.5" stroke="currentColor" stroke-width="1.5"/><path d="M7 10L9 12L13 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+              <span class="select__trigger-divider select__trigger-divider--static" aria-hidden="true"></span>
+              <span class="select__value">انتخاب وضعیت</span>
+              <svg class="select__chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="select__dropdown">
+              <ul class="select__list" role="listbox" aria-label="وضعیت">
+                <li class="select__item" role="option" data-value="active">فعال</li>
+                <li class="select__item" role="option" data-value="inactive">غیرفعال</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /.modal__content -->
+
+      <!-- Actions -->
+      <div class="modal__actions">
+        <button class="btn btn--primary btn--large btn--full-width" type="button" id="addAdminSubmitBtn">
+          تایید و افزودن مدیر
+        </button>
+      </div>
+
+    </div><!-- /.modal__body -->
+  </div><!-- /.modal__container -->
+</div><!-- /#add-admin-modal -->
+
+<script src="../components/modal/modal.js"></script>
+<script src="../components/credit-modal/credit-modal.js"></script>
+<script src="../components/table/table.js"></script>
+<script src="../components/select/select.js"></script>
+<script src="../js/app.js"></script>
+<script src="js/admins.js"></script>
 </body>
 </html>
