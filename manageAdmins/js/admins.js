@@ -15,13 +15,15 @@ const AdminProfile = (() => {
     if (_initialized) return;
     _initialized = true;
 
-    const editBtn   = document.getElementById('editAdminProfileBtn');
-    const saveBtn   = document.getElementById('saveAdminProfileBtn');
-    const cancelBtn = document.getElementById('cancelAdminProfileBtn');
+    const editBtn         = document.getElementById('editAdminProfileBtn');
+    const saveBtn         = document.getElementById('saveAdminProfileBtn');
+    const cancelBtn       = document.getElementById('cancelAdminProfileBtn');
+    const cancelBtnMobile = document.getElementById('cancelAdminProfileBtnMobile');
 
-    if (editBtn)   editBtn.addEventListener('click', _enterEdit);
-    if (saveBtn)   saveBtn.addEventListener('click', _save);
-    if (cancelBtn) cancelBtn.addEventListener('click', _cancel);
+    if (editBtn)         editBtn.addEventListener('click', _enterEdit);
+    if (saveBtn)         saveBtn.addEventListener('click', _save);
+    if (cancelBtn)       cancelBtn.addEventListener('click', _cancel);
+    if (cancelBtnMobile) cancelBtnMobile.addEventListener('click', _cancel);
   }
 
   /* ------ Edit ------ */
@@ -35,31 +37,35 @@ const AdminProfile = (() => {
       _snapshot[inp.id] = inp.value;
     });
 
-    /* Snapshot status from hidden input inside the select */
+    /* Snapshot selects (status + role) */
     var statusSelect = document.getElementById('adminStatusEdit');
-    var hiddenInput  = statusSelect && statusSelect.querySelector('input[type="hidden"]');
-    _snapshot._status = hiddenInput ? hiddenInput.value : 'active';
+    var roleSelect   = document.getElementById('adminRoleEdit');
+    _snapshot._status = _getSelectHiddenValue(statusSelect) || 'active';
+    _snapshot._role   = _getSelectHiddenValue(roleSelect)   || 'internal-admin';
 
     /* Make text inputs editable */
     card.querySelectorAll('.input__field').forEach(function (inp) {
       inp.removeAttribute('readonly');
     });
 
+    /* Switch role: hide view → show select */
+    var roleView = document.getElementById('adminRoleView');
+    if (roleView) roleView.classList.add('hidden');
+    if (roleSelect) {
+      roleSelect.classList.remove('hidden');
+      _initSelectInstance(roleSelect, null);
+    }
+
     /* Switch status: hide view → show select */
     var statusView = document.getElementById('adminStatusView');
     if (statusView) statusView.classList.add('hidden');
     if (statusSelect) {
       statusSelect.classList.remove('hidden');
-      /* Init select if not already; select.js initAll() may have already done this */
-      var instance = statusSelect._selectInstance ||
-                     (window.Select && Select.init(statusSelect));
-      if (instance) {
-        /* Reflect current value in CSS data attribute for tag-color styling */
-        statusSelect.dataset.status = instance.getValue() || 'active';
-        instance.onChange(function (val) {
-          statusSelect.dataset.status = val || 'active';
-        });
-      }
+      _initSelectInstance(statusSelect, function (val) {
+        statusSelect.dataset.status = val || 'active';
+      });
+      var si = statusSelect._selectInstance;
+      if (si) statusSelect.dataset.status = si.getValue() || 'active';
     }
 
     card.classList.add('is-editing');
@@ -70,7 +76,7 @@ const AdminProfile = (() => {
     var editBtn = document.getElementById('editAdminProfileBtn');
     if (editBtn) editBtn.classList.add('is-active');
 
-    /* Focus first editable input */
+    /* Focus first text input */
     var first = card.querySelector('.input__field:not([readonly])');
     if (first) setTimeout(function () { first.focus(); }, 50);
   }
@@ -80,17 +86,23 @@ const AdminProfile = (() => {
     const card = document.querySelector('.profile-admin-card');
     if (!card) return;
 
-    /* Validate non-empty */
+    /* Validate non-empty text inputs */
     var valid = true;
     card.querySelectorAll('.input__field').forEach(function (inp) {
       if (!inp.value.trim()) { inp.focus(); valid = false; }
     });
     if (!valid) return;
 
-    /* Update status tag from select component */
-    var statusSelect = document.getElementById('adminStatusEdit');
-    var instance     = statusSelect && statusSelect._selectInstance;
-    var newStatus    = instance ? (instance.getValue() || 'active') : (_snapshot._status || 'active');
+    /* Update role view text */
+    var roleSelect   = document.getElementById('adminRoleEdit');
+    var roleInstance = roleSelect && roleSelect._selectInstance;
+    var newRole      = roleInstance ? (roleInstance.getValue() || _snapshot._role) : _snapshot._role;
+    _updateRoleView(newRole);
+
+    /* Update status tag */
+    var statusSelect   = document.getElementById('adminStatusEdit');
+    var statusInstance = statusSelect && statusSelect._selectInstance;
+    var newStatus      = statusInstance ? (statusInstance.getValue() || _snapshot._status) : _snapshot._status;
     _updateStatusTag(newStatus);
 
     _exitEdit();
@@ -106,26 +118,58 @@ const AdminProfile = (() => {
       if (_snapshot[inp.id] !== undefined) inp.value = _snapshot[inp.id];
     });
 
+    /* Restore role */
+    var roleSelect   = document.getElementById('adminRoleEdit');
+    var roleInstance = roleSelect && roleSelect._selectInstance;
+    if (roleInstance) roleInstance.setValue(_snapshot._role || 'internal-admin');
+    _updateRoleView(_snapshot._role || 'internal-admin');
+
     /* Restore status */
-    var restoredStatus = _snapshot._status || 'active';
-    _updateStatusTag(restoredStatus);
-    var statusSelect = document.getElementById('adminStatusEdit');
-    var instance     = statusSelect && statusSelect._selectInstance;
-    if (instance) instance.setValue(restoredStatus);
+    var statusSelect   = document.getElementById('adminStatusEdit');
+    var statusInstance = statusSelect && statusSelect._selectInstance;
+    if (statusInstance) statusInstance.setValue(_snapshot._status || 'active');
+    _updateStatusTag(_snapshot._status || 'active');
 
     _exitEdit();
   }
 
   /* ------ Helpers ------ */
+  function _getSelectHiddenValue(selectEl) {
+    var hidden = selectEl && selectEl.querySelector('input[type="hidden"]');
+    return hidden ? hidden.value : null;
+  }
+
+  function _initSelectInstance(selectEl, onChangeFn) {
+    var instance = selectEl._selectInstance ||
+                   (window.Select && Select.init(selectEl));
+    if (instance && onChangeFn) instance.onChange(onChangeFn);
+    return instance;
+  }
+
+  function _updateRoleView(val) {
+    var ROLE_LABELS = {
+      'internal-admin': 'مدیر داخلی',
+      'board':          'هیئت مدیره',
+      'supervisor':     'ناظر',
+      'support':        'پشتیبانی'
+    };
+    var label = ROLE_LABELS[val] || val;
+    var text  = document.getElementById('adminRoleText');
+    if (text) text.textContent = label;
+
+    var roleSelect = document.getElementById('adminRoleEdit');
+    var hidden     = roleSelect && roleSelect.querySelector('input[type="hidden"]');
+    if (hidden) hidden.value = val;
+  }
+
   function _updateStatusTag(val) {
     var tag = document.getElementById('adminStatusTag');
     if (!tag) return;
-    var label   = val === 'active' ? 'فعال' : 'غیرفعال';
-    var modCls  = 'profile-admin-card__status-tag--' + val;
+    var label  = val === 'active' ? 'فعال' : 'غیرفعال';
+    var modCls = 'profile-admin-card__status-tag--' + val;
     tag.textContent = label;
     tag.className   = 'tag tag--filled tag--large tag--rounded profile-admin-card__status-tag ' + modCls;
 
-    /* Keep hidden input in sync */
     var statusSelect = document.getElementById('adminStatusEdit');
     var hidden       = statusSelect && statusSelect.querySelector('input[type="hidden"]');
     if (hidden) hidden.value = val;
@@ -135,12 +179,18 @@ const AdminProfile = (() => {
     const card = document.querySelector('.profile-admin-card');
     if (!card) return;
 
-    /* Make text inputs readonly again */
+    /* Restore readonly on text inputs */
     card.querySelectorAll('.input__field').forEach(function (inp) {
       inp.setAttribute('readonly', '');
     });
 
-    /* Switch status: hide select → show view */
+    /* Hide role select → show role view */
+    var roleView   = document.getElementById('adminRoleView');
+    var roleSelect = document.getElementById('adminRoleEdit');
+    if (roleView)   roleView.classList.remove('hidden');
+    if (roleSelect) roleSelect.classList.add('hidden');
+
+    /* Hide status select → show status view */
     var statusView   = document.getElementById('adminStatusView');
     var statusSelect = document.getElementById('adminStatusEdit');
     if (statusView)   statusView.classList.remove('hidden');

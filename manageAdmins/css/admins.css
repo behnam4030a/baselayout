@@ -4,6 +4,20 @@
    ========================================================= */
 
 /* ----------------------------------------------------------
+   Layout — stretch table container to fill page height
+   ---------------------------------------------------------- */
+
+.page-content {
+  display: flex;
+  flex-direction: column;
+}
+
+#adminsTableContainer {
+  flex: 1;
+  min-height: 0;
+}
+
+/* ----------------------------------------------------------
    Empty State (inside table-container)
    ---------------------------------------------------------- */
 
@@ -16,6 +30,8 @@
   padding: 64px 24px;
   background: var(--card-bg);
   text-align: center;
+  flex: 1;
+  min-height: 0;
 }
 
 .admins-empty.hidden {
@@ -71,6 +87,16 @@
   overflow: visible;
 }
 
+/* Divider: [padding] [short-line] [text] [long-line] — RTL right-to-left */
+.modal--add-admin .modal-divider {
+  flex-direction: row;
+  padding-inline-end: 4px;
+}
+
+.modal--add-admin .modal-divider__line--short {
+  flex: 0 0 16px;
+}
+
 @media (max-width: 1023px) {
   .modal--add-admin .modal__container {
     bottom: calc(var(--bottom-nav-h) + 8px);
@@ -110,11 +136,8 @@
    ---------------------------------------------------------- */
 
 .profile-admin-card {
-  background: var(--card-bg);
   border-radius: var(--radius-card);
-  border: 1px solid var(--stroke);
   overflow: hidden;
-  max-width: 780px;
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -211,6 +234,31 @@
 }
 
 /* ----------------------------------------------------------
+   Role view / select — mirrors status pattern
+   ---------------------------------------------------------- */
+
+.profile-admin-card__role-view {
+  cursor: default;
+}
+
+.profile-admin-card__role-view.hidden {
+  display: none;
+}
+
+.profile-admin-card__role-text {
+  font-size: 14px;
+  color: var(--text-1);
+}
+
+.profile-admin-card__role-select {
+  width: 100%;
+}
+
+.profile-admin-card__role-select.hidden {
+  display: none;
+}
+
+/* ----------------------------------------------------------
    Status view — minimal padding so tag sits at the edge
    ---------------------------------------------------------- */
 
@@ -276,7 +324,9 @@
   background-color: #f1faf1;
   border: 2px solid var(--card-bg);
 }
-
+.select--active .select__trigger {
+    justify-content: space-between;
+}
 /* Inactive state — red-tinted tag */
 .profile-admin-card__status-select[data-status="inactive"] .select__value--selected {
   background-color: rgba(197, 15, 31, 0.08);
@@ -300,6 +350,8 @@
   display: flex;
   gap: 16px;
   padding: 16px 24px;
+  background-color: #fff;
+  justify-content: end;
 }
 
 .profile-admin-card__actions.hidden {
@@ -315,12 +367,65 @@
 }
 
 /* ----------------------------------------------------------
+   Mobile-only elements — hidden on desktop
+   ---------------------------------------------------------- */
+
+/* Separator line between title and button inside head */
+.profile-admin-card__head-sep {
+  display: none;
+}
+
+/* Cancel button inside head — mobile edit mode only */
+.profile-admin-card__cancel-mobile {
+  display: none;
+}
+
+/* ----------------------------------------------------------
    Responsive — Mobile
    ---------------------------------------------------------- */
 
 @media (max-width: 767px) {
+  /* Head: stack title → separator → button vertically */
   .profile-admin-card__head {
-    padding: 14px 16px;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 16px 16px 0;
+    gap: 0;
+  }
+
+  /* Title row: keep flex-row; add bottom padding before separator */
+  .profile-admin-card__title {
+    padding-bottom: 16px;
+  }
+
+  /* Separator: full-bleed 1px stroke line (Figma: border below title) */
+  .profile-admin-card__head-sep {
+    display: block;
+    height: 1px;
+    background-color: var(--stroke);
+    margin-inline: -16px;
+  }
+
+  /* Edit button: full-width below separator */
+  #editAdminProfileBtn {
+    width: 100%;
+    justify-content: center;
+    margin-top: 16px;
+    margin-bottom: 16px;
+  }
+
+  /* Mobile cancel: shown only when card has .is-editing */
+  .profile-admin-card.is-editing .profile-admin-card__cancel-mobile {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-top: 16px;
+    margin-bottom: 16px;
+  }
+
+  /* Hide desktop cancel button from actions row on mobile */
+  #cancelAdminProfileBtn {
+    display: none;
   }
 
   .profile-admin-card__body {
@@ -332,14 +437,14 @@
     gap: 16px;
   }
 
+  /* Actions on mobile: save only (cancel is in head) */
   .profile-admin-card__actions {
-    flex-direction: column-reverse;
+    flex-direction: row;
     padding: 16px;
   }
 
-  .profile-admin-card__save-btn,
-  .profile-admin-card__cancel-btn {
-    width: 100%;
+  .profile-admin-card__save-btn {
+    flex: 1;
     justify-content: center;
   }
 }

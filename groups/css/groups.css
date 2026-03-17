@@ -219,7 +219,9 @@
   flex-direction: column;
   padding: 16px 0 0;
 }
-
+#group-add-exam-modal .input__container {
+    height: 45px;
+}
 .groups-empty__card {
   background-color: var(--card-bg);
   border-radius: var(--radius-card);
@@ -1048,7 +1050,9 @@
   background: var(--card-bg);
   transition: background var(--transition), border-color var(--transition), color var(--transition);
 }
-
+.table__progress {
+    align-items:start;
+}
 .exam-bulk__plan--active {
   background: #eaf8f5;
   border-color: var(--brand);
@@ -1150,5 +1154,19 @@
   .group-users-list .table__row-action__delete {
     display: flex;
     color: var(--text-2);
+  }
+}
+
+/* === list-groups-user: وضعیت آزمون — progress bar desktop/mobile === */
+/* Desktop: hide bar, show text only */
+.group-users-list .table__progress-bar {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  /* Mobile: show bar, fill from left to right */
+  .group-users-list .table__progress-bar {
+    display: block;
+    direction: ltr;
   }
 }

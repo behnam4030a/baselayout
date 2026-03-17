@@ -68,7 +68,7 @@
 
   /* Spacing */
   --select-trigger-padding-x: 8px;
-  --select-trigger-gap: 4px;
+  --select-trigger-gap: 8px;
   --select-trigger-tag-gap: 8px;
   --select-dropdown-padding: 8px;
   --select-item-gap: 4px;

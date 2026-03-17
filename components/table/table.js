@@ -51,11 +51,13 @@
       m.classList.remove('table__page-size-dropdown--open');
     });
     closeRowMenu();
+    closeBottomSheet();
   }
 
   /* ==========================================
      Row Action Menu (Desktop Dropdown + Mobile Bottom Sheet)
-     منو یک بار در HTML نوشته میشه، JS آن را جابجا/کپی میکند
+     یک المان HTML — در دسکتاپ dropdown، در موبایل به body منتقل
+     و کلاس table__row-menu--sheet می‌گیرد (بدون clone)
      ========================================== */
 
   var activeRowMenu = null;
@@ -76,15 +78,19 @@
 
   function closeBottomSheet() {
     if (!activeBottomSheet) return;
-    var sheet = activeBottomSheet.sheet;
+    var menu = activeBottomSheet.menu;
     var overlay = activeBottomSheet.overlay;
-    sheet.classList.remove('table__bottom-sheet--open');
-    overlay.classList.remove('table__bottom-sheet-overlay--open');
+    var home = activeBottomSheet.home;
+    if (menu) menu.classList.remove('table__row-menu--open');
+    if (overlay) overlay.classList.remove('table__bottom-sheet-overlay--open');
     var ref = activeBottomSheet;
     activeBottomSheet = null;
     setTimeout(function () {
+      if (ref.menu) {
+        ref.menu.classList.remove('table__row-menu--sheet');
+        if (ref.home) ref.home.appendChild(ref.menu);
+      }
       if (ref.overlay && ref.overlay.parentNode) ref.overlay.remove();
-      if (ref.sheet && ref.sheet.parentNode) ref.sheet.remove();
     }, 300);
   }
 
@@ -145,59 +151,30 @@
     closeBottomSheet();
 
     var menu = container.querySelector('.table__row-menu');
-    if (!menu) return;
+    if (!menu || menu.querySelectorAll('.table__row-menu-item').length === 0) return;
 
-    var tableId = container.getAttribute('data-table');
-    var items = menu.querySelectorAll('.table__row-menu-item');
-    if (items.length === 0) return;
+    var home = menu.parentNode;
 
-    // Create overlay
+    // Create overlay only
     var overlay = document.createElement('div');
     overlay.className = 'table__bottom-sheet-overlay';
+    overlay.addEventListener('click', function () { closeBottomSheet(); });
 
-    // Create sheet
-    var sheet = document.createElement('div');
-    sheet.className = 'table__bottom-sheet';
-
-    // Handle
-    var handle = document.createElement('div');
-    handle.className = 'table__bottom-sheet-handle';
-    sheet.appendChild(handle);
-
-    // Body — clone menu items as bottom-sheet items
-    var body = document.createElement('div');
-    body.className = 'table__bottom-sheet-body';
-
-    Array.prototype.forEach.call(items, function (srcItem) {
-      var item = document.createElement('button');
-      item.className = 'table__bottom-sheet-item';
-      item.type = 'button';
-      item.textContent = srcItem.textContent;
-      var actionKey = srcItem.getAttribute('data-action');
-      item.addEventListener('click', function () {
-        closeBottomSheet();
-        fireCallback(callbacks, tableId, 'rowAction', { action: actionKey, row: row });
-      });
-      body.appendChild(item);
-    });
-
-    sheet.appendChild(body);
-
-    overlay.addEventListener('click', function () {
-      closeBottomSheet();
-    });
-
+    // Move menu to body and apply sheet styling
     document.body.appendChild(overlay);
-    document.body.appendChild(sheet);
+    document.body.appendChild(menu);
+    menu.classList.add('table__row-menu--sheet');
 
-    // Trigger animation
-    overlay.offsetHeight;
+    // Force reflow on both elements so browser registers initial states
+    // (overlay: opacity 0 → 1 | menu: translateY(100%) → 0)
+    void menu.offsetHeight;
+    void overlay.offsetHeight;
     overlay.classList.add('table__bottom-sheet-overlay--open');
     requestAnimationFrame(function () {
-      sheet.classList.add('table__bottom-sheet--open');
+      menu.classList.add('table__row-menu--open');
     });
 
-    activeBottomSheet = { sheet: sheet, overlay: overlay };
+    activeBottomSheet = { menu: menu, overlay: overlay, home: home, row: row };
   }
 
   function bindRowMenuItems(container, state) {
@@ -211,8 +188,14 @@
       item.addEventListener('click', function (e) {
         e.stopPropagation();
         var actionKey = item.getAttribute('data-action');
-        var row = activeRowMenu ? activeRowMenu.row : null;
-        closeRowMenu();
+        var row;
+        if (activeBottomSheet) {
+          row = activeBottomSheet.row;
+          closeBottomSheet();
+        } else {
+          row = activeRowMenu ? activeRowMenu.row : null;
+          closeRowMenu();
+        }
 
         // Default client-side row delete
         if (actionKey === 'delete' && state.mode !== 'server' && row) {
