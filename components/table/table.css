@@ -1943,7 +1943,7 @@
     background: var(--table-white);
     border-radius: 16px 16px 0 0;
     box-shadow: 0 -3px 5px rgba(0, 0, 0, 0.05);
-    z-index: 1001;
+    z-index: 10000;
     transform: translateY(100%);
     transition: transform 0.3s ease;
   }

@@ -213,6 +213,7 @@
   line-height: var(--typo-heading-4-line-height);
   color: var(--modal-header-fg);
   margin: 0;
+  padding-left: 30px;
 }
 
 .modal__subtitle {
@@ -244,18 +245,20 @@
 }
 
 .modal__close {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: var(--modal-close-size);
-  height: var(--modal-close-size);
-  min-width: var(--modal-close-size);
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: var(--modal-close-color);
-  padding: 0;
-  transition: opacity 0.15s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--modal-close-size);
+    height: var(--modal-close-size);
+    min-width: var(--modal-close-size);
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--modal-close-color);
+    padding: 0;
+    position: absolute;
+    left: 20px;
+    top: 25px;
 }
 
 .modal__close:hover {
@@ -286,7 +289,6 @@
   display: flex;
   flex-direction: column;
   gap: var(--modal-content-gap);
-  align-items: flex-end;
   overflow-y: auto;
 }
 
@@ -365,7 +367,12 @@
   color: var(--modal-body-fg);
   margin: 0;
 }
-
+.credit-presets ,
+.ac-modal__presets{
+    display: flex;
+    gap: 8px;
+    width: 100%;
+}
 .modal__expanded-content {
   flex: 1;
   min-height: 0;
@@ -565,17 +572,22 @@
    ========================================== */
 
 @media (max-width: 767px) {
+  /* --- تمام صفحه با margin 8px (مطابق Figma) --- */
   .modal__container {
-    top: 8px;
-    right: 8px;
-    bottom: 8px;
-    max-width: calc(100vw - 16px);
+    top: 8px !important;
+    right: 8px !important;
+    bottom: 8px !important;
+    left: 8px !important;
+    max-width: calc(100vw - 16px) !important;
+    width: auto !important;
+    border-radius: var(--modal-radius-container) !important;
   }
 
   .modal__expanded {
     top: 8px;
     right: 8px;
     bottom: 8px;
+    left: 8px;
     padding: 0;
     z-index: 2;
     max-width: calc(100vw - 16px);
@@ -584,6 +596,12 @@
   .modal__expanded-inner {
     border-radius: var(--modal-radius-container);
     box-shadow: none;
+  }
+
+  /* --- پنهان کردن bottom-nav هنگام باز بودن هر مودال --- */
+  body:has(.modal.modal--open) .bottom-nav,
+  body:has(.modal.modal--closing) .bottom-nav {
+    display: none !important;
   }
 
   .modal__header {
@@ -610,12 +628,13 @@
 
   /* --- Centered on mobile --- */
   .modal--centered .modal__container {
-    top: auto;
-    right: auto;
-    bottom: auto;
-    left: auto;
-    width: var(--modal-width);
-    max-width: calc(100% - 16px);
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    width: var(--modal-width) !important;
+    max-width: calc(100% - 32px) !important;
+    border-radius: var(--modal-radius-container) !important;
     animation-name: modal-center-in;
   }
 

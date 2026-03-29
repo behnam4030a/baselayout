@@ -538,7 +538,7 @@ img { display: block; max-width: 100%; }
 }
 .breadcrumb a:hover { background: var(--page-bg); }
 
-.breadcrumb-sep { color: var(--text-2); font-size: 13px; }
+.breadcrumb-sep { color: var(--text-2); font-size: 13px;padding-left: 8px; }
 
 /* --- Header Left: User + Wallet + Actions --- */
 .header-left {

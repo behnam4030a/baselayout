@@ -1,0 +1,668 @@
+/* ===================================================
+   FINANCE PAGE — مدیریت مالی / صورتحساب‌ها
+   =================================================== */
+
+#pageContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.finance-section {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 16px;
+}
+
+#financeEmptyTile {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===================================================
+   CREDIT TILE
+   =================================================== */
+.finance-credit-tile {
+  background: var(--card-bg);
+  border-radius: var(--radius-card);
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+  min-height: 111px;
+  box-sizing: border-box;
+}
+
+.finance-credit-tile__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  z-index: 1;
+  gap: 24px;
+}
+
+/* RIGHT in RTL (first in DOM) — credit info */
+.finance-credit-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.finance-credit-amount-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.finance-credit-label {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--text-1);
+  white-space: nowrap;
+}
+
+.finance-credit-value {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--brand);
+  white-space: nowrap;
+}
+
+.finance-toman {
+  color: var(--text-2);
+  display: flex;
+  align-items: center;
+  opacity: 0.7;
+}
+
+.finance-credit-desc {
+  font-size: 14px;
+  color: var(--text-2);
+  line-height: 2;
+  margin: 0;
+  text-align: right;
+}
+
+.finance-credit-desc strong {
+  font-weight: 500;
+  color: var(--text-1);
+}
+
+/* LEFT in RTL (last in DOM) — buttons */
+.finance-credit-btns {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+
+/* ===================================================
+   TABLE TILE
+   =================================================== */
+.finance-table-tile {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* Tile header row */
+.finance-tile-head {
+  background: var(--card-bg);
+  border-radius: var(--radius-card) var(--radius-card) 0 0;
+  padding: 16px 24px;
+  height: 77px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+/* RIGHT in RTL: title + count */
+.finance-tile-title-block {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.finance-tile-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-1);
+  white-space: nowrap;
+}
+
+.finance-tile-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--text-2);
+  flex-shrink: 0;
+}
+
+.finance-tile-count {
+  font-size: 13px;
+  color: var(--text-1);
+  white-space: nowrap;
+}
+
+/* ===================================================
+   FILTER SEGMENT TABS
+   =================================================== */
+.finance-filter-seg {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--page-bg);
+  border-radius: var(--radius-card);
+  padding: 4px;
+  height: 45px;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+.finance-filter-btn {
+  height: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: calc(var(--radius-card) - 2px);
+  background: transparent;
+  font-size: 14px;
+  font-family: inherit;
+  color: var(--text-2);
+  cursor: pointer;
+  white-space: nowrap;
+  line-height: 1;
+  transition: background var(--transition), color var(--transition);
+}
+
+.finance-filter-btn:hover {
+  background: rgba(38, 168, 140, 0.06);
+  color: var(--text-1);
+}
+
+.finance-filter-btn--active {
+  background: var(--brand);
+  color: #fff;
+  font-weight: 500;
+}
+
+.finance-filter-btn--active:hover {
+  background: var(--brand);
+  color: #fff;
+  opacity: 0.92;
+}
+
+/* ===================================================
+   TABLE BODY (data-table container)
+   =================================================== */
+.finance-table-body {
+  background: var(--card-bg);
+  border-radius: 0 0 var(--radius-card) var(--radius-card);
+  overflow: hidden;
+}
+
+/* ===================================================
+   PHYSICAL INVOICE MODAL — مودال فاکتور فیزیکی
+   =================================================== */
+
+/* Body scroll + actions at bottom */
+.modal--physical-invoice .modal__body {
+  display: flex;
+  flex-direction: column;
+}
+
+/* توضیحات ارسال */
+.pi-modal__info-block {
+  background: var(--page-bg);
+  border-radius: var(--radius-card);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pi-modal__info-title {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-1);
+  margin: 0;
+  text-align: right;
+}
+
+.pi-modal__info-text {
+  font-size: 14px;
+  line-height: 2;
+  color: var(--text-1);
+  margin: 0;
+  text-align: right;
+}
+
+/* Field wrapper */
+.pi-modal__field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+/* Label row: label (right) + change-btn (left) */
+.pi-modal__field-label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/* "تغییر نشانی" link button */
+.pi-modal__change-btn {
+  background: none;
+  border: none;
+  font-size: 12px;
+  font-family: inherit;
+  color: var(--brand);
+  cursor: pointer;
+  padding: 0;
+  line-height: 1.5;
+}
+
+.pi-modal__change-btn:hover {
+  opacity: 0.8;
+}
+
+/* Read-only address display */
+.pi-modal__address-display {
+  width: 100%;
+  min-height: 72px;
+  background: var(--page-bg);
+  border-radius: var(--radius-card);
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+.pi-modal__address-display p {
+  font-size: 14px;
+  line-height: 2;
+  color: var(--text-1);
+  margin: 0;
+  text-align: right;
+}
+
+/* Address form (state 2) */
+.pi-modal__address-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* استان + شهر — two columns side by side */
+.pi-modal__field-row {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.pi-modal__field-row .pi-modal__field {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Selects inside modal: full width */
+.pi-modal__field .select {
+  width: 100%;
+}
+
+/* Price box */
+.pi-modal__price-box {
+  border: 1px dashed var(--stroke);
+  border-radius: var(--radius-card);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.pi-modal__price-items {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.pi-modal__price-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pi-modal__price-amount {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.pi-modal__toman {
+  color: var(--text-2);
+  display: flex;
+  align-items: center;
+  opacity: 0.7;
+}
+
+.pi-modal__price-num {
+  font-size: 16px;
+  color: var(--text-1);
+  line-height: 1.5;
+}
+.pi-modal__price-label {
+    font-size: 14px;
+    color: var(--text-2);
+    line-height: 2;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+.pi-modal__price-label--total {
+  color: var(--text-1);
+}
+
+/* wallet row: switch (left/RTL-end) + price+label (right/RTL-start) */
+.pi-modal__wallet-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Dashed divider */
+.pi-modal__price-divider {
+  width: 100%;
+  border: none;
+  border-top: 2px dashed var(--stroke);
+}
+
+/* Mobile */
+@media (max-width: 1023px) {
+  .modal--physical-invoice .modal__container {
+    bottom: calc(var(--bottom-nav-h) + 8px);
+  }
+}
+
+@media (max-width: 768px) {
+  .pi-modal__field-row {
+    gap: 16px;
+  }
+  #add-credit-modal .modal__container,
+  #gift-card-modal .modal__container {
+    height: 100%;
+  }
+}
+
+/* ===================================================
+   TAG OVERRIDES — وضعیت‌های اضافه
+   =================================================== */
+.table__tag--warning {
+  background: #fff9f5;
+  color: #f7630c;
+}
+
+.table__tag--neutral {
+  background: var(--page-bg);
+  color: var(--text-2);
+}
+
+/* ===================================================
+   EMPTY STATE
+   =================================================== */
+.finance-empty-body {
+  flex: 1;
+  background: var(--card-bg);
+  border-radius: 0 0 var(--radius-card) var(--radius-card);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  padding: 80px 24px;
+  min-height: 440px;
+}
+
+.finance-empty-icon {
+  flex-shrink: 0;
+}
+
+.finance-empty-text {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--text-1);
+  margin: 0;
+  text-align: center;
+}
+
+/* ===================================================
+   RESPONSIVE — موبایل
+   =================================================== */
+
+@media (max-width: 768px) {
+  .finance-section {
+    gap: 8px;
+  }
+
+  .finance-credit-tile {
+    padding: 16px;
+    min-height: unset;
+  }
+
+  .finance-credit-tile__inner {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+
+  .finance-credit-btns {
+    width: 100%;
+  }
+
+  .finance-credit-btns .btn {
+    flex: 1;
+    justify-content: center;
+  }
+
+  .finance-tile-head {
+    padding: 12px 16px;
+    height: auto;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+    border-radius: var(--radius-card);
+  }
+
+  .finance-tile-count {
+    font-size: 12px;
+    color: var(--text-2);
+  }
+
+  .finance-filter-seg {
+    width: 100%;
+    min-height: 45px;
+    height: auto;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .finance-filter-seg::-webkit-scrollbar {
+    display: none;
+  }
+
+  .finance-filter-count {
+    display: none;
+  }
+
+  .finance-empty-body {
+    padding: 48px 16px;
+    min-height: 320px;
+  }
+
+  .finance-empty-text {
+    font-size: 16px;
+  }
+
+  /* --- Table body: transparent on mobile so card gaps are visible --- */
+  .finance-table-body {
+    background: transparent;
+    border-radius: 0;
+    overflow: visible;
+  }
+}
+
+/* ===================================================
+   ADD CREDIT MODAL — مودال افزایش اعتبار
+   =================================================== */
+
+.modal--add-credit {
+  --modal-header-bg: var(--page-bg);
+  --modal-header-fg: var(--text-1);
+  --modal-icon-holder-bg: var(--card-bg);
+  --modal-icon-holder-stroke: var(--stroke);
+  --modal-close-color: var(--text-2);
+  --modal-shadow: 0px 0px 10px 5px rgba(38, 168, 140, 0.2);
+  --modal-content-gap: 24px;
+}
+
+.modal--add-credit .modal__container {
+  border: 2px solid #eaf8f5;
+}
+
+
+/* اعتبار فعلی */
+.ac-modal__balance {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--page-bg);
+  border-radius: var(--radius-card);
+  padding: 12px 16px;
+}
+
+.ac-modal__balance-label {
+  font-size: 14px;
+  color: var(--text-1);
+  line-height: 1.5;
+}
+
+.ac-modal__balance-amount {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.ac-modal__balance-value {
+  font-size: 16px;
+  color: var(--text-1);
+  line-height: 1.5;
+}
+
+.ac-modal__toman {
+  display: flex;
+  align-items: center;
+  opacity: 0.7;
+}
+
+/* فیلد مبلغ */
+.ac-modal__field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.ac-modal__field-label {
+  font-size: 12px;
+  color: var(--text-1);
+  line-height: 1.5;
+  padding: 0 8px;
+}
+
+/* مبالغ پیشنهادی */
+
+.ac-modal__preset-btn {
+  flex: 1;
+  height: 45px;
+  background: var(--card-bg);
+  border: 1px solid var(--stroke);
+  border-radius: var(--radius-btn);
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--text-1);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background var(--transition), color var(--transition), border-color var(--transition);
+}
+
+.ac-modal__preset-btn:hover {
+  border-color: var(--brand);
+  color: var(--brand);
+}
+
+.ac-modal__preset-btn--active {
+  background: rgba(38, 168, 140, 0.08);
+  border-color: var(--brand);
+  color: var(--brand);
+  font-weight: 500;
+}
+@media (max-width: 400px) {
+    .pi-modal__field-row {
+      flex-direction: column;
+    }
+  } 
+/* موبایل */
+@media (max-width: 1023px) {
+  .modal--add-credit .modal__container {
+    bottom: calc(var(--bottom-nav-h) + 8px);
+  }
+}
+
+@media (max-width: 768px) {
+.finance-tile-title {
+    font-size: 18px;
+    font-weight: 500;
+}
+  .ac-modal__preset-btn {
+    flex: 1;
+    padding: 0 8px;
+    font-size: 13px;
+  }
+  .finance-tile-title-block {
+      justify-content: space-between;
+      width: 100%;
+  }
+  .finance-tile-dot{
+    display: none;
+  }
+}
+
+/* ===================================================
+   GIFT CARD MODAL — مودال استفاده از کارت هدیه
+   =================================================== */
+
+.modal--gift-card {
+  --modal-header-bg: var(--page-bg);
+  --modal-header-fg: var(--text-1);
+  --modal-icon-holder-bg: var(--card-bg);
+  --modal-icon-holder-stroke: var(--stroke);
+  --modal-close-color: var(--text-2);
+  --modal-shadow: 0px 0px 10px 5px rgba(38, 168, 140, 0.2);
+  --modal-content-gap: 24px;
+}
+
+.modal--gift-card .modal__container {
+  border: 2px solid #eaf8f5;
+}
+
+
+@media (max-width: 1023px) {
+  .modal--gift-card .modal__container {
+    bottom: calc(var(--bottom-nav-h) + 8px);
+  }
+}

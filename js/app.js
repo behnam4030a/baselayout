@@ -160,27 +160,10 @@ function setActiveNavItem(id) {
 function openSubDrawer(id, title) {
   state.openDrawerId = id;
   $subDrawerTitle.textContent = title;
-  $subDrawerItems.innerHTML = '';
-
-  const tpl = document.getElementById('submenu-desktop-' + id);
-  if (tpl) {
-    const clone = tpl.content.cloneNode(true);
-    clone.querySelectorAll('.sub-drawer-item').forEach(item => {
-      item.addEventListener('click', () => {
-        const itemTitle = item.querySelector('.sub-drawer-item-name').textContent;
-        if (state.mobileDrawerOpen) {
-          closeMobileDrawer(); // also closes sub-drawer on mobile
-        } else {
-          closeSubDrawer();
-        }
-        updatePageTitle(itemTitle);
-      });
-    });
-    $subDrawerItems.appendChild(clone);
-  }
-
+  $subDrawerItems.querySelectorAll('.sub-drawer-group').forEach(g => {
+    g.hidden = g.dataset.menu !== id;
+  });
   $subDrawer.classList.add('open');
-  // Desktop backdrop only (not on mobile — sub-drawer is already overlaid)
   if (window.innerWidth >= 1024) {
     $backdrop.classList.add('show');
   }
@@ -412,55 +395,27 @@ const SearchModal = (() => {
   let _activeFilter = 'all';
   let _debounceTimer = null;
 
-  /* DOM references — set once in _init() */
   let _input, _filterBar, _catBtns, _filterMore, _moreDropdown;
-  let _recentChips, _popularChips;
   let _stateRecent, _stateSkeleton, _stateResults, _stateEmpty;
 
-  /* Template references — set once in _init() */
-  let _tplChip, _tplResultItem, _tplGroupHeader;
-
-  const _RECENT  = ['علی میرهادی', 'فاکتور ۱۴۰۴-۰۰۱۲', 'گروه مدیران ارشد'];
-  const _POPULAR = ['علی پورسینا', 'بخش کاربران', '۹۸۷۷۷۶۵۵', '۸۶۹۷۴۳۶', 'آزمون ریاضی', 'نقش مدیران', '۹۷۲۱۶۲۰۲۸'];
-  const _RESULTS = [
-    { id: 1, category: 'users',   name: 'علی میرهادی',        meta: 'مدیر داخلی',          initials: 'ع' },
-    { id: 2, category: 'users',   name: 'سارا احمدی',         meta: 'کارشناس آموزش',       initials: 'س' },
-    { id: 3, category: 'users',   name: 'محمد رضایی',         meta: 'کارشناس فروش',        initials: 'م' },
-    { id: 4, category: 'exams',   name: 'آزمون ریاضی پایه',   meta: 'فعال · ۴۵ سوال',      initials: 'آ' },
-    { id: 5, category: 'exams',   name: 'آزمون زبان انگلیسی', meta: 'پیش‌نویس · ۳۰ سوال', initials: 'آ' },
-    { id: 6, category: 'modules', name: 'ماژول بازاریابی',    meta: 'فعال',                initials: 'م' },
-    { id: 7, category: 'modules', name: 'ماژول فروش',         meta: 'غیرفعال',             initials: 'م' },
-    { id: 8, category: 'admins',  name: 'رضا محمدی',          meta: 'مدیر ارشد',           initials: 'ر' },
-    { id: 9, category: 'admins',  name: 'نرگس کریمی',         meta: 'مدیر میانی',          initials: 'ن' },
-  ];
   function _init() {
     if (_initialized) return;
     _initialized = true;
 
-    /* DOM elements */
     _input         = document.getElementById('searchInput');
     _filterBar     = document.getElementById('searchFilters');
     _catBtns       = document.getElementById('searchCatBtns');
     _filterMore    = document.getElementById('searchFilterMore');
     _moreDropdown  = document.getElementById('searchMoreDropdown');
-    _recentChips   = document.getElementById('searchRecentChips');
-    _popularChips  = document.getElementById('searchPopularChips');
     _stateRecent   = document.getElementById('searchStateRecent');
     _stateSkeleton = document.getElementById('searchStateSkeleton');
     _stateResults  = document.getElementById('searchStateResults');
     _stateEmpty    = document.getElementById('searchStateEmpty');
 
-    /* Templates */
-    _tplChip        = document.getElementById('tpl-search-chip');
-    _tplResultItem  = document.getElementById('tpl-search-result-item');
-    _tplGroupHeader = document.getElementById('tpl-search-group-header');
-
-    /* Events */
     _input.addEventListener('input', _onInput);
     _filterBar.addEventListener('click', _onFilterClick);
     _stateRecent.addEventListener('click', _onRecentClick);
 
-    /* "بیشتر" toggle — wired once since button is static HTML */
     document.getElementById('searchMoreToggle').addEventListener('click', e => {
       e.stopPropagation();
       _moreDropdown.classList.toggle('open');
@@ -476,15 +431,20 @@ const SearchModal = (() => {
         setBottomNavActive(state.activeNavId);
       }
     });
-
-    /* Fill chips once — data never changes between opens */
-    _RECENT.forEach(q  => _recentChips.appendChild(_makeChip(q)));
-    _POPULAR.forEach(q => _popularChips.appendChild(_makeChip(q)));
   }
 
   function _onModalOpen() {
     _input.value = ''; _query = ''; _activeFilter = 'all';
     clearTimeout(_debounceTimer);
+    if (_stateResults) {
+      _stateResults.querySelectorAll('.search-result-item').forEach(el => {
+        el.hidden = false;
+        const nameEl = el.querySelector('.search-result-name');
+        if (nameEl) nameEl.textContent = el.dataset.name || '';
+      });
+      _stateResults.querySelectorAll('.search-group').forEach(g => g.hidden = false);
+      _stateResults.querySelectorAll('.search-group-header').forEach(h => h.hidden = true);
+    }
     _showState('recent');
     _filterBar.classList.add('hidden');
     setTimeout(() => _input.focus(), 80);
@@ -518,98 +478,80 @@ const SearchModal = (() => {
     _stateEmpty.classList.toggle('hidden',    s !== 'empty');
   }
 
-  /* Clone chip template and set its query text */
-  function _makeChip(q) {
-    const el = _tplChip.content.cloneNode(true).firstElementChild;
-    el.dataset.query = q;
-    el.title = q;
-    el.querySelector('.search-chip-text').textContent = q;
-    return el;
-  }
-
-  /* Read category label from its button template (label lives in HTML, not JS) */
   function _getCatLabel(k) {
-    const tpl = document.getElementById('tpl-cat-btn-' + k);
-    return tpl ? tpl.content.querySelector('.search-cat-btn-text').textContent : k;
+    const btn = _catBtns ? _catBtns.querySelector('.search-cat-btn[data-filter="' + k + '"]') : null;
+    return btn ? btn.querySelector('.search-cat-btn-text').textContent.trim() : k;
   }
 
   function _highlight(text, q) {
     if (!q) return text;
     const esc = q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    return text.replace(new RegExp(`(${esc})`, 'gi'), '<mark>$1</mark>');
+    return text.replace(new RegExp('(' + esc + ')', 'gi'), '<mark>$1</mark>');
   }
 
   function _doSearch(q) {
-    const matched = _RESULTS.filter(r => r.name.includes(q) || r.meta.includes(q));
-    if (!matched.length) { _filterBar.classList.add('hidden'); _showState('empty'); return; }
-    const cats = {};
-    matched.forEach(r => { if (!cats[r.category]) cats[r.category] = []; cats[r.category].push(r); });
-    const catKeys = Object.keys(cats);
-    if (catKeys.length <= 1) { _filterBar.classList.add('hidden'); }
-    else { _renderFilters(catKeys); _filterBar.classList.remove('hidden'); }
-    _renderResults(matched, cats); _showState('results');
+    const items = _stateResults.querySelectorAll('.search-result-item');
+    const catCounts = {};
+
+    items.forEach(item => {
+      const name = item.dataset.name || '';
+      const meta = item.dataset.meta || '';
+      const cat  = item.dataset.category;
+      const matchesQuery = name.includes(q) || meta.includes(q);
+      const matchesFilter = _activeFilter === 'all' || _activeFilter === cat;
+      item.hidden = !(matchesQuery && matchesFilter);
+      const nameEl = item.querySelector('.search-result-name');
+      if (nameEl) nameEl.innerHTML = matchesQuery ? _highlight(name, q) : name;
+      if (matchesQuery) catCounts[cat] = (catCounts[cat] || 0) + 1;
+    });
+
+    const allMatchCats = Object.keys(catCounts);
+    const hasVisible = Array.from(items).some(i => !i.hidden);
+    if (!hasVisible) { _filterBar.classList.add('hidden'); _showState('empty'); return; }
+
+    _stateResults.querySelectorAll('.search-group').forEach(group => {
+      const cat = group.dataset.category;
+      const inFilter = _activeFilter === 'all' || _activeFilter === cat;
+      group.hidden = !catCounts[cat] || !inFilter;
+      const countEl = group.querySelector('.search-group-count');
+      if (countEl) countEl.textContent = catCounts[cat] || '';
+    });
+
+    const showHeaders = allMatchCats.length > 1 && _activeFilter === 'all';
+    _stateResults.querySelectorAll('.search-group-header').forEach(h => h.hidden = !showHeaders);
+
+    if (allMatchCats.length <= 1) {
+      _filterBar.classList.add('hidden');
+    } else {
+      _updateFilterBtns(allMatchCats);
+      _filterBar.classList.remove('hidden');
+    }
+
+    _showState('results');
   }
 
-  function _renderFilters(catKeys) {
+  function _updateFilterBtns(visibleCats) {
+    const allKeys  = ['all', ...visibleCats];
     const isMobile = window.innerWidth < 768;
-    const allKeys  = ['all', ...catKeys];
     const MAX      = 3;
     const visible  = isMobile ? allKeys : allKeys.slice(0, MAX);
     const overflow = isMobile ? []      : allKeys.slice(MAX);
 
-    /* Remove previously injected cat buttons, keep _filterMore in place */
-    Array.from(_catBtns.children).forEach(el => { if (el !== _filterMore) el.remove(); });
-
-    /* Clone per-category template and insert before the "بیشتر" wrapper */
-    visible.forEach(k => {
-      const tpl = document.getElementById('tpl-cat-btn-' + k);
-      if (!tpl) return;
-      const el = tpl.content.cloneNode(true).firstElementChild;
-      if (_activeFilter === k) el.classList.add('active');
-      _catBtns.insertBefore(el, _filterMore);
+    Array.from(_catBtns.querySelectorAll('.search-cat-btn[data-filter]')).forEach(btn => {
+      const f = btn.dataset.filter;
+      btn.hidden = !visible.includes(f);
+      btn.classList.toggle('active', f === _activeFilter);
     });
 
-    /* Populate "بیشتر" dropdown — reuse same templates, change class for dropdown style */
     _moreDropdown.innerHTML = '';
     _filterMore.hidden = overflow.length === 0;
     overflow.forEach(k => {
-      const tpl = document.getElementById('tpl-cat-btn-' + k);
-      if (!tpl) return;
-      const el = tpl.content.cloneNode(true).firstElementChild;
-      el.className = 'search-more-item' + (_activeFilter === k ? ' active' : '');
-      _moreDropdown.appendChild(el);
-    });
-  }
-
-  function _renderResults(matched, cats) {
-    const toRender = _activeFilter === 'all'
-      ? cats
-      : (_activeFilter in cats ? { [_activeFilter]: cats[_activeFilter] } : null);
-    if (!toRender || !Object.keys(toRender).length) { _showState('empty'); return; }
-    const showHeader = Object.keys(toRender).length > 1;
-
-    _stateResults.innerHTML = '';
-    Object.entries(toRender).forEach(([cat, items]) => {
-      const group = document.createElement('div');
-      group.className = 'search-group';
-
-      if (showHeader) {
-        const hdr = _tplGroupHeader.content.cloneNode(true).firstElementChild;
-        hdr.querySelector('.search-group-name').textContent  = _getCatLabel(cat);
-        hdr.querySelector('.search-group-count').textContent = items.length;
-        group.appendChild(hdr);
-      }
-
-      items.forEach(item => {
-        const el = _tplResultItem.content.cloneNode(true).firstElementChild;
-        const iconTpl = document.getElementById('tpl-result-icon-' + cat);
-        if (iconTpl) el.querySelector('.search-result-icon-holder').appendChild(iconTpl.content.cloneNode(true));
-        el.querySelector('.search-result-name').innerHTML         = _highlight(item.name, _query);
-        el.querySelector('.search-result-breadcrumb').textContent = `در بخش ${_getCatLabel(cat)}`;
-        group.appendChild(el);
-      });
-
-      _stateResults.appendChild(group);
+      const srcBtn = _catBtns.querySelector('.search-cat-btn[data-filter="' + k + '"]');
+      if (!srcBtn) return;
+      const clone = srcBtn.cloneNode(true);
+      clone.className = 'search-more-item' + (_activeFilter === k ? ' active' : '');
+      clone.hidden = false;
+      _moreDropdown.appendChild(clone);
     });
   }
 
@@ -708,10 +650,10 @@ const NotificationPanel = (() => {
 
     document.getElementById('notifDetailTitle').textContent = $item.dataset.subject;
 
-    const tpl     = document.getElementById('notif-detail-' + id);
     const content = document.getElementById('notifDetailContent');
-    content.innerHTML = '';
-    if (tpl) content.appendChild(tpl.content.cloneNode(true));
+    content.querySelectorAll('.notif-detail-panel').forEach(p => {
+      p.hidden = p.dataset.notifId !== String(id);
+    });
 
     if (_activeId !== null) _resetItemBtn(_activeId);
 
@@ -754,6 +696,19 @@ document.addEventListener('DOMContentLoaded', () => {
   $subDrawerTitle  = document.getElementById('subDrawerTitle');
   $subDrawerItems  = document.getElementById('subDrawerItems');
   $subDrawerClose  = document.getElementById('subDrawerClose');
+
+  $subDrawerItems.addEventListener('click', e => {
+    const item = e.target.closest('.sub-drawer-item');
+    if (!item) return;
+    const itemTitle = item.querySelector('.sub-drawer-item-name').textContent;
+    if (state.mobileDrawerOpen) {
+      closeMobileDrawer();
+    } else {
+      closeSubDrawer();
+    }
+    updatePageTitle(itemTitle);
+  });
+
   $backdrop        = document.getElementById('backdrop');
   $bottomNav       = document.getElementById('bottomNav');
   $mobileMenuBtn   = document.getElementById('mobileMenuBtn');

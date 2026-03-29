@@ -1197,6 +1197,7 @@
       renderPagination(container, state);
     } else {
       showPage(container, state);
+      updateCount(container, state);
     }
   }
 

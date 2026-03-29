@@ -1,0 +1,577 @@
+/* ===================================================
+   INVOICE DETAILS PAGE — صفحه جزئیات فاکتور
+   =================================================== */
+
+/* Mobile back button — hidden on desktop */
+.mobile-back-btn {
+  display: none;
+}
+
+.invd-page {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 16px;
+}
+
+/* ===================================================
+   TITLE BAR
+   =================================================== */
+.invd-title-bar {
+  background: var(--card-bg);
+  border-radius: var(--radius-card);
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.invd-title {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--text-1);
+}
+
+.invd-title-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+/* ===================================================
+   INVOICE CARD
+   =================================================== */
+.invd-card {
+  background: var(--card-bg);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+}
+
+/* Card top: invoice type + meta */
+.invd-card-top {
+  padding: 40px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.invd-card-title {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--text-1);
+  white-space: nowrap;
+}
+
+.invd-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.invd-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.invd-meta-lbl {
+  color: var(--text-2);
+}
+
+.invd-meta-val {
+  color: var(--text-1);
+}
+
+/* ===================================================
+   PARTY SECTIONS (seller / buyer)
+   =================================================== */
+.invd-party {
+  padding: 0 32px;
+}
+
+.invd-party-head {
+  padding: 8px 24px;
+  background: var(--page-bg);
+  border-bottom: 1px solid var(--stroke);
+  border-top: 1px solid var(--stroke);
+  border-radius: 4px;
+}
+
+.invd-party-title {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-1);
+}
+
+.invd-party-body {
+  padding: 24px 24px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.invd-info-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px 32px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.invd-info-cell {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.invd-info-lbl {
+  color: var(--text-2);
+  white-space: nowrap;
+}
+
+.invd-info-val {
+  color: var(--text-1);
+}
+
+/* ===================================================
+   ITEMS TABLE
+   =================================================== */
+.invd-table-section {
+  padding: 0 32px ;
+}
+
+.invd-table-wrap {
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--stroke);
+}
+
+.invd-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.invd-table th,
+.invd-table td {
+  padding: 18px 24px;
+  text-align: right;
+  border: 1px solid var(--stroke);
+  line-height: 1.6;
+}
+
+.invd-table thead th {
+  background: var(--page-bg);
+  font-weight: 400;
+  color: var(--text-1);
+}
+
+.invd-table tbody td {
+  background: var(--card-bg);
+  color: var(--text-1);
+}
+
+.invd-table .invd-total-row td {
+  font-weight: 400;
+}
+
+/* ===================================================
+   NOTES / FOOTER
+   =================================================== */
+.invd-notes {
+  padding: 24px 54px 32px 54px;
+  display: flex;
+  gap: 6px;
+  font-size: 14px;
+  justify-content: space-between;
+}
+
+.invd-notes-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 4px;
+  line-height: 1.8;
+}
+
+.invd-notes-lbl {
+  color: var(--text-2);
+  white-space: nowrap;
+}
+
+.invd-notes-val {
+  color: var(--text-1);
+}
+
+/* ===================================================
+   SIGNATURES
+   =================================================== */
+.invd-signatures {
+  display: flex;
+  min-height: 130px;
+  border: 1px solid var(--stroke);
+  border-radius: 4px;
+  overflow: hidden;
+  gap: 0;
+}
+
+.invd-sig {
+  flex: 1;
+  display: flex;
+  padding: 24px;
+}
+
+.invd-sig + .invd-sig {
+  border-inline-start: 1px solid var(--stroke);
+}
+
+.invd-sig-title {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-1);
+}
+
+/* ===================================================
+   RESPONSIVE — موبایل
+   =================================================== */
+@media (max-width: 768px) {
+  /* ── Mobile back button in top header ── */
+  .mobile-back-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 23px;
+    height: 23px;
+    color: var(--text-1);
+    text-decoration: none;
+  }
+
+  /* ── Title bar ── */
+  .invd-title-bar {
+    flex-direction: column;
+    padding: 24px 16px;
+    gap: 0;
+    align-items: stretch;
+  }
+
+  .invd-title {
+    padding-bottom: 16px;
+  }
+
+.invd-title-actions {
+    border-top: 1px solid var(--stroke);
+    padding-top: 16px;
+    width: 100%;
+    flex-wrap: nowrap;
+    gap: 16px;
+    flex-direction: row-reverse;
+}
+
+  /* Hide back button on mobile */
+  .invd-title-actions > a {
+    display: none;
+  }
+
+  /* Primary on right, outline on left */
+  .invd-title-actions .btn--primary {
+    order: -1;
+  }
+
+  .invd-title-actions .btn {
+    flex: 1;
+    justify-content: center;
+    min-width: 0;
+  }
+
+  /* ── Break invd-card into separate section cards ── */
+  .invd-card {
+    background: transparent;
+    border-radius: 0;
+    overflow: visible;
+  }
+
+  /* Invoice head card */
+  .invd-card-top {
+    background: var(--card-bg);
+    border-radius: var(--radius-card);
+    flex-direction: column;
+    align-items: stretch;
+    padding: 24px 16px;
+    gap: 24px;
+    margin-bottom: 4px;
+  }
+
+  .invd-meta-row {
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  /* Party sections */
+  .invd-party {
+    background: var(--card-bg);
+    border-radius: var(--radius-card);
+    overflow: hidden;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 4px;
+  }
+
+  .invd-party-head {
+    padding: 8px 24px;
+    border-radius: 0;
+  }
+
+  .invd-party-body {
+    padding: 24px 16px;
+    gap: 16px;
+  }
+
+  .invd-info-row {
+    gap: 16px;
+  }
+.invd-table tbody td:nth-of-type(2) {
+    min-width: 220px;
+}
+.invd-sig {
+    min-height: 165px;
+}
+  /* Table section */
+  .invd-table-section {
+    background: var(--card-bg);
+    border-radius: var(--radius-card);
+    padding: 24px 16px;
+    overflow: visible;
+    margin-bottom: 4px;
+  }
+
+  .invd-table-wrap {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .invd-table {
+    min-width: 680px;
+  }
+
+  /* Footer card: notes + signatures together */
+  .invd-footer-card {
+    background: var(--card-bg);
+    border-radius: var(--radius-card);
+    padding: 24px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .invd-notes {
+    padding: 0;
+    flex-direction: column;
+    gap: 16px;
+    justify-content: flex-start;
+  }
+
+  .invd-notes-val {
+    flex: 1;
+  }
+
+  .invd-signatures {
+    flex-direction: column;
+    margin: 0;
+  }
+
+  .invd-sig + .invd-sig {
+    border-inline-start: none;
+    border-top: 1px solid var(--stroke);
+  }
+}
+
+@media print {
+  /* ── سایز صفحه A4 ── */
+  @page {
+    size: A4 portrait;
+    margin: 8mm;
+  }
+
+  /* ── عناصر UI که در پرینت نباید باشند ── */
+  .sidebar,
+  .sidebar-slot,
+  .top-header,
+  .bottom-nav,
+  .backdrop,
+  .mobile-backdrop,
+  .invd-title-actions {
+    display: none !important;
+  }
+
+  /* ── ریست کامل app layout ── */
+  .app-layout {
+    display: block !important;
+    padding: 0 !important;
+    gap: 0 !important;
+    min-height: 0 !important;
+  }
+
+  .main-wrapper {
+    display: block !important;
+    width: 100% !important;
+    gap: 0 !important;
+  }
+
+  .page-content {
+    border-radius: 0 !important;
+    min-height: 0 !important;
+  }
+
+  /* ── فونت برای جاگیری در A4 ── */
+  .invd-card {
+    overflow: visible !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    border: 1px solid #ccc !important;
+    font-size: 12px !important;
+  }
+
+  /* ── title bar ── */
+  .invd-title-bar {
+    background: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    padding: 8px 0 10px !important;
+    border-bottom: 1px solid #ccc !important;
+    margin-bottom: 8px !important;
+  }
+
+  .invd-title {
+    font-size: 15px !important;
+  }
+
+  /* ── card top ── */
+  .invd-card-top {
+    padding: 20px 24px !important;
+  }
+
+  .invd-card-title {
+    font-size: 14px !important;
+  }
+
+  .invd-meta-item {
+    font-size: 12px !important;
+  }
+
+  /* ── بخش‌های فروشنده/خریدار ── */
+  .invd-party {
+    padding: 0 24px !important;
+  }
+
+  .invd-party-head {
+    padding: 7px 18px !important;
+  }
+
+  .invd-party-title {
+    font-size: 12px !important;
+  }
+
+  .invd-party-body {
+    padding: 14px 18px 18px !important;
+    gap: 8px !important;
+  }
+
+  .invd-info-cell {
+    font-size: 12px !important;
+  }
+
+  /* ── جدول ── */
+  .invd-table-section {
+    overflow: visible !important;
+    padding: 0 24px 20px !important;
+  }
+
+  .invd-table-wrap {
+    margin-top: 12px !important;
+  }
+
+  .invd-table {
+    min-width: 0 !important;
+    width: 100% !important;
+    font-size: 12px !important;
+    break-inside: auto;
+  }
+
+  .invd-table th,
+  .invd-table td {
+    padding: 9px 14px !important;
+  }
+
+  .invd-table thead {
+    display: table-header-group;
+  }
+
+  .invd-table tr {
+    break-inside: avoid;
+  }
+
+  /* ── ریست wrapper موبایل (توضیحات + امضاها) ── */
+  .invd-footer-card {
+    background: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    gap: 0 !important;
+  }
+
+  /* ── توضیحات ── */
+  .invd-notes {
+    padding: 10px 24px !important;
+    font-size: 12px !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    gap: 6px !important;
+  }
+
+  /* ── امضاها ── */
+  .invd-signatures {
+    display: flex !important;
+    flex-direction: row !important;
+    margin: 0 24px 20px !important;
+    min-height: 90px !important;
+    gap: 0 !important;
+  }
+
+  .invd-sig {
+    flex: 1 !important;
+    padding: 16px !important;
+  }
+
+  .invd-sig-title {
+    font-size: 13px !important;
+  }
+
+  /* ── جلوگیری از شکستن بخش‌ها وسط صفحه ── */
+  .invd-card-top,
+  .invd-party,
+  .invd-notes,
+  .invd-signatures {
+    break-inside: avoid;
+  }
+
+  /* ── حفظ رنگ پس‌زمینه در پرینت ── */
+  .invd-party-head,
+  .invd-table thead th,
+  .invd-table .invd-total-row td {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}

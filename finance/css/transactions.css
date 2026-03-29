@@ -1,0 +1,397 @@
+/* ===================================================
+   TRANSACTIONS PAGE — صفحه تراکنش‌ها
+   =================================================== */
+
+/* زنجیره flex برای پر کردن ارتفاع باقیمانده صفحه */
+#pageContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.trx-section {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 4px;
+}
+
+.trx-tile--empty {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===================================================
+   TILE (card wrapper around table component)
+   =================================================== */
+.trx-tile {
+  border-radius: var(--radius-card);
+  overflow: hidden;
+}
+
+/* ===================================================
+   TABLE CELL PADDING — بازنویسی padding صفر
+   table component، padding را از متغیر تعریف می‌کند
+   ولی اعمال نمی‌کند، اینجا اضافه می‌شود
+   =================================================== */
+.trx-tile .table__thead .table__cell,
+.trx-tile .table__tbody .table__cell {
+  padding: var(--table-cell-padding-y) var(--table-cell-padding-x);
+}
+
+.trx-tile .table__cell--action {
+  padding: 0;
+}
+
+/* ===================================================
+   AMOUNT CELL — مبلغ با نشانگر رنگی
+   =================================================== */
+.trx-amount {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  /* RTL: text is first (right), dot is last (left) */
+}
+
+.trx-amount-text {
+  color: var(--text-1);
+  font-size: 13px;
+}
+
+.trx-amount-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.trx-amount-dot--in {
+  background: #26a88c; /* ورودی — سبز */
+}
+
+.trx-amount-dot--out {
+  background: #c50f1f; /* خروجی — قرمز */
+}
+
+/* Checkbox column: mobile-only — hidden on desktop */
+#trxListTile .table__cell--checkbox {
+  display: none;
+}
+
+/* ===================================================
+   EMPTY STATE
+   =================================================== */
+.trx-empty-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  padding: 60px 24px;
+  background: var(--card-bg);
+  margin-top: 4px;
+}
+
+.trx-empty-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.trx-empty-text {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--text-1);
+  text-align: center;
+  margin: 0;
+}
+
+/* ===================================================
+   TRX DETAIL MODAL — مودال جزئیات تراکنش
+   =================================================== */
+
+.modal--trx-detail {
+  --modal-width: 600px;
+  --modal-shadow: 0px 8px 32px rgba(0, 0, 0, 0.18);
+}
+
+.trx-detail-content {
+  overflow-y: visible;
+  gap: 16px;
+}
+
+.trx-detail-row {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+}
+
+.trx-detail-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+}
+
+.trx-detail-field--full {
+  flex: none;
+  width: 100%;
+}
+
+/* آیکون‌های SVG در input — override برای stroke-based icons */
+.modal--trx-detail .input__icon svg {
+  fill: none;
+}
+
+/* دیوایدر در readonly — رنگ border پیش‌فرض transparent است، باید override شود */
+.modal--trx-detail .input__divider {
+  background-color: var(--stroke);
+}
+
+/* دو دکمه کنار هم */
+.trx-detail-actions {
+  flex-direction: row !important;
+  gap: 16px;
+}
+
+.trx-detail-action-btn {
+  flex: 1;
+}
+
+/* ===================================================
+   TRX FILTER MODAL — مودال فیلتر تراکنش‌ها
+   =================================================== */
+
+.modal--trx-filter {
+  --modal-width: 492px;
+}
+
+.trx-filter-list {
+  gap: 12px;
+  overflow-y: visible;
+}
+
+.trx-filter-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 50px;
+  padding: 10px 24px;
+  background: var(--page-bg);
+  border-radius: var(--radius-card);
+  cursor: pointer;
+  transition: background var(--transition);
+  flex-shrink: 0;
+}
+
+.trx-filter-item:hover {
+  background: var(--stroke);
+}
+
+.trx-filter-item-label {
+  font-size: 14px;
+  color: var(--text-1);
+  line-height: 1.5;
+}
+
+.trx-filter-item-chevron {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-2);
+  transition: transform var(--transition);
+}
+
+.trx-filter-item--open .trx-filter-item-chevron {
+  transform: rotate(-90deg);
+}
+
+/* ===================================================
+   RESPONSIVE — موبایل: کارت‌های تراکنش
+   =================================================== */
+@media (max-width: 768px) {
+  .trx-empty-body {
+    padding: 40px 16px;
+    min-height: 300px;
+  }
+
+  .trx-empty-text {
+    font-size: 16px;
+  }
+
+  /* ── Tile wrapper: transparent ── */
+  #trxListTile {
+    overflow: visible;
+    border-radius: 0;
+    background: transparent;
+  }
+
+  /* ── Table container: transparent ── */
+  #trxListTile .table-container {
+    background: transparent;
+  }
+
+  /* ── Header: transparent column flex, gap: 0 so title + export form one card ── */
+  #trxListTile .table__header {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: stretch;
+    padding: 0;
+    gap: 0;
+    background: transparent;
+    border-radius: 0;
+  }
+
+  /* Hide inline divider */
+  #trxListTile .table__divider {
+    display: none;
+  }
+.table__btn-box{
+  width: 100%;
+  background-color: #fff;
+  padding: 16px;
+}
+  /* Title section: top portion of first card — border-bottom is the dashed separator */
+  #trxListTile .table__title-section {
+    order: 1;
+    background: var(--card-bg);
+    border-radius: var(--radius-card) var(--radius-card) 0 0;
+    padding: 24px 16px 16px;
+    justify-content: space-between;
+    border-bottom: 1px dashed var(--stroke);
+  }
+
+  #trxListTile .table__title {
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  #trxListTile .table__dot {
+    display: none;
+  }
+
+  #trxListTile .table__count {
+    font-size: 13px;
+    color: var(--text-2);
+  }
+
+  /* Export button: bottom portion of first card */
+  #trxListTile .table__btn--secondary {
+    order: 2;
+    width: 100%;
+    justify-content: center;
+    background: var(--card-bg);
+    padding: 16px;
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+.table__actions{
+  gap: 4px;
+}
+.table__header {
+    margin-bottom: -4px;
+}
+#trx-detail-modal .modal__container{
+  height: 100%;
+}
+.trx-detail-row {
+    flex-direction: column;
+}
+  /* Filter button: separate white card (fully rounded) */
+  #trxListTile .table__btn--filter {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    background: var(--card-bg);
+    border-radius: var(--radius-card);
+    border: none;
+    padding: 16px;
+    font-size: 14px;
+    color: var(--text-1);
+  }
+
+  /* ── Hide column headers ── */
+  #trxListTile .table__thead {
+    display: none;
+  }
+
+  /* ── Table scroll: overflow visible ── */
+  #trxListTile .table__scroll-wrapper {
+    overflow: visible;
+    background: transparent;
+  }
+
+  /* ── Table grid → block ── */
+  #trxListTile .table__grid {
+    display: block;
+    background: transparent;
+  }
+
+  /* ── Tbody: flex column, 8px gap between cards ── */
+  #trxListTile .table__tbody {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 4px;
+  }
+
+  /* ── Each row → white card ── */
+  #trxListTile .table__tbody .table__row {
+    display: block;
+    background: var(--card-bg);
+    border-radius: var(--radius-card);
+    overflow: hidden;
+  }
+
+  /* ── Each data cell → label (right) + value (left) row ── */
+  /* فقط border-bottom خط‌چین — هیچ بوردر دیگری نباید باشد */
+  #trxListTile .table__tbody .table__cell {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 24px;
+    font-size: 14px;
+    color: var(--text-1);
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px dashed var(--stroke);
+    outline: none;
+    box-shadow: none;
+    box-sizing: border-box;
+    width: 100%;
+    line-height: 1.5;
+  }
+
+  /* Field label from data-label — placed on RIGHT (RTL start) via order: -1 */
+  #trxListTile .table__tbody .table__cell[data-label]::before {
+    content: attr(data-label);
+    font-size: 13px;
+    color: var(--text-2);
+    white-space: nowrap;
+    flex-shrink: 0;
+    order: -1;
+  }
+
+  /* ── Code cell: hidden on mobile (value shown next to checkbox by JS) ── */
+  #trxListTile .table__tbody .table__cell--code {
+    display: none;
+  }
+
+
+  /* ── Action cell: hidden ── */
+  #trxListTile .table__tbody .table__cell--action {
+    display: none;
+  }
+
+  /* ── Pagination ── */
+  #trxListTile .table__pagination {
+    background: var(--card-bg);
+    border-radius: var(--radius-card);
+    padding: 12px 16px;
+    margin-top: 4px;
+  }
+}
