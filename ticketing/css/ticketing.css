@@ -1,0 +1,1003 @@
+/* ======================================================
+   TICKETING PAGE STYLES
+   ====================================================== */
+
+/* ── New Ticket Modal ─────────────────────────────── */
+
+.modal--new-ticket {
+  --modal-width: 592px;
+}
+
+.modal--new-ticket .modal__body {
+  justify-content: flex-start;
+  overflow-y: auto;
+}
+
+/* Form: fields with 16px gap */
+.new-ticket-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+/* Each field: label + input stacked */
+.new-ticket-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+/* Input, select and textarea fill full width */
+.new-ticket-form .input,
+.new-ticket-form .select,
+.new-ticket-form .textarea {
+  width: 100%;
+}
+
+/* Textarea: fixed 170px height, no resize */
+.new-ticket-form .textarea__field {
+  height: 170px;
+  resize: none;
+}
+
+/* Drop zone: dashed border box, 70px tall */
+.new-ticket-drop-zone {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  height: 70px;
+  padding: 0 24px;
+  border: 1px dashed var(--stroke);
+  border-radius: var(--radius-card);
+  cursor: pointer;
+  color: var(--text-2);
+  font-size: 14px;
+  font-family: inherit;
+  background: var(--card-bg);
+  transition: border-color var(--transition), color var(--transition);
+  user-select: none;
+  width: 100%;
+}
+
+.new-ticket-drop-zone:hover,
+.new-ticket-drop-zone--drag {
+  border-color: var(--brand);
+  color: var(--brand);
+}
+
+.new-ticket-drop-zone:hover svg,
+.new-ticket-drop-zone--drag svg {
+  color: var(--brand);
+  stroke: var(--brand);
+}
+
+/* Default hint: text + icon side by side */
+.new-ticket-drop-zone__hint {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.new-ticket-drop-zone__text {
+  flex: 1;
+  min-width: 0;
+  text-align: right;
+}
+
+/* File tags container */
+.new-ticket-file-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  flex: 1;
+  min-width: 0;
+  align-items: center;
+}
+
+/* Single file tag */
+.new-ticket-file-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px 4px 6px;
+  background: var(--page-bg);
+  border: 1px solid var(--stroke);
+  border-radius: 6px;
+  font-size: 12px;
+  color: var(--text-1);
+  max-width: 200px;
+}
+
+.new-ticket-file-tag__icon {
+  display: flex;
+  align-items: center;
+  color: var(--text-2);
+  flex-shrink: 0;
+}
+
+.new-ticket-file-tag__name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+  direction: ltr;
+  text-align: right;
+}
+
+.new-ticket-file-tag__remove {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+  color: var(--text-2);
+  flex-shrink: 0;
+  border-radius: 50%;
+  transition: background var(--transition), color var(--transition);
+}
+
+.new-ticket-file-tag__remove:hover {
+  background: rgba(0, 0, 0, 0.08);
+  color: var(--text-1);
+}
+
+/* Submit button: full width */
+.new-ticket-submit {
+  width: 100%;
+  justify-content: center;
+}
+
+/* ── New Ticket Modal — Mobile ────────────────────── */
+
+@media (max-width: 768px) {
+  /* Full-screen modal with 8px margin from viewport edges */
+  .modal--new-ticket .modal__container {
+    position: fixed !important;
+    top: 8px !important;
+    right: 8px !important;
+    bottom: 8px !important;
+    left: 8px !important;
+    width: auto !important;
+    max-width: none !important;
+    max-height: none !important;
+    height: auto !important;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Body fills remaining height, button pushed to bottom */
+  .modal--new-ticket .modal__body {
+    flex: 1;
+    min-height: 0;
+    padding: 16px;
+    justify-content: space-between;
+    overflow-y: auto;
+  }
+
+  .modal--new-ticket .modal__actions {
+    padding-top: 16px;
+    flex-shrink: 0;
+  }
+}
+
+/* ── Layout ─────────────────────────────────────────── */
+
+.ticketing {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.ticketing-card {
+  flex: 1;
+  /* Page-bg shows through as the 4px gap between sections */
+  background: var(--page-bg);
+  border-radius: var(--radius-card);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  overflow: hidden;
+  height: calc(100vh - var(--sidebar-gap) * 2 - var(--header-h) - 8px);
+}
+
+/* ── Card Header ─────────────────────────────────────── */
+
+.ticketing-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  background: var(--card-bg);
+  flex-shrink: 0;
+  /* No border — 4px gap from parent background separates sections */
+}
+
+.ticketing-card__title {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--text-1);
+  margin: 0;
+}
+
+.ticketing-card__actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ticketing-vdivider {
+  width: 1px;
+  height: 24px;
+  background: var(--stroke);
+  flex-shrink: 0;
+}
+
+/* ── Card Body (two columns) ─────────────────────────── */
+
+.ticketing-body {
+  flex: 1;
+  display: flex;
+  /* 4px gap between columns — page-bg shows through */
+  gap: 4px;
+  min-height: 0;
+}
+
+/* ── Ticket List (right column in RTL) ──────────────── */
+
+.ticketing-list {
+  width: 400px;
+  flex-shrink: 0;
+  overflow-y: auto;
+  background: var(--card-bg);
+  /* No border — gap handles separation */
+}
+
+.ticketing-item {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  padding: 24px 27px 24px 24px;
+  border-bottom: 1px solid var(--stroke);
+  cursor: pointer;
+  transition: background var(--transition);
+  background: var(--card-bg);
+  min-height: 104px;
+}
+
+.ticketing-item:hover:not(.ticketing-item--active) {
+  background: var(--page-bg);
+}
+
+.ticketing-item__active-bar {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: transparent;
+  border-radius: 0 3px 3px 0;
+  transition: background var(--transition);
+}
+
+.ticketing-item--active .ticketing-item__active-bar {
+  background: var(--brand);
+}
+
+.ticketing-item__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+}
+
+/* Row 1: title | sep | time — inline, gap 8px, NOT space-between */
+.ticketing-item__title-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ticketing-item__title {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-1);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-shrink: 1;
+  min-width: 0;
+}
+
+.ticketing-item__title--muted {
+  color: var(--text-2);
+}
+
+.ticketing-item__sep {
+  font-size: 13px;
+  color: var(--text-2);
+  opacity: 0.5;
+  flex-shrink: 0;
+}
+
+.ticketing-item__time {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-2);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* Row 2: preview (right in RTL, first DOM) + badge (left in RTL, last DOM) */
+.ticketing-item__bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+}
+
+.ticketing-item__preview {
+  font-size: 14px;
+  color: var(--text-2);
+  line-height: 1.5;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin: 0;
+  flex: 1;
+  min-width: 0;
+}
+
+/* Status badge — exact match to Figma (custom, not tag component) */
+.ticketing-item__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 24px;
+  padding: 0 8px;
+  border: 2px solid var(--card-bg);
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 1.3;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.ticketing-item__badge--answered {
+  background: #f1faf1;
+  color: #107c10;
+}
+
+.ticketing-item__badge--waiting {
+  background: var(--page-bg);
+  color: var(--text-2);
+}
+
+/* ── Chat Panel (left column in RTL) ────────────────── */
+
+.ticketing-chat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden; /* ensures children respect allocated height */
+  background: var(--card-bg);
+}
+
+/* Chat Sub-Header */
+.ticketing-chat__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px;
+  border-bottom: 1px solid var(--stroke);
+  flex-shrink: 0;
+  gap: 16px;
+}
+
+.ticketing-chat__info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  min-width: 0;
+}
+
+.ticketing-chat__ticket-title {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-1);
+}
+
+.ticketing-chat__sep {
+  font-size: 10px;
+  color: var(--text-2);
+}
+
+.ticketing-chat__ticket-id,
+.ticketing-chat__dept {
+  font-size: 13px;
+  color: var(--text-2);
+}
+
+.ticketing-chat__close-link {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--brand);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font-family: inherit;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: opacity var(--transition);
+}
+
+.ticketing-chat__close-link:hover {
+  opacity: 0.75;
+}
+
+/* Messages Area */
+.ticketing-messages {
+  flex: 1;
+  min-height: 0; /* critical: allows flex child to shrink and trigger scroll */
+  overflow-y: auto;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--stroke) transparent;
+}
+
+.ticketing-messages::-webkit-scrollbar { width: 4px; }
+.ticketing-messages::-webkit-scrollbar-track { background: transparent; }
+.ticketing-messages::-webkit-scrollbar-thumb { background: var(--stroke); border-radius: 2px; }
+.ticketing-messages::-webkit-scrollbar-thumb:hover { background: var(--text-2); }
+
+.ticketing-list::-webkit-scrollbar { width: 4px; }
+.ticketing-list::-webkit-scrollbar-track { background: transparent; }
+.ticketing-list::-webkit-scrollbar-thumb { background: var(--stroke); border-radius: 2px; }
+.ticketing-list::-webkit-scrollbar-thumb:hover { background: var(--text-2); }
+
+/* Bubbles */
+.ticketing-bubble {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 430px;
+}
+
+/* Support: right-aligned in RTL */
+.ticketing-bubble--support {
+  align-self: flex-start;
+}
+
+/* User: left-aligned in RTL */
+.ticketing-bubble--user {
+  align-self: flex-end;
+}
+
+.ticketing-bubble__body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ticketing-bubble--support .ticketing-bubble__body {
+    background: var(--page-bg);
+    border-radius: 8px 0px 8px 24px;
+}
+.ticketing-bubble--user .ticketing-bubble__body {
+    background: var(--brand-light);
+    border-radius: 0px 8px 24px 8px;
+}
+.ticketing-bubble__text {
+  font-size: 14px;
+  color: var(--text-1);
+  line-height: 2;
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.ticketing-bubble__divider {
+  height: 1px;
+  background: var(--stroke);
+}
+
+.ticketing-bubble__file {
+  align-self: flex-start;
+  cursor: pointer;
+}
+
+.ticketing-bubble__meta {
+  font-size: 13px;
+  color: var(--text-2);
+  line-height: 1.3;
+}
+
+/* Input Bar */
+.ticketing-input-bar {
+  display: flex;
+  align-items: start;
+  padding: 12px 24px;
+  gap: 12px;
+  flex-shrink: 0;
+  border-top: 1px solid var(--stroke);
+}
+
+/* Field = textarea + attachment previews side by side */
+.ticketing-input-bar__field {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  flex-wrap: wrap;
+}
+
+.ticketing-input-bar__textarea {
+  flex: 1;
+  min-width: 120px;
+  resize: none;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--text-1);
+  line-height: 1.5;
+  min-height: 45px;
+  max-height: 120px;
+  overflow-y: auto;
+  direction: rtl;
+  padding: 12px 0;
+}
+
+.ticketing-input-bar__textarea::placeholder {
+  color: var(--text-2);
+}
+
+/* Attachment previews container — hidden when empty */
+.ticketing-input-bar__attachments {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.ticketing-input-bar__attachments:empty {
+  display: none;
+}
+
+/* Individual file preview tag */
+.ticketing-attach-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 8px 0 6px;
+  background: var(--card-bg);
+  border: 1px solid var(--stroke);
+  border-radius: 8px;
+  font-size: 13px;
+  color: var(--text-2);
+  font-family: inherit;
+  max-width: 180px;
+}
+
+.ticketing-attach-tag__icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  color: var(--text-2);
+}
+
+.ticketing-attach-tag__name {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ticketing-attach-tag__remove {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  color: var(--text-2);
+  font-size: 14px;
+  line-height: 1;
+  transition: background var(--transition), color var(--transition);
+}
+
+.ticketing-attach-tag__remove:hover {
+  background: var(--stroke);
+  color: var(--text-1);
+}
+
+.ticketing-input-bar__actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.ticketing-input-bar__send {
+  min-width: 130px;
+}
+
+/* ── Empty State ─────────────────────────────────── */
+
+.ticketing-empty-state {
+  display: none;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  background: var(--card-bg);
+  padding: 24px;
+  text-align: center;
+  border-radius: 0 0 var(--radius-card) var(--radius-card);
+}
+
+.ticketing-empty-state__illustration {
+  width: 150px;
+  height: 150px;
+  flex-shrink: 0;
+}
+
+.ticketing-empty-state__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.ticketing-empty-state__title {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--text-1);
+  line-height: 1.3;
+  margin: 0;
+}
+
+.ticketing-empty-state__subtitle {
+  font-size: 14px;
+  color: var(--text-1);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* When body is in empty mode */
+.ticketing-body--empty .ticketing-list,
+.ticketing-body--empty .ticketing-chat {
+  display: none;
+}
+
+.ticketing-body--empty .ticketing-empty-state {
+  display: flex;
+}
+
+/* ── Mobile-only elements (hidden on desktop) ────── */
+
+.ticketing-mobile-back-btn,
+.ticketing-filter-bar,
+.ticketing-mobile-info-card {
+  display: none;
+}
+
+/* ── Mobile Responsive ───────────────────────────── */
+
+@media (max-width: 768px) {
+
+  /* ── Top header: back button in chat view ─── */
+
+  /* Back button: absolutely positioned inside the fixed header */
+  .ticketing-mobile-back-btn {
+    display: none;
+    position: absolute;
+    right: 24px; /* same as top-header padding */
+    top: 50%;
+    transform: translateY(-50%);
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    color: var(--text-1);
+    z-index: 1;
+    transition: opacity var(--transition);
+  }
+
+  .ticketing-mobile-back-btn:hover {
+    opacity: 0.7;
+  }
+
+  /* Back button visibility is controlled via JS (inline style),
+     because the button lives in .top-header, not inside .ticketing */
+
+  /* ── Card: list view fills full screen ───── */
+
+  .ticketing-card {
+    /* Fill from below header to above bottom nav */
+    min-height: calc(100vh - var(--mobile-header-h) - var(--bottom-nav-h) - 8px);
+    overflow: hidden;
+    border-radius: 0;
+    gap: 4px;
+  }
+
+  /* Header: top-rounded, column with dashed divider */
+  .ticketing-card__header {
+    border-radius: var(--radius-card) var(--radius-card) 0 0;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 16px;
+    gap: 0;
+  }
+
+  .ticketing-card__title {
+    font-size: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px dashed var(--stroke);
+    margin-bottom: 12px;
+  }
+
+  .ticketing-card__actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Filter bar: bottom-rounded, shown on mobile list view */
+  .ticketing-filter-bar {
+    display: flex;
+    background: var(--card-bg);
+    padding: 8px 16px 16px;
+    border-radius: 0 0 var(--radius-card) var(--radius-card);
+    flex-shrink: 0;
+  }
+
+  .ticketing-filter-bar__btn {
+    flex: 1;
+    height: 45px;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  /* Body: column, fills remaining height */
+  .ticketing-body {
+    flex: 1;
+    min-height: 0;
+    flex-direction: column;
+    overflow: hidden;
+    gap: 0;
+  }
+
+  /* Ticket list: all-rounded card, fills remaining space */
+  .ticketing-list {
+    width: 100%;
+    flex: 1;
+    min-height: 0;
+    border-radius: var(--radius-card);
+    overflow-y: auto;
+  }
+
+  /* Empty state on mobile */
+  .ticketing-empty-state {
+    border-radius: var(--radius-card);
+    gap: 32px;
+    padding: 24px;
+  }
+
+  .ticketing-empty-state__illustration {
+    width: 100px;
+    height: 100px;
+  }
+
+  .ticketing-empty-state__title {
+    font-size: 16px;
+  }
+
+  .ticketing-empty-state__subtitle {
+    font-size: 14px;
+    line-height: 2;
+    text-align: center;
+  }
+
+  .ticketing-item {
+    padding: 16px;
+    min-height: auto;
+  }
+
+  /* Chat panel: hidden in list view */
+  .ticketing-chat {
+    display: none;
+  }
+
+  /* Desktop chat sub-header: hidden on mobile */
+  .ticketing-chat__header {
+    display: none;
+  }
+
+  /* ── Mobile info card ──────────────────────── */
+
+  .ticketing-mobile-info-card {
+    flex-direction: column;
+    gap: 16px;
+    padding: 24px 16px;
+    background: var(--card-bg);
+    border-radius: var(--radius-card) var(--radius-card) 0 0;
+    flex-shrink: 0;
+  }
+
+  .ticketing-mobile-info-card__title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 8px;
+    gap: 8px;
+  }
+
+  .ticketing-mobile-info-card__title {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--text-1);
+    flex: 1;
+    min-width: 0;
+  }
+
+  .ticketing-mobile-info-card__meta-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--text-1);
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  .ticketing-mobile-info-card__sep {
+    font-size: 8px;
+    opacity: 0.5;
+  }
+
+  .ticketing-mobile-info-card__divider {
+    height: 0;
+    border-top: 1px dashed var(--stroke);
+  }
+
+  .ticketing-mobile-info-card__close-btn {
+    width: 100%;
+    height: 45px;
+    background: var(--card-bg);
+    border: 1px solid var(--stroke);
+    border-radius: var(--radius-btn);
+    color: var(--brand);
+    font-size: 14px;
+    font-weight: 500;
+    font-family: inherit;
+    cursor: pointer;
+    transition: opacity var(--transition);
+  }
+
+  .ticketing-mobile-info-card__close-btn:hover {
+    opacity: 0.75;
+  }
+
+  /* Messages area */
+  .ticketing-messages {
+    flex: none;
+    min-height: auto;
+    max-height: 530px;
+    overflow-y: auto;
+    padding: 16px;
+    background: var(--card-bg);
+    border-radius: 0;
+  }
+
+  /* Input bar */
+  .ticketing-input-bar {
+    border-radius: 0 0 var(--radius-card) var(--radius-card);
+    padding: 8px 16px 12px;
+    background: var(--card-bg);
+  }
+
+  .ticketing-input-bar__send {
+    min-width: auto;
+    font-size: 12px;
+  }
+
+  /* ── Chat view state (.ticketing--chat) ─────── */
+
+  /* List-view sections hidden in chat view */
+  .ticketing--chat .ticketing-card__header,
+  .ticketing--chat .ticketing-filter-bar {
+    display: none;
+  }
+
+  /* Card in chat view: fixed overlay filling space between header and bottom nav */
+  .ticketing--chat .ticketing-card {
+    position: fixed;
+    top: var(--mobile-header-h);
+    bottom: var(--bottom-nav-h);
+    left: 0;
+    right: 0;
+    height: auto;
+    overflow: hidden;
+    border-radius: 0;
+    gap: 0;
+    z-index: 200;
+    display: flex;
+    flex-direction: column;
+    background: var(--page-bg);
+  }
+
+  .ticketing--chat .ticketing-body {
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .ticketing--chat .ticketing-body .ticketing-list {
+    display: none;
+  }
+
+  /* Chat panel: fills body, column with 4px gaps between sections */
+  .ticketing--chat .ticketing-body .ticketing-chat {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+    background: var(--page-bg);
+    gap: 4px;
+    overflow: hidden;
+  }
+
+  /* Messages: fills remaining space, scrolls */
+  .ticketing--chat .ticketing-messages {
+    flex: 1;
+    min-height: 0;
+    max-height: none;
+    overflow-y: auto;
+    border-radius: 0;
+  }
+
+  /* Input bar: stays at bottom, no sticky needed (parent is fixed) */
+  .ticketing--chat .ticketing-input-bar {
+    flex-shrink: 0;
+    position: static;
+    border-radius: 0;
+  }
+
+  /* Mobile info card: shown in chat view */
+  .ticketing--chat .ticketing-mobile-info-card {
+    display: flex;
+  }
+}
