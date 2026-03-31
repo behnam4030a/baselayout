@@ -1,0 +1,1038 @@
+/* ============================================
+   لیست آزمون‌ها — Page Styles
+   ============================================ */
+
+/* ── Page Wrapper ───────────────────────────── */
+.tests-page {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* ── Header ─────────────────────────────────── */
+.tests-page__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  background: var(--card-bg);
+  gap: 24px;
+  border-radius: var(--radius-card) var(--radius-card) 0 0;
+}
+
+.tests-page__actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.tests-page__title {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--text-1);
+  margin: 0;
+  white-space: nowrap;
+  line-height: 1.3;
+}
+
+/* vertical separator between header buttons */
+.tests-page__btn-sep {
+  display: block;
+  width: 1px;
+  height: 30px;
+  background: var(--stroke);
+  flex-shrink: 0;
+}
+
+/* ── Search Bar ──────────────────────────────── */
+/* input component handles the base;
+   search bar sits directly under header with no gap */
+.tests-page__search {
+  border-radius: 0 0 var(--radius-card) var(--radius-card);
+  margin-bottom: 12px; /* gap before first card */
+}
+
+/* ── Test Card ───────────────────────────────── */
+.test-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px;
+  background: var(--card-bg);
+  border-radius: var(--radius-card);
+  margin-bottom: 4px;
+}
+
+.test-card:last-of-type {
+  margin-bottom: 0;
+}
+
+/* Row 1: image + name */
+.test-card__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.test-card__name-block {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.test-card__thumb {
+  width: 45px;
+  height: 45px;
+  border-radius: 4px;
+  border: 1px solid var(--stroke);
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.test-card__name {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-1);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Row 2: description */
+.test-card__desc {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-2);
+  margin: 0;
+  line-height: 2;
+  text-align: right;
+}
+
+/* Row 3: tags */
+.test-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Tag — matches Figma exactly: bg #f6f8fa, border 2px white */
+.test-card__tag {
+  display: inline-flex;
+  align-items: center;
+  height: 25px;
+  padding: 0 12px;
+  border-radius: 4px;
+  background: var(--page-bg);
+  border: 2px solid var(--card-bg);
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-2);
+  white-space: nowrap;
+  line-height: 1.3;
+}
+
+/* Divider */
+.test-card__divider {
+  border: none;
+  border-top: 1px solid var(--stroke);
+  margin: 0;
+}
+
+/* Row 4: footer */
+.test-card__footer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+/* Price block — راست (first in DOM = right in RTL) */
+.test-card__price {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-shrink: 0;
+}
+
+.test-card__price-col {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.test-card__price-label {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-2);
+  white-space: nowrap;
+}
+
+.test-card__price-value {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-1);
+  white-space: nowrap;
+  line-height: 1;
+}
+
+.test-card__price-discount {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-2);
+}
+
+/* vertical separator between price columns */
+.test-card__price-sep {
+  display: block;
+  width: 1px;
+  height: 32px;
+  background: var(--stroke);
+  flex-shrink: 0;
+}
+
+/* Buttons — چپ (last in DOM = left in RTL) */
+.test-card__actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
+}
+
+/* Mobile filter button — hidden by default, shown only on mobile */
+.tests-page__mobile-filter {
+  display: none;
+}
+
+.test-card__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 45px;
+  padding: 0 16px;
+  border-radius: var(--radius-btn);
+  font-family: Vazirmatn, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity 0.2s ease;
+  text-decoration: none;
+  line-height: 1.4;
+}
+
+.test-card__btn:hover { opacity: 0.85; }
+
+.test-card__btn--primary {
+  background: var(--brand);
+  color: #fff;
+  border: 1px solid #1d836d;
+  box-shadow: inset 0 0 0 2px #6fc9b5, inset 0 -2px 4px 1px rgba(13,56,47,0.15);
+}
+
+.test-card__btn--secondary {
+  background: var(--card-bg);
+  color: var(--text-1);
+  border: 1px solid var(--stroke);
+}
+
+/* ============================================
+   Preview Modal
+   ============================================ */
+
+/* container را به جای slide-right، تمام ناحیه محتوا پر می‌کند */
+.modal--preview .modal__container {
+    right: 16px;
+    left: calc(var(--sidebar-w) + 16px);
+    top: 16px;
+    bottom: 16px;
+    width: 100%;
+    animation-name: modal-center-in;
+}
+
+.modal--preview.modal--closing .modal__container {
+  animation-name: modal-center-out;
+}
+
+.modal--preview .modal__body {
+  padding: 24px;
+  justify-content: flex-start;
+  overflow: hidden;
+  gap: 24px;
+}
+
+/* ── Tab bar ── */
+.preview-tab-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--page-bg);
+  border-radius: var(--radius-card);
+  padding: 8px 24px 8px 8px;
+  flex-shrink: 0;
+  width: 100%;
+}
+
+.preview-tab-label {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--text-1);
+  white-space: nowrap;
+}
+.tests-page__search .input__container {
+    border-radius: 0;
+    border: 0;
+}
+.tests-page__search .input {
+    border-radius: 0 ;
+}
+/* سوییچ: ظرف سفید دکمه‌های نسخه */
+.preview-version-switch {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--card-bg);
+  border-radius: var(--radius-btn);
+  padding: 4px;
+  flex-shrink: 0;
+}
+
+/* دکمه نسخه کامل — در حالت غیرفعال */
+.preview-version-full--inactive {
+  background: transparent !important;
+  border-color: transparent !important;
+  color: #a2a4a5 !important;
+  box-shadow: none !important;
+}
+
+.preview-version-full--inactive .btn__icon svg,
+.preview-version-full--inactive .btn__icon svg path {
+  fill: #a2a4a5;
+}
+
+.preview-version-full--inactive:hover {
+  background: var(--page-bg) !important;
+  color: var(--text-2) !important;
+}
+
+.preview-version-full--inactive:hover .btn__icon svg,
+.preview-version-full--inactive:hover .btn__icon svg path {
+  fill: var(--text-2);
+}
+
+/* گزینه رادیو — نسخه محدود */
+.preview-version-radio {
+  display: flex;
+  align-items: center;
+  height: 45px;
+  padding: 0 18px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  font-family: Vazirmatn, sans-serif;
+  transition: background var(--transition);
+}
+
+.preview-version-radio:hover {
+  background: var(--page-bg);
+}
+
+.preview-version-radio__label {
+  font-size: 16px;
+  font-weight: 500;
+  color: #a2a4a5;
+  padding-left: 8px;
+  white-space: nowrap;
+  transition: color var(--transition);
+}
+
+.preview-version-radio__circle {
+  width: 17px;
+  height: 17px;
+  min-width: 17px;
+  border-radius: 50%;
+  border: 1px solid #bbbcbe;
+  flex-shrink: 0;
+  transition: border var(--transition);
+}
+
+/* حالت فعال رادیو — همان استایل دکمه primary */
+.preview-version-radio--active {
+  background: var(--btn-color-brand-bg-rest);
+  border: 1px solid var(--btn-color-brand-stroke-rest);
+  box-shadow: var(--btn-shadow-primary);
+  border-radius: var(--radius-btn);
+}
+
+/* hover روی حالت فعال — سبز تیره‌تر، نه سفید */
+.preview-version-radio--active:hover {
+  background: var(--btn-color-brand-bg-hover);
+}
+
+.preview-version-radio--active .preview-version-radio__circle {
+  border-color: rgba(255, 255, 255, 0.6);
+  border-width: 1px;
+}
+
+.preview-version-radio--active .preview-version-radio__label {
+  color: #fff;
+}
+
+/* ── تصویر پیش‌نمایش ── */
+.preview-image-wrap {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.preview-image-wrap img {
+  width: 100%;
+  border-radius: var(--radius-card);
+  display: block;
+}
+
+.preview-image-wrap--hidden {
+  display: none;
+}
+
+.preview-image-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-2);
+  margin: 0 0 12px;
+  text-align: right;
+}
+
+/* ============================================
+   Filter Modal
+   ============================================ */
+.modal--filter {
+  --modal-width: 500px;
+}
+
+.modal--filter .modal__body {
+  justify-content: space-between;
+  overflow-y: auto;
+}
+
+/* content gap: 24px بین گروه‌ها */
+.modal--filter .modal__content {
+  gap: 24px;
+}
+
+/* ── گروه آیتم‌ها ── */
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+/* ── آیتم dropdown (بازه سنی / قیمت) ── */
+.filter-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 50px;
+  padding: 10px 24px;
+  background: var(--page-bg);
+  border: none;
+  border-radius: var(--radius-card);
+  cursor: pointer;
+  font-family: Vazirmatn, sans-serif;
+  transition: background var(--transition);
+}
+
+.filter-item:hover {
+  background: #eaecee;
+}
+
+.filter-item__label {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-1);
+  line-height: 1.5;
+}
+
+.filter-item__chevron {
+  color: var(--text-2);
+  flex-shrink: 0;
+}
+
+/* ── Section divider ── */
+.filter-section-divider {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 4px;
+  width: 100%;
+}
+
+.filter-section-divider__text {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-2);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.filter-section-divider__line {
+  flex: 1;
+  height: 1px;
+  background: var(--stroke);
+}
+
+/* ── آیتم‌های سوییچ ── */
+.filter-switch-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 50px;
+  padding: 10px 24px;
+  background: var(--page-bg);
+  border: 1px solid transparent;
+  border-radius: var(--radius-card);
+  transition: border-color var(--transition);
+}
+
+/* border سبز وقتی switch فعال است */
+.filter-switch-row:has(.switch__input:checked) {
+  border-color: var(--brand);
+}
+
+.filter-switch-row__label {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-1);
+  line-height: 1.5;
+}
+
+/* ── دکمه‌های actions (ردیف افقی) ── */
+.filter-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
+  width: 100%;
+}
+
+.filter-actions__primary {
+  flex: 1;
+  justify-content: center;
+}
+/* ============================================
+   Results Test Page — Specific Styles
+   ============================================ */
+.page-content { display: flex; flex-direction: column; }
+.table-container--empty { flex: 1; }
+
+/* Empty State */
+.results-empty-state {
+  display: none;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  padding: 40px 24px;
+  background: var(--card-bg);
+  border-radius: 0 0 var(--radius-card) var(--radius-card);
+  min-height: 400px;
+}
+.table-container--empty .results-empty-state { display: flex; }
+.table-container--empty .table__search,
+.table-container--empty .table__active-filters,
+.table-container--empty .table__select-all,
+.table-container--empty .table__scroll-wrapper,
+.table-container--empty .table__pagination,
+.table-container--empty .table__action-bar { display: none; }
+.table-container--empty .table__btn--filter { display: none; }
+.table-container--empty .table__dot,
+.table-container--empty .table__count { display: none; }
+
+.results-empty-state__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+}
+.results-empty-state__title {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--text-1);
+  line-height: 1.3;
+  margin: 0;
+}
+.results-empty-state__subtitle {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-2);
+  line-height: 1.5;
+  margin: 0;
+  max-width: 520px;
+}
+@media (max-width: 767px) {
+  .results-empty-state__title { font-size: 16px; }
+  .results-empty-state__subtitle { font-size: 13px; }
+}
+
+/* ===================================================
+   Result View Modal (rvm__)
+   =================================================== */
+
+/* Icon holder override: dark inverted style */
+#result-view-modal .modal__icon-holder {
+  background: #2c2d2d;
+  border: 1px solid #454546;
+}
+/* Grow content to fill body, push actions to bottom */
+#result-view-modal .modal__content {
+  flex: 1;
+  min-height: 0;
+  align-items: stretch;
+}
+
+.rvm__warning {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+  padding: 16px;
+  background: #fff9f5;
+  border-radius: 8px;
+  overflow: hidden;
+  color: #f7630c;
+  font-size: 14px;
+  line-height: 1.5;
+  flex-shrink: 0;
+}
+.rvm__spinner {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  animation: rvm-spin 1.2s linear infinite;
+}
+@keyframes rvm-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+.rvm__dl-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 54px;
+  padding: 0 16px 0 4px;
+  background: var(--page-bg);
+  border: none;
+  border-radius: var(--radius-btn);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background-color 0.15s;
+  font-family: inherit;
+}
+.rvm__dl-btn:hover { background: #edf0f2; }
+.rvm__dl-btn--white { background: var(--card-bg); }
+.rvm__dl-btn--white:hover { background: #f5f5f5; }
+.rvm__dl-inner {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-2);
+}
+.rvm__dl-icon { width: 18px; height: 18px; flex-shrink: 0; color: var(--text-2); }
+
+.rvm__pro {
+  background: #eaf8f5;
+  border-radius: var(--radius-card);
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.rvm__pro-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+}
+.rvm__pro-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--brand);
+}
+.rvm__upgrade-btn {
+  height: 37px;
+  padding: 0 12px;
+  background: var(--brand);
+  border: 1px solid #1d836d;
+  border-radius: var(--radius-btn);
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: inherit;
+  box-shadow: inset 0 0 0 2px #6fc9b5, inset 0 -2px 4px 1px rgba(13,56,47,0.15);
+  transition: opacity 0.15s;
+  white-space: nowrap;
+}
+.rvm__upgrade-btn:hover { opacity: 0.9; }
+.rvm__purchased-badge {
+  display: none;
+  font-size: 12px;
+  font-weight: 500;
+  color: #a2a4a5;
+}
+.rvm__pro--purchased .rvm__upgrade-btn { display: none; }
+.rvm__pro--purchased .rvm__purchased-badge { display: block; }
+
+/* ===================================================
+   Upgrade Modal
+   =================================================== */
+
+/* Header/Container: page-bg (#f6f8fa) — same as Figma container bg */
+#upgrade-modal {
+  --modal-header-bg: var(--page-bg);
+  --modal-header-fg: var(--text-1);
+  --modal-icon-holder-bg: var(--card-bg);
+  --modal-icon-holder-stroke: var(--stroke);
+  --modal-close-color: var(--text-2);
+}
+#upgrade-modal .modal__subtitle { color: var(--text-2); }
+#upgrade-modal .modal__icon-holder svg { color: var(--brand); }
+#upgrade-modal .modal__content { align-items: unset; }
+
+.modal--upgrade .modal__container {
+  border: 2px solid #eaf8f5;
+  box-shadow: 0 0 10px 5px rgba(38,168,140,0.2);
+}
+.upgrade-exam-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.upgrade-exam-section__label {
+  font-size: 12px;
+  color: var(--text-1);
+  line-height: 1.5;
+  padding: 0 8px;
+}
+.upgrade-exam-row {
+  display: flex;
+  align-items: flex-start;
+  padding: 12px 16px;
+  background: var(--page-bg);
+  border-radius: var(--radius-card);
+  width: 100%;
+  gap: 10px;
+  justify-content: space-between;
+}
+.upgrade-exam-name {
+  font-size: 14px;
+  color: var(--text-1);
+  line-height: 1.5;
+}
+.upgrade-price-display {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+.upgrade-toman {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  color: var(--text-1);
+}
+.upgrade-price-amount {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--text-1);
+  line-height: 1.5;
+}
+.upgrade-toman--bold { color: var(--text-1); }
+.upgrade-price-amount--bold { font-weight: 500; }
+.upgrade-actions-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.upgrade-price-table {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border: 1px dashed var(--stroke);
+  border-radius: var(--radius-card);
+  padding: 24px;
+}
+.upgrade-price-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.upgrade-price-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.upgrade-price-label {
+  font-size: 14px;
+  color: var(--text-2);
+  line-height: 2;
+  white-space: nowrap;
+}
+.upgrade-price-label--total {
+  color: var(--text-1);
+  font-weight: 500;
+  line-height: 1.5;
+}
+.upgrade-discount-trigger {
+  height: 45px;
+  padding: 0 16px;
+  background: none;
+  border: none;
+  border-radius: var(--radius-btn);
+  font-size: 14px;
+  font-weight: 500;
+  font-family: inherit;
+  color: var(--brand);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.upgrade-discount-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+.upgrade-discount-wrap[hidden] { display: none; }
+.upgrade-discount-input-wrap {
+  flex: 1;
+  min-width: 0;
+  width: auto;
+}
+.upgrade-wallet-label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.upgrade-price-divider { border-top: 2px dashed var(--stroke); }
+/* ============================================
+   Responsive
+   ============================================ */
+@media (max-width: 1023px) {
+  /* در موبایل: sidebar ندارد، مودال تمام صفحه */
+  .modal--preview .modal__container {
+    right: 8px;
+    left: 8px;
+    top: 8px;
+    bottom:  8px;
+  }
+
+  .modal--filter .modal__container {
+    bottom: calc(var(--bottom-nav-h) + 8px);
+  }
+}
+
+@media (max-width: 767px) {
+  /* ── Preview Modal ── */
+
+  /* بدنه: padding و gap مطابق فیگما */
+  .modal--preview .modal__body {
+    padding: 16px;
+    gap: 24px;
+  }
+
+  /* تب‌بار: فقط سوییچ — لیبل مخفی */
+  .preview-tab-bar {
+    padding: 0;
+    background: transparent;
+    border-radius: 0;
+  }
+
+  .preview-tab-label {
+    display: none;
+  }
+
+  /* سوییچ: full-width با پس‌زمینه page-bg */
+  .preview-version-switch {
+    background: var(--page-bg);
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  /* هر دو آیتم سوییچ: flex-1 و وسط‌چین */
+  .preview-version-full {
+    flex: 1;
+    justify-content: center;
+  }
+
+  .preview-version-radio {
+    flex: 1;
+    justify-content: center;
+  }
+
+  /* ── Page Header ── */
+  .tests-page__header {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 24px 16px 16px;
+    gap: 16px;
+  }
+
+  .tests-page__title {
+    font-size: 16px;
+    padding: 0 8px;
+  }
+
+  /* Actions: dashed separator + full-width help button */
+  .tests-page__actions {
+    border-top: 1px dashed var(--stroke);
+    padding-top: 16px;
+    align-items: stretch;
+    flex-direction: column;
+    gap: 0;
+    flex-wrap: nowrap;
+  }
+
+  /* Hide desktop filter button + separator on mobile */
+  #testsFilterBtn,
+  .tests-page__btn-sep {
+    display: none;
+  }
+
+  /* Help button stretches full width */
+  .tests-page__actions > .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* ── Search + Filter combined row ── */
+  .tests-page__search {
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+    border-radius: 0;
+    margin-bottom: 8px;
+  }
+
+  /* Input fills remaining space */
+  .tests-page__search .input {
+    flex: 1;
+    min-width: 0;
+  }
+
+  /* Remove input component border/shadow; let the card bg show */
+  .tests-page__search .input__container {
+    border-radius: 0 0 var(--radius-card) 0;
+    border-color: transparent;
+    box-shadow: none;
+  }
+
+  /* Mobile filter button (physical left in RTL) */
+  .tests-page__mobile-filter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100px;
+    height: 45px;
+    flex-shrink: 0;
+    background: var(--card-bg);
+    border: none;
+    border-radius: 0 0 0 var(--radius-card);
+    font-family: Vazirmatn, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-1);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background var(--transition);
+  }
+
+  .tests-page__mobile-filter:hover {
+    background: var(--page-bg);
+  }
+
+  /* ── Test Cards ── */
+  .test-card {
+    padding: 24px 16px;
+  }
+
+  .test-card__tags {
+    gap: 16px;
+  }
+
+  .test-card__footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  /* Price block: dashed border box */
+  .test-card__price {
+    width: 100%;
+    border: 1px dashed var(--stroke);
+    border-radius: var(--radius-card);
+    padding: 16px;
+  }
+
+  /* Action buttons: equal width side by side */
+  .test-card__actions {
+    width: 100%;
+    gap: 16px;
+  }
+
+  .test-card__btn {
+    flex: 1;
+    justify-content: center;
+  }
+
+  /* ── Upgrade Modal: full-screen on mobile (like result-view-modal) ── */
+  #upgrade-modal .modal__container {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    bottom: 8px;
+    left: 8px;
+    width: auto;
+    max-width: none;
+    max-height: none;
+    border-radius: var(--radius-card);
+    animation-name: modal-slide-in-bottom;
+  }
+  #upgrade-modal.modal--closing .modal__container {
+    animation-name: modal-slide-out-bottom;
+  }
+}
+
+/* ── Result Tests: Row Cursor ───────────────────── */
+[data-table="results-table"] .table__tbody .table__row { cursor: pointer; }
+[data-table="results-table"] .table__tbody .table__cell--checkbox { cursor: default; }
+
+/* ── Result Tests: Row Menu Overrides ────────────── */
+[data-table="results-table"] .table__row-menu-item {
+  height: 45px;
+  font-weight: 500;
+  justify-content: flex-start;
+  gap: 8px;
+}
+
+[data-table="results-table"] .table__row-menu-item svg {
+  flex-shrink: 0;
+}

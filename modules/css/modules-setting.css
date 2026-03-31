@@ -1,0 +1,521 @@
+/* ===================================================
+   MODULES SETTING PAGE — تنظیمات ماژول
+   =================================================== */
+
+/* ---- Tab panel spacing ---- */
+.ms-tab-panel {
+  padding-top: 16px;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* فقط پنل فعال flex می‌شود — display: none کامپوننت تب را override نکند */
+.tab__panel--active.ms-tab-panel {
+  display: flex;
+}
+
+/* ---- Shared tile title ---- */
+.ms-tile-title {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--text-1);
+  white-space: nowrap;
+}
+
+/* ===================================================
+   TAB 1 — پیکربندی
+   =================================================== */
+
+/* ---- Tile 1: وضعیت ماژول ---- */
+.ms-status-tile {
+  background: var(--card-bg);
+  border-radius: var(--radius-card);
+  padding: 24px;
+  height: 77px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+/* Title block: first in DOM = RIGHT in RTL */
+.ms-status-tile__title-block {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Switch block: last in DOM = LEFT in RTL */
+.ms-status-tile__switch-block {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ms-status-tile__switch-label {
+  font-size: 13px;
+  color: var(--text-2);
+  white-space: nowrap;
+}
+
+/* ---- Tile 2: موقعیت‌های ارسال پیامک ---- */
+.ms-positions-tile {
+  display: flex;
+  flex-direction: column;
+  gap: 4px; /* gap reveals page-bg between rows */
+}
+
+.ms-positions-tile__head {
+  background: var(--card-bg);
+  border-radius: var(--radius-card) var(--radius-card) 0 0;
+  padding: 24px;
+  height: 77px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-sizing: border-box;
+}
+
+/* ---- Position rows ---- */
+.ms-pos-row {
+  background: var(--card-bg);
+  padding: 24px;
+  height: 93px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.ms-pos-row--last {
+  border-radius: 0 0 var(--radius-card) var(--radius-card);
+}
+
+/* Name: first in DOM = RIGHT in RTL */
+.ms-pos-row__name {
+  font-size: 16px;
+  color: var(--text-1);
+}
+
+.ms-pos-row__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.ms-pos-row__label::before {
+  content: '';
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: currentColor;
+  flex-shrink: 0;
+}
+
+/* Controls: last in DOM = LEFT in RTL */
+.ms-pos-row__controls {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  flex-shrink: 0;
+}
+
+/* ---- Control columns (cost, status) ---- */
+.ms-ctrl-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    min-width: 70px;
+}
+
+.ms-ctrl-col__value {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  font-size: 13px;
+  color: var(--text-1);
+  white-space: nowrap;
+}
+
+.ms-ctrl-col__value--pending {
+  color: #f7630c;
+}
+
+.ms-ctrl-col__label {
+  font-size: 13px;
+  color: var(--text-2);
+  white-space: nowrap;
+}
+
+.ms-toman-icon {
+  color: var(--text-2);
+  flex-shrink: 0;
+}
+
+/* ---- Vertical divider ---- */
+.ms-vdivider {
+  width: 1px;
+  height: 32px;
+  background: var(--stroke);
+  flex-shrink: 0;
+}
+
+/* ---- Button holder (switch + edit btn): last in controls = LEFT ---- */
+.ms-btn-holder {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
+}
+
+
+/* ===================================================
+   TAB 2 — گزارش‌ها (table component overrides)
+   =================================================== */
+
+/* Cell padding (table component doesn't set it, global reset zeroes it out) */
+[data-table="sms-reports"] .table__thead .table__cell,
+[data-table="sms-reports"] .table__tbody .table__cell {
+  padding: 0 var(--table-cell-padding-x);
+}
+
+/* "رویداد پیام" and "تاریخ ارسال" columns: fixed width, no wrap */
+[data-table="sms-reports"] .table__thead .table__cell:nth-child(1),
+[data-table="sms-reports"] .table__thead .table__cell:nth-child(2),
+[data-table="sms-reports"] .table__tbody .table__cell:nth-child(1),
+[data-table="sms-reports"] .table__tbody .table__cell:nth-child(2) {
+  width: 200px;
+}
+
+/* دکمه حذف در منوی ردیف */
+.table__row-menu-item--danger {
+  color: var(--table-danger, #c50f1f);
+}
+
+.table__row-menu-item--danger:hover {
+  background: #fdf3f4;
+}
+
+/* "متن پیام" column: ellipsis for long text */
+.ms-reports-td-message {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* ===================================================
+   TAB 3 — معرفی و آموزش
+   =================================================== */
+
+.ms-intro-tile {
+  display: flex;
+  flex-direction: column;
+  gap: 4px; /* reveals page-bg between head and body */
+}
+
+.ms-intro-head {
+  background: var(--card-bg);
+  border-radius: var(--radius-card) var(--radius-card) 0 0;
+  padding: 24px;
+  height: 77px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-sizing: border-box;
+}
+
+.ms-intro-head-icon {
+  color: var(--text-2);
+  flex-shrink: 0;
+}
+
+.ms-intro-body {
+  background: var(--card-bg);
+  border-radius: 0 0 var(--radius-card) var(--radius-card);
+  display: flex;
+  gap: 32px;
+  padding: 24px;
+  align-items: flex-start;
+}
+
+/* Description: first in DOM = RIGHT in RTL */
+.ms-intro-desc {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.ms-intro-desc p {
+  font-size: 14px;
+  line-height: 2;
+  color: var(--text-2);
+  margin: 0;
+  text-align: right;
+}
+
+/* Video: last in DOM = LEFT in RTL */
+.ms-intro-video {
+  flex-shrink: 0;
+  width: 400px;
+  align-self: stretch;
+  border-radius: var(--radius-card);
+  border: 1px solid var(--stroke);
+  background: #1a1a2e;
+  position: relative;
+  overflow: hidden;
+}
+
+.ms-intro-video__player {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.ms-intro-video__overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ms-intro-video__play {
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(34, 35, 35, 0.65);
+  backdrop-filter: blur(2.5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background var(--transition), transform var(--transition);
+}
+
+.ms-intro-video__play:hover {
+  background: rgba(34, 35, 35, 0.8);
+  transform: scale(1.07);
+}
+
+/* ===================================================
+   RESPONSIVE — موبایل
+   =================================================== */
+/* ===================================================
+   EDIT SMS MODAL — تغییر متن پیامک
+   =================================================== */
+
+/* Variables section */
+.ms-sms-vars {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ms-sms-vars__box {
+  width: 100%;
+  border: 1px dashed var(--stroke);
+  border-radius: var(--radius-card);
+  padding: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+/* Message text field */
+.ms-sms-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ms-sms-field__label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ms-sms-reset-btn {
+  background: none;
+  border: none;
+  font-size: 12px;
+  font-family: inherit;
+  color: var(--brand);
+  cursor: pointer;
+  padding: 0;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+
+.ms-sms-reset-btn:hover {
+  opacity: 0.8;
+}
+
+/* Rich-text field (contenteditable div) inside textarea wrapper */
+.ms-sms-rich-field {
+  display: block;
+  width: 100%;
+  padding: 8px 16px;
+  font-family: var(--typo-font-family, Vazirmatn, sans-serif);
+  font-size: 14px;
+  line-height: 2;
+  color: var(--text-1);
+  text-align: right;
+  outline: none;
+  word-break: break-word;
+  white-space: pre-wrap;
+  overflow-y: auto;
+  box-sizing: border-box;
+  cursor: text;
+}
+
+/* Variable placeholder highlighting: {نام کاربر} etc. */
+.ms-sms-var {
+  color: var(--brand);
+}
+
+.ms-sms-char-count {
+  font-size: 12px;
+  color: var(--text-2);
+  line-height: 1.5;
+  text-align: left;
+}
+
+/* Actions (price + save button) */
+.ms-sms-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ms-sms-price {
+  border: 1px dashed var(--stroke);
+  border-radius: var(--radius-card);
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ms-sms-price__value {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 16px;
+  color: var(--text-1);
+  white-space: nowrap;
+}
+
+.ms-sms-price__label {
+  font-size: 14px;
+  color: var(--text-1);
+  white-space: nowrap;
+}
+
+/* Mobile: modal uses bottom nav offset */
+@media (max-width: 1023px) {
+  .modal--edit-sms .modal__container {
+    bottom: calc(var(--bottom-nav-h) + 8px);
+  }
+}
+
+/* ===================================================
+   RESPONSIVE — موبایل
+   =================================================== */
+@media (max-width: 768px) {
+.table__cell.table__cell--action{
+  display: none;
+}
+  /* ----- Tab 1: پیکربندی ----- */
+  .ms-status-tile { padding: 16px; height: auto;flex-wrap: wrap;gap: 10px; }
+
+  .ms-positions-tile__head { padding: 16px; height: auto; }
+
+  .ms-pos-row {
+    padding: 16px;
+    height: auto;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+
+  /* خط چینی جدا‌کننده بین نام و کنترل‌ها */
+  .ms-pos-row__name {
+    padding-bottom: 16px;
+    border-bottom: 1px dashed var(--stroke);
+  }
+
+  /* ستون آمار (هزینه + وضعیت) وسط‌چین، دکمه‌ها تمام‌عرض */
+  .ms-pos-row__controls {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px 32px;
+  }
+
+  /* دکمه‌ها تمام‌عرض */
+  .ms-btn-holder {
+    width: 100%;
+    gap: 16px;
+  }
+
+  /* ترتیب: سوییچ (راست) | خط‌جداکن | دکمه ویرایش flex-1 (چپ) */
+  .ms-btn-holder .ms-vdivider { order: 1; }
+  .ms-btn-holder label.switch { order: 0; }
+  .ms-btn-holder .btn { order: 2; flex: 1; }
+
+  /* ----- Tab 2: گزارش‌ها — کارت موبایل ----- */
+
+  /* ردیف اول (رویداد) → header کارت با border-bottom */
+[data-table="sms-reports"] .table__tbody .table__cell:first-child {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 24px;
+    border-bottom: 1px solid var(--stroke);
+    font-size: 14px;
+    color: var(--text-1);
+    line-height: 2;
+}
+[data-table="sms-reports"] .table__thead .table__cell:nth-child(1), [data-table="sms-reports"] .table__thead .table__cell:nth-child(2), [data-table="sms-reports"] .table__tbody .table__cell:nth-child(1), [data-table="sms-reports"] .table__tbody .table__cell:nth-child(2) {
+    width: 100%;
+    padding: 12px 24px;
+}
+  [data-table="sms-reports"] .table__tbody .table__cell:first-child::before {
+    content: "رویداد پیام";
+    font-size: 13px;
+    color: var(--text-2);
+    line-height: 1.3;
+    flex-shrink: 0;
+  }
+#module-setting-tabs-panel-1 .table__tbody .table__cell[data-label] + .table__cell[data-label] {
+    box-shadow: unset;
+    padding: 12px 24px;
+}
+  /* متن پیام → stacked (label بالا، متن پایین) + خط چینی */
+  [data-table="sms-reports"] .table__tbody .table__cell.ms-reports-td-message {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    white-space: normal;
+    text-overflow: clip;
+    overflow: visible;
+    box-shadow: none;
+    border-top: 1px dashed var(--stroke);
+  }
+
+  [data-table="sms-reports"] .table__tbody .table__cell.ms-reports-td-message::before {
+    margin-inline-end: 0;
+  }
+
+  /* ----- Tab 3: معرفی و آموزش ----- */
+  .ms-intro-body { flex-direction: column-reverse; padding: 16px; gap: 24px; }
+  .ms-intro-video { width: 100%; align-self: auto; height: 196px; min-height: unset; }
+}

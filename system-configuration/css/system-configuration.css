@@ -1,0 +1,1270 @@
+/* ============================================
+   System Configuration — page-specific styles
+   ============================================ */
+
+.sysconfig {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ==================== CARD ==================== */
+
+.sysconfig-card {
+  border-radius: var(--radius-card);
+  overflow: hidden;
+}
+
+.sysconfig-card__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  gap: 16px;
+  background: var(--card-bg);
+  margin-bottom: 4px;
+}
+
+.sysconfig-card__title-group {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+}
+
+.sysconfig-card__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  color: var(--text-1);
+  margin-top: 2px;
+}
+
+.sysconfig-card__title {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--text-1);
+  line-height: 1.3;
+  margin: 0;
+}
+
+.sysconfig-card__sub {
+  font-size: 13px;
+  color: var(--text-2);
+  line-height: 1.4;
+  margin: 4px 0 0;
+}
+
+.sysconfig-card__body {
+  padding: 24px;
+  background: var(--card-bg);
+}
+
+.sysconfig-card__body--rows {
+  padding: 0;
+}
+
+/* panel wrapper (wraps cards within a tab panel) */
+.sysconfig-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ==================== TAB 1: لینک اختصاصی ==================== */
+
+.sysconfig-link-form {
+  display: flex;
+  align-items: stretch;
+  gap: 24px;
+}
+
+.sysconfig-logo-upload {
+  flex-shrink: 0;
+  width: 140px;
+  border: 1.5px dashed #dddfe1;
+  border-radius: var(--radius-card);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  color: var(--text-2);
+  font-size: 12px;
+  text-align: center;
+  padding: 12px;
+  transition: border-color var(--transition), background var(--transition);
+}
+
+.sysconfig-logo-upload:hover {
+  border-color: var(--brand);
+  background: var(--brand-light);
+}
+
+.sysconfig-logo-upload__icon {
+  display: flex;
+  color: var(--text-2);
+}
+
+.sysconfig-form-fields {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sysconfig-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.sysconfig-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sysconfig-label {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--text-1);
+  line-height: 1.3;
+}
+
+/* Login method card */
+.sysconfig-login-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  min-height: 45px;
+}
+
+.sysconfig-login-row__info {
+  list-style: disc;
+  padding-inline-start: 24px;
+  font-size: 16px;
+  color: var(--text-1);
+  line-height: 1.5;
+  flex: 1;
+  min-width: 0;
+}
+
+.sysconfig-login-row__actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
+  flex-wrap: nowrap;
+}
+
+.sysconfig-divider-v {
+  width: 1px;
+  height: 30px;
+  background: var(--stroke);
+  flex-shrink: 0;
+}
+
+.sysconfig-sms-cost {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+}
+
+.sysconfig-sms-cost__price {
+  font-size: 13px;
+  color: var(--text-1);
+  line-height: 1.3;
+}
+
+.sysconfig-sms-cost__label {
+  font-size: 13px;
+  color: var(--text-2);
+  line-height: 1.3;
+}
+
+/* ==================== TAB 2: سفارشی سازی ==================== */
+
+.sysconfig-default-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 45px;
+}
+
+.sysconfig-default-row__info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 16px;
+  color: var(--text-1);
+}
+
+.sysconfig-icon-box {
+  width: 45px;
+  height: 45px;
+  border-radius: var(--radius-card);
+  background: var(--page-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--text-2);
+}
+
+/* Card variant: split rows with 4px gaps */
+.sysconfig-card--split {
+  background: var(--page-bg);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  overflow: visible;
+}
+
+.sysconfig-card--split .sysconfig-card__head {
+  border-radius: var(--radius-card) var(--radius-card) 0 0;
+  background: var(--card-bg);
+}
+
+.sysconfig-card--split .sysconfig-card__body--rows {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 0;
+  background: transparent;
+}
+
+.sysconfig-card--split .sysconfig-data-row {
+  background: var(--card-bg);
+  border-bottom: none;
+  border-radius: 0;
+}
+
+.sysconfig-card--split .sysconfig-data-row:last-child {
+  border-radius: 0 0 var(--radius-card) var(--radius-card);
+}
+
+/* Custom data rows */
+.sysconfig-data-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 24px;
+  min-height: 93px;
+}
+
+/* RIGHT: field name with bullet */
+.sysconfig-data-row__name {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  color: var(--text-1);
+  flex-shrink: 0;
+}
+
+.sysconfig-data-row__name::before {
+  content: '';
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--text-1);
+  flex-shrink: 0;
+}
+
+/* LEFT: actions block (meta-group | divider | btn-group) */
+.sysconfig-data-row__actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
+}
+
+.sysconfig-data-row__meta-group {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.sysconfig-data-row__btn-group {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Two-line meta block inside data row actions */
+.sysconfig-data-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+}
+
+.sysconfig-data-meta__value {
+  font-size: 13px;
+  color: var(--text-1);
+  line-height: 1.3;
+}
+
+.sysconfig-data-meta__label {
+  font-size: 13px;
+  color: var(--text-2);
+  line-height: 1.3;
+}
+
+.sysconfig-icon-btn {
+  width: 45px;
+  height: 45px;
+  border: 1px solid var(--stroke);
+  border-radius: var(--radius-btn);
+  background: var(--card-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--text-2);
+  transition: all var(--transition);
+  flex-shrink: 0;
+}
+
+.sysconfig-icon-btn--danger:hover {
+  border-color: #e84040;
+  color: #e84040;
+  background: rgba(232, 64, 64, 0.06);
+}
+
+/* ==================== TAB 3: تنظیمات ==================== */
+
+.sysconfig-switch-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--stroke);
+    border-radius: var(--radius-btn);
+    padding: 4px 12px;
+}
+.sysconfig-settings-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 45px;
+}
+
+.sysconfig-settings-row__text {
+  font-size: 16px;
+  color: var(--text-1);
+  line-height: 1.5;
+  list-style: none;
+  padding-inline-start: 0;
+  margin: 0;
+}
+
+.sysconfig-access-on {
+  color: var(--brand);
+  font-weight: 500;
+}
+
+.sysconfig-access-off {
+  color: #e84040;
+  font-weight: 500;
+}
+
+.sysconfig-settings-row__actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
+}
+
+/* ==================== MODAL: اطلاعات ورودی افزودن کاربر جدید ==================== */
+
+.modal--default-inputs {
+  --modal-width: 500px;
+}
+
+/* Section divider (─── label ─) */
+.sysconfig-section-divider {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0;
+  width: 100%;
+}
+
+.sysconfig-section-divider__line {
+  flex: 1;
+  height: 1px;
+  background: var(--stroke);
+}
+
+.sysconfig-section-divider__text {
+  font-size: 13px;
+  color: var(--text-2);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.sysconfig-section-divider__stub {
+  width: 8px;
+  height: 1px;
+  background: var(--stroke);
+  flex-shrink: 0;
+}
+
+/* Option row: switch + label + icon */
+.sysconfig-option-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--page-bg);
+  border-radius: var(--radius-card);
+  padding: 4px 24px;
+  min-height: 55px;
+  width: 100%;
+}
+
+.sysconfig-option-row__label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--text-1);
+}
+
+/* ==================== MODAL: تکمیل اطلاعات ==================== */
+
+/* modal field label (used inside modal__content) */
+.modal__field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.modal__field-label {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--text-1);
+  line-height: 1.3;
+}
+
+.modal__field-help {
+  font-size: 12px;
+  color: var(--text-2);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Custom URL input (لینک اختصاصی) */
+.permalink-url-input {
+  position: relative;
+  height: 45px;
+  width: 100%;
+  border: 1px solid var(--stroke);
+  border-radius: var(--radius-card);
+  background: var(--card-bg);
+  overflow: hidden;
+}
+
+.permalink-url-input__field {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  padding: 0 16px;
+  padding-left: 130px; /* space for www tag on left */
+  font-family: var(--typo-font-family, 'Vazirmatn', sans-serif);
+  font-size: 14px;
+  color: var(--text-1);
+  text-align: left;
+  direction: ltr;
+}
+
+.permalink-url-input__field::placeholder {
+  color: var(--text-2);
+}
+
+/* www.Esanj.ir/ floating tag — positioned on the left (end in RTL) */
+.permalink-url-input__tag {
+  position: absolute;
+  top: 50%;
+  left: 4px;
+  transform: translateY(-50%);
+  background: var(--page-bg);
+  border: 2px solid var(--card-bg);
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 14px;
+  color: var(--text-1);
+  direction: ltr;
+  white-space: nowrap;
+  line-height: 1.5;
+  pointer-events: none;
+}
+
+/* Logo preview in card (non-interactive) */
+.sysconfig-logo-preview {
+  cursor: default;
+  pointer-events: none;
+}
+
+/* ==================== MODAL: اطلاعات لینک اختصاصی ==================== */
+
+.sysconfig-logo-drop {
+  width: 100%;
+  height: 200px;
+  border: 1.5px dashed #dddfe1;
+  border-radius: var(--radius-card);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  color: var(--text-2);
+  text-align: center;
+  padding: 16px;
+  transition: border-color var(--transition), background var(--transition);
+  position: relative;
+}
+
+.sysconfig-logo-drop:hover,
+.sysconfig-logo-drop--drag {
+  border-color: var(--brand);
+  background: var(--brand-light);
+}
+
+.sysconfig-logo-drop__icon {
+  display: flex;
+  color: var(--text-2);
+}
+
+.sysconfig-logo-drop__text {
+  font-size: 14px;
+  color: var(--text-1);
+}
+
+.sysconfig-logo-drop__hint {
+  font-size: 12px;
+  color: var(--text-2);
+}
+
+/* remove logo button — shown over the preview */
+.sysconfig-logo-drop__remove {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border: 1px solid #e84040;
+  border-radius: var(--radius-btn);
+  background: #fff;
+  color: #e84040;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition);
+}
+
+.sysconfig-logo-drop__remove:hover {
+  background: rgba(232, 64, 64, 0.08);
+}
+
+/* uploaded logo preview inside drop zone */
+.sysconfig-logo-drop--has-image .sysconfig-logo-drop__icon,
+.sysconfig-logo-drop--has-image .sysconfig-logo-drop__text,
+.sysconfig-logo-drop--has-image .sysconfig-logo-drop__hint {
+  display: none;
+}
+
+.sysconfig-logo-drop__img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: var(--radius-card);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* Textarea height override in edit modal */
+.sysconfig-edit-textarea .textarea__field {
+  min-height: 170px;
+  resize: vertical;
+}
+
+/* ==================== MODAL: افزودن داده سفارشی جدید ==================== */
+
+.modal--add-custom-data {
+  --modal-width: 500px;
+}
+
+/* Container: 4px dark gap around white body */
+.modal--add-custom-data .modal__container {
+  background: var(--sidebar-bg);
+  padding: 4px;
+}
+
+/* Dark header */
+.modal--add-custom-data .modal__header {
+  background: var(--sidebar-bg);
+  border-bottom: none;
+  padding: 24px;
+  align-items: center;
+  margin-bottom: 0;
+}
+
+.modal--add-custom-data .modal__close {
+  color: rgba(255,255,255,0.7);
+  left: 24px;
+  top: 43px; /* (4px container-pad) + (24px header-pad) + (27px half-icon) - (12px half-close) */
+}
+
+.modal--add-custom-data .modal__close:hover {
+  color: #fff;
+  background: rgba(255,255,255,0.12);
+}
+
+/* Header info block: icon-holder + text */
+.sysconfig-modal-header-info {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex: 1;
+  min-width: 0;
+}
+
+.sysconfig-modal-header-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 54px;
+  height: 54px;
+  flex-shrink: 0;
+  border-radius: var(--radius-card);
+  background: var(--sidebar-bg-2);
+  border: 1px solid #454546;
+  color: #fff;
+}
+
+.sysconfig-modal-header-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  min-width: 0;
+}
+
+.sysconfig-modal-header-title {
+  font-size: 18px;
+  font-weight: 500;
+  color: #fff;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.sysconfig-modal-header-sub {
+  font-size: 14px;
+  color: var(--sidebar-text);
+  margin: 0;
+  line-height: 2;
+}
+
+/* White body: rounded corners, gap from dark container */
+.modal--add-custom-data .modal__body {
+  border-radius: var(--radius-card);
+  background: var(--card-bg);
+  gap: 0;
+  overflow: hidden;
+  justify-content: flex-start;
+}
+
+/* Form scrolls internally; button stays pinned at bottom */
+.modal--add-custom-data .sysconfig-modal-form {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  gap: 16px;
+}
+
+
+/* Form inside add-custom-data modal */
+.sysconfig-modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.sysconfig-modal-form .input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+/* ── Field trigger (همه فیلدهای select-like) ── */
+.sysconfig-field-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 45px;
+  border: 1px solid var(--stroke);
+  border-radius: var(--radius-btn);
+  background: var(--card-bg);
+  padding: 0 16px;
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--text-2);
+  cursor: pointer;
+  text-align: right;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.sysconfig-field-trigger__text {
+  flex: 1;
+  text-align: right;
+}
+
+.sysconfig-field-trigger__chevron {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  color: var(--text-2);
+  transition: transform var(--transition);
+}
+
+/* Selected state: dark text */
+.sysconfig-field-trigger--selected {
+  color: var(--text-1);
+}
+
+/* Open state: chevron-up + brand bottom border */
+.sysconfig-field-trigger--open {
+  border-bottom-color: var(--brand);
+  box-shadow: 0 2px 3px 1px rgba(42,187,156,0.2);
+}
+
+.sysconfig-field-trigger--open .sysconfig-field-trigger__chevron {
+  transform: rotate(180deg);
+}
+
+/* ── Expanded panel (uses modal component's .modal__expanded-inner) ── */
+
+/* Override component defaults — sysconfig handles per-section spacing */
+.modal--add-custom-data .modal__expanded-inner {
+  padding: 0;
+  gap: 0;
+}
+
+.modal--add-custom-data .modal__expanded .modal__expanded-header {
+  gap: 0;
+  flex-shrink: 0;
+  padding: 24px;
+  padding-bottom: 0;
+}
+
+/* Title row inside expanded header */
+.sysconfig-choices-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+  margin-bottom: 16px;
+}
+
+.sysconfig-choices-panel__title {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--text-1);
+}
+
+.sysconfig-choices-panel__divider {
+  height: 1px;
+  border-bottom:1px solid var(--stroke);
+  width: 100%;
+}
+
+/* Content area */
+.modal--add-custom-data .modal__expanded-content {
+  padding: 24px;
+  gap: 16px;
+}
+
+/* Footer */
+.modal--add-custom-data .modal__expanded-footer {
+  padding: 0 24px 24px;
+}
+
+/* Choice rows list — flex-col, gap 16px between rows */
+.sysconfig-choices-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Each row: 3 separate bordered items, gap 4px */
+.sysconfig-choices-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Drag handle btn (rightmost in RTL — first DOM) */
+.sysconfig-choices-row__drag {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  flex-shrink: 0;
+  border: 1px solid var(--stroke);
+  border-radius: var(--radius-card);
+  background: var(--card-bg);
+  cursor: grab;
+  color: var(--text-2);
+  transition: color var(--transition);
+}
+
+.sysconfig-choices-row__drag:hover {
+  color: var(--text-1);
+}
+
+/* Text input (middle) */
+.sysconfig-choices-row__input {
+  flex: 1;
+  height: 45px;
+  border: 1px solid var(--stroke);
+  border-radius: var(--radius-card);
+  background: var(--card-bg);
+  padding: 0 16px;
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--text-1);
+  outline: none;
+  direction: rtl;
+  text-align: right;
+}
+
+.sysconfig-choices-row__input::placeholder {
+  color: var(--text-2);
+}
+
+.sysconfig-choices-row__input:focus {
+  border-color: var(--brand);
+}
+
+/* Delete btn (leftmost in RTL — last DOM) */
+.sysconfig-choices-row__delete {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  flex-shrink: 0;
+  border: 1px solid var(--stroke);
+  border-radius: var(--radius-card);
+  background: var(--card-bg);
+  cursor: pointer;
+  color: var(--text-2);
+  transition: color var(--transition), background var(--transition);
+}
+
+.sysconfig-choices-row__delete:hover {
+  color: #c50f1f;
+  background: rgba(197,15,31,0.06);
+}
+
+/* گزینه جدید button */
+.sysconfig-choices-add {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  height: 45px;
+  border-radius: var(--radius-card);
+  background: var(--brand-light);
+  border: none;
+  color: var(--brand);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background var(--transition);
+}
+
+.sysconfig-choices-add:hover {
+  background: rgba(63,194,166,0.22);
+}
+
+/* Field group — relative container for dropdown */
+.sysconfig-field-group {
+  position: relative;
+}
+
+/* Dropdown list */
+.sysconfig-field-dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 0;
+  left: 0;
+  z-index: 200;
+  background: var(--card-bg);
+  border: 1px solid var(--stroke);
+  border-radius: var(--radius-card);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+  overflow: hidden;
+}
+
+.sysconfig-field-dropdown[hidden] { display: none; }
+
+.sysconfig-field-dropdown__item {
+  display: block;
+  width: 100%;
+  padding: 11px 16px;
+  background: none;
+  border: none;
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--text-1);
+  text-align: right;
+  cursor: pointer;
+  transition: background var(--transition);
+}
+
+.sysconfig-field-dropdown__item:hover {
+  background: var(--page-bg);
+}
+
+.sysconfig-field-dropdown__item--active {
+  color: var(--brand);
+  font-weight: 500;
+}
+
+/* ── Select list (expanded panels for data-type / display-pos) ── */
+.sysconfig-select-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.expanded-item__check {
+  display: none;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  color: var(--brand);
+}
+
+.expanded-item--selected .expanded-item__check {
+  display: block;
+}
+
+/* Mobile-only — hidden on desktop */
+.sysconfig-expanded-header { display: none; }
+.sysconfig-choices-back-btn { display: none; }
+
+/* ==================== RESPONSIVE ==================== */
+
+@media (max-width: 768px) {
+  /* === Tab bar — mobile === */
+
+  /* Remove gap: tab connects flush to content */
+  .sysconfig {
+    gap: 0;
+  }
+
+  /* Tab: sticky just below the fixed mobile header, full viewport width.
+     margin-top: -8px closes the 8px gap from app-layout's extra padding
+     so the tab is flush with the header from the very first render. */
+  .sysconfig .tab {
+    position: sticky;
+    top: var(--mobile-header-h);
+    z-index: 100;
+    background: var(--card-bg);
+    margin-top: -8px;
+    margin-left: -16px;
+    margin-right: -16px;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.03);
+  }
+
+  /* Tab list: flat strip, no radius, 1px separator as underline track */
+  .sysconfig .tab__list {
+    border-radius: 0;
+    border-bottom: 1px solid var(--stroke);
+    padding-bottom: 1px;
+  }
+
+  /* Fade gradient at the left edge (RTL overflow scroll hint) */
+  .sysconfig .tab::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 37px;
+    background: linear-gradient(to right, var(--card-bg), transparent);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Panel: top spacing to replace the removed sysconfig gap */
+  .sysconfig .tab__panel {
+    padding-top: 16px;
+  }
+
+  /* Card head → column: title on top, full-width button below */
+  .sysconfig-card__head {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 16px;
+    gap: 0;
+  }
+
+  .sysconfig-card__head .sysconfig-card__top-title {
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--stroke);
+    margin-bottom: 16px;
+  }
+.sysconfig-switch-box {
+    border: none;
+}
+  .sysconfig-card__head > .btn {
+    width: 100%;
+  }
+
+  /* Card body horizontal padding reduction */
+  .sysconfig-card__body {
+    padding: 24px 16px;
+  }
+
+  .sysconfig-link-form {
+    flex-direction: column;
+  }
+.modal--add-custom-data .modal__expanded .modal__expanded-header {
+  padding-top: 0;
+}
+  /* Logo: tall vertical block matching Figma */
+  .sysconfig-logo-upload {
+    width: 100%;
+    height: 200px;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .sysconfig-form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .sysconfig-login-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+  }
+
+  .sysconfig-login-row__info {
+    width: 100%;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--stroke);
+  }
+
+  .sysconfig-login-row__actions {
+    width: 100%;
+    padding-top: 16px;
+    padding-right: 32px;
+    gap: 16px;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .sysconfig-login-row__actions .btn {
+    flex: 1;
+  }
+
+  .sysconfig-default-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .sysconfig-default-row .btn {
+    width: 100%;
+  }
+
+  .sysconfig-card--split .sysconfig-card__head .sysconfig-card__title-group {
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--stroke);
+    margin-bottom: 16px;
+  }
+
+  .sysconfig-data-row {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 24px 16px;
+    gap: 0;
+  }
+
+  .sysconfig-data-row__name {
+    width: 100%;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--stroke);
+  }
+
+  .sysconfig-data-row__actions {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    width: 100%;
+    gap: 0;
+    padding-top: 16px;
+  }
+
+  .sysconfig-data-row__actions > .sysconfig-divider-v {
+    display: none;
+  }
+
+  .sysconfig-data-row__meta-group {
+    width: 100%;
+    justify-content: center;
+    gap: 32px;
+  }
+
+  .sysconfig-data-row__btn-group {
+    width: 100%;
+    gap: 16px;
+    padding-top: 16px;
+  }
+
+  .sysconfig-data-row__btn-group .btn {
+    flex: 1;
+  }
+
+  .sysconfig-settings-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+  }
+
+  .sysconfig-settings-row__text {
+    list-style: disc;
+    padding-inline-start: 24px;
+    width: 100%;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--stroke);
+  }
+
+  .sysconfig-settings-row__actions {
+    width: 100%;
+    flex-shrink: 1;
+    padding-top: 16px;
+  }
+
+  .sysconfig-settings-row__actions .btn {
+    flex: 1;
+  }
+
+  .permalink-url-input__field {
+    padding-left: 110px;
+  }
+
+  /* === افزودن داده سفارشی modal — mobile === */
+
+  /* Main container close button */
+  .modal--add-custom-data .modal__container .modal__close {
+    left: 16px;
+  }
+
+  /* Expanded panel: dark bg + exact same slide animation as main container */
+  .modal--add-custom-data .modal__expanded {
+    background: var(--sidebar-bg);
+    border-radius: var(--radius-card);
+  }
+
+  /* Slide the entire expanded panel in/out from the right — same as .modal__container */
+  .modal--add-custom-data .modal__expanded--open {
+    animation: modal-slide-in-right var(--modal-animation-duration) ease forwards;
+  }
+
+  .modal--add-custom-data .modal__expanded--closing {
+    animation: modal-slide-out-right var(--modal-animation-duration) ease forwards;
+  }
+
+  /* Disable the inner-only animation — parent handles slide now */
+  .modal--add-custom-data .modal__expanded .modal__expanded-inner {
+    animation: none;
+    margin: 0 4px 4px;
+  }
+.top-header {
+    box-shadow: none;
+}
+  .modal--add-custom-data .modal__expanded--closing .modal__expanded-inner {
+    animation: none;
+  }
+
+  /* Dark header inside expanded panel (mobile only) */
+  .sysconfig-expanded-header {
+    display: flex;
+    align-items: center;
+    padding: 24px 16px;
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .sysconfig-expanded-header .sysconfig-modal-header-info {
+    padding-left: 40px;
+  }
+
+  .sysconfig-expanded-header .modal__close {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  /* Title row padding on mobile */
+  .modal--add-custom-data .sysconfig-choices-title-row {
+    padding: 16px;
+    margin-bottom: 0;
+  }
+
+  /* Back button (mobile only) */
+  .sysconfig-choices-back-btn {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 14px;
+    color: var(--text-1);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px 0;
+    font-family: inherit;
+    flex-shrink: 0;
+  }
+
+  /* Reduced padding on mobile */
+  .modal--add-custom-data .modal__expanded-content {
+    padding: 16px;
+    padding-top: 24px;
+  }
+
+  .modal--add-custom-data .modal__expanded-footer {
+    padding: 0 16px 16px;
+  }
+}
