@@ -53,7 +53,10 @@
       "Bash(xargs grep:*)",
       "Bash(echo \"FIGMA_TOKEN: $FIGMA_TOKEN:-not set\")",
       "Bash(echo \"FIGMA_API_TOKEN: $FIGMA_API_TOKEN:-not set\")",
-      "Bash(grep -r \"input__icon\\\\|input--large\\\\|input__field\\\\|input__container\" C:/WorkProject/FrontLayer_Portal_V.3 --include=*.html -l)"
+      "Bash(grep -r \"input__icon\\\\|input--large\\\\|input__field\\\\|input__container\" C:/WorkProject/FrontLayer_Portal_V.3 --include=*.html -l)",
+      "Read(//c/Users/Behnam/.claude/**)",
+      "Read(//c/Users/Behnam/**)",
+      "Read(//tmp/**)"
     ]
   }
 }

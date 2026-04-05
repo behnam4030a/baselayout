@@ -731,3 +731,54 @@ document.addEventListener('DOMContentLoaded', () => {
   initUserDropdown();
 });
 
+/* ===================================================
+   ADD CREDIT MODAL — مودال افزایش اعتبار
+   =================================================== */
+var AddCreditModal = (function () {
+  var _initialized = false;
+
+  function _init() {
+    if (_initialized) return;
+    _initialized = true;
+
+    var input = document.getElementById('addCreditAmount');
+    var presets = document.querySelectorAll('.ac-modal__preset-btn');
+
+    function _toPersian(n) {
+      return String(n).replace(/\d/g, function (d) {
+        return '۰۱۲۳۴۵۶۷۸۹'[d];
+      });
+    }
+
+    function _formatNumber(n) {
+      return _toPersian(n.toLocaleString('en-US').replace(/,/g, '،'));
+    }
+
+    presets.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        presets.forEach(function (b) { b.classList.remove('ac-modal__preset-btn--active'); });
+        btn.classList.add('ac-modal__preset-btn--active');
+        if (input) input.value = _formatNumber(parseInt(btn.dataset.amount, 10));
+      });
+    });
+
+    Modal.onOpen('add-credit-modal', function () {
+      if (input) input.value = '';
+      presets.forEach(function (b) { b.classList.remove('ac-modal__preset-btn--active'); });
+    });
+  }
+
+  function open() {
+    _init();
+    Modal.open('add-credit-modal');
+  }
+
+  function close() {
+    Modal.close('add-credit-modal');
+  }
+
+  return { open: open, close: close };
+})();
+
+window.AddCreditModal = AddCreditModal;
+

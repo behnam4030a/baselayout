@@ -413,6 +413,7 @@
 }
 
 .table__active-filter-tag {
+  flex-direction: row-reverse;
   display: inline-flex;
   align-items: center;
   gap: 4px;

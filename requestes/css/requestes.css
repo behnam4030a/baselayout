@@ -1,0 +1,266 @@
+/* ============================================================
+   REQUESTS PAGE — requestes.css
+   ============================================================ */
+
+/* ---- Pending status tag (extends table component) ---- */
+.table__tag--pending {
+  color: var(--text-2);
+}
+
+/* ---- Cell padding (requests table has no checkbox col, needs explicit padding) ---- */
+[data-table="req-table"] .table__cell:not(.table__cell--action) {
+  padding-inline: 16px;
+}
+
+/* ---- Description column width (36% ≈ 400px in a 1104px table, others auto-split 64%) ---- */
+.req-desc-col {
+  width: 36%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ---- Page layout: fill full height ---- */
+.page-content {
+  display: flex;
+  flex-direction: column;
+}
+
+[data-table="req-table"] {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+/* ---- Empty State ---- */
+.req-empty-state {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  padding: 60px 24px;
+  background: var(--card-bg);
+  border-radius: 0 0 var(--radius-card) var(--radius-card);
+  flex: 1;
+}
+
+.req-empty-state__img {
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+}
+
+.req-empty-state__content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  text-align: center;
+}
+
+.req-empty-state__title {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--text-1);
+  line-height: 1.3;
+}
+
+.req-empty-state__subtitle {
+  font-size: 14px;
+  color: var(--text-1);
+  line-height: 1.5;
+}
+
+/* Hide table sections when empty state is active */
+[data-table="req-table"].req--is-empty .table__search,
+[data-table="req-table"].req--is-empty .table__active-filters,
+[data-table="req-table"].req--is-empty .table__scroll-wrapper,
+[data-table="req-table"].req--is-empty .table__pagination,
+[data-table="req-table"].req--is-empty .table__actions {
+  display: none !important;
+}
+
+[data-table="req-table"].req--is-empty .table__dot,
+[data-table="req-table"].req--is-empty .table__count {
+  visibility: hidden;
+}
+
+[data-table="req-table"].req--is-empty .req-empty-state {
+  display: flex;
+}
+
+
+.modal--req-filter .modal__content {
+  gap: 12px;
+}
+
+/* ---- Filter Row (opens expanded panel) ---- */
+.req-filter-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 50px;
+  padding: 0 24px;
+  background: var(--page-bg);
+  border: none;
+  border-radius: var(--radius-card);
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-1);
+  font-family: inherit;
+  cursor: pointer;
+  text-align: right;
+}
+
+.req-filter-row:hover {
+  filter: brightness(0.97);
+}
+
+.req-filter-row svg {
+  color: var(--text-2);
+  flex-shrink: 0;
+}
+
+/* ---- Detail Modal ---- */
+#detailRows {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.req-detail-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.req-detail-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 50px;
+  padding: 10px 24px;
+  background: var(--page-bg);
+  border-radius: var(--radius-card);
+  font-size: 14px;
+  flex-shrink: 0;
+  gap: 10px;
+}
+
+.req-detail-item__label {
+  color: var(--text-2);
+  white-space: nowrap;
+}
+
+.req-detail-item__value {
+  color: var(--text-1);
+  text-align: left;
+  max-width: 60%;
+}
+
+.req-detail-item__span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-1);
+  font-size: 14px;
+  direction: rtl;
+}
+
+.req-detail-item__sep {
+  color: #a2a4a5;
+}
+
+/* ---- Detail Section Header ---- */
+.req-detail-section-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 4px;
+}
+
+.req-detail-section-text {
+  font-size: 13px;
+  color: var(--text-2);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.req-detail-section-line {
+  flex: 1;
+  height: 1px;
+  background: var(--stroke);
+}
+
+
+/* ======================================================
+   REQUESTS — Mobile Responsive (≤768px)
+   ====================================================== */
+@media (max-width: 768px) {
+
+
+  /* Data cells: restore 24px horizontal padding (global rule overrides to 16px) */
+  [data-table="req-table"] .table__tbody .table__cell[data-label] {
+    padding-inline: 24px;
+  }
+
+  /* Label (::before) after value in flex order → physical LEFT in RTL */
+  [data-table="req-table"] .table__tbody .table__cell[data-label]::before {
+    order: 1;
+    margin-inline-end: 0;
+  }
+.table__active-filters-chips {
+    border-top: 1px dashed var(--table-stroke);
+}
+  /* Dashed separator between data cells */
+  [data-table="req-table"] .table__tbody .table__cell[data-label] + .table__cell[data-label] {
+    box-shadow: none;
+    border-top: 1px dashed var(--stroke);
+  }
+.table__search .table__btn--filter {
+    border-radius: 0;
+    border-bottom-left-radius: 8px;
+}
+.table__tbody .table__cell[data-label] {
+    flex-direction: row-reverse;
+}
+  /* ---- نوع درخواست: card header ---- */
+  /* Value and label both cluster RIGHT (flex-start = RTL physical right), 4px gap */
+[data-table="req-table"] .table__tbody .table__cell[data-label="نوع درخواست"] {
+    justify-content: flex-end;
+    gap: 4px;
+    min-height: 61px;
+    padding-inline: 16px;
+    border-bottom: 1px solid var(--stroke);
+}
+.req-detail-item__span {
+    gap: 10px;
+}
+  /* تاریخ: separator already given by نوع درخواست border-bottom; add content-area top gap */
+  [data-table="req-table"] .table__tbody .table__cell[data-label="تاریخ"] {
+    border-top: none;
+    padding-top: 20px;
+  }
+
+  /* ---- توضیحات: stacked — label top, value below ---- */
+  [data-table="req-table"] .table__tbody .table__cell[data-label="توضیحات"] {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  [data-table="req-table"] .table__tbody .table__cell[data-label="توضیحات"]::before {
+    order: 0;
+  }
+
+  /* Override description column truncation for mobile */
+  [data-table="req-table"] .table__tbody .table__cell.req-desc-col {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+    width: auto;
+  }
+}

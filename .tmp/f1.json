@@ -1,0 +1,1 @@
+{"status":403,"err":"Invalid scope(s): mcp:connect. This endpoint requires the file_content:read scope"}

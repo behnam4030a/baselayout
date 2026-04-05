@@ -1,0 +1,1432 @@
+/* =============================================
+   User Profile Page — Styles
+   ============================================= */
+
+/* ==========================================
+   Tab Bar
+   ========================================== */
+
+.up-tabs {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    border-bottom: 1px solid var(--stroke);
+    margin-bottom: 24px;
+    background: var(--card-bg);
+    border-radius: var(--radius-card) var(--radius-card) 0 0;
+    padding: 0 24px;
+    overflow-x: auto;
+}
+
+.up-tab {
+  position: relative;
+  padding: 14px 20px;
+  font-family: var(--typo-font-family, 'Vazirmatn', sans-serif);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-2);
+  background: none;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color var(--transition);
+}
+
+.up-tab::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  right: 0;
+  left: 0;
+  height: 2px;
+  background: transparent;
+  border-radius: 2px 2px 0 0;
+  transition: background var(--transition);
+}
+
+.up-tab--active {
+  color: var(--brand);
+  font-weight: 600;
+}
+
+.up-tab--active::after {
+  background: var(--brand);
+}
+
+.up-tab:hover:not(.up-tab--active) {
+  color: var(--text-1);
+}
+
+/* ==========================================
+   Tab Panel
+   ========================================== */
+
+.up-tab-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.up-tab-panel[hidden] {
+  display: none;
+}
+
+/* ==========================================
+   Cards
+   ========================================== */
+
+.up-card {
+  border-radius: var(--radius-card);
+  overflow: hidden;
+}
+
+.up-card__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  gap: 16px;
+  background: var(--card-bg);
+  margin-bottom: 4px;
+}
+
+.up-card__head-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+}
+
+.up-card__title-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.up-card__title {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--text-1);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.up-card__desc {
+  font-size: 13px;
+  color: var(--text-2);
+  margin: 0;
+}
+.up-card__body.up-card__body--accounts .btn.btn--outline{
+  min-width: 129px;
+}
+.up-card__body {
+  padding: 24px;
+}
+.up-card__body.bg-white{
+  background: var(--card-bg);
+}
+/* ==========================================
+   Card 1 — Upgrade Account
+   ========================================== */
+
+.up-upgrade-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  color: var(--brand);
+  flex-shrink: 0;
+}
+#ga-otp-modal .input__icon svg {
+    fill: #fff;
+}
+.up-upgrade-badge svg {
+  display: block;
+}
+
+.up-upgrade-actions {
+  flex-shrink: 0;
+}
+
+.up-upgrade-pending-btn {
+  background: #f6f8fa;
+  pointer-events: none;
+}
+
+.up-upgrade-success-tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 45px;
+  padding: 0 8px;
+  background: #f1faf1;
+  border: 2px solid #ffffff;
+  border-radius: var(--radius-btn);
+  color: #107c10;
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* ==========================================
+   Card 2 — Profile Form
+   ========================================== */
+
+.up-profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.up-form-row {
+  display: grid;
+  gap: 16px;
+}
+
+.up-form-row--3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.up-form-row--2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.up-form-row--1 {
+  grid-template-columns: 1fr;
+}
+
+.up-form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Readonly input styling */
+.up-profile-form .input:has(.input__field[readonly]) .input__container,
+.up-profile-form .input.input--readonly .input__container {
+  background: var(--page-bg);
+}
+
+/* ==========================================
+   Card 3 — Connected Accounts
+   ========================================== */
+
+.up-card__body--accounts {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* هر ردیف سرویس */
+.up-ca-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px;
+  min-height: 93px;
+  background: var(--card-bg);
+}
+
+/* سمت راست: آیکن + نام سرویس */
+.up-ca-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.up-ca-icon {
+  width: 45px;
+  height: 45px;
+  border-radius: var(--radius-card);
+  background: var(--page-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--text-1);
+}
+
+.up-ca-name {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--text-1);
+  white-space: nowrap;
+}
+
+.up-ca-pipe {
+  font-size: 12px;
+  color: #a2a4a5;
+}
+
+.up-ca-label {
+  font-size: 12px;
+  color: var(--text-2);
+  white-space: nowrap;
+}
+
+/* سمت چپ: دکمه + جداکننده عمودی + وضعیت */
+.up-ca-action {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
+}
+
+.up-ca-vdivider {
+  width: 1px;
+  height: 32px;
+  background: var(--stroke);
+  flex-shrink: 0;
+}
+
+.up-ca-status {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  min-width: 100px;
+  text-align: center;
+}
+
+.up-ca-status__value {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-1);
+  white-space: nowrap;
+}
+
+.up-ca-status__value--on {
+  color: #107c10;
+}
+
+.up-ca-status__label {
+  font-size: 13px;
+  color: var(--text-2);
+}
+
+/* 2FA activated state — action block */
+.up-sec-2fa-action {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  flex-shrink: 0;
+}
+
+.up-sec-2fa-btns {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* ==========================================
+   Modals — shared width override
+   ========================================== */
+
+.modal--upgrade,
+.modal--edit-profile {
+  --modal-width: 500px;
+}
+
+.modal--edit-profile .modal__content {
+  flex: 1;
+  min-height: 0;
+}
+
+/* ==========================================
+   Upgrade Modal — Content gap override
+   ========================================== */
+
+.up-upgrade-content {
+  gap: 16px;
+}
+
+/* ==========================================
+   Upgrade Modal — Description box
+   ========================================== */
+
+.up-upgrade-desc-box {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px 0;
+}
+
+.up-upload-title {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-1);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.up-upload-text {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-2);
+  line-height: 1.5;
+}
+
+.up-upload-text p {
+  margin: 0 0 4px;
+}
+
+.up-upload-text ul {
+  margin: 0;
+  padding-right: 21px;
+  list-style: disc;
+}
+
+.up-upload-text li {
+  margin-bottom: 0;
+  line-height: 1.5;
+}
+
+/* ==========================================
+   Upgrade Modal — Upload field
+   ========================================== */
+
+.up-upload-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+/* Label row: right-aligned (RTL default) */
+.up-upload-label-row {
+  width: 100%;
+  padding: 0 8px;
+  text-align: right;
+}
+
+.up-upload-label-text {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--text-1);
+  line-height: 1.5;
+}
+
+/* Dropzone */
+.up-dropzone {
+  height: 114px;
+  border: 1px dashed var(--stroke);
+  border-radius: var(--radius-card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: var(--card-bg);
+  transition: border-color var(--transition), background var(--transition);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.up-dropzone:hover,
+.up-dropzone.is-dragover {
+  border-color: var(--brand);
+  background: var(--brand-light);
+}
+
+.up-dropzone__text {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-2);
+  line-height: 2;
+  margin: 0;
+  text-align: center;
+}
+
+/* "Zip file" hint — physically LEFT aligned in RTL */
+.up-dropzone-hint {
+  font-size: 12px;
+  font-weight: 500;
+  color: #a2a4a5;
+  margin: 0;
+  line-height: 1.5;
+  text-align: left;
+  direction: ltr;
+}
+
+/* ==========================================
+   Upgrade Modal — File rows
+   ========================================== */
+
+.up-file-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* RTL layout: zip-icon (right) | info (flex-1) | actions (left) */
+.up-file-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 8px 8px 16px;
+  border: 1px solid var(--stroke);
+  border-radius: var(--radius-card);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.up-file-row__zip-icon {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.up-file-row__info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: right;
+  justify-content: center;
+}
+
+.up-file-row__name {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-2);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.up-file-row__size {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+/* Normal size: just gray text */
+span.up-file-row__size {
+  color: #a2a4a5;
+}
+
+/* Error size row: flex with size-val (right) + error-text (left) */
+div.up-file-row__size {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  /* RTL: DOM first = right → size-val on right, error-text on left */
+}
+
+.up-file-row__size-val {
+  color: #a2a4a5;
+}
+
+.up-file-row__error-text {
+  color: #c50f1f;
+}
+
+/* Error row: retry button color */
+.up-file-row--error .up-file-row__btn--retry {
+  color: var(--brand);
+}
+
+.up-file-row--error .up-file-row__btn--retry:hover {
+  color: var(--brand);
+  opacity: 0.8;
+}
+
+.up-file-row__actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.up-file-row__btn {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-2);
+  padding: 0;
+  transition: color var(--transition);
+  flex-shrink: 0;
+}
+
+.up-file-row__btn:hover {
+  color: var(--text-1);
+}
+
+.up-file-row__btn--remove:hover {
+  color: #c50f1f;
+}
+/* ==========================================
+   Edit Profile Modal — epm-*
+   ========================================== */
+
+/* نوع شخصیت — ردیف دو کارت */
+.epm-person-type-row {
+  display: flex;
+  gap: 16px;
+}
+
+/* هر کارت رادیو */
+.epm-radio-card {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  min-height: 57px;
+  border-radius: var(--radius-btn);
+  border: 1px solid transparent;
+  background: var(--page-bg);
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition);
+  box-sizing: border-box;
+}
+
+.epm-radio-card--active {
+  background: #eaf8f5;
+  border-color: #eaf8f5;
+}
+
+/* RTL: text+icon (right), radio (left) */
+.epm-radio-card__body {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.epm-radio-card__text {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-2);
+  white-space: nowrap;
+}
+
+.epm-radio-card--active .epm-radio-card__text {
+  color: var(--text-1);
+}
+
+.epm-radio-card__icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  color: var(--text-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.epm-radio-card--active .epm-radio-card__icon {
+  color: var(--text-1);
+}
+
+/* دایره رادیو */
+.epm-radio-card__radio-wrap {
+  flex-shrink: 0;
+}
+
+.epm-radio-btn {
+  display: flex;
+  width: 17px;
+  height: 17px;
+  border: 1px solid #626364;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  transition: border-color var(--transition);
+}
+
+.epm-radio-card--active .epm-radio-btn {
+  border-color: var(--brand);
+}
+
+.epm-radio-btn::after {
+  content: '';
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: transparent;
+  transition: background var(--transition);
+}
+
+.epm-radio-card--active .epm-radio-btn::after {
+  background: var(--brand);
+}
+
+/* فیلدهای فرم */
+.epm-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.epm-fields[hidden] {
+  display: none;
+}
+
+.epm-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ظرف شناسه ملی — برای موقعیت‌دهی تگ احراز شده */
+.epm-national-id-wrap {
+  position: relative;
+}
+
+/* تگ «احراز شده» روی اینپوت شناسه ملی */
+.epm-verified-tag {
+  position: absolute;
+  left: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 35px;
+  padding: 0 8px;
+  background: #f1faf1;
+  border: 2px solid #fff;
+  border-radius: var(--radius-btn);
+  color: #107c10;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* textarea عرض کامل */
+.epm-field .textarea.textarea--full-width {
+  width: 100%;
+}
+
+/* ==========================================
+   Tab 2 — Notification Settings
+   ========================================== */
+
+.up-notif-section {
+  border-radius: var(--radius-card);
+  overflow: hidden;
+}
+
+.up-notif-section__head {
+  display: flex;
+  align-items: center;
+  padding: 20px 24px;
+  background: var(--card-bg);
+  margin-bottom: 4px;
+  gap: 8px;
+}
+.up-notif-table{
+  background: var(--card-bg);
+}
+.up-notif-section__title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-1);
+  margin: 0;
+}
+
+.up-notif-section__icon {
+  display: flex;
+  align-items: center;
+  color: var(--text-2);
+}
+
+/* هر ردیف جدول */
+.up-notif-row {
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  min-height: 60px;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.up-notif-row--header {
+  min-height: 55px;
+  border-bottom: 1px solid var(--stroke);
+  margin-bottom: 4px;
+}
+
+/* ستون رویداد — فضای باقیمانده */
+.up-notif-event-col {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--text-1);
+}
+
+/* خط‌چین بین متن رویداد و سوییچ‌ها */
+.up-notif-row:not(.up-notif-row--header) .up-notif-event-col::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px dashed var(--stroke);
+  min-width: 16px;
+}
+
+/* ستون‌های کانال — عرض ثابت، وسط‌چین */
+.up-notif-ch-col {
+  width: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* سربرگ هر ستون */
+.up-notif-col-hd {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.up-notif-col-hd__icon {
+  display: flex;
+  align-items: center;
+  color: var(--text-2);
+}
+
+.up-notif-col-hd__text {
+  font-size: 12px;
+  color: var(--text-2);
+  white-space: nowrap;
+}
+
+/* ==========================================
+   Google Authenticator Modal
+   ========================================== */
+
+.modal--ga-otp {
+  --modal-width: 550px;
+}
+
+.modal--ga-otp .modal__body {
+  padding: 0;
+  gap: 0;
+}
+
+.ga-otp-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px;
+  width: 100%;
+  align-items: center;
+}
+
+.ga-otp-content .modal__actions {
+  width: 100%;
+  padding: 0;
+}
+
+.ga-otp-qr {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: var(--page-bg);
+  border-radius: var(--radius-card);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.ga-otp-qr svg {
+  display: block;
+}
+
+.ga-otp-content .cpm-field {
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.ga-otp-copy-btn {
+  cursor: pointer;
+  color: var(--text-2);
+  flex-shrink: 0;
+  pointer-events: auto;
+}
+
+.ga-otp-copy-btn:hover {
+  color: var(--brand);
+}
+
+.ga-otp-copy-btn svg {
+  fill: none;
+  pointer-events: none;
+}
+
+/* ==========================================
+   SMS OTP Modal
+   ========================================== */
+
+.modal--sms-otp {
+  --modal-width: 550px;
+}
+
+.modal--sms-otp .modal__body {
+  padding: 0;
+  gap: 0;
+}
+
+.sms-otp-step {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  padding: 24px;
+}
+
+.sms-otp-step[hidden] {
+  display: none;
+}
+
+/* OTP boxes row */
+.sms-otp-boxes {
+  display: flex;
+  gap: 16px;
+  direction: ltr;
+}
+
+.sms-otp-box-wrap {
+  width: 86px;
+  flex-shrink: 0;
+}
+
+.sms-otp-box-wrap .input__field {
+  text-align: center;
+  font-size: 16px;
+  color: var(--text-2);
+}
+
+/* Actions row */
+.sms-otp-actions {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+/* Resend link */
+.sms-otp-resend {
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+  font-size: 14px;
+  color: #22967d;
+  cursor: pointer;
+  line-height: 2;
+}
+
+.sms-otp-resend:hover {
+  opacity: .8;
+}
+
+/* ==========================================
+   Change Password Modal
+   ========================================== */
+
+.modal--change-password .modal__content {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: 100%;
+}
+
+.cpm-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.cpm-field--last {
+  margin-bottom: 0;
+}
+
+.cpm-field__label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cpm-divider {
+  border: none;
+  border-top: 1px solid var(--stroke);
+  margin: 0 0 16px;
+}
+
+.cpm-strength-status {
+  font-size: 12px;
+  color: var(--text-1);
+  line-height: 1.5;
+}
+
+.cpm-strength-status:empty {
+  display: none;
+}
+
+.cpm-strength-status--weak   { color: #c50f1f; }
+.cpm-strength-status--fair   { color: #f7630c; }
+.cpm-strength-status--good   { color: #73aa24; }
+.cpm-strength-status--strong { color: #107c10; }
+
+.cpm-strength-bar {
+  display: flex;
+  gap: 4px;
+  direction: ltr;
+}
+
+.cpm-strength-bar__seg {
+  flex: 1;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--stroke);
+  transition: background 200ms ease;
+}
+
+.cpm-strength-bar__seg--weak   { background: #c50f1f; }
+.cpm-strength-bar__seg--fair   { background: #f7630c; }
+.cpm-strength-bar__seg--good   { background: #73aa24; }
+.cpm-strength-bar__seg--strong { background: #107c10; }
+
+.cpm-hint {
+  font-size: 12px;
+  color: var(--text-2);
+  margin: 0;
+  line-height: 1.5;
+  text-align: right;
+}
+
+.cpm-eye-btn {
+  cursor: pointer;
+  color: var(--text-2);
+  flex-shrink: 0;
+  pointer-events: auto;
+}
+
+.cpm-eye-btn:hover {
+  color: var(--text-1);
+}
+
+/* override input component's fill:currentColor for stroke-based eye icons */
+.cpm-eye-btn svg {
+  fill: none;
+  pointer-events: none;
+}
+
+/* icon toggle — specificity must beat input.css: .input__icon svg { display: block } */
+.cpm-eye-btn .cpm-icon--eye-hide { display: none; }
+.cpm-eye-btn--visible .cpm-icon--eye-show { display: none; }
+.cpm-eye-btn--visible .cpm-icon--eye-hide { display: block; }
+
+/* ==========================================
+   Security Tab
+   ========================================== */
+
+.up-sec-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: var(--page-bg);
+}
+
+.up-sec-row[hidden],
+.up-sec-2fa-action[hidden] {
+  display: none;
+}
+
+.up-sec-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px;
+  background: var(--card-bg);
+  min-height: 93px;
+}
+
+.up-sec-bullet {
+  list-style: disc;
+  padding-right: 24px;
+  margin: 0;
+  font-size: 14px;
+  color: var(--text-1);
+  line-height: 2;
+}
+
+.up-ca-device {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: right;
+}
+
+.up-ca-device__name {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-1);
+}
+
+.up-ca-device__browser {
+  font-size: 12px;
+  color: var(--text-2);
+}
+
+/* ============================================================
+   Responsive — Mobile (≤768px)
+   ============================================================ */
+
+@media (max-width: 768px) {
+
+  /* ──────────────────────────────────────
+     Layout پایه صفحه
+     ────────────────────────────────────── */
+
+  .up-layout {
+    flex-direction: column;
+  }
+
+  .up-sidebar {
+    display: none;
+  }
+
+  .up-main {
+    padding: 16px;
+    gap: 16px;
+  }
+
+  /* ──────────────────────────────────────
+     Card head: stack vertically
+     ────────────────────────────────────── */
+
+  .up-card__head {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 16px;
+  }
+
+  .up-card__head-info {
+    padding-bottom: 16px;
+    flex: none;
+  }
+  .up-card__head-info.pass {
+    padding-bottom: 0px;
+  }
+  .up-card__head-info.no-border{
+    border-bottom: none;
+    margin-bottom: 0px;
+  }
+.sms-otp-actions {
+
+    flex-wrap: wrap;
+}
+#smsOtpStep1 .btn-outline{
+  flex: 1; 
+}
+.label--medium {
+    font-size: var(--typo-body-small-150-size);
+}
+.input--large .input__field {
+    font-size: var(--typo-body-small-200-size);
+}
+  /* Full-width upgrade buttons */
+  .up-upgrade-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .up-upgrade-success-tag {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Edit profile modal — mobile adjustments */
+  .epm-radio-card {
+    padding: 16px;
+  }
+
+  .epm-radio-card__icon {
+    display: none;
+  }
+
+  /* Upgrade modal — mobile adjustments */
+  .up-dropzone {
+    height: 74px;
+  }
+
+  .up-dropzone__drag-text {
+    display: none;
+  }
+
+  .up-upload-text ul {
+    list-style: none;
+    padding-right: 0;
+  }
+
+  /* Profile card: "ویرایش اطلاعات" button full-width */
+  .up-card__head > .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* ──────────────────────────────────────
+     Profile form body
+     ────────────────────────────────────── */
+
+  .up-card__body.bg-white {
+    padding: 16px;
+  }
+
+  /* All rows → single column */
+  .up-form-row--3,
+  .up-form-row--2 {
+    grid-template-columns: 1fr;
+  }
+.epm-person-type-row {
+    flex-wrap: wrap;
+}
+  /* ──────────────────────────────────────
+     Connected accounts: vertical card layout
+     ────────────────────────────────────── */
+
+  .up-card__body--accounts {
+    gap: 4px;
+  }
+
+  .up-ca-row {
+    flex-direction: column;
+    align-items: stretch;
+    min-height: auto;
+    padding: 16px;
+    gap: 0;
+  }
+
+  /* info (icon + name) → right-aligned, with bottom divider */
+  .up-ca-info {
+    padding-bottom: 16px;
+  }
+
+  /* action (btn + vdivider + status) → top divider */
+  .up-ca-action {
+    border-top: 1px dashed var(--stroke);
+    padding-top: 16px;
+  }
+
+  /* remove min-width override, let button grow */
+  .up-card__body.up-card__body--accounts .btn.btn--outline {
+    min-width: 0;
+    flex: 1;
+  }
+
+  /* ──────────────────────────────────────
+     Notification tab — mobile card layout
+     ────────────────────────────────────── */
+
+  /* gap بین سکشن‌ها */
+  #tab-notifications.up-tab-panel {
+    gap: 24px;
+  }
+
+  /* هد سکشن */
+  .up-notif-section__head {
+    padding: 16px;
+    margin-bottom: 4px;
+  }
+
+  .up-notif-section__title {
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  /* جدول: بک‌گراند شفاف تا گپ ۴px بین کارت‌ها نمایان شود */
+  .up-notif-table {
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  /* هدر ستون‌ها پنهان — لیبل‌ها به صورت pseudo زیر هر سوییچ نشان داده می‌شوند */
+  .up-notif-row--header {
+    display: none;
+  }
+
+  /* هر ردیف رویداد → کارت مستقل */
+  .up-notif-row {
+    flex-wrap: wrap;
+    padding: 16px;
+    gap: 16px 0;
+    min-height: auto;
+    margin-bottom: 0;
+    align-items: flex-start;
+    background: var(--card-bg);
+    border-radius: var(--radius-card);
+  }
+
+  /* نام رویداد: تمام عرض + خط‌چین پایین */
+  .up-notif-event-col {
+    width: 100%;
+    flex: none;
+    font-size: 14px;
+    line-height: 1.5;
+    border-bottom: 1px dashed var(--stroke);
+    padding-bottom: 16px;
+  }
+
+  /* خط‌چین قدیمی ::after حذف می‌شود */
+  .up-notif-row:not(.up-notif-row--header) .up-notif-event-col::after {
+    display: none;
+  }
+
+  /* ستون‌های کانال → عمودی (سوییچ + لیبل) */
+  .up-notif-ch-col {
+    flex: 1;
+    flex-direction: column;
+    gap: 4px;
+    width: auto;
+    height: auto;
+  }
+
+  /* خط‌چین عمودی بین ستون‌های کانال */
+  .up-notif-row:not(.up-notif-row--header) .up-notif-ch-col + .up-notif-ch-col {
+    border-right: 1px solid var(--stroke);
+  }
+
+  /* لیبل هر کانال زیر سوییچ (pseudo-element) */
+  .up-notif-row:not(.up-notif-row--header) .up-notif-ch-col:nth-child(2)::after {
+    content: 'پیامک';
+    font-size: 13px;
+    color: var(--text-2);
+    line-height: 1.3;
+  }
+
+  .up-notif-row:not(.up-notif-row--header) .up-notif-ch-col:nth-child(3)::after {
+    content: 'ایمیل';
+    font-size: 13px;
+    color: var(--text-2);
+    line-height: 1.3;
+  }
+
+  .up-notif-row:not(.up-notif-row--header) .up-notif-ch-col:nth-child(4)::after {
+    content: 'پیشخوان';
+    font-size: 13px;
+    color: var(--text-2);
+    line-height: 1.3;
+  }
+
+  /* ──────────────────────────────────────
+     Security tab — mobile layout
+     ────────────────────────────────────── */
+
+  /* gap بین کارت‌های تب امنیت */
+  #tab-security.up-tab-panel {
+    gap: 24px;
+  }
+
+  /* هر ردیف امنیتی → عمودی */
+  .up-sec-row {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 16px;
+    min-height: auto;
+    gap: 0;
+  }
+
+  /* بولت متن: فونت بزرگ‌تر + خط‌چین پایین */
+  .up-sec-bullet {
+    font-size: 16px;
+    border-bottom: 1px dashed var(--stroke);
+    padding-bottom: 16px;
+    margin-bottom: 16px;
+  }
+
+  /* همه دکمه‌های داخل ردیف امنیتی: تمام عرض */
+  .up-sec-row .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* ورود دو مرحله‌ای — حالت فعال: عمودی */
+  .up-sec-2fa-action {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+
+  .up-sec-2fa-action .up-ca-vdivider {
+    display: none;
+  }
+
+  .up-sec-2fa-btns {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  /* نشست‌های فعال: وضعیت بالا، دکمه پایین با order */
+  #tab-security .up-ca-action {
+    flex-wrap: wrap;
+    gap: 16px 0;
+  }
+
+  #tab-security .up-ca-action > .up-ca-status {
+    order: 1;
+    flex: 1;
+    min-width: 0;
+  }
+
+  #tab-security .up-ca-action > .up-ca-status .up-ca-status__value {
+    white-space: normal;
+    word-break: break-word;
+  }
+
+  /* جداکننده اول (بین دکمه و وضعیت در دسکتاپ): پنهان */
+  #tab-security .up-ca-action > span.up-ca-vdivider:first-of-type {
+    display: none;
+  }
+
+  /* جداکننده دوم (بین دو وضعیت): در ردیف اول نگه داشته می‌شود */
+  #tab-security .up-ca-action > span.up-ca-vdivider:last-of-type {
+    order: 1;
+  }
+
+  /* دکمه قطع دسترسی: ردیف دوم، تمام عرض */
+  #tab-security .up-ca-action > .btn {
+    order: 2;
+    flex: 0 0 100%;
+    justify-content: center;
+  }
+
+  /* ──────────────────────────────────────
+     SMS OTP Modal — mobile adjustments
+     ────────────────────────────────────── */
+
+  /* padding کاهش می‌یابد تا با body موبایل هماهنگ باشد */
+  .sms-otp-step {
+    padding: 16px;
+  }
+
+  /* باکس‌های OTP: به جای عرض ثابت ۸۶px، تمام ردیف را پر می‌کنند */
+  .sms-otp-box-wrap {
+    flex: 1;
+    min-width: 0;
+    width: auto;
+  }
+
+}

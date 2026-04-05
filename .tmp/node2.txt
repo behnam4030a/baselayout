@@ -1,0 +1,842 @@
+const imgVector = "https://www.figma.com/api/mcp/asset/3523e49b-238f-42eb-bced-0ff368d548ed";
+const imgVector1 = "https://www.figma.com/api/mcp/asset/4627e778-c8da-4bb1-abe8-bf9860c6c5ca";
+const imgVector2 = "https://www.figma.com/api/mcp/asset/f5c61013-6e55-4293-84a9-a33f0386267c";
+const imgVector3 = "https://www.figma.com/api/mcp/asset/4fb6c57e-f76a-4da8-b548-5a5ae529b29a";
+const imgImage = "https://www.figma.com/api/mcp/asset/ee7a01d2-8fab-45dc-9472-98c53901ca42";
+const imgVerifiedBadge = "https://www.figma.com/api/mcp/asset/cc3baa68-4cd2-42d6-8c76-5f6d1171fea3";
+const imgVector4 = "https://www.figma.com/api/mcp/asset/6eeb561e-1363-4b0c-abec-c1068e07a867";
+const imgLine3 = "https://www.figma.com/api/mcp/asset/1ddff651-a407-42b7-8140-ea733bec46fb";
+const imgVector5 = "https://www.figma.com/api/mcp/asset/36e94c85-593a-4669-90ff-4fa42014c7b3";
+const imgVector6 = "https://www.figma.com/api/mcp/asset/06a935d6-28fd-453d-a3fd-0c673a7b93e0";
+const imgBrandLogo = "https://www.figma.com/api/mcp/asset/b7cc0c82-2da6-4ec0-9180-c27579acd06a";
+const imgCapa1 = "https://www.figma.com/api/mcp/asset/361e886b-9f03-43ae-8520-7f2b45d74bf8";
+const imgVector7 = "https://www.figma.com/api/mcp/asset/f8c6ef2f-74a6-408e-820f-89b1de45f428";
+const imgLine = "https://www.figma.com/api/mcp/asset/4959a23a-2ecd-426a-8de1-0070a463fb7c";
+const imgVector8 = "https://www.figma.com/api/mcp/asset/56226132-8f22-4b57-aa1d-32983c55fcf8";
+const imgVector9 = "https://www.figma.com/api/mcp/asset/a93006d7-7213-48de-a883-edb5af292adf";
+const imgVector10 = "https://www.figma.com/api/mcp/asset/a0890140-ee0e-40c9-b376-85278310cae2";
+const imgVector11 = "https://www.figma.com/api/mcp/asset/cffeb98c-69ab-4c28-b89d-f7c4e1bbe1c1";
+const imgVector12 = "https://www.figma.com/api/mcp/asset/107e470e-3f17-4dbf-8f2b-f18dc11cf56e";
+const imgVector13 = "https://www.figma.com/api/mcp/asset/2b1f55d9-070d-4c64-8342-bd500ccd70c5";
+const imgVector14 = "https://www.figma.com/api/mcp/asset/81df31f6-0ced-4ebd-a793-ceb294ab796a";
+const imgVector15 = "https://www.figma.com/api/mcp/asset/ba1c6191-72f0-4a84-ae1e-c8e03154890f";
+const imgDocument = "https://www.figma.com/api/mcp/asset/f10cd19c-5bf7-48ed-8c0a-ed37089353b7";
+const imgVector16 = "https://www.figma.com/api/mcp/asset/8e6b7af1-a9f1-4a38-8c58-40b0cfc9b7ea";
+const imgVector17 = "https://www.figma.com/api/mcp/asset/f1e295bd-716f-40fd-b1c7-89a60d1332e3";
+const imgVector18 = "https://www.figma.com/api/mcp/asset/652e0e27-baa5-4d78-b5e7-2cffddabb554";
+const imgVector19 = "https://www.figma.com/api/mcp/asset/bb537b41-db93-4ac8-b8cb-e56027d4e7fc";
+const imgVector20 = "https://www.figma.com/api/mcp/asset/fba2e041-ada8-47c7-b808-fad2f4234070";
+const imgVector21 = "https://www.figma.com/api/mcp/asset/89d11157-83b5-4e73-9b85-40a53f0355ea";
+const imgVector22 = "https://www.figma.com/api/mcp/asset/5f290031-3919-47ee-b5cc-ae1a9be80d0b";
+const imgVector23 = "https://www.figma.com/api/mcp/asset/a77a2ccb-914f-414a-bd67-f9b684ff7e19";
+const imgVector24 = "https://www.figma.com/api/mcp/asset/ea90281d-fe15-4133-8a84-dc1f12b63bd5";
+const imgVector25 = "https://www.figma.com/api/mcp/asset/e947846d-f261-4b06-aca4-7d16b4b51fd4";
+const imgVector26 = "https://www.figma.com/api/mcp/asset/025c79bf-cbfe-4845-a01a-2da270a3a12d";
+const imgVector27 = "https://www.figma.com/api/mcp/asset/ad592b52-6461-4961-aa00-da40f046d62a";
+const imgVector28 = "https://www.figma.com/api/mcp/asset/6206177e-2f5e-4ba7-86bd-de65713dd16f";
+const imgVector29 = "https://www.figma.com/api/mcp/asset/6bfa1495-c73d-49cd-b7c4-238db3ba6c47";
+const imgVector30 = "https://www.figma.com/api/mcp/asset/680043a8-eecf-4da1-a176-676587d620b0";
+const imgVector31 = "https://www.figma.com/api/mcp/asset/8ff23ac1-36ab-4201-87cd-e767ca60c460";
+const imgVector32 = "https://www.figma.com/api/mcp/asset/7688aaab-4826-4759-b80b-442d25f7c31a";
+const imgVector33 = "https://www.figma.com/api/mcp/asset/894d805e-66a7-4ed6-8c58-54b03c5c8c67";
+const imgVector34 = "https://www.figma.com/api/mcp/asset/fd7552fc-4719-4a46-ac77-285b6da81716";
+const imgVector35 = "https://www.figma.com/api/mcp/asset/bb359c1b-9d85-4118-badc-28985985bd84";
+const imgVector36 = "https://www.figma.com/api/mcp/asset/5f1d0b2b-72ab-432a-9141-ef53c6f7501c";
+const imgVector37 = "https://www.figma.com/api/mcp/asset/d8588f28-484b-48c7-9bf1-ae08e7934f4f";
+const imgEdit = "https://www.figma.com/api/mcp/asset/86811563-245c-447c-99ec-42e45ec368f7";
+const imgVector38 = "https://www.figma.com/api/mcp/asset/3f112b40-03df-44e4-bc1e-789eb6a90d33";
+const imgVector39 = "https://www.figma.com/api/mcp/asset/649cdba5-7097-47a2-84c9-fbfa1495407b";
+const imgVector40 = "https://www.figma.com/api/mcp/asset/7319dcc1-20c6-438e-a0b8-9b099832eb5d";
+const imgVector41 = "https://www.figma.com/api/mcp/asset/4c3acf5b-f0a9-4cb6-8df9-5e83bb6f0b8c";
+const imgGroup = "https://www.figma.com/api/mcp/asset/4a58f335-4daa-40a9-9c39-f1922b5d6d37";
+const imgVector42 = "https://www.figma.com/api/mcp/asset/73f0af88-222d-47fb-9dc1-62220edb8364";
+const imgVector43 = "https://www.figma.com/api/mcp/asset/0038ac95-6aea-4f7d-b039-8f8d53b197c0";
+const imgVector44 = "https://www.figma.com/api/mcp/asset/c71415cc-108c-43be-93fa-6dffddd48529";
+const imgVector45 = "https://www.figma.com/api/mcp/asset/d602654f-aa8e-4353-912a-137cfcc8b2ca";
+const imgVector46 = "https://www.figma.com/api/mcp/asset/091e0af3-aa18-406f-aa2f-b43065b89003";
+const imgVector47 = "https://www.figma.com/api/mcp/asset/2493d935-91d3-4845-82c8-b027d2cbe560";
+const imgDivider = "https://www.figma.com/api/mcp/asset/b299b86f-0228-4b90-9dc5-c69499f10e6b";
+const imgNotification = "https://www.figma.com/api/mcp/asset/bc5e627b-cd13-4388-bae3-747a7183c270";
+const imgVector48 = "https://www.figma.com/api/mcp/asset/4dbe9a29-e90a-4189-b576-6eeab3916e28";
+type NavItemProps = {
+  className?: string;
+  expanded?: "False";
+  leftIcon?: boolean;
+  state?: "Rest" | "Active";
+  text?: string;
+};
+
+function NavItem({ className, expanded = "False", leftIcon = false, state = "Rest", text = "پیشخوان" }: NavItemProps) {
+  return (
+    <div className={className || "content-stretch flex h-[45px] items-center justify-between overflow-clip px-[var(--spacing\\/spacing-105,12px)] relative rounded-[var(--new-group\\/radius\\/card-corner,8px)] w-[232px]"} data-node-id="10159:43310">
+      {leftIcon && (
+        <div className="relative shrink-0 size-[16px]" data-name="Icon (Navigate)" data-node-id="10159:43335">
+          <div className="-translate-x-1/2 -translate-y-1/2 absolute left-1/2 overflow-clip size-[16px] top-1/2" data-name="Chevron - Iconly Pro" data-node-id="I10159:43335;808:176">
+            <div className="absolute inset-[17.71%_34.38%_17.71%_30.21%]" data-name="Vector" data-node-id="I10159:43335;808:176;187:6">
+              <img alt="" className="absolute block max-w-none size-full" src={imgVector} />
+            </div>
+          </div>
+        </div>
+      )}
+      <div className="content-stretch flex flex-[1_0_0] gap-[var(--spacing\/spacing-105,12px)] items-center justify-end min-h-px min-w-px relative" data-name="Span" data-node-id="10159:32827">
+        <div className="flex flex-col font-['Peyda(FaNum):Medium',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[14px] text-[color:var(--colors\/neutral\/foreground\/inverted\/2\/rest,#cfd0d2)] text-right whitespace-nowrap" data-node-id="10159:32828">
+          <p className="leading-[1.5]" dir="auto">
+            {text}
+          </p>
+        </div>
+        <div className="relative shrink-0 size-[20px]" data-name="Icon (Right)" data-node-id="10159:43327">
+          <div className="-translate-x-1/2 -translate-y-1/2 absolute left-1/2 overflow-clip size-[20px] top-1/2" data-name="Grid interface - Iconly Pro" data-node-id="I10159:43327;808:182">
+            <div className="absolute inset-[63.54%_54.17%_9.38%_10.42%]" data-name="Vector" data-node-id="I10159:43327;808:182;274:67">
+              <img alt="" className="absolute block max-w-none size-full" src={imgVector1} />
+            </div>
+            <div className="absolute inset-[9.38%_54.17%_46.88%_10.42%]" data-name="Vector" data-node-id="I10159:43327;808:182;274:68">
+              <img alt="" className="absolute block max-w-none size-full" src={imgVector2} />
+            </div>
+            <div className="absolute inset-[9.38%_8.33%_9.38%_56.25%]" data-name="Vector" data-node-id="I10159:43327;808:182;274:69">
+              <img alt="" className="absolute block max-w-none size-full" src={imgVector3} />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function UserAvatar({ className }: { className?: string }) {
+  return (
+    <div className={className || ""} data-name="User Avatar" data-node-id="11060:20879">
+      <div className="content-stretch flex flex-col gap-[10px] items-center justify-center relative rounded-[var(--corder-radius\/full,360px)] size-[45px]" data-name="User Type=Verified" data-node-id="11060:20880">
+        <div className="border border-[var(--colors\/brand\/stroke\/1\/rest,#26a88c)] border-solid content-stretch flex flex-[1_0_0] gap-[10px] items-center min-h-px min-w-px overflow-clip relative rounded-[var(--corder-radius\/full,360px)] w-full" data-name="Inner" data-node-id="11060:20899">
+          <div className="aspect-[45/45] flex-[1_0_0] min-h-px min-w-px relative rounded-[var(--corder-radius\/full,360px)]" data-name="Image" data-node-id="11060:20881">
+            <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[var(--corder-radius\/full,360px)]">
+              <img alt="" className="absolute h-[149.37%] left-0 max-w-none top-[-15.35%] w-full" src={imgImage} />
+            </div>
+          </div>
+          <div className="absolute border border-solid border-white inset-[2px] rounded-[var(--corder-radius\/full,360px)]" data-name="Ring" data-node-id="11060:20900" />
+        </div>
+        <div className="absolute right-[-3px] size-[20px] top-[-3px]" data-name="Verified Badge" data-node-id="11060:29795">
+          <img alt="" className="absolute block max-w-none size-full" src={imgVerifiedBadge} />
+        </div>
+      </div>
+    </div>
+  );
+}
+type SelectProps = {
+  className?: string;
+  afterIcon?: boolean;
+  beforIcon?: boolean;
+  lineText?: boolean;
+  placeholderText?: string;
+  placeholderText2?: boolean;
+};
+
+function Select({ className, afterIcon = true, beforIcon = false, lineText = false, placeholderText = "متن نگهدارنده", placeholderText2 = true }: SelectProps) {
+  return (
+    <div className={className || ""} data-name="Select" data-node-id="12413:78388">
+      <div className="content-stretch flex gap-[8px] h-[45px] items-center overflow-clip relative rounded-[var(--new-group\/radius\/input-corner,8px)] w-[444px]" data-name="State=Default, Size=Large" data-node-id="12413:78398">
+        <div className="bg-[var(--colors\/neutral\/background\/2\/rest,white)] border border-[var(--colors\/neutral\/stroke\/1\/rest,#e2e4e6)] border-solid content-stretch flex flex-[1_0_0] h-full items-center justify-between min-h-px min-w-px px-[16px] relative rounded-[var(--corder-radius\/minimal,8px)]" data-name="Inner" data-node-id="12413:78399">
+          {afterIcon && (
+            <div className="relative shrink-0 size-[16px]" data-name="Icon (After Text)" data-node-id="12413:78400">
+              <div className="-translate-x-1/2 -translate-y-1/2 absolute left-1/2 overflow-clip size-[16px] top-1/2" data-name="Chevron Down - Iconly Pro" data-node-id="I12413:78400;808:176">
+                <div className="absolute inset-[34.38%_17.71%_30.21%_17.71%]" data-name="Vector" data-node-id="I12413:78400;808:176;187:12">
+                  <img alt="" className="absolute block max-w-none size-full" src={imgVector4} />
+                </div>
+              </div>
+            </div>
+          )}
+          <div className="content-stretch flex flex-[1_0_0] gap-[8px] items-center justify-end min-h-px min-w-px relative" data-name="Content" data-node-id="12413:78401">
+            {placeholderText2 && (
+              <p className="flex-[1_0_0] font-['Peyda(FaNum):Regular',sans-serif] leading-[2] min-h-px min-w-px not-italic relative text-[14px] text-[color:var(--colors\/neutral\/foreground\/1\/rest,#222323)] text-right" dir="auto" data-node-id="12413:78403">
+                {placeholderText}
+              </p>
+            )}
+            <div className="flex h-[16px] items-center justify-center relative shrink-0 w-0">
+              <div className="flex-none rotate-90">
+                {lineText && (
+                  <div className="h-0 relative w-[16px]" data-node-id="12413:78404">
+                    <img alt="" className="absolute block max-w-none size-full" src={imgLine3} />
+                  </div>
+                )}
+              </div>
+            </div>
+            {beforIcon && (
+              <div className="relative shrink-0 size-[20px]" data-name="Icon (Before Text)" data-node-id="12413:78405">
+                <div className="-translate-x-1/2 -translate-y-1/2 absolute left-1/2 overflow-clip size-[20px] top-1/2" data-name="Setting - Iconly Pro" data-node-id="I12413:78405;808:182">
+                  <div className="absolute inset-[35.35%_35.35%_35.34%_35.33%]" data-name="Vector" data-node-id="I12413:78405;808:182;921:15">
+                    <img alt="" className="absolute block max-w-none size-full" src={imgVector5} />
+                  </div>
+                  <div className="absolute inset-[9.38%_12.85%_9.37%_12.83%]" data-name="Vector" data-node-id="I12413:78405;808:182;921:16">
+                    <img alt="" className="absolute block max-w-none size-full" src={imgVector6} />
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+        <div className="absolute bg-[var(--colors\/neutral\/background\/2\/rest,white)] border border-[var(--colors\/neutral\/stroke\/1\/rest,#e2e4e6)] border-solid bottom-0 h-[1.5px] left-[160px] opacity-0 right-[284px]" data-name="Accessible Indicator" data-node-id="12413:78406" />
+      </div>
+    </div>
+  );
+}
+
+export default function ManageAdminsAdminProfileEditMode() {
+  return (
+    <div className="bg-[var(--colors\/neutral\/background\/1\/rest,#f6f8fa)] overflow-clip relative rounded-[var(--corder-radius\/minimal,8px)] size-full" data-name="Manage Admins - Admin Profile - Edit Mode" data-node-id="10899:91190">
+      <div className="absolute bg-[var(--colors\/neutral\/background\/inverted\/1\/rest,#222323)] content-stretch flex flex-col gap-[24px] h-[868px] items-end overflow-clip p-[24px] right-[16px] rounded-[var(--new-group\/radius\/card-corner,8px)] top-[16px] w-[280px]" data-name="Side Navigation" data-node-id="10899:91223">
+        <div className="absolute h-[868px] left-0 overflow-clip top-0 w-[280px]" data-name="BG Pattern (Export THis)" data-node-id="I10899:91223;6132:9864">
+          <div className="-translate-x-1/2 -translate-y-1/2 absolute contents left-[calc(50%+1187.24px)] top-[calc(50%+177.19px)]" data-name="Topographic 6" data-node-id="I10899:91223;6132:9865">
+            <div className="-translate-x-1/2 -translate-y-1/2 absolute flex h-[2600.129px] items-center justify-center left-[calc(50%+1187.24px)] top-[calc(50%+177.19px)] w-[3584.482px]">
+              <div className="-scale-y-100 flex-none rotate-180">
+                <div className="h-[2600.129px] opacity-6 relative w-[3584.482px]" data-name="Capa 1" data-node-id="I10899:91223;6132:9866">
+                  <img alt="" className="absolute block max-w-none size-full" src={imgCapa1} />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="content-stretch flex items-center justify-between px-[var(--spacing\/spacing-0,0px)] relative shrink-0 w-full" data-name="Top Menu" data-node-id="I10899:91223;6132:9953">
+          <div className="bg-[var(--colors\/neutral\/background\/inverted\/2\/rest,#2c2d2d)] content-stretch flex items-center justify-center overflow-clip px-[8px] py-[var(--spacing\/spacing-01,8px)] relative rounded-[var(--corder-radius\/full,360px)] shrink-0" data-name="Size Changer" data-node-id="I10899:91223;6132:9954">
+            <div className="overflow-clip relative shrink-0 size-[18px]" data-name="Menu open right - Iconly Pro" data-node-id="I10899:91223;6132:9955">
+              <div className="absolute inset-[17.71%_9.38%]" data-name="Vector" data-node-id="I10899:91223;6132:9955;274:76">
+                <img alt="" className="absolute block max-w-none size-full" src={imgVector7} />
+              </div>
+            </div>
+          </div>
+          <div className="content-stretch flex flex-[1_0_0] gap-[var(--corder-radius\/minimal,0px)] items-center justify-end min-h-px min-w-px relative" data-node-id="I10899:91223;12180:63671">
+            <div className="h-[40px] relative shrink-0 w-[126px]" data-name="Brand Logo" data-node-id="I10899:91223;12180:63076">
+              <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                <img alt="" className="absolute h-full left-[0.24%] max-w-none top-0 w-[100.32%]" src={imgBrandLogo} />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="h-0 relative shrink-0 w-full" data-name="Line" data-node-id="I10899:91223;6132:9957">
+          <div className="absolute inset-[-0.5px_-0.22%]">
+            <img alt="" className="block max-w-none size-full" src={imgLine} />
+          </div>
+        </div>
+        <div className="content-stretch flex flex-[1_0_0] flex-col gap-[var(--spacing\/spacing-03,24px)] items-center min-h-px min-w-px relative w-full" data-name="Menu Inner" data-node-id="I10899:91223;6132:9958">
+          <div className="content-stretch flex flex-[1_0_0] flex-col gap-[var(--spacing\/spacing-01,8px)] items-start min-h-px min-w-px relative w-full" data-name="Menu 1" data-node-id="I10899:91223;6132:9959">
+            <NavItem className="content-stretch flex h-[45px] items-center justify-between overflow-clip px-[var(--spacing\/spacing-105,12px)] relative rounded-[var(--new-group\/radius\/card-corner,8px)] shrink-0 w-[232px]" />
+            <div className="content-stretch flex h-[45px] items-center justify-between overflow-clip px-[var(--spacing\/spacing-105,12px)] relative rounded-[var(--new-group\/radius\/card-corner,8px)] shrink-0 w-[232px]" data-name="Nav Item" data-node-id="I10899:91223;10159:76070">
+              <div className="relative shrink-0 size-[16px]" data-name="Icon (Navigate)" data-node-id="I10899:91223;10159:76070;10159:43335">
+                <div className="-translate-x-1/2 -translate-y-1/2 absolute left-1/2 overflow-clip size-[16px] top-1/2" data-name="Chevron - Iconly Pro" data-node-id="I10899:91223;10159:76070;10159:43335;808:176">
+                  <div className="absolute inset-[17.71%_34.38%_17.71%_30.21%]" data-name="Vector" data-node-id="I10899:91223;10159:76070;10159:43335;808:176;187:6">
+                    <img alt="" className="absolute block max-w-none size-full" src={imgVector} />
+                  </div>
+                </div>
+              </div>
+              <div className="content-stretch flex flex-[1_0_0] gap-[var(--spacing\/spacing-105,12px)] items-center justify-end min-h-px min-w-px relative" data-name="Span" data-node-id="I10899:91223;10159:76070;10159:32827">
+                <div className="flex flex-col font-['Peyda(FaNum):Medium',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[14px] text-[color:var(--colors\/neutral\/foreground\/inverted\/2\/rest,#cfd0d2)] text-right whitespace-nowrap" data-node-id="I10899:91223;10159:76070;10159:32828">
+                  <p className="leading-[1.5]" dir="auto">
+                    کاربران
+                  </p>
+                </div>
+                <div className="relative shrink-0 size-[20px]" data-name="Icon (Right)" data-node-id="I10899:91223;10159:76070;10159:43327">
+                  <div className="-translate-x-1/2 -translate-y-1/2 absolute left-1/2 overflow-clip size-[20px] top-1/2" data-name="users - Iconly Pro" data-node-id="I10899:91223;10159:76070;10159:43327;808:182">
+                    <div className="absolute inset-[60.48%_28.2%_13.54%_11.74%]" data-name="Vector" data-node-id="I10899:91223;10159:76070;10159:43327;808:182;274:57">
+                      <img alt="" className="absolute block max-w-none size-full" src={imgVector8} />
+                    </div>
+                    <div className="absolute inset-[13.54%_37.91%_45.83%_21.46%]" data-name="Vector" data-node-id="I10899:91223;10159:76070;10159:43327;808:182;274:58">
+                      <img alt="" className="absolute block max-w-none size-full" src={imgVector9} />
+                    </div>
+                    <div className="absolute inset-[59.13%_8.4%_17.87%_70.63%]" data-name="Vector" data-node-id="I10899:91223;10159:76070;10159:43327;808:182;274:59">
+                      <img alt="" className="absolute block max-w-none size-full" src={imgVector10} />
+                    </div>
+                    <div className="absolute inset-[20.48%_16.81%_48.87%_66.81%]" data-name="Vector" data-node-id="I10899:91223;10159:76070;10159:43327;808:182;274:60">
+                      <img alt="" className="absolute block max-w-none size-full" src={imgVector11} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="backdrop-blur-[1px] bg-[rgba(63,194,166,0.15)] border-[var(--colors\/brand\/stroke\/1\/rest,#26a88c)] border-r-2 border-solid content-stretch flex h-[45px] items-center justify-between px-[var(--spacing\/spacing-105,12px)] relative rounded-[var(--new-group\/radius\/card-corner,8px)] shadow-[1px_2px_10px_0px_rgba(0,0,0,0.15)] shrink-0 w-[232px]" data-name="Nav Item" data-node-id="I10899:91223;10159:96711">
+              <div className="relative shrink-0 size-[16px]" data-name="Icon (Navigate)" data-node-id="I10899:91223;10159:96711;10159:43341">
+                <div className="-translate-x-1/2 -translate-y-1/2 absolute left-1/2 overflow-clip size-[16px] top-1/2" data-name="Chevron - Iconly Pro" data-node-id="I10899:91223;10159:96711;10159:43341;808:176">
+                  <div className="absolute inset-[17.71%_34.38%_17.71%_30.21%]" data-name="Vector" data-node-id="I10899:91223;10159:96711;10159:43341;808:176;187:6">
+                    <img alt="" className="absolute block max-w-none size-full" src={imgVector12} />
+                  </div>
+                </div>
+              </div>
+              <div className="content-stretch flex flex-[1_0_0] gap-[var(--spacing\/spacing-105,12px)] items-center justify-end min-h-px min-w-px relative" data-name="Span" data-node-id="I10899:91223;10159:96711;10159:43314">
+                <div className="flex flex-col font-['Peyda(FaNum):Medium',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[14px] text-[color:var(--colors\/neutral\/foreground\/inverted\/1\/rest,white)] text-right whitespace-nowrap" data-node-id="I10899:91223;10159:96711;10159:43315">
+                  <p className="leading-[1.5]" dir="auto">
+                    مدیران
+                  </p>
+                </div>
+                <div className="relative shrink-0 size-[20px]" data-name="Icon (Right)" data-node-id="I10899:91223;10159:96711;10159:43375">
+                  <div className="-translate-x-1/2 -translate-y-1/2 absolute left-1/2 overflow-clip size-[20px] top-1/2" data-name="User star - Iconly Pro" data-node-id="I10899:91223;10159:96711;10159:43375;808:182">
+                    <div className="absolute inset-[11.17%_33.99%_43.41%_20.59%]" data-name="Vector" data-node-id="I10899:91223;10159:96711;10159:43375;808:182;1204:182">
+                      <img alt="" className="absolute block max-w-none size-full" src={imgVector13} />
+                    </div>
+                    <div className="absolute inset-[51.53%_40.44%_15.79%_13.13%]" data-name="Vector" data-node-id="I10899:91223;10159:96711;10159:43375;808:182;1204:183">
+                      <img alt="" className="absolute block max-w-none size-full" src={imgVector14} />
+                    </div>
+                    <div className="absolute inset-[56.88%_13.13%_11.17%_53.5%]" data-name="Vector" data-node-id="I10899:91223;10159:96711;10159:43375;808:182;1204:184">
+                      <img alt="" className="absolute block max-w-none size-full" src={imgVector15} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="content-stretch flex h-[45px] items-center justify-between overflow-clip px-[var(--spacing\/spacing-105,12px)] relative rounded-[var(--new-group\/radius\/card-corner,8px)] shrink-0 w-[232px]" data-name="Nav Item" data-node-id="I10899:91223;10159:117781">
+              <div className="relative shrink-0 size-[16px]" data-name="Icon (Navigate)" data-node-id="I10899:91223;10159:117781;10159:43335">
+                <div className="-translate-x-1/2 -translate-y-1/2 absolute left-1/2 overflow-clip size-[16px] top-1/2" data-name="Chevron - Iconly Pro" data-node-id="I10899:91223;10159:117781;10159:43335;808:176">
+                  <div className="absolute inset-[17.71%_34.38%_17.71%_30.21%]" data-name="Vector" data-node-id="I10899:91223;10159:117781;10159:43335;808:176;187:6">
+                    <img alt="" className="absolute block max-w-none size-full" src={imgVector} />
+                  </div>
+                </div>
+              </div>
+              <div className="content-stretch flex flex-[1_0_0] gap-[var(--spacing\/spacing-105,12px)] items-center justify-end min-h-px min-w-px relative" data-name="Span" data-node-id="I10899:91223;10159:117781;10159:32827">
+                <div className="flex flex-col font-['Peyda(FaNum):Medium',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[14px] text-[color:var(--colors\/neutral\/foreground\/inverted\/2\/rest,#cfd0d2)] text-right whitespace-nowrap" data-node-id="I10899:91223;10159:117781;10159:32828">
+                  <p className="leading-[1.5]" dir="auto">
+                    آزمون‌ها
+                  </p>
+                </div>
+                <div className="relative shrink-0 size-[20px]" data-name="Icon (Right)" data-node-id="I10899:91223;10159:117781;10159:43327">
+                  <div className="-translate-x-1/2 -translate-y-1/2 absolute left-1/2 overflow-clip size-[20px] top-1/2" data-name="Document - Iconly Pro" data-node-id="I10899:91223;10159:117781;10159:43327;808:182">
+                    <div className="absolute contents inset-[8.33%_11.81%_8.71%_12.5%]" data-name="Iconly/Light-Outline/Document" data-node-id="I10899:91223;10159:117781;10159:43327;808:182;187:35">
+                      <div className="absolute inset-[8.33%_11.81%_8.71%_12.5%]" data-name="Document" data-node-id="I10899:91223;10159:117781;10159:43327;808:182;187:36">
+                        <img alt="" className="absolute block max-w-none size-full" src={imgDocument} />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="content-stretch flex h-[45px] items-center justify-between overflow-clip px-[var(--spacing\/spacing-105,12px)] relative rounded-[var(--new-group\/radius\/card-corner,8px)] shrink-0 w-[232px]" data-name="Nav Item" data-node-id="I10899:91223;10159:188318">
+              <div className="content-stretch flex flex-[1_0_0] gap-[var(--spacing\/spacing-105,12px)] items-center justify-end min-h-px min-w-px relative" data-name="Span" data-node-id="I10899:91223;10159:188318;10159:32827">
+                <div className="flex flex-col font-['Peyda(FaNum):Medium',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[14px] text-[color:var(--colors\/neutral\/foreground\/inverted\/2\/rest,#cfd0d2)] text-right whitespace-nowrap" data-node-id="I10899:91223;10159:188318;10159:32828">
+                  <p className="leading-[1.5]" dir="auto">
+                    اشتراک من
+                  </p>
+                </div>
+                <div className="relative shrink-0 size-[20px]" data-name="Icon (Right)" data-node-id="I10899:91223;10159:188318;10159:43327">
+                  <div className="-translate-x-1/2 -translate-y-1/2 absolute left-1/2 overflow-clip size-[20px] top-1/2" data-name="Gem - Iconly Pro" data-node-id="I10899:91223;10159:188318;10159:43327;808:182">
+                    <div className="absolute inset-[39.08%_59.9%_46.32%_26.25%]" data-name="Vector" data-node-id="I10899:91223;10159:188318;10159:43327;808:182;1071:20">
+                      <img alt="" className="absolute block max-w-none size-full" src={imgVector16} />
+                    </div>
+                    <div className="absolute inset-[13.26%_9.37%_13.19%_9.37%]" data-name="Vector" data-node-id="I10899:91223;10159:188318;10159:43327;808:182;1071:21">
+                      <img alt="" className="absolute block max-w-none size-full" src={imgVector17} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="content-stretch flex h-[45px] items-center justify-between overflow-clip px-[var(--spacing\/spacing-105,12px)] relative rounded-[var(--new-group\/radius\/card-corner,8px)] shrink-0 w-[232px]" data-name="Nav Item" data-node-id="I10899:91223;10159:142447">
+              <div className="content-stretch flex flex-[1_0_0] gap-[var(--spacing\/spacing-105,12px)] items-center justify-end min-h-px min-w-px relative" data-name="Span" data-node-id="I10899:91223;10159:142447;10159:32827">
+                <div className="flex flex-col font-['Peyda(FaNum):Medium',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[14px] text-[color:var(--colors\/neutral\/foreground\/inverted\/2\/rest,#cfd0d2)] text-right whitespace-nowrap" data-node-id="I10899:91223;10159:142447;10159:32828">
+                  <p className="leading-[1.5]" dir="auto">
+                    دستیار هوشمند
+                  </p>
+                </div>
+                <div className="relative shrink-0 size-[20px]" data-name="Icon (Right)" data-node-id="I10899:91223;10159:142447;10159:43327">
+                  <div className="-translate-x-1/2 -translate-y-1/2 absolute left-1/2 overflow-clip size-[20px] top-1/2" data-name="Stars - Iconly Pro" data-node-id="I10899:91223;10159:142447;10159:43327;808:182">
+                    <div className="absolute inset-[9.56%_54.88%_57.25%_11.93%]" data-name="Vector" data-node-id="I10899:91223;10159:142447;10159:43327;808:182;274:41">
+                      <img alt="" className="absolute block max-w-none size-full" src={imgVector18} />
+                    </div>
+                    <div className="absolute inset-[29.48%_6.82%_9.56%_32.23%]" data-name="Vector" data-node-id="I10899:91223;10159:142447;10159:43327;808:182;274:42">
+                      <img alt="" className="absolute block max-w-none size-full" src={imgVector19} />
+                    </div>
+                    <div className="absolute inset-[75.71%_73.12%_16.41%_19%]" data-name="Vector" data-node-id="I10899:91223;10159:142447;10159:43327;808:182;274:43">
+                      <img alt="" className="absolute block max-w-none size-full" src={imgVector20} />
+                    </div>
+                    <div className="absolute inset-[15.63%_17.79%_76.49%_74.33%]" data-name="Vector" data-node-id="I10899:91223;10159:142447;10159:43327;808:182;274:44">
+                      <img alt="" className="absolute block max-w-none size-full" src={imgVector21} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="content-stretch flex h-[45px] items-center justify-between overflow-clip px-[var(--spacing\/spacing-105,12px)] relative rounded-[var(--new-group\/radius\/card-corner,8px)] shrink-0 w-[232px]" data-name="Nav Item" data-node-id="I10899:91223;10159:168202">
+              <div className="content-stretch flex flex-[1_0_0] gap-[var(--spacing\/spacing-105,12px)] items-center justify-end min-h-px min-w-px relative" data-name="Span" data-node-id="I10899:91223;10159:168202;10159:32827">
+                <div className="flex flex-col font-['Peyda(FaNum):Medium',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[14px] text-[color:var(--colors\/neutral\/foreground\/inverted\/2\/rest,#cfd0d2)] text-right whitespace-nowrap" data-node-id="I10899:91223;10159:168202;10159:32828">
+                  <p className="leading-[1.5]" dir="auto">
+                    ماژول‌ها
+                  </p>
+                </div>
+                <div className="relative shrink-0 size-[20px]" data-name="Icon (Right)" data-node-id="I10899:91223;10159:168202;10159:43327">
+                  <div className="-translate-x-1/2 -translate-y-1/2 absolute left-1/2 overflow-clip size-[20px] top-1/2" data-name="Delivery Boxes 2 - Iconly Pro" data-node-id="I10899:91223;10159:168202;10159:43327;808:182">
+                    <div className="absolute inset-[21.88%_44.39%_71.88%_41.03%]" data-name="Vector" data-node-id="I10899:91223;10159:168202;10159:43327;808:182;274:36">
+                      <img alt="" className="absolute block max-w-none size-full" src={imgVector22} />
+                    </div>
+                    <div className="absolute inset-[59.38%_61.04%_34.38%_24.39%]" data-name="Vector" data-node-id="I10899:91223;10159:168202;10159:43327;808:182;274:37">
+                      <img alt="" className="absolute block max-w-none size-full" src={imgVector23} />
+                    </div>
+                    <div className="absolute inset-[59.38%_23.56%_34.38%_61.86%]" data-name="Vector" data-node-id="I10899:91223;10159:168202;10159:43327;808:182;274:38">
+                      <img alt="" className="absolute block max-w-none size-full" src={imgVector24} />
+                    </div>
+                    <div className="absolute inset-[9.38%_8.96%_9.38%_9.79%]" data-name="Vector" data-node-id="I10899:91223;10159:168202;10159:43327;808:182;274:39">
+                      <img alt="" className="absolute block max-w-none size-full" src={imgVector25} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="content-stretch flex h-[45px] items-center justify-between overflow-clip px-[var(--spacing\/spacing-105,12px)] relative rounded-[var(--new-group\/radius\/card-corner,8px)] shrink-0 w-[232px]" data-name="Nav Item" data-node-id="I10899:91223;10159:152902">
+              <div className="relative shrink-0 size-[16px]" data-name="Icon (Navigate)" data-node-id="I10899:91223;10159:152902;10159:43335">
+                <div className="-translate-x-1/2 -translate-y-1/2 absolute left-1/2 overflow-clip size-[16px] top-1/2" data-name="Chevron - Iconly Pro" data-node-id="I10899:91223;10159:152902;10159:43335;808:176">
+                  <div className="absolute inset-[17.71%_34.38%_17.71%_30.21%]" data-name="Vector" data-node-id="I10899:91223;10159:152902;10159:43335;808:176;187:6">
+                    <img alt="" className="absolute block max-w-none size-full" src={imgVector} />
+                  </div>
+                </div>
+              </div>
+              <div className="content-stretch flex flex-[1_0_0] gap-[var(--spacing\/spacing-105,12px)] items-center justify-end min-h-px min-w-px relative" data-name="Span" data-node-id="I10899:91223;10159:152902;10159:32827">
+                <div className="flex flex-col font-['Peyda(FaNum):Medium',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[14px] text-[color:var(--colors\/neutral\/foreground\/inverted\/2\/rest,#cfd0d2)] text-right whitespace-nowrap" data-node-id="I10899:91223;10159:152902;10159:32828">
+                  <p className="leading-[1.5]" dir="auto">
+                    مدیریت مالی
+                  </p>
+                </div>
+                <div className="relative shrink-0 size-[20px]" data-name="Icon (Right)" data-node-id="I10899:91223;10159:152902;10159:43327">
+                  <div className="-translate-x-1/2 -translate-y-1/2 absolute left-1/2 overflow-clip size-[20px] top-1/2" data-name="Bank Card - Iconly Pro" data-node-id="I10899:91223;10159:152902;10159:43327;808:182">
+                    <div className="absolute inset-[15.79%_9.38%]" data-name="Vector" data-node-id="I10899:91223;10159:152902;10159:43327;808:182;1209:71">
+                      <img alt="" className="absolute block max-w-none size-full" src={imgVector26} />
+                    </div>
+                    <div className="absolute inset-[37.85%_9.38%_55.9%_9.38%]" data-name="Vector" data-node-id="I10899:91223;10159:152902;10159:43327;808:182;1209:72">
+                      <img alt="" className="absolute block max-w-none size-full" src={imgVector27} />
+                    </div>
+                    <div className="absolute inset-[60.08%_54.6%_33.67%_26.78%]" data-name="Vector" data-node-id="I10899:91223;10159:152902;10159:43327;808:182;1209:73">
+                      <img alt="" className="absolute block max-w-none size-full" src={imgVector28} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="content-stretch flex h-[45px] items-center justify-between overflow-clip px-[var(--spacing\/spacing-105,12px)] relative rounded-[var(--new-group\/radius\/card-corner,8px)] shrink-0 w-[232px]" data-name="Nav Item" data-node-id="I10899:91223;10887:17833">
+              <div className="content-stretch flex flex-[1_0_0] gap-[var(--spacing\/spacing-105,12px)] items-center justify-end min-h-px min-w-px relative" data-name="Span" data-node-id="I10899:91223;10887:17833;10159:32827">
+                <div className="flex flex-col font-['Peyda(FaNum):Medium',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[14px] text-[color:var(--colors\/neutral\/foreground\/inverted\/2\/rest,#cfd0d2)] text-right whitespace-nowrap" data-node-id="I10899:91223;10887:17833;10159:32828">
+                  <p className="leading-[1.5]" dir="auto">
+                    پیکربندی سیستم
+                  </p>
+                </div>
+                <div className="relative shrink-0 size-[20px]" data-name="Icon (Right)" data-node-id="I10899:91223;10887:17833;10159:43327">
+                  <div className="-translate-x-1/2 -translate-y-1/2 absolute left-1/2 overflow-clip size-[20px] top-1/2" data-name="Setting - Iconly Pro" data-node-id="I10899:91223;10887:17833;10159:43327;808:182">
+                    <div className="absolute inset-[9.38%_9.06%_9.38%_15.31%]" data-name="Vector" data-node-id="I10899:91223;10887:17833;10159:43327;808:182;621:23">
+                      <img alt="" className="absolute block max-w-none size-full" src={imgVector29} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="content-stretch flex flex-col gap-[var(--spacing\/spacing-01,8px)] items-start relative shrink-0 w-full" data-name="Menu 2" data-node-id="I10899:91223;6132:10000">
+            <div className="content-stretch flex h-[45px] items-center justify-between overflow-clip px-[var(--spacing\/spacing-105,12px)] relative rounded-[var(--new-group\/radius\/card-corner,8px)] shrink-0 w-[232px]" data-name="Nav Item" data-node-id="I10899:91223;12316:41073">
+              <div className="content-stretch flex flex-[1_0_0] gap-[var(--spacing\/spacing-105,12px)] items-center justify-end min-h-px min-w-px relative" data-name="Span" data-node-id="I10899:91223;12316:41075">
+                <div className="content-stretch flex gap-[var(--corder-radius\/minimal,8px)] items-center relative shrink-0" data-node-id="I10899:91223;12316:41076">
+                  <div className="bg-[var(--colors\/brand\/background\/1\/rest,#26a88c)] content-stretch flex flex-col items-center justify-center p-[4.16px] relative rounded-[4.16px] shrink-0 size-[17px]" data-node-id="I10899:91223;12316:41077">
+                    <div className="flex flex-col font-['Peyda(FaNum):Medium',sans-serif] justify-center leading-[0] not-italic relative shrink-0 size-[8px] text-[12px] text-[color:var(--colors\/neutral\/background\/1\/rest,#f6f8fa)] text-right" data-node-id="I10899:91223;12316:41078">
+                      <p className="leading-[1.5]" dir="auto">
+                        ۴
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex flex-col font-['Peyda(FaNum):Medium',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[14px] text-[color:var(--colors\/neutral\/foreground\/inverted\/2\/rest,#cfd0d2)] text-right whitespace-nowrap" data-node-id="I10899:91223;12316:41079">
+                    <p className="leading-[1.5]" dir="rtl">
+                      پشتیبانی
+                    </p>
+                  </div>
+                </div>
+                <div className="relative shrink-0 size-[20px]" data-name="Icon (Right)" data-node-id="I10899:91223;12316:41080">
+                  <div className="-translate-x-1/2 -translate-y-1/2 absolute left-1/2 overflow-clip size-[20px] top-1/2" data-name="Square messages 4  - Iconly Pro" data-node-id="I10899:91223;12316:41080;808:182">
+                    <div className="absolute inset-[11.27%_22.21%_22.43%_9.38%]" data-name="Vector" data-node-id="I10899:91223;12316:41080;808:182;1010:45">
+                      <img alt="" className="absolute block max-w-none size-full" src={imgVector30} />
+                    </div>
+                    <div className="absolute inset-[11.27%_22.21%_22.43%_9.38%]" data-name="Vector" data-node-id="I10899:91223;12316:41080;808:182;1010:46">
+                      <img alt="" className="absolute block max-w-none size-full" src={imgVector30} />
+                    </div>
+                    <div className="absolute inset-[11.27%_22.21%_22.43%_9.38%]" data-name="Vector" data-node-id="I10899:91223;12316:41080;808:182;1010:47">
+                      <img alt="" className="absolute block max-w-none size-full" src={imgVector30} />
+                    </div>
+                    <div className="absolute inset-[39.87%_9.38%_11.26%_43.85%]" data-name="Vector" data-node-id="I10899:91223;12316:41080;808:182;1010:48">
+                      <img alt="" className="absolute block max-w-none size-full" src={imgVector31} />
+                    </div>
+                    <div className="absolute inset-[39.87%_9.38%_11.26%_43.85%]" data-name="Vector" data-node-id="I10899:91223;12316:41080;808:182;1010:49">
+                      <img alt="" className="absolute block max-w-none size-full" src={imgVector31} />
+                    </div>
+                    <div className="absolute inset-[39.87%_9.38%_11.26%_43.85%]" data-name="Vector" data-node-id="I10899:91223;12316:41080;808:182;1010:50">
+                      <img alt="" className="absolute block max-w-none size-full" src={imgVector31} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="content-stretch flex h-[45px] items-center justify-between overflow-clip px-[var(--spacing\/spacing-105,12px)] relative rounded-[var(--new-group\/radius\/card-corner,8px)] shrink-0 w-[232px]" data-name="Nav Item" data-node-id="I10899:91223;12316:43294">
+              <div className="content-stretch flex flex-[1_0_0] gap-[var(--spacing\/spacing-105,12px)] items-center justify-end min-h-px min-w-px relative" data-name="Span" data-node-id="I10899:91223;12316:43296">
+                <div className="content-stretch flex gap-[var(--corder-radius\/minimal,8px)] items-center relative shrink-0" data-node-id="I10899:91223;12316:43297">
+                  <div className="bg-[var(--colors\/brand\/background\/1\/rest,#26a88c)] content-stretch flex flex-col items-center justify-center p-[4.16px] relative rounded-[4.16px] shrink-0 size-[17px]" data-node-id="I10899:91223;12316:43298">
+                    <div className="flex flex-col font-['Peyda(FaNum):Medium',sans-serif] justify-center leading-[0] not-italic relative shrink-0 size-[8px] text-[12px] text-[color:var(--colors\/neutral\/background\/1\/rest,#f6f8fa)] text-right" data-node-id="I10899:91223;12316:43299">
+                      <p className="leading-[1.5]" dir="auto">
+                        ۴
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex flex-col font-['Peyda(FaNum):Medium',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[14px] text-[color:var(--colors\/neutral\/foreground\/inverted\/2\/rest,#cfd0d2)] text-right whitespace-nowrap" data-node-id="I10899:91223;12316:43300">
+                    <p className="leading-[1.5]" dir="rtl">
+                      درخواست‌ها
+                    </p>
+                  </div>
+                </div>
+                <div className="relative shrink-0 size-[20px]" data-name="Icon (Right)" data-node-id="I10899:91223;12316:45515">
+                  <div className="-translate-x-1/2 -translate-y-1/2 absolute left-1/2 overflow-clip size-[20px] top-1/2" data-name="hand Stars - Iconly Pro" data-node-id="I10899:91223;12316:45515;808:182">
+                    <div className="absolute inset-[54.97%_12.99%_10.55%_16.1%]" data-name="Vector" data-node-id="I10899:91223;12316:45515;808:182;903:665">
+                      <img alt="" className="absolute block max-w-none size-full" src={imgVector32} />
+                    </div>
+                    <div className="absolute inset-[49.87%_37.18%_27.46%_16.1%]" data-name="Vector" data-node-id="I10899:91223;12316:45515;808:182;903:666">
+                      <img alt="" className="absolute block max-w-none size-full" src={imgVector33} />
+                    </div>
+                    <div className="absolute inset-[12.67%_15.3%_51.06%_48.43%]" data-name="Vector" data-node-id="I10899:91223;12316:45515;808:182;903:667">
+                      <img alt="" className="absolute block max-w-none size-full" src={imgVector34} />
+                    </div>
+                    <div className="absolute inset-[6.63%_52.35%_69.77%_24.06%]" data-name="Vector" data-node-id="I10899:91223;12316:45515;808:182;903:668">
+                      <img alt="" className="absolute block max-w-none size-full" src={imgVector35} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="bg-[rgba(255,255,255,0.05)] content-stretch flex gap-[8px] items-center justify-end overflow-clip p-[12px] relative rounded-[var(--new-group\/radius\/button-corner,8px)] shrink-0 w-full" data-name="Subscription State" data-node-id="I10899:91223;11868:19723">
+              <div className="content-stretch flex flex-[1_0_0] flex-col gap-[4px] items-end leading-[0] min-h-px min-w-px not-italic relative text-right whitespace-nowrap" data-name="Span" data-node-id="I10899:91223;11868:19724">
+                <div className="flex flex-col font-['Peyda(FaNum):Regular',sans-serif] justify-center relative shrink-0 text-[12px] text-[color:var(--colors\/neutral\/foreground\/inverted\/2\/rest,#cfd0d2)]" data-node-id="I10899:91223;11868:19725">
+                  <p className="leading-[1.5]" dir="rtl">
+                    وضعیت اشتراک
+                  </p>
+                </div>
+                <div className="content-stretch flex gap-[6px] items-center justify-center relative shrink-0 text-[color:var(--colors\/neutral\/foreground\/inverted\/1\/rest,white)]" data-name="Span" data-node-id="I10899:91223;11868:19726">
+                  <div className="flex flex-col font-['Peyda(FaNum):Regular',sans-serif] justify-center relative shrink-0 text-[12px]" data-node-id="I10899:91223;11868:19727">
+                    <p className="leading-[1.5]" dir="rtl">
+                      126 روز مانده
+                    </p>
+                  </div>
+                  <div className="flex flex-col font-['Peyda(FaNum):Regular',sans-serif] justify-center opacity-50 relative shrink-0 text-[12px]" data-node-id="I10899:91223;11868:19728">
+                    <p className="leading-[1.5]" dir="rtl">
+                      |
+                    </p>
+                  </div>
+                  <div className="flex flex-col font-['Peyda(FaNum):Medium',sans-serif] justify-center relative shrink-0 text-[14px]" data-node-id="I10899:91223;11868:19729">
+                    <p className="leading-[1.5]" dir="rtl">
+                      اشتراک نقره‌ای
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="relative shrink-0 size-[24px]" data-name="Icon (Right)" data-node-id="I10899:91223;11868:19730">
+                <div className="-translate-x-1/2 -translate-y-1/2 absolute left-1/2 overflow-clip size-[24px] top-1/2" data-name="Gem - Iconly Pro" data-node-id="I10899:91223;11868:19730;808:188">
+                  <div className="absolute inset-[39.08%_59.9%_46.32%_26.25%]" data-name="Vector" data-node-id="I10899:91223;11868:19730;808:188;1071:20">
+                    <img alt="" className="absolute block max-w-none size-full" src={imgVector36} />
+                  </div>
+                  <div className="absolute inset-[13.26%_9.37%_13.19%_9.37%]" data-name="Vector" data-node-id="I10899:91223;11868:19730;808:188;1071:21">
+                    <img alt="" className="absolute block max-w-none size-full" src={imgVector37} />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="absolute content-stretch flex flex-col items-start left-[16px] overflow-clip px-[var(--spacing\/spacing-0,0px)] top-[132px] w-[1104px]" data-name="Content Inner" data-node-id="10899:91194">
+        <div className="content-stretch flex flex-col gap-[4px] items-end overflow-clip relative shrink-0 w-full" data-name="Tile" data-node-id="10899:91195">
+          <div className="bg-[var(--colors\/neutral\/background\/2\/rest,white)] content-stretch flex items-center justify-between px-[24px] py-[16px] relative rounded-tl-[var(--new-group\/radius\/card-corner,8px)] rounded-tr-[var(--new-group\/radius\/card-corner,8px)] shrink-0 w-full" data-name="Head" data-node-id="10899:91196">
+            <div className="bg-[var(--colors\/neutral\/background\/2\/rest,white)] border border-[var(--colors\/neutral\/stroke\/1\/rest,#e2e4e6)] border-solid content-stretch flex gap-[8px] h-[45px] items-center justify-center overflow-clip px-[16px] relative rounded-[var(--new-group\/radius\/button-corner,8px)] shrink-0" data-name="Button" data-node-id="10899:91198">
+              <div className="content-stretch flex gap-[8px] items-center justify-end relative shrink-0" data-name="Inner" data-node-id="I10899:91198;205:732">
+                <div className="flex flex-col font-['Peyda(FaNum):Medium',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[14px] text-[color:var(--colors\/neutral\/foreground\/1\/rest,#222323)] text-right whitespace-nowrap" data-node-id="I10899:91198;205:734">
+                  <p className="leading-[1.4]" dir="auto">
+                    ویرایش اطلاعات
+                  </p>
+                </div>
+                <div className="relative shrink-0 size-[18px]" data-name="Icon (Before Text)" data-node-id="I10899:91198;846:250">
+                  <div className="-translate-x-1/2 -translate-y-1/2 absolute left-1/2 overflow-clip size-[18px] top-1/2" data-name="Edit Square - Iconly Pro" data-node-id="I10899:91198;846:250;808:179">
+                    <div className="absolute contents inset-[12.5%_10.41%_8.58%_8.33%]" data-name="Iconly/Light-Outline/Edit" data-node-id="I10899:91198;846:250;808:179;360:353">
+                      <div className="absolute inset-[12.5%_10.41%_8.58%_8.33%]" data-name="Edit" data-node-id="I10899:91198;846:250;808:179;360:354">
+                        <img alt="" className="absolute block max-w-none size-full" src={imgEdit} />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="content-stretch flex gap-[8px] items-center justify-end relative shrink-0" data-name="Span" data-node-id="10899:91199">
+              <div className="flex flex-col font-['Peyda(FaNum):Medium',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[18px] text-[color:var(--colors\/neutral\/foreground\/1\/rest,#222323)] text-right whitespace-nowrap" data-node-id="10899:91200">
+                <p className="leading-[1.3]" dir="rtl">
+                  اطلاعات پروفایل
+                </p>
+              </div>
+              <div className="relative shrink-0 size-[24px]" data-name="Icon" data-node-id="10899:91201">
+                <div className="-translate-x-1/2 -translate-y-1/2 absolute left-1/2 overflow-clip size-[24px] top-1/2" data-name="user - Iconly Pro" data-node-id="I10899:91201;808:188">
+                  <div className="absolute inset-[60.48%_18.3%_13.54%_21.63%]" data-name="Vector" data-node-id="I10899:91201;808:188;319:258">
+                    <img alt="" className="absolute block max-w-none size-full" src={imgVector38} />
+                  </div>
+                  <div className="absolute inset-[13.54%_28.02%_45.83%_31.36%]" data-name="Vector" data-node-id="I10899:91201;808:188;319:259">
+                    <img alt="" className="absolute block max-w-none size-full" src={imgVector39} />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="bg-[var(--colors\/neutral\/background\/2\/rest,white)] content-stretch flex flex-col items-center justify-center p-[24px] relative shrink-0 w-full" data-name="Body" data-node-id="10899:91202">
+            <div className="content-stretch flex gap-[24px] items-center relative shrink-0 w-full" data-name="Row" data-node-id="10899:91203">
+              <div className="content-stretch flex flex-[1_0_0] flex-col gap-[8px] items-end min-h-px min-w-px relative" data-name="Field" data-node-id="10899:91204">
+                <div className="content-stretch flex gap-[4px] items-start overflow-clip px-[8px] relative shrink-0" data-name="Label" data-node-id="10899:91205">
+                  <p className="font-['Peyda(FaNum):Regular',sans-serif] leading-[1.5] not-italic relative shrink-0 text-[12px] text-[color:var(--colors\/neutral\/foreground\/1\/rest,#222323)] text-right whitespace-nowrap" dir="auto" data-node-id="I10899:91205;211:337">
+                    سطح دسترسی
+                  </p>
+                </div>
+                <Select afterIcon={false} className="content-stretch flex gap-[8px] h-[45px] items-center overflow-clip relative rounded-[var(--new-group\/radius\/input-corner,8px)] shrink-0 w-full" placeholderText2={false} />
+              </div>
+              <div className="content-stretch flex flex-[1_0_0] flex-col gap-[8px] items-end min-h-px min-w-px relative" data-name="Field" data-node-id="10899:91207">
+                <div className="content-stretch flex gap-[4px] items-start overflow-clip px-[8px] relative shrink-0" data-name="Label" data-node-id="10899:91208">
+                  <p className="font-['Peyda(FaNum):Regular',sans-serif] leading-[1.5] not-italic relative shrink-0 text-[12px] text-[color:var(--colors\/neutral\/foreground\/1\/rest,#222323)] text-right whitespace-nowrap" dir="auto" data-node-id="I10899:91208;211:337">
+                    نام و نام‌خانوادگی
+                  </p>
+                </div>
+                <Select afterIcon={false} className="content-stretch flex gap-[8px] h-[45px] items-center overflow-clip relative rounded-[var(--new-group\/radius\/input-corner,8px)] shrink-0 w-full" placeholderText2={false} />
+              </div>
+            </div>
+          </div>
+          <div className="bg-[var(--colors\/neutral\/background\/2\/rest,white)] content-stretch flex flex-col items-center justify-center p-[24px] relative shrink-0 w-full" data-name="Body" data-node-id="10899:91210">
+            <div className="content-stretch flex gap-[24px] items-center relative shrink-0 w-full" data-name="Row" data-node-id="10899:91211">
+              <div className="content-stretch flex flex-[1_0_0] flex-col gap-[8px] items-end min-h-px min-w-px relative" data-name="Field" data-node-id="10899:91212">
+                <div className="content-stretch flex gap-[4px] items-start overflow-clip px-[8px] relative shrink-0" data-name="Label" data-node-id="10899:91213">
+                  <p className="font-['Peyda(FaNum):Regular',sans-serif] leading-[1.5] not-italic relative shrink-0 text-[12px] text-[color:var(--colors\/neutral\/foreground\/1\/rest,#222323)] text-right whitespace-nowrap" dir="auto" data-node-id="I10899:91213;211:337">
+                    وضعیت
+                  </p>
+                </div>
+                <div className="content-stretch flex gap-[8px] h-[45px] items-center overflow-clip relative rounded-[var(--new-group\/radius\/input-corner,8px)] shrink-0 w-full" data-name="Select" data-node-id="12435:24290">
+                  <div className="bg-[var(--colors\/neutral\/background\/2\/rest,white)] border border-[var(--colors\/neutral\/stroke\/1\/rest,#e2e4e6)] border-solid content-stretch flex flex-[1_0_0] h-full items-center justify-between min-h-px min-w-px pl-[16px] pr-[4px] relative rounded-[var(--corder-radius\/minimal,8px)]" data-name="Inner" data-node-id="I12435:24290;2494:9362">
+                    <div className="relative shrink-0 size-[16px]" data-name="Icon (After Text)" data-node-id="I12435:24290;2494:9363">
+                      <div className="-translate-x-1/2 -translate-y-1/2 absolute left-1/2 overflow-clip size-[16px] top-1/2" data-name="Chevron - Iconly Pro" data-node-id="I12435:24290;2494:9363;808:176">
+                        <div className="absolute inset-[17.71%_34.38%_17.71%_30.21%]" data-name="Vector" data-node-id="I12435:24290;2494:9363;808:176;187:6">
+                          <img alt="" className="absolute block max-w-none size-full" src={imgVector40} />
+                        </div>
+                      </div>
+                    </div>
+                    <div className="bg-[var(--colors\/status\/success\/background\/1\/rest,#f1faf1)] border-2 border-[var(--colors\/neutral\/background\/2\/rest,white)] border-solid content-stretch flex gap-[4px] h-[37px] items-center justify-center overflow-clip px-[12px] relative rounded-[var(--corder-radius\/half-minimal,4px)] shrink-0" data-name="Tag" data-node-id="I12435:24290;2494:9364">
+                      <p className="font-['Peyda(FaNum):Regular',sans-serif] leading-[1.5] not-italic relative shrink-0 text-[16px] text-[color:var(--colors\/neutral\/foreground\/1\/rest,#222323)] text-right whitespace-nowrap" dir="auto" data-node-id="I12435:24290;2494:9364;1133:686">
+                        کارمندان جدید
+                      </p>
+                    </div>
+                  </div>
+                  <div className="absolute bg-[var(--colors\/neutral\/background\/2\/rest,white)] border border-[var(--colors\/neutral\/stroke\/1\/rest,#e2e4e6)] border-solid bottom-0 h-[1.5px] left-[160px] opacity-0 right-[284px]" data-name="Accessible Indicator" data-node-id="I12435:24290;2494:9365" />
+                </div>
+              </div>
+              <div className="content-stretch flex flex-[1_0_0] flex-col gap-[8px] items-end min-h-px min-w-px relative" data-name="Field" data-node-id="10899:91216">
+                <div className="content-stretch flex gap-[4px] items-start overflow-clip px-[8px] relative shrink-0" data-name="Label" data-node-id="10899:91217">
+                  <p className="font-['Peyda(FaNum):Regular',sans-serif] leading-[1.5] not-italic relative shrink-0 text-[12px] text-[color:var(--colors\/neutral\/foreground\/1\/rest,#222323)] text-right whitespace-nowrap" dir="auto" data-node-id="I10899:91217;211:337">
+                    ایمیل
+                  </p>
+                </div>
+                <Select afterIcon={false} className="content-stretch flex gap-[8px] h-[45px] items-center overflow-clip relative rounded-[var(--new-group\/radius\/input-corner,8px)] shrink-0 w-full" placeholderText2={false} />
+              </div>
+              <div className="content-stretch flex flex-[1_0_0] flex-col gap-[8px] items-end min-h-px min-w-px relative" data-name="Field" data-node-id="10899:91219">
+                <div className="content-stretch flex gap-[4px] items-start overflow-clip px-[8px] relative shrink-0" data-name="Label" data-node-id="10899:91220">
+                  <p className="font-['Peyda(FaNum):Regular',sans-serif] leading-[1.5] not-italic relative shrink-0 text-[12px] text-[color:var(--colors\/neutral\/foreground\/1\/rest,#222323)] text-right whitespace-nowrap" dir="auto" data-node-id="I10899:91220;211:337">
+                    شماره همراه
+                  </p>
+                </div>
+                <Select afterIcon={false} className="content-stretch flex gap-[8px] h-[45px] items-center overflow-clip relative rounded-[var(--new-group\/radius\/input-corner,8px)] shrink-0 w-full" placeholderText2={false} />
+              </div>
+            </div>
+          </div>
+          <div className="bg-[var(--colors\/neutral\/background\/2\/rest,white)] content-stretch flex flex-col items-start justify-center px-[24px] py-[16px] relative rounded-bl-[var(--new-group\/radius\/card-corner,8px)] rounded-br-[var(--new-group\/radius\/card-corner,8px)] shrink-0 w-full" data-name="Body" data-node-id="10899:91610">
+            <div className="content-stretch flex gap-[16px] items-start relative shrink-0" data-name="Button Holder" data-node-id="10899:91611">
+              <div className="bg-[var(--colors\/brand\/background\/1\/rest,#26a88c)] border border-[var(--colors\/brand\/stroke\/0\/rest,#1d836d)] border-solid content-stretch flex gap-[8px] h-[45px] items-center justify-center overflow-clip px-[16px] relative rounded-[var(--new-group\/radius\/button-corner,8px)] shrink-0 w-[130px]" data-name="Button" data-node-id="10899:91612">
+                <div className="content-stretch flex gap-[8px] items-center justify-end relative shrink-0" data-name="Inner" data-node-id="I10899:91612;205:395">
+                  <div className="flex flex-col font-['Peyda(FaNum):Medium',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[14px] text-[color:var(--colors\/neutral\/foreground\/inverted\/1\/rest,white)] text-right whitespace-nowrap" data-node-id="I10899:91612;89:129">
+                    <p className="leading-[1.4]" dir="auto">
+                      ذخیره تغییرات
+                    </p>
+                  </div>
+                </div>
+                <div className="absolute inset-0 pointer-events-none rounded-[inherit] shadow-[inset_0px_0px_0px_2px_#6fc9b5,inset_0px_-2px_4px_1px_rgba(13,56,47,0.15)]" />
+              </div>
+              <div className="bg-[var(--colors\/neutral\/background\/2\/rest,white)] border border-[var(--colors\/neutral\/stroke\/1\/rest,#e2e4e6)] border-solid content-stretch flex gap-[8px] h-[45px] items-center justify-center overflow-clip px-[16px] relative rounded-[var(--new-group\/radius\/button-corner,8px)] shrink-0 w-[120px]" data-name="Button" data-node-id="10899:91613">
+                <div className="content-stretch flex gap-[8px] items-center justify-end relative shrink-0" data-name="Inner" data-node-id="I10899:91613;205:732">
+                  <div className="flex flex-col font-['Peyda(FaNum):Medium',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[14px] text-[color:var(--colors\/neutral\/foreground\/1\/rest,#222323)] text-right whitespace-nowrap" data-node-id="I10899:91613;205:734">
+                    <p className="leading-[1.4]" dir="auto">
+                      انصراف
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="absolute content-stretch flex flex-col gap-[4px] items-end left-[16px] top-[16px] w-[1104px]" data-name="Top Navigation" data-node-id="10899:91222">
+        <div className="bg-[var(--colors\/neutral\/background\/2\/rest,white)] content-stretch flex h-[92px] items-center justify-between overflow-clip px-[24px] py-[16px] relative rounded-[var(--new-group\/radius\/card-corner,8px)] shrink-0 w-full" data-name="Top" data-node-id="I10899:91222;6132:2630">
+          <div className="content-stretch flex gap-[16px] items-center relative shrink-0" data-name="Left" data-node-id="I10899:91222;6132:2631">
+            <div className="content-stretch flex gap-[16px] items-center pl-[8px] relative rounded-[var(--corder-radius\/full,360px)] shrink-0" data-name="Logged In User" data-node-id="I10899:91222;6132:2632">
+              <div className="relative shrink-0 size-[14px]" data-name="Icon" data-node-id="I10899:91222;6212:11008">
+                <div className="-translate-x-1/2 -translate-y-1/2 absolute left-1/2 overflow-clip size-[14px] top-1/2" data-name="Chevron Down - Iconly Pro" data-node-id="I10899:91222;6212:11008;808:173">
+                  <div className="absolute inset-[34.38%_17.71%_30.21%_17.71%]" data-name="Vector" data-node-id="I10899:91222;6212:11008;808:173;187:12">
+                    <img alt="" className="absolute block max-w-none size-full" src={imgVector41} />
+                  </div>
+                </div>
+              </div>
+              <div className="content-stretch flex gap-[8px] items-center justify-end relative shrink-0" data-name="Block" data-node-id="I10899:91222;6132:2634">
+                <div className="content-stretch flex flex-col font-['Peyda(FaNum):Medium',sans-serif] items-end leading-[1.5] not-italic relative shrink-0 text-right whitespace-nowrap" data-name="Block" data-node-id="I10899:91222;6132:2635">
+                  <p className="relative shrink-0 text-[16px] text-[color:var(--colors\/neutral\/foreground\/1\/rest,#222323)]" dir="auto" data-node-id="I10899:91222;6132:2636">
+                    علی میرهادی
+                  </p>
+                  <p className="relative shrink-0 text-[12px] text-[color:var(--colors\/neutral\/foreground\/-2\/rest,#59595a)]" dir="auto" data-node-id="I10899:91222;6132:2637">
+                    مدیر داخلی
+                  </p>
+                </div>
+                <UserAvatar className="content-stretch flex flex-col gap-[10px] items-center justify-center relative rounded-[var(--corder-radius\/full,360px)] shrink-0 size-[45px]" />
+              </div>
+            </div>
+            <div className="content-stretch flex gap-[16px] items-center pl-[8px] relative rounded-[var(--corder-radius\/full,360px)] shrink-0" data-name="Logged In User" data-node-id="I10899:91222;6132:2640">
+              <div className="content-stretch flex gap-[8px] items-center justify-end relative shrink-0" data-name="Block" data-node-id="I10899:91222;6132:2642">
+                <div className="content-stretch flex flex-col gap-[4px] items-end relative shrink-0" data-name="Block" data-node-id="I10899:91222;6132:2643">
+                  <p className="font-['Peyda(FaNum):Medium',sans-serif] leading-[1.5] not-italic relative shrink-0 text-[16px] text-[color:var(--colors\/neutral\/foreground\/1\/rest,#222323)] text-right whitespace-nowrap" dir="auto" data-node-id="I10899:91222;6132:2644">
+                    موجودی کیف
+                  </p>
+                  <div className="content-stretch flex gap-[2px] items-center justify-center relative shrink-0" data-name="Row" data-node-id="I10899:91222;9191:41096">
+                    <div className="overflow-clip relative shrink-0 size-[16px]" data-name="Toman" data-node-id="I10899:91222;9191:44130">
+                      <div className="absolute inset-[5.04%_4.76%_4.74%_4.32%]" data-name="Group" data-node-id="I10899:91222;9191:44131">
+                        <img alt="" className="absolute block max-w-none size-full" src={imgGroup} />
+                      </div>
+                    </div>
+                    <p className="font-['Peyda(FaNum):Medium',sans-serif] leading-[1.5] not-italic relative shrink-0 text-[12px] text-[color:var(--colors\/neutral\/foreground\/-2\/rest,#59595a)] text-right whitespace-nowrap" dir="auto" data-node-id="I10899:91222;6132:2645">
+                      1،300،000
+                    </p>
+                  </div>
+                </div>
+                <div className="bg-[var(--colors\/neutral\/background\/1\/rest,#f6f8fa)] content-stretch flex gap-[8px] items-center justify-center overflow-clip px-[16px] relative rounded-[var(--corder-radius\/full,360px)] shrink-0 size-[45px]" data-name="Button" data-node-id="I10899:91222;6132:2646">
+                  <div className="relative shrink-0 size-[18px]" data-name="Icon (After Text)" data-node-id="I10899:91222;6132:2646;846:203">
+                    <div className="-translate-x-1/2 -translate-y-1/2 absolute left-1/2 overflow-clip size-[18px] top-1/2" data-name="Wallet - Iconly Pro" data-node-id="I10899:91222;6132:2646;846:203;808:179">
+                      <div className="absolute inset-[35.81%_8.34%_36.85%_59%]" data-name="Vector" data-node-id="I10899:91222;6132:2646;846:203;808:179;345:196">
+                        <img alt="" className="absolute block max-w-none size-full" src={imgVector42} />
+                      </div>
+                      <div className="absolute inset-[46.11%_25.01%_47.64%_68.73%]" data-name="Vector" data-node-id="I10899:91222;6132:2646;846:203;808:179;345:197">
+                        <img alt="" className="absolute block max-w-none size-full" src={imgVector43} />
+                      </div>
+                      <div className="absolute inset-[12.24%_8.33%_12.26%_10.42%]" data-name="Vector" data-node-id="I10899:91222;6132:2646;846:203;808:179;345:198">
+                        <img alt="" className="absolute block max-w-none size-full" src={imgVector44} />
+                      </div>
+                      <div className="absolute inset-[70.17%_60.68%_23.58%_10.42%]" data-name="Vector" data-node-id="I10899:91222;6132:2646;846:203;808:179;345:199">
+                        <img alt="" className="absolute block max-w-none size-full" src={imgVector45} />
+                      </div>
+                      <div className="absolute inset-[58.84%_72.01%_12.25%_21.74%]" data-name="Vector" data-node-id="I10899:91222;6132:2646;846:203;808:179;345:200">
+                        <img alt="" className="absolute block max-w-none size-full" src={imgVector46} />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="absolute bg-[var(--colors\/neutral\/background\/1\/rest,#f6f8fa)] border border-[var(--colors\/neutral\/stroke\/1\/rest,#e2e4e6)] border-solid overflow-clip right-[-3px] rounded-[var(--corder-radius\/full,360px)] size-[20px] top-[-3px]" data-name="Plus" data-node-id="I10899:91222;11839:34051">
+                <div className="absolute left-[3.5px] size-[12px] top-[3.5px]" data-name="Icon" data-node-id="I10899:91222;11839:34052">
+                  <div className="-translate-x-1/2 -translate-y-1/2 absolute left-1/2 overflow-clip size-[12px] top-1/2" data-name="Plus 4 - Iconly Pro" data-node-id="I10899:91222;11839:34052;187:91">
+                    <div className="absolute inset-[20.83%_21.88%_22.92%_21.88%]" data-name="Vector" data-node-id="I10899:91222;11839:34052;187:91;187:4">
+                      <img alt="" className="absolute block max-w-none size-full" src={imgVector47} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="flex h-[25px] items-center justify-center relative shrink-0 w-0">
+              <div className="flex-none rotate-90">
+                <div className="h-0 relative w-[25px]" data-name="Divider" data-node-id="I10899:91222;6132:2647">
+                  <div className="absolute inset-[-1.5px_0_0_0]">
+                    <img alt="" className="block max-w-none size-full" src={imgDivider} />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="content-stretch flex gap-[10px] items-center relative shrink-0" data-name="Button+Badge" data-node-id="I10899:91222;6132:2648">
+              <div className="bg-[var(--colors\/neutral\/background\/1\/rest,#f6f8fa)] content-stretch flex gap-[8px] items-center justify-center overflow-clip px-[16px] relative rounded-[var(--corder-radius\/full,360px)] shrink-0 size-[45px]" data-name="Button" data-node-id="I10899:91222;6132:2649">
+                <div className="relative shrink-0 size-[18px]" data-name="Icon (After Text)" data-node-id="I10899:91222;6132:2649;846:203">
+                  <div className="-translate-x-1/2 -translate-y-1/2 absolute left-1/2 overflow-clip size-[18px] top-1/2" data-name="Notification - Iconly Pro" data-node-id="I10899:91222;6132:2649;846:203;808:179">
+                    <div className="absolute contents inset-[4.17%_10.43%_6.25%_12.5%]" data-name="Iconly/Light-Outline/Notification" data-node-id="I10899:91222;6132:2649;846:203;808:179;187:22">
+                      <div className="absolute inset-[4.17%_10.43%_6.25%_12.5%]" data-name="Notification" data-node-id="I10899:91222;6132:2649;846:203;808:179;187:23">
+                        <img alt="" className="absolute block max-w-none size-full" src={imgNotification} />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="absolute bg-[var(--colors\/neutral\/background\/inverted\/1\/rest,#222323)] content-stretch flex flex-col items-center justify-center pt-[3px] right-[-3px] rounded-[var(--radius\/radius-full,360px)] size-[20px] top-[-3px]" data-name="Counter" data-node-id="I10899:91222;6132:2650">
+                <div className="flex flex-col font-['Peyda(FaNum):Medium',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[13px] text-[color:var(--colors\/neutral\/foreground\/inverted\/1\/rest,white)] text-right whitespace-nowrap" data-node-id="I10899:91222;6132:2651">
+                  <p className="leading-[1.3]" dir="rtl">
+                    3
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="bg-[var(--colors\/neutral\/background\/1\/rest,#f6f8fa)] content-stretch flex gap-[8px] items-center justify-center overflow-clip px-[16px] relative rounded-[var(--corder-radius\/full,360px)] shrink-0 size-[45px]" data-name="Button" data-node-id="I10899:91222;6132:2652">
+              <div className="relative shrink-0 size-[18px]" data-name="Icon (After Text)" data-node-id="I10899:91222;6132:2652;846:203">
+                <div className="-translate-x-1/2 -translate-y-1/2 absolute left-1/2 overflow-clip size-[18px] top-1/2" data-name="Search-2 - Iconly Pro" data-node-id="I10899:91222;6132:2652;846:203;808:179">
+                  <div className="absolute inset-[9.38%_9.23%_9.38%_11.31%]" data-name="Vector" data-node-id="I10899:91222;6132:2652;846:203;808:179;187:18">
+                    <img alt="" className="absolute block max-w-none size-full" src={imgVector48} />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="content-stretch flex flex-col gap-[4px] items-end relative shrink-0" data-name="Title Block" data-node-id="I10899:91222;6132:2653">
+            <div className="content-stretch flex items-center justify-end relative shrink-0" data-name="Title" data-node-id="I10899:91222;6132:2654">
+              <div className="flex flex-col font-['Peyda(FaNum):SemiBold',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[24px] text-[color:var(--colors\/neutral\/foreground\/1\/rest,#222323)] whitespace-nowrap" data-node-id="I10899:91222;6132:2655">
+                <p className="leading-[1.3]" dir="rtl">
+                  پروفایل علی میرهادی
+                </p>
+              </div>
+            </div>
+            <div className="content-stretch flex items-center justify-end relative shrink-0 w-full" data-name="Breadcrumb" data-node-id="I10899:91222;6132:2656">
+              <div className="content-stretch flex gap-[8px] h-[24px] items-center justify-center overflow-clip px-[8px] relative rounded-[var(--corder-radius\/half-minimal,4px)] shrink-0" data-name="Current Location" data-node-id="I10899:91222;6132:2657">
+                <div className="content-stretch flex gap-[8px] items-center justify-end relative shrink-0" data-name="Inner" data-node-id="I10899:91222;6132:2657;207:242">
+                  <div className="flex flex-col font-['Peyda(FaNum):Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[13px] text-[color:var(--colors\/neutral\/foreground\/1\/rest,#222323)] text-right whitespace-nowrap" data-node-id="I10899:91222;6132:2657;207:244">
+                    <p className="leading-[1.3]" dir="auto">
+                      علی میرهادی
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="flex flex-col font-['Peyda(FaNum):Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[13px] text-[color:var(--colors\/neutral\/foreground\/-2\/rest,#59595a)] text-right whitespace-nowrap" data-node-id="I10899:91222;6132:2658">
+                <p className="leading-[1.3]" dir="rtl">
+                  /
+                </p>
+              </div>
+              <div className="content-stretch flex gap-[8px] h-[24px] items-center justify-center overflow-clip px-[8px] relative rounded-[var(--corder-radius\/half-minimal,4px)] shrink-0" data-name="Breadcrumb Item" data-node-id="I10899:91222;6132:2659">
+                <div className="content-stretch flex gap-[8px] items-center justify-end relative shrink-0" data-name="Inner" data-node-id="I10899:91222;6132:2659;207:242">
+                  <div className="flex flex-col font-['Peyda(FaNum):Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[13px] text-[color:var(--colors\/neutral\/foreground\/-2\/rest,#59595a)] text-right whitespace-nowrap" data-node-id="I10899:91222;6132:2659;207:244">
+                    <p className="leading-[1.3]" dir="auto">
+                      مدیریت مدیران
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="flex flex-col font-['Peyda(FaNum):Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[13px] text-[color:var(--colors\/neutral\/foreground\/-2\/rest,#59595a)] text-right whitespace-nowrap" data-node-id="I10899:91222;6132:2660">
+                <p className="leading-[1.3]" dir="rtl">
+                  /
+                </p>
+              </div>
+              <div className="content-stretch flex gap-[8px] h-[24px] items-center justify-center overflow-clip px-[8px] relative rounded-[var(--corder-radius\/half-minimal,4px)] shrink-0" data-name="Breadcrumb Item" data-node-id="I10899:91222;6132:2661">
+                <div className="content-stretch flex gap-[8px] items-center justify-end relative shrink-0" data-name="Inner" data-node-id="I10899:91222;6132:2661;207:242">
+                  <div className="flex flex-col font-['Peyda(FaNum):Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[13px] text-[color:var(--colors\/neutral\/foreground\/-2\/rest,#59595a)] text-right whitespace-nowrap" data-node-id="I10899:91222;6132:2661;207:244">
+                    <p className="leading-[1.3]" dir="auto">
+                      مدیران
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="flex flex-col font-['Peyda(FaNum):Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[13px] text-[color:var(--colors\/neutral\/foreground\/-2\/rest,#59595a)] text-right whitespace-nowrap" data-node-id="I10899:91222;6132:2662">
+                <p className="leading-[1.3]" dir="rtl">
+                  /
+                </p>
+              </div>
+              <div className="content-stretch flex gap-[8px] h-[24px] items-center justify-center overflow-clip px-[8px] relative rounded-[var(--corder-radius\/half-minimal,4px)] shrink-0" data-name="Breadcrumb Item" data-node-id="I10899:91222;6132:2671">
+                <div className="content-stretch flex gap-[8px] items-center justify-end relative shrink-0" data-name="Inner" data-node-id="I10899:91222;6132:2671;207:242">
+                  <div className="flex flex-col font-['Peyda(FaNum):Regular',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[13px] text-[color:var(--colors\/neutral\/foreground\/-2\/rest,#59595a)] text-right whitespace-nowrap" data-node-id="I10899:91222;6132:2671;207:244">
+                    <p className="leading-[1.3]" dir="auto">
+                      پیشخوان
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="absolute bg-[var(--colors\/brand\/background\/1\/rest,#26a88c)] bottom-[16.5px] right-0 rounded-bl-[25px] rounded-tl-[25px] top-[16.5px] w-[3px]" data-name="Title Effect" data-node-id="I10899:91222;6132:2672" />
+        </div>
+      </div>
+    </div>
+  );
+}

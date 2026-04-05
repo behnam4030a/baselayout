@@ -2465,3 +2465,110 @@ img { display: block; max-width: 100%; }
   }
 }
 
+/* ===================================================
+   ADD CREDIT MODAL — مودال افزایش اعتبار
+   =================================================== */
+.modal--add-credit {
+  --modal-header-bg: var(--page-bg);
+  --modal-header-fg: var(--text-1);
+  --modal-icon-holder-bg: var(--card-bg);
+  --modal-icon-holder-stroke: var(--stroke);
+  --modal-close-color: var(--text-2);
+  --modal-shadow: 0px 0px 10px 5px rgba(38, 168, 140, 0.2);
+  --modal-content-gap: 24px;
+}
+
+.modal--add-credit .modal__container {
+  border: 2px solid #eaf8f5;
+}
+
+/* اعتبار فعلی */
+.ac-modal__balance {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--page-bg);
+  border-radius: var(--radius-card);
+  padding: 12px 16px;
+}
+
+.ac-modal__balance-label {
+  font-size: 14px;
+  color: var(--text-1);
+  line-height: 1.5;
+}
+
+.ac-modal__balance-amount {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.ac-modal__balance-value {
+  font-size: 16px;
+  color: var(--text-1);
+  line-height: 1.5;
+}
+
+.ac-modal__toman {
+  display: flex;
+  align-items: center;
+  opacity: 0.7;
+}
+
+/* فیلد مبلغ */
+.ac-modal__field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.ac-modal__field-label {
+  font-size: 12px;
+  color: var(--text-1);
+  line-height: 1.5;
+  padding: 0 8px;
+}
+
+/* مبالغ پیشنهادی */
+.ac-modal__preset-btn {
+  flex: 1;
+  height: 45px;
+  background: var(--card-bg);
+  border: 1px solid var(--stroke);
+  border-radius: var(--radius-btn);
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--text-1);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background var(--transition), color var(--transition), border-color var(--transition);
+}
+
+.ac-modal__preset-btn:hover {
+  border-color: var(--brand);
+  color: var(--brand);
+}
+
+.ac-modal__preset-btn--active {
+  background: rgba(38, 168, 140, 0.08);
+  border-color: var(--brand);
+  color: var(--brand);
+  font-weight: 500;
+}
+
+@media (max-width: 1023px) {
+  .modal--add-credit .modal__container {
+    bottom: calc(var(--bottom-nav-h) + 8px);
+  }
+}
+
+@media (max-width: 768px) {
+  .ac-modal__preset-btn {
+    flex: 1;
+    padding: 0 8px;
+    font-size: 13px;
+  }
+}
+
