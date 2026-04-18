@@ -56,7 +56,11 @@
       "Bash(grep -r \"input__icon\\\\|input--large\\\\|input__field\\\\|input__container\" C:/WorkProject/FrontLayer_Portal_V.3 --include=*.html -l)",
       "Read(//c/Users/Behnam/.claude/**)",
       "Read(//c/Users/Behnam/**)",
-      "Read(//tmp/**)"
+      "Read(//tmp/**)",
+      "Bash(mkdir -p assets)",
+      "Bash(mv css:*)",
+      "Bash(mv js:*)",
+      "Bash(sed:*)"
     ]
   }
 }
