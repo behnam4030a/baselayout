@@ -158,6 +158,7 @@
   font-weight: 500;
   color: var(--text-2);
   flex-shrink: 0;
+  line-height: 1;
 }
 
 /* Divider — dashed line */

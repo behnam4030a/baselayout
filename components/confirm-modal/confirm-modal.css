@@ -1,0 +1,98 @@
+/* =========================================================
+   Confirm Delete Modal — Page-Specific Styles
+   components/confirm-modal/confirm-modal.css
+   ========================================================= */
+
+.modal--confirm {
+  --modal-width: 400px;
+}
+
+/* Container: light bg with red-tinted border */
+.modal--confirm .modal__container {
+  background: var(--page-bg, #f6f8fa);
+  padding: 4px;
+  border: 2px solid rgba(197, 15, 31, 0.15);
+  box-shadow: 0 0 10px 5px rgba(197, 15, 31, 0.06);
+}
+
+/* Header: transparent bg */
+.modal--confirm .modal__header {
+  background: transparent;
+  padding: 24px;
+}
+
+.modal--confirm .modal__title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-1);
+}
+
+/* Icon holder: red-tinted */
+.modal--confirm .modal__icon-holder {
+  background: rgba(197, 15, 31, 0.08);
+  border-color: rgba(197, 15, 31, 0.2);
+}
+
+.modal--confirm .modal__icon-holder svg {
+  color: #c50f1f;
+}
+
+/* Body: white card */
+.modal--confirm .modal__body {
+  background: var(--card-bg, #fff);
+  border-radius: var(--radius-card, 8px);
+  padding: 24px;
+  gap: 20px;
+  justify-content: flex-start;
+}
+
+.modal--confirm .modal__content {
+  align-items: stretch;
+  gap: 20px;
+}
+
+/* ----------------------------------------------------------
+   Message Text
+   ---------------------------------------------------------- */
+
+.confirm-modal__message {
+  font-size: 14px;
+  color: var(--text-2);
+  line-height: 2;
+  text-align: center;
+  margin: 0;
+}
+
+/* ----------------------------------------------------------
+   Action Buttons Row
+   ---------------------------------------------------------- */
+
+.confirm-modal__actions {
+  display: flex;
+  gap: 12px;
+}
+
+.confirm-modal__cancel-btn,
+.confirm-modal__confirm-btn {
+  flex: 1;
+  justify-content: center;
+}
+
+/* Danger / delete button — red */
+.confirm-modal__confirm-btn {
+  background-color: #c50f1f;
+  border-color: #c50f1f;
+  color: #fff;
+}
+
+.confirm-modal__confirm-btn:hover:not(:disabled) {
+  background-color: #a50d19;
+  border-color: #a50d19;
+  color: #fff;
+}
+
+.confirm-modal__confirm-btn:active:not(:disabled) {
+  background-color: #8c0b15;
+  border-color: #8c0b15;
+  color: #fff;
+}

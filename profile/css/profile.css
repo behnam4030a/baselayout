@@ -552,6 +552,21 @@
   width: 100%;
 }
 
+/* شماره همراه و ایمیل: چپ‌چین (LTR) */
+#fieldMobile,#fieldEmail {
+  direction: ltr;
+  text-align: left;
+}
+#chip-fieldMobile, #chip-fieldEmail {
+    display: flex;
+    width: 100%;
+    justify-content: end;
+}
+/* سلکت وضعیت: مخفی کردن دکمه ضربدر */
+#selectStatus .select__clear {
+  display: none;
+}
+
 /* حالت معمولی select در edit mode — بدون border و shadow فعال */
 .info-tile--editing .info-field__select.select--active .select__trigger {
   border-color: var(--select-color-stroke-rest);
@@ -827,7 +842,9 @@
     flex-direction: column;
     align-items: stretch;
   }
-
+.modal.modal--doc-edit.modal--open.modal--fullpage .modal__container {
+    top: 135px !important;
+}
   #profileSaveBtn,
   #profileCancelBtn {
     width: 100%;
@@ -2100,8 +2117,14 @@
   font-weight: 600;
   color: var(--text-1);
   margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  line-height: 0;
 }
-
+.docs-head__title::before{
+  content: url("data:image/svg+xml, %3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M10.13 3.18125C11.0852 2.42153 12.3277 2.10647 13.6978 2.31094L18.1494 2.97747C18.1494 2.97746 18.1495 2.97747 18.1494 2.97747C19.5226 3.18295 20.619 3.84765 21.3093 4.85437C21.9949 5.85424 22.2338 7.12289 22.0328 8.46442C22.0328 8.46448 22.0329 8.46437 22.0328 8.46442L21.0735 14.8783C20.8725 16.2197 20.2727 17.3631 19.3244 18.1185C18.7678 18.5619 18.1134 18.8537 17.3923 18.9794C16.8862 19.4674 16.2445 19.8434 15.512 20.0754L11.2304 21.4815C11.2301 21.4816 11.2306 21.4814 11.2304 21.4815C9.91468 21.9161 8.6376 21.816 7.56912 21.2285C6.5078 20.6449 5.72301 19.6208 5.29741 18.3341L3.2732 12.1788C3.27304 12.1783 3.27288 12.1778 3.27272 12.1773C2.84249 10.8856 2.86314 9.593 3.37184 8.49071C3.8839 7.38115 4.8554 6.54182 6.17439 6.10763C6.17422 6.10769 6.17457 6.10757 6.17439 6.10763L8.66059 5.28651C8.96576 4.43623 9.46191 3.71264 10.13 3.18125ZM9.95343 6.18381C9.98451 6.11504 10.0054 6.04153 10.0146 5.96574C10.2313 5.26536 10.601 4.72325 11.0638 4.35519C11.66 3.881 12.4732 3.64487 13.476 3.79445C13.4759 3.79444 13.4762 3.79447 13.476 3.79445L17.9274 4.46094C18.9341 4.61158 19.6422 5.07554 20.0722 5.70267C20.5069 6.33662 20.7045 7.20698 20.5494 8.24236L19.59 14.6562C19.4349 15.6917 18.9911 16.4662 18.3898 16.9453C18.0116 17.2465 17.5453 17.4518 16.997 17.5227C16.9649 17.5243 16.933 17.5279 16.9013 17.5336C16.6139 17.5621 16.3048 17.5543 15.9748 17.5049L11.5246 16.8384C10.5177 16.6878 9.80957 16.224 9.37946 15.597C8.94465 14.9631 8.74686 14.0927 8.90158 13.0567L9.86187 6.64313C9.88566 6.48389 9.91636 6.33059 9.95343 6.18381ZM8.2936 6.98741L7.41808 12.8348C7.21767 14.1768 7.4567 15.4457 8.14251 16.4455C8.83302 17.4521 9.92939 18.1165 11.3025 18.3219L14.5588 18.8096L10.761 20.0568L10.7597 20.0573C9.79687 20.3754 8.95772 20.2802 8.29185 19.9141C7.61873 19.5439 7.0502 18.8563 6.72172 17.8636C6.72166 17.8634 6.72178 17.8638 6.72172 17.8636L4.69718 11.7073L4.69623 11.7044C4.36415 10.7082 4.41178 9.81703 4.7338 9.11925C5.0526 8.42847 5.67463 7.85122 6.64381 7.53229L8.2936 6.98741ZM12.3474 8.74661C12.4061 8.33659 12.7862 8.05183 13.1962 8.11058L17.6913 8.75469C18.1013 8.81344 18.3861 9.19346 18.3274 9.60348C18.2686 10.0135 17.8886 10.2983 17.4786 10.2395L12.9834 9.59541C12.5734 9.53666 12.2886 9.15664 12.3474 8.74661ZM11.8315 12.342C11.8903 11.932 12.2704 11.6473 12.6805 11.7062L15.3775 12.0934C15.7875 12.1523 16.0722 12.5324 16.0133 12.9424C15.9545 13.3524 15.5744 13.6371 15.1644 13.5782L12.4673 13.191C12.0573 13.1321 11.7726 12.752 11.8315 12.342Z' fill='%23222323'/%3E%3C/svg%3E");
+}
 .docs-head__dot {
   width: 4px;
   height: 4px;
@@ -2254,15 +2277,16 @@
   color: var(--text-2);
 }
 
-.doc-card__author-dot {
+.doc-card__date::before{
+  content: '';
   width: 4px;
   height: 4px;
   border-radius: 50%;
   background: var(--text-2);
   flex-shrink: 0;
   display: inline-block;
+  margin-left: 5px;
 }
-
 .doc-card__date {
   font-size: 13px;
   color: var(--text-2);
@@ -2375,9 +2399,6 @@
   font-weight: 600;
   color: var(--text-1);
   margin: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .docs-full-view__dot {
@@ -2470,11 +2491,9 @@
   background: var(--page-bg);
   border: 2px solid var(--card-bg);
   border-radius: 8px;
-  height: 24px;
   padding: 0 8px;
   display: inline-flex;
   align-items: center;
-  line-height: 1;
 }
 
 /* ---- حالت‌های نمایش/پنهان ---- */
@@ -2508,22 +2527,9 @@
   margin: 0;
 }
 
-.doc-modal__back-btn {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 7px 14px;
-  border: 1px solid var(--stroke);
-  border-radius: var(--radius-btn);
-  background: var(--card-bg);
-  color: var(--text-1);
-  font-family: inherit;
-  font-size: 14px;
-  font-weight: 400;
-  cursor: pointer;
-  line-height: 1;
-  transition: background var(--transition);
-  direction: rtl;
+
+.doc-modal__fullpage-divider {
+  display: none;
 }
 
 .doc-modal__back-btn:hover { background: var(--page-bg); }
@@ -2574,7 +2580,7 @@
 
 @media (max-width: 1023px) {
   .modal--doc-edit.modal--fullpage .modal__container {
-    top: calc(var(--mobile-header-h) + 48px); /* header ثابت + tab-nav ثابت */
+    top: calc(var(--mobile-header-h) + 50px); /* header ثابت (64px) + tab-nav ثابت (50px) */
     right: 8px;
     left: 8px;
     bottom: calc(var(--bottom-nav-h) + 8px);
@@ -2584,12 +2590,34 @@
 
 @media (max-width: 767px) {
   .modal--doc-edit.modal--fullpage .modal__container {
-    top: calc(var(--mobile-header-h) + 48px);
-    right: 8px;
-    left: 8px;
-    bottom: var(--bottom-nav-h);
+    top: calc(var(--mobile-header-h) + 50px + 8px); /* header (64px) + tab-nav (50px) + gap (8px) */
+    right: 16px;
+    left: 16px;
+    bottom: calc(var(--bottom-nav-h) + 8px);
     border-radius: var(--radius-card);
+    overflow-y: auto;
   }
+  .docs-head__span {
+    justify-content: space-between;
+    width: 100%;
+  }
+}
+
+/* ─── fullpage: actions bar در یک ردیف ─── */
+.modal--doc-edit.modal--fullpage .doc-modal__actions {
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.modal--doc-edit.modal--fullpage .doc-modal__toolbar {
+  width: auto;
+  flex: 1;
+}
+
+.modal--doc-edit.modal--fullpage .doc-modal__btn-row {
+  flex-shrink: 0;
 }
 
 .modal--doc-edit .modal__body {
@@ -2615,11 +2643,14 @@
 
 /* --- دکمه‌های هدر --- */
 .doc-modal__header-btns {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-left: 25px;
 }
-
+#profile-doc-modal .modal__close{
+  top: 29px;
+}
 .doc-modal__header-btn {
   display: flex;
   align-items: center;
@@ -2680,6 +2711,7 @@
 
 .doc-modal__title-input {
   flex: 1;
+  width: 100%;
   font-size: 18px;
   font-weight: 500;
   font-family: inherit;
@@ -2706,6 +2738,12 @@
 }
 
 /* --- برچسب‌ها --- */
+.doc-tags-wrap {
+  flex: 1;
+  min-width: 0;
+  position: relative;
+}
+
 .doc-tags-input {
   flex: 1;
   display: flex;
@@ -2720,18 +2758,16 @@
 .doc-tags-chips { display: contents; }
 
 .doc-tag-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  height: 24px;
-  padding: 0 8px;
-  font-size: 13px;
-  color: var(--text-1);
-  background: var(--page-bg);
-  border: 2px solid var(--card-bg);
-  border-radius: 8px;
-  line-height: 1;
-  flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    gap: 4px;
+    padding: 0 8px;
+    font-size: 13px;
+    color: var(--text-1);
+    background: var(--page-bg);
+    border: 2px solid var(--card-bg);
+    border-radius: 8px;
 }
 
 .doc-tag-chip__remove {
@@ -2764,12 +2800,20 @@
 
 /* --- Dropdown پیشنهاد برچسب --- */
 .doc-tags-dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 0;
+  left: auto;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px;
   background: var(--card-bg);
   border: 1px solid var(--stroke);
   border-radius: 8px;
   box-shadow: -2px 2px 5px 0 rgba(23,23,23,0.07);
-  overflow: hidden;
-  width: 100%;
+  z-index: 20;
 }
 
 .doc-tags-dropdown__item {
@@ -2779,13 +2823,14 @@
   gap: 8px;
   width: 100%;
   height: 45px;
-  padding: 0 16px;
+  padding: 0 12px;
   font-size: 14px;
   font-family: inherit;
   font-weight: 500;
   color: var(--text-1);
   background: var(--card-bg);
   border: none;
+  border-radius: 6px;
   cursor: pointer;
   text-align: right;
   direction: rtl;
@@ -2801,7 +2846,7 @@
   width: 20px;
   height: 20px;
   flex-shrink: 0;
-  color: var(--brand);
+  color: var(--text-2);
 }
 
 /* --- آزمون‌های متصل --- */
@@ -3181,7 +3226,7 @@
 /* --- موبایل: تغییر چیدمان اکشن‌ها --- */
 @media (max-width: 767px) {
   .doc-modal__actions {
-    padding: 16px;
+    padding: 8px;
   }
 
   .doc-modal__btn-row {
@@ -3204,15 +3249,137 @@
     height: 45px;
     width: auto;
   }
-
+  .docs-full-view__dot {
+    display: none;
+  }
   /* ذخیره تمام عرض */
   .doc-modal__save-group {
     width: 100%;
     flex-shrink: 1;
     flex-direction: row-reverse;
   }
-
+.docs-full-view__actions #docsEditBtn{
+  width: 100%;
+}
   #docModalSaveBtn {
+    flex: 1;
+    width: auto;
+  }
+.doc-modal__toolbar {
+    padding: 0 5px;
+}
+}
+
+/* ── حالت تمام‌صفحه در موبایل ── */
+@media (max-width: 767px) {
+
+  /*
+   * المان .modal دارای pointer-events:auto و inset:0 است.
+   * در حالت fullpage، header و تب‌های پروفایل باید هم دیده شوند و هم کلیک‌پذیر باشند.
+   * بنابراین pointer-events را از المان اصلی حذف می‌کنیم و فقط روی container نگه می‌داریم.
+   */
+  .modal--doc-edit.modal--fullpage {
+    pointer-events: none;
+  }
+.timeline-connector {
+    border-bottom: 2px dashed var(--brand);
+}
+  .modal--doc-edit.modal--fullpage .modal__container {
+    pointer-events: auto;
+  }
+
+  /* هدر: ستونی — عنوان بالا، خط‌چین، دکمه بازگشت پایین */
+  .modal--doc-edit.modal--fullpage .doc-modal__fullpage-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding:  16px;
+    border-bottom: none;
+  }
+
+  .modal--doc-edit.modal--fullpage .doc-modal__fullpage-title {
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  .modal--doc-edit.modal--fullpage .doc-modal__fullpage-divider {
+    display: block;
+    border: none;
+    border-top: 2px dashed var(--stroke);
+    width: 100%;
+    margin: 0;
+  }
+
+  .modal--doc-edit.modal--fullpage .doc-modal__back-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* ردیف‌های فرم: ستونی — label بالا، فیلد پایین */
+  .modal--doc-edit.modal--fullpage .doc-modal__row {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .modal--doc-edit.modal--fullpage .doc-modal__label {
+    width: auto;
+  }
+
+  .modal--doc-edit.modal--fullpage .doc-modal__title-input,
+  .modal--doc-edit.modal--fullpage .doc-tags-wrap {
+    width: 100%;
+  }
+
+  /* اکشن‌ها: ستونی — toolbar / صدا+پیوست / ذخیره */
+  .modal--doc-edit.modal--fullpage .doc-modal__actions {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 16px;
+    gap: 16px;
+    flex-wrap: nowrap;
+    border-top: 4px solid var(--page-bg); /* جداکننده ۴px بین body و actions مانند فیگما */
+  }
+
+  .modal--doc-edit.modal--fullpage .doc-modal__toolbar {
+    flex: none;
+    width: 100%;
+    padding: 0 12px;
+  }
+
+  .modal--doc-edit.modal--fullpage .doc-modal__btn-row {
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    direction: rtl;
+  }
+
+  /* آیکون‌ها بالای ذخیره */
+  .modal--doc-edit.modal--fullpage .doc-modal__icon-row {
+    order: -1;
+    flex-direction: row-reverse;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .modal--doc-edit.modal--fullpage .doc-modal__icon-row .doc-modal__extra-btn {
+    flex: 1;
+    height: 45px;
+    width: auto;
+  }
+
+  /* دکمه حذف قالب‌بندی: مخفی در موبایل تمام‌صفحه */
+  .modal--doc-edit.modal--fullpage #docClearFmtBtn {
+    display: none;
+  }
+
+  /* گروه ذخیره: تمام عرض */
+  .modal--doc-edit.modal--fullpage .doc-modal__save-group {
+    width: 100%;
+    flex-direction: row-reverse;
+  }
+
+  .modal--doc-edit.modal--fullpage #docModalSaveBtn {
     flex: 1;
     width: auto;
   }
@@ -3322,10 +3489,30 @@
   .docs-editor-page__toolbar { flex: 1; min-width: 0; }
 }
 
+/* جداکننده خط‌چین داخل هدر: در دسکتاپ پنهان */
+.docs-head__inner-divider {
+  display: none;
+}
+
 /* ============================================================
    RESPONSIVE — Docs Tab Mobile (max 767px)
    ============================================================ */
 @media (max-width: 767px) {
+
+  /* جداکننده خط‌چین داخل هدر (بین عنوان و دکمه‌ها) */
+  .docs-head__inner-divider {
+    display: block;
+    border: none;
+    border-top: 2px dashed #e2e4e6;
+    margin: 0;
+    width: 100%;
+  }
+
+  /* نقطه جداکننده: مخفی در موبایل */
+  .docs-head__dot { display: none; }
+
+  /* تعداد: با margin-inline-start: auto به سمت چپ (LTR-end) می‌رود */
+  .docs-head__count { margin-inline-start: auto; }
 
   /* ── هدر مستندات ── */
   .docs-head {
@@ -3351,6 +3538,7 @@
     width: 100%;
     gap: 8px;
     flex-direction: row;
+    flex-wrap: wrap;
   }
 
   .docs-head__btn-holder .btn { flex: 1; }
@@ -3397,6 +3585,30 @@
     overflow: hidden;
   }
 
+  /* ── کارت مستند — هدر عمودی در موبایل ── */
+  .doc-card__head {
+    flex-direction: column;
+    gap: 8px;
+    align-items: stretch;
+  }
+
+  .doc-card__header {
+    width: 100%;
+    gap: 0;
+  }
+.doc-card__author {
+    border-top: 2px dashed #e2e4e6;
+    padding-top: 12px;
+    margin-top: 12px;
+}
+
+  .doc-card__tags {
+    max-width: none;
+    width: 100%;
+  }
+.doc-tags-dropdown {
+    right: 0px;
+}
   /* ── حالت خالی ── */
   .docs-state { padding: 40px 16px; }
 
@@ -3427,24 +3639,21 @@
   .doc-card__actions {
     flex-direction: column;
     align-items: stretch;
-    justify-content: flex-start;
-    gap: 0;
+    gap: 16px;
   }
 
   /* فایل‌ها: نمایش در ابتدا (بالا) */
   .doc-card__attachments {
     order: -1;
-    margin-bottom: 16px;
   }
 
   /* دکمه‌ها: جداکننده خط‌چین بالا + ردیف کامل-عرض */
-.doc-card__btn-holder {
-    flex-direction: row;
-    padding-top: 16px;
-    border-top: 2px dashed var(--stroke);
-    width: 100%;
+  .doc-card__btn-holder {
     flex-direction: row-reverse;
-}
+    padding-top: 16px;
+    border-top: 2px dashed #e2e4e6;
+    width: 100%;
+  }
 
   /* دکمه ویرایش: پر کردن عرض باقی‌مانده */
   .doc-card__btn-holder .doc-card__edit-btn {
@@ -3466,9 +3675,15 @@
 
   .docs-full-view__title { font-size: 16px; }
 
-  .docs-full-view__actions { width: 100%; justify-content: flex-end; }
+  .docs-full-view__actions { width: 100%;  }
 
   .docs-full-view__body { padding: 16px; }
+  .modal--doc-edit .modal__content {
+    padding: 16px;
+  }
+  .doc-modal__title-input {
+    font-size: 16px;
+  }
 }
 
 /* ============================================================
@@ -3925,6 +4140,21 @@
 
 .modal--profile-access .modal__body {
   justify-content: flex-start;
+  overflow: visible;
+}
+
+.modal--profile-access .modal__content {
+  overflow: visible;
+}
+
+.modal--profile-access .profile-access-modal__list {
+  overflow-y: auto;
+  max-height: 280px;
+}
+
+/* Hide × clear button — access level always has a selection */
+.modal--profile-access .select__clear {
+  display: none;
 }
 
 /* ── toolbar: یک ردیف — RTL: search (راست) | select | button (چپ) ── */
@@ -4051,14 +4281,16 @@
 
 /* Row select: fixed width, bg page-bg */
 .profile-access-modal__row-select {
-  flex: 0 0 130px;
+  flex: 0 0 145px;
 }
 .profile-access-modal__row-select .select__trigger {
     background: var(--page-bg);
     border-radius: 0;
     border: none;
 }
-
+.main-wrapper {
+    gap: 0px;
+}
 /* Delete button: standalone — آخر در DOM = چپ‌ترین */
 .profile-access-modal__delete-btn {
   flex-shrink: 0;
@@ -4084,12 +4316,12 @@
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
 }
-#profile-access-modal .input__container{
+#profile-access-modal .input__container {
   border-radius: 0;
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
 }
-#profile-access-modal .select__trigger{
+#profile-access-modal .select__trigger {
   border-radius: 0;
 }
 #profile-access-modal .btn--primary {
@@ -4165,7 +4397,6 @@
 }
 #profile-access-modal .modal__container {
     top: 17px;
-    max-height: 516px;
 }
   .access-interp-status {
     flex-direction: row;

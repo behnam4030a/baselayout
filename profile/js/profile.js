@@ -586,10 +586,6 @@ const DocumentsTab = (() => {
   let _currentTags   = [];
   let _currentExams  = [];
 
-  let _tagsSelectInst      = null;
-  let _pageTagsSelectInst  = null;
-  let _examsSelectInst     = null;
-  let _pageExamsSelectInst = null;
   let _attachments     = [];
   let _isRecording     = false;
   let _recognition     = null;
@@ -658,11 +654,11 @@ const DocumentsTab = (() => {
     const _docModalBody = document.querySelector('#profile-doc-modal .modal__body');
     if (_docModalBody) {
       _docModalBody.addEventListener('click', (e) => {
-        // — Close select dropdowns when clicking outside them —
-        ['docTagsSelect', 'docExamsSelect'].forEach((selId) => {
-          const selEl = document.getElementById(selId);
-          if (selEl && !selEl.contains(e.target) && selEl._selectInstance) {
-            selEl._selectInstance.close();
+        // — Close tag/exam dropdowns when clicking outside them —
+        ['docTagsDropdown', 'docExamsDropdown'].forEach((ddId) => {
+          const ddEl = document.getElementById(ddId);
+          if (ddEl && !ddEl.closest('.doc-tags-wrap')?.contains(e.target)) {
+            ddEl.style.display = 'none';
           }
         });
 
@@ -894,58 +890,207 @@ const DocumentsTab = (() => {
       });
     });
 
-    // ── Select: Tags & Exams init ─────────────────────────
-    // Helper: toggle overflow on .modal__content so dropdown isn't clipped
-    const _modalContent = document.querySelector('#profile-doc-modal .modal__content');
-    function _allowSelectOverflow()  { if (_modalContent) _modalContent.style.overflow = 'visible'; }
-    function _restoreSelectOverflow() { if (_modalContent) _modalContent.style.overflow = ''; }
+    // ── Tags & Exams: custom tag-chip inputs ─────────────
 
-    // Tags pair
+    // Tags — custom tag-chip input
     (function() {
-      const modalEl = document.getElementById('docTagsSelect');
-      const pageEl  = document.getElementById('docPageTagsSelect');
-      if (modalEl) {
-        _tagsSelectInst = modalEl._selectInstance || Select.init(modalEl);
-        if (_tagsSelectInst) {
-          _tagsSelectInst.onChange((vals) => {
-            _currentTags = vals || [];
-            if (_pageTagsSelectInst) _pageTagsSelectInst.setValue(_currentTags);
-          });
-          _tagsSelectInst.onOpen(_allowSelectOverflow);
-          _tagsSelectInst.onClose(_restoreSelectOverflow);
+      var wrap     = document.getElementById('docTagsWrap');
+      var input    = document.getElementById('docTagsInput');
+      var field    = document.getElementById('docTagsField');
+      var chips    = document.getElementById('docTagsChips');
+      var dropdown = document.getElementById('docTagsDropdown');
+      if (!wrap || !field || !chips || !dropdown) return;
+
+      var CLOSE_SVG = '<svg viewBox="0 0 12 12" fill="none" width="12" height="12"><path d="M2 2l8 8M10 2l-8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>';
+      var allItems  = Array.prototype.slice.call(dropdown.querySelectorAll('.doc-tags-dropdown__item'));
+
+      /* --- درج chip --- */
+      function _addTag(val) {
+        val = val.trim();
+        if (!val) return;
+        // جلوگیری از تکرار
+        var existing = chips.querySelectorAll('.doc-tag-chip');
+        for (var i = 0; i < existing.length; i++) {
+          if (existing[i].dataset.value === val) return;
         }
+        var chip = document.createElement('span');
+        chip.className = 'doc-tag-chip';
+        chip.dataset.value = val;
+        chip.innerHTML = '<button class="doc-tag-chip__remove" type="button" aria-label="حذف برچسب ' + val + '">' + CLOSE_SVG + '</button>' + val;
+        chip.querySelector('.doc-tag-chip__remove').addEventListener('click', function() {
+          chip.remove();
+          _currentTags = _getTagValues();
+          _syncDropdown();
+        });
+        chips.appendChild(chip);
+        _currentTags = _getTagValues();
+        _syncDropdown();
       }
-      if (pageEl) {
-        _pageTagsSelectInst = pageEl._selectInstance || Select.init(pageEl);
-        if (_pageTagsSelectInst) _pageTagsSelectInst.onChange((vals) => {
-          _currentTags = vals || [];
-          if (_tagsSelectInst) _tagsSelectInst.setValue(_currentTags);
+
+      /* --- دریافت مقادیر انتخاب‌شده --- */
+      function _getTagValues() {
+        return Array.prototype.slice.call(chips.querySelectorAll('.doc-tag-chip')).map(function(c) { return c.dataset.value; });
+      }
+
+      /* --- مخفی کردن آیتم‌های انتخاب‌شده در dropdown --- */
+      function _syncDropdown() {
+        var selected = _getTagValues();
+        allItems.forEach(function(item) {
+          var v = item.dataset.value;
+          item.style.display = selected.indexOf(v) !== -1 ? 'none' : '';
         });
       }
+
+      /* --- فیلتر dropdown بر اساس متن --- */
+      function _filterDropdown(q) {
+        var selected = _getTagValues();
+        var hasVisible = false;
+        allItems.forEach(function(item) {
+          var v = item.dataset.value;
+          if (selected.indexOf(v) !== -1) { item.style.display = 'none'; return; }
+          var match = !q || v.indexOf(q) !== -1;
+          item.style.display = match ? '' : 'none';
+          if (match) hasVisible = true;
+        });
+        return hasVisible;
+      }
+
+      /* --- نمایش/مخفی dropdown --- */
+      function _openDropdown() {
+        var hasVisible = _filterDropdown(field.value.trim());
+        dropdown.style.display = hasVisible ? '' : 'none';
+      }
+      function _closeDropdown() { dropdown.style.display = 'none'; }
+
+      /* --- کلیک روی container: فوکوس به input + نمایش dropdown --- */
+      input.addEventListener('click', function() { field.focus(); _openDropdown(); });
+
+      /* --- تایپ --- */
+      field.addEventListener('input', function() { _openDropdown(); });
+      field.addEventListener('focus', function() { _openDropdown(); });
+
+      /* --- Enter برای افزودن free-text tag --- */
+      field.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' && field.value.trim()) {
+          e.preventDefault();
+          _addTag(field.value);
+          field.value = '';
+          _closeDropdown();
+        } else if (e.key === 'Backspace' && !field.value) {
+          var allChips = chips.querySelectorAll('.doc-tag-chip');
+          if (allChips.length) { allChips[allChips.length - 1].remove(); _currentTags = _getTagValues(); _syncDropdown(); }
+        }
+      });
+
+      /* --- کلیک روی آیتم dropdown --- */
+      dropdown.addEventListener('mousedown', function(e) {
+        var item = e.target.closest('.doc-tags-dropdown__item');
+        if (!item) return;
+        e.preventDefault(); // جلوگیری از blur شدن input
+        _addTag(item.dataset.value);
+        field.value = '';
+        _closeDropdown();
+        field.focus();
+      });
+
+      /* --- بستن با کلیک خارج --- */
+      document.addEventListener('mousedown', function(e) {
+        if (!wrap.contains(e.target)) _closeDropdown();
+      });
     })();
 
-    // Exams pair
+    // Exams — custom tag-chip input (همانند برچسب‌ها)
     (function() {
-      const modalEl = document.getElementById('docExamsSelect');
-      const pageEl  = document.getElementById('docPageExamsSelect');
-      if (modalEl) {
-        _examsSelectInst = modalEl._selectInstance || Select.init(modalEl);
-        if (_examsSelectInst) {
-          _examsSelectInst.onChange((vals) => {
-            _currentExams = vals || [];
-            if (_pageExamsSelectInst) _pageExamsSelectInst.setValue(_currentExams);
-          });
-          _examsSelectInst.onOpen(_allowSelectOverflow);
-          _examsSelectInst.onClose(_restoreSelectOverflow);
+      var wrap     = document.getElementById('docExamsWrap');
+      var input    = document.getElementById('docExamsInput');
+      var field    = document.getElementById('docExamsField');
+      var chips    = document.getElementById('docExamsChips');
+      var dropdown = document.getElementById('docExamsDropdown');
+      if (!wrap || !field || !chips || !dropdown) return;
+
+      var CLOSE_SVG = '<svg viewBox="0 0 12 12" fill="none" width="12" height="12"><path d="M2 2l8 8M10 2l-8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>';
+      var allItems  = Array.prototype.slice.call(dropdown.querySelectorAll('.doc-tags-dropdown__item'));
+
+      function _addExam(val) {
+        val = val.trim();
+        if (!val) return;
+        var existing = chips.querySelectorAll('.doc-tag-chip');
+        for (var i = 0; i < existing.length; i++) {
+          if (existing[i].dataset.value === val) return;
         }
+        var chip = document.createElement('span');
+        chip.className = 'doc-tag-chip';
+        chip.dataset.value = val;
+        chip.innerHTML = '<button class="doc-tag-chip__remove" type="button" aria-label="حذف آزمون ' + val + '">' + CLOSE_SVG + '</button>' + val;
+        chip.querySelector('.doc-tag-chip__remove').addEventListener('click', function() {
+          chip.remove();
+          _currentExams = _getExamValues();
+          _syncExamDropdown();
+        });
+        chips.appendChild(chip);
+        _currentExams = _getExamValues();
+        _syncExamDropdown();
       }
-      if (pageEl) {
-        _pageExamsSelectInst = pageEl._selectInstance || Select.init(pageEl);
-        if (_pageExamsSelectInst) _pageExamsSelectInst.onChange((vals) => {
-          _currentExams = vals || [];
-          if (_examsSelectInst) _examsSelectInst.setValue(_currentExams);
+
+      function _getExamValues() {
+        return Array.prototype.slice.call(chips.querySelectorAll('.doc-tag-chip')).map(function(c) { return c.dataset.value; });
+      }
+
+      function _syncExamDropdown() {
+        var selected = _getExamValues();
+        allItems.forEach(function(item) {
+          item.style.display = selected.indexOf(item.dataset.value) !== -1 ? 'none' : '';
         });
       }
+
+      function _filterExamDropdown(q) {
+        var selected = _getExamValues();
+        var hasVisible = false;
+        allItems.forEach(function(item) {
+          var v = item.dataset.value;
+          if (selected.indexOf(v) !== -1) { item.style.display = 'none'; return; }
+          var match = !q || v.indexOf(q) !== -1;
+          item.style.display = match ? '' : 'none';
+          if (match) hasVisible = true;
+        });
+        return hasVisible;
+      }
+
+      function _openExamDropdown() {
+        var hasVisible = _filterExamDropdown(field.value.trim());
+        dropdown.style.display = hasVisible ? '' : 'none';
+      }
+      function _closeExamDropdown() { dropdown.style.display = 'none'; }
+
+      input.addEventListener('click', function() { field.focus(); _openExamDropdown(); });
+      field.addEventListener('input', function() { _openExamDropdown(); });
+      field.addEventListener('focus', function() { _openExamDropdown(); });
+
+      field.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' && field.value.trim()) {
+          e.preventDefault();
+          _addExam(field.value);
+          field.value = '';
+          _closeExamDropdown();
+        } else if (e.key === 'Backspace' && !field.value) {
+          var allChips = chips.querySelectorAll('.doc-tag-chip');
+          if (allChips.length) { allChips[allChips.length - 1].remove(); _currentExams = _getExamValues(); _syncExamDropdown(); }
+        }
+      });
+
+      dropdown.addEventListener('mousedown', function(e) {
+        var item = e.target.closest('.doc-tags-dropdown__item');
+        if (!item) return;
+        e.preventDefault();
+        _addExam(item.dataset.value);
+        field.value = '';
+        _closeExamDropdown();
+        field.focus();
+      });
+
+      document.addEventListener('mousedown', function(e) {
+        if (!wrap.contains(e.target)) _closeExamDropdown();
+      });
     })();
 
     Modal.onClose('profile-doc-modal', _resetModal);
@@ -1217,15 +1362,44 @@ const DocumentsTab = (() => {
      sync select instances → hidden input
   ─────────────────────────────────────────── */
   function _renderTagChips() {
-    if (_tagsSelectInst)     _tagsSelectInst.setValue(_currentTags);
-    if (_pageTagsSelectInst) _pageTagsSelectInst.setValue(_currentTags);
-    const hidden = document.getElementById('docFieldTagsHidden');
+    // custom tag-chip input
+    var chipsEl  = document.getElementById('docTagsChips');
+    if (chipsEl) {
+      chipsEl.innerHTML = '';
+      var CLOSE_SVG = '<svg viewBox="0 0 12 12" fill="none" width="12" height="12"><path d="M2 2l8 8M10 2l-8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>';
+      _currentTags.forEach(function(val) {
+        var chip = document.createElement('span');
+        chip.className = 'doc-tag-chip';
+        chip.dataset.value = val;
+        chip.innerHTML = '<button class="doc-tag-chip__remove" type="button" aria-label="حذف برچسب ' + val + '">' + CLOSE_SVG + '</button>' + val;
+        chip.querySelector('.doc-tag-chip__remove').addEventListener('click', function() {
+          chip.remove();
+          _currentTags = Array.prototype.slice.call(chipsEl.querySelectorAll('.doc-tag-chip')).map(function(c) { return c.dataset.value; });
+        });
+        chipsEl.appendChild(chip);
+      });
+    }
+    var hidden = document.getElementById('docFieldTagsHidden');
     if (hidden) hidden.value = _currentTags.join(',');
   }
 
   function _renderExamChips() {
-    if (_examsSelectInst)     _examsSelectInst.setValue(_currentExams);
-    if (_pageExamsSelectInst) _pageExamsSelectInst.setValue(_currentExams);
+    var chipsEl = document.getElementById('docExamsChips');
+    if (chipsEl) {
+      chipsEl.innerHTML = '';
+      var CLOSE_SVG = '<svg viewBox="0 0 12 12" fill="none" width="12" height="12"><path d="M2 2l8 8M10 2l-8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>';
+      _currentExams.forEach(function(val) {
+        var chip = document.createElement('span');
+        chip.className = 'doc-tag-chip';
+        chip.dataset.value = val;
+        chip.innerHTML = '<button class="doc-tag-chip__remove" type="button" aria-label="حذف آزمون ' + val + '">' + CLOSE_SVG + '</button>' + val;
+        chip.querySelector('.doc-tag-chip__remove').addEventListener('click', function() {
+          chip.remove();
+          _currentExams = Array.prototype.slice.call(chipsEl.querySelectorAll('.doc-tag-chip')).map(function(c) { return c.dataset.value; });
+        });
+        chipsEl.appendChild(chip);
+      });
+    }
   }
 
   const _closeSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M1.5 1.5l7 7M8.5 1.5l-7 7" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/></svg>`;

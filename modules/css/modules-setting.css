@@ -267,6 +267,7 @@
   background: #1a1a2e;
   position: relative;
   overflow: hidden;
+  min-height: 196px;
 }
 
 .ms-intro-video__player {
@@ -327,6 +328,20 @@
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
+}
+
+.ms-sms-vars__box .tag {
+  cursor: pointer;
+  user-select: none;
+  transition: opacity 150ms ease;
+}
+
+.ms-sms-vars__box .tag:hover {
+  opacity: 0.75;
+}
+
+.ms-sms-vars__box .tag:active {
+  opacity: 0.5;
 }
 
 /* Message text field */

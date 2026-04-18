@@ -487,7 +487,6 @@ img { display: block; max-width: 100%; }
   padding: 16px 24px;
   flex-shrink: 0;
   position: relative;
-  box-shadow: var(--shadow-card);
 }
 
 /* Green accent bar on the right */
@@ -1497,7 +1496,6 @@ img { display: block; max-width: 100%; }
   .bottom-nav { display: flex; }
   .mobile-backdrop { display: block; }
   .mobile-drawer { display: flex; }
-
   /* Sub-drawer: on mobile, slides in as full-width sheet */
   .sub-drawer {
     top: 0;

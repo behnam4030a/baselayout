@@ -119,84 +119,341 @@
   min-width: 0;
 }
 
+/* Allow select dropdown to overflow modal body bounds */
+#users-status-modal .modal__body,
+#users-status-modal .modal__content {
+  overflow: visible;
+}
+
 /* ----- Modal: اعطای دسترسی به مدیران ----- */
 
 #users-access-modal {
   --modal-width: 600px;
 }
 
+/* Modal body: hidden keeps modal size fixed */
 #users-access-modal .modal__body {
   justify-content: flex-start;
-  gap: 16px;
   overflow: hidden;
 }
 
-.users-access-modal__toolbar {
+#users-access-modal .modal__content {
+  overflow-y: auto;
+}
+
+/* List scrolls independently */
+#users-access-modal .profile-access-modal__list {
+  overflow-y: auto;
+  max-height: 280px;
+}
+
+/* Hide × clear button */
+#users-access-modal .select__clear {
+  display: none;
+}
+
+/*
+ * Key fix: make .select non-positioned so the dropdown's containing block
+ * becomes .modal__container (position:absolute/relative) instead of .select.
+ * Because .modal__container is an ANCESTOR of .modal__body (overflow:hidden),
+ * the dropdown is NOT clipped by the body — it overlays freely.
+ * JS calculates the exact top/left relative to .modal__container.
+ */
+#users-access-modal .select {
+  position: static;
+}
+
+/* ── toolbar ── */
+.profile-access-modal__toolbar {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 4px;
+  padding-bottom: 16px;
+  width: 100%;
+}
+
+.profile-access-modal__toolbar .input {
+  flex: 1;
+  min-width: 0;
+}
+
+.profile-access-modal__level-select {
+  flex: 0 0 130px;
+}
+
+/* ── Section label ── */
+.profile-access-modal__section-label {
   display: flex;
   align-items: center;
+  gap: 8px;
+  margin: 0 0 8px;
+  padding-bottom: 4px;
+  font-size: 13px;
+  color: var(--text-2);
+  width: 100%;
+}
+
+.profile-access-modal__section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--stroke);
+}
+
+/* ── لیست ── */
+.profile-access-modal__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
   gap: 4px;
   width: 100%;
 }
 
-.users-access-modal__row2 {
+/* ── ردیف ── */
+.profile-access-modal__row {
   display: flex;
   align-items: center;
   gap: 4px;
-  flex-shrink: 0;
-  flex-direction: row-reverse;
 }
 
-.users-access-modal__level-select {
-  width: 160px;
+.profile-access-modal__user {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: var(--page-bg);
+  min-height: 45px;
+  padding: 8px 16px;
+  border-radius: 0 var(--radius-card) var(--radius-card) 0;
   min-width: 0;
+}
+
+.profile-access-modal__avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--stroke);
+  overflow: hidden;
+  flex-shrink: 0;
+  padding: 2px;
+  box-sizing: border-box;
+}
+
+.profile-access-modal__avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--radius-full);
+  display: block;
+}
+
+.profile-access-modal__user-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.profile-access-modal__user-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-1);
+  white-space: nowrap;
+}
+
+.profile-access-modal__user-sep {
+  font-size: 12px;
+  font-weight: 500;
+  color: #c0c1c3;
   flex-shrink: 0;
 }
 
-.users-access-modal__empty {
+.profile-access-modal__user-role {
+  font-size: 12px;
+  color: var(--text-2);
+  white-space: nowrap;
+}
+
+.profile-access-modal__row-controls {
+  display: contents;
+}
+
+.profile-access-modal__row-select {
+  flex: 0 0 145px;
+}
+
+.profile-access-modal__row-select .select__trigger {
+  background: var(--page-bg);
+  border-radius: 0;
+  border: none;
+}
+
+.profile-access-modal__delete-btn {
+  flex-shrink: 0;
+  align-self: stretch;
+  background: var(--page-bg);
+  border-top-left-radius: var(--radius-btn);
+  border-bottom-left-radius: var(--radius-btn);
+  cursor: pointer;
+  color: var(--text-2);
+  padding: 0 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color var(--transition), background var(--transition);
+}
+
+.profile-access-modal__delete-btn:hover {
+  color: #e53e3e;
+  background: rgba(229, 62, 62, 0.08);
+}
+
+/* Toolbar border-radius: joined group look */
+#users-access-modal .profile-access-modal__toolbar .input {
+  border-radius: 0;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+#users-access-modal .input__container {
+  border-radius: 0;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+#users-access-modal .profile-access-modal__toolbar .select__trigger {
+  border-radius: 0;
+}
+
+#users-access-modal .btn--primary {
+  border-radius: 0;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+/* ── Empty state ── */
+.profile-access-modal__empty {
+  text-align: center;
+  padding: 32px 16px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   gap: 8px;
-  min-height: 270px;
-  border: 1.5px dashed var(--stroke);
-  border-radius: 4px;
-  padding: 24px;
-  text-align: center;
   width: 100%;
 }
 
-.users-access-modal__empty-title {
-  font-size: 16px;
-  font-weight: 500;
+.profile-access-modal__empty-title {
+  font-size: 14px;
+  font-weight: 600;
   color: var(--text-1);
-  margin: 0;
 }
 
-.users-access-modal__empty-subtitle {
-  font-size: 12px;
-  font-weight: 400;
+.profile-access-modal__empty-subtitle {
+  font-size: 13px;
   color: var(--text-2);
-  margin: 0;
+  line-height: 1.6;
 }
 
+/* ── Mobile ── */
 @media (max-width: 767px) {
-  .users-access-modal__toolbar {
+  .profile-access-modal__toolbar {
+    flex-wrap: wrap;
+    gap: 4px;
+    padding-bottom: 16px;
+  }
+
+  #users-access-modal .profile-access-modal__toolbar .input {
+    flex: 0 0 100%;
+    border-radius: var(--radius-card) var(--radius-card) 0 0 !important;
+  }
+
+  #users-access-modal .profile-access-modal__toolbar .input__container {
+    border-radius: var(--radius-card) var(--radius-card) 0 0 !important;
+  }
+
+  .profile-access-modal__level-select {
+    flex: 1;
+    flex-basis: 0;
+    min-width: 0;
+  }
+
+  #users-access-modal .profile-access-modal__level-select .select__trigger {
+    border-radius: 0 0 var(--radius-card) 0;
+  }
+
+  #users-access-modal .btn--primary {
+    flex: 1;
+    flex-basis: 0;
+    min-width: 0;
+    border-radius: 0 0 0 var(--radius-card) !important;
+  }
+
+  .profile-access-modal__row {
     flex-direction: column;
     align-items: stretch;
+    gap: 4px;
   }
 
-  .users-access-modal__row2 {
+  .profile-access-modal__user {
+    border-radius: var(--radius-card) var(--radius-card) 0 0;
+    background: var(--page-bg);
+    padding: 8px 12px;
+    gap: 12px;
+    min-height: 45px;
+  }
+
+  .profile-access-modal__row-controls {
+    display: flex;
+    align-items: stretch;
+    gap: 4px;
+  }
+
+  .profile-access-modal__row-select {
+    flex: 1;
+    width: unset;
+    background: var(--page-bg);
+    border-bottom-right-radius: var(--radius-card);
+  }
+
+  #users-access-modal .profile-access-modal__row-select .select__trigger {
+    border-radius: var(--radius-card);
+  }
+
+  .profile-access-modal__list {
+    gap: 16px;
+  }
+
+  .profile-access-modal__row-select .select__trigger {
+    background: var(--page-bg);
+    border-radius: 0 0 var(--radius-card) 0;
+    border: none;
     width: 100%;
+    height: 45px;
   }
 
-  .users-access-modal__row2 .btn {
-    flex: 1;
+  .profile-access-modal__delete-btn {
+    align-self: stretch;
+    background: var(--page-bg);
+    border: none;
+    border-radius: 0 0 0 var(--radius-card);
+    width: 45px;
+    padding: 0;
+    flex-shrink: 0;
   }
 
-  .users-access-modal__level-select {
+  .profile-access-modal__section-label {
+    justify-content: center;
+  }
+
+  .profile-access-modal__section-label::before,
+  .profile-access-modal__section-label::after {
+    content: '';
     flex: 1;
-    width: auto;
+    height: 1px;
+    background: var(--stroke);
   }
 }
 
@@ -842,11 +1099,11 @@
   color: var(--text-2);
   transition: transform var(--transition);
   line-height: 0;
-  transform: rotate(180deg);
+  transform: rotate(0deg);
 }
 
 .add-user-group-toolbar__create-btn--open .add-user-group-toolbar__create-chevron {
-  transform: rotate(0deg);
+  transform: rotate(180deg);
 }
 
 /* ---- Create Group Form ---- */
@@ -2311,21 +2568,6 @@ button.table__filter-row {
   border-top-left-radius: var(--input-radius);
 }
 
-/* ---------------------------------------------------------------
-   Desktop — hide row-action (⋯) button entirely
-   On mobile it stays visible via the table.css card styles
-   --------------------------------------------------------------- */
-
-@media (min-width: 769px) {
-  [data-table="users-table"] .table__row-action {
-    display: none;
-  }
-
-  /* Remove hover gradient since button is gone */
-  [data-table="users-table"] .table__tbody .table__row:hover .table__cell--action::after {
-    display: none;
-  }
-}
 
 /* ---------------------------------------------------------------
    Mobile — Group Activities Bottom Sheet (فعالیت‌های گروهی)

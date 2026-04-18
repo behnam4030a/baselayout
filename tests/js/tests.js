@@ -193,9 +193,20 @@ const TestsSearch = (() => {
       });
     }
 
+    function _initRowAction() {
+      Table.onRowAction('results-table', function(data) {
+        if (data.action !== 'upgrade' || !data.row) return;
+        const cells = data.row.querySelectorAll('td.table__cell:not(.table__cell--checkbox):not(.table__cell--action)');
+        const userCode = cells[0] ? cells[0].textContent.trim() : '—';
+        const examName = cells[1] ? cells[1].textContent.trim() : '—';
+        UpgradeModal.open(examName, userCode);
+      });
+    }
+
     function init() {
       _checkEmptyState();
       _initRowClick();
+      _initRowAction();
     }
 
     return { init };

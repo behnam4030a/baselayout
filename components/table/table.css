@@ -21,7 +21,7 @@
   --table-bg-alt: var(--neutral-20);
   --table-dark-bg: var(--neutral-880);
   --table-danger: var(--cranberry-400);
-  --table-selected-header-bg: var(--brand-5);
+  --table-selected-header-bg: var(--brand-10);
   --table-status-success-fg: var(--green-500);
   --table-status-success-bg: var(--green-25);
   --table-status-danger-fg: var(--cranberry-500);
@@ -660,7 +660,7 @@
 }
 
 .table__tbody .table__row--selected {
-  background: var(--table-white);
+  background: var(--table-selected-header-bg);
 }
 
 .table__tbody .table__cell {
@@ -766,6 +766,12 @@
 
 .table__row-menu--open {
   display: flex;
+}
+
+/* یک آیتم: منو را روی همان خط نگه می‌دارد */
+.table__row-menu:has(.table__row-menu-item:only-child) {
+  top: 0;
+  transform: none;
 }
 
 .table__row-menu-item {
@@ -1058,7 +1064,7 @@
 }
 
 .table__checkbox-box--indeterminate svg.table__icon--indeterminate {
-  display: block;
+  display: block !important;
 }
 
 .table__checkbox-box--indeterminate svg.table__icon--check {
@@ -1311,10 +1317,13 @@
   display: none;
   align-items: center;
   justify-content: space-between;
-  padding: 12px var(--table-header-padding-x);
+  padding: 12px 24px 12px 16px;
   background: var(--table-dark-bg);
-  border-radius: 0 0 var(--table-radius) var(--table-radius);
+  border-radius: var(--table-radius);
   gap: 12px;
+  position: sticky;
+  bottom: 0;
+  z-index: 100;
 }
 
 .table__action-bar--visible {
@@ -1326,8 +1335,9 @@
   align-items: center;
   gap: 8px;
   font-family: var(--typo-font-family);
-  font-size: var(--typo-body-medium-200-size);
-  font-weight: var(--typo-body-medium-200-weight);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
   color: var(--table-white);
   white-space: nowrap;
   flex-shrink: 0;
@@ -1337,23 +1347,23 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 20px;
-  height: 20px;
+  width: 16px;;
+  height: 16px;
   background: var(--table-brand);
-  border-radius: 4px;
+  border-radius: 3px;
   flex-shrink: 0;
 }
 
 .table__action-count-icon svg {
-  width: 12px;
-  height: 12px;
+  width: 10px;
+  height: 10px;
   color: var(--table-white);
 }
 
 .table__action-buttons {
   display: flex;
   align-items: center;
-  gap: var(--table-header-gap);
+  gap: 16px;
   flex-wrap: wrap;
 }
 
@@ -1361,14 +1371,16 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  background: none;
-  border: none;
+  background: #2c2d2d;
+  border: 1px solid #454546;
+  border-radius: var(--table-btn-radius);
   font-family: var(--typo-font-family);
-  font-size: var(--typo-caption-size);
-  font-weight: var(--typo-caption-weight);
+  font-size: 12px;
+  font-weight: 400;
   color: var(--table-white);
   cursor: pointer;
-  padding: 4px 0;
+  padding: 0 16px;
+  height: var(--table-toolbar-btn-height);
   white-space: nowrap;
   transition: opacity 0.2s ease;
 }
@@ -2001,6 +2013,7 @@
     height: 45px;
     padding: 0 16px;
     background: var(--table-light-bg);
+    border: none;
     border-radius: var(--table-radius);
     color: var(--table-primary-text);
     font-size: 14px;

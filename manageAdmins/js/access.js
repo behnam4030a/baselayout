@@ -266,7 +266,8 @@ const AccessModal = (() => {
           var pg = switchEl.closest('.perm-group');
           if (pg) pg.classList.add('perm-group--collapsed');
         } else {
-          /* Show individual checkboxes for custom selection */
+          /* Show individual checkboxes for custom selection — uncheck all first */
+          Array.prototype.forEach.call(items, function (item) { item.checked = false; });
           if (itemsEl) itemsEl.style.display = '';
           var pg = switchEl.closest('.perm-group');
           if (pg) pg.classList.remove('perm-group--collapsed');

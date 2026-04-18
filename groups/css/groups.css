@@ -445,6 +445,10 @@
   background-color: rgba(229, 62, 62, 0.06);
 }
 
+.group-card__delete-btn:hover svg path {
+  fill: #e53e3e;
+}
+
 /* ===== GROUP USERS TABLE WRAPPER ===== */
 .group-users-list {
   margin-top: 16px;

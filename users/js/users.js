@@ -1638,8 +1638,8 @@ const UsersAccessModal = (() => {
     if (!list) return;
 
     var visible = 0;
-    list.querySelectorAll('.users-access-modal__row').forEach(function (row) {
-      var nameEl = row.querySelector('.users-access-modal__name');
+    list.querySelectorAll('.profile-access-modal__row').forEach(function (row) {
+      var nameEl = row.querySelector('.profile-access-modal__user-name');
       var text = nameEl ? nameEl.textContent.toLowerCase() : '';
       var match = !q || text.includes(q);
       row.style.display = match ? '' : 'none';
@@ -1650,18 +1650,58 @@ const UsersAccessModal = (() => {
   }
 
   function _onDeleteClick(e) {
-    var btn = e.target.closest('.users-access-modal__delete-btn');
+    var btn = e.target.closest('.profile-access-modal__delete-btn');
     if (!btn) return;
-    var row = btn.closest('.users-access-modal__row');
+    var row = btn.closest('.profile-access-modal__row');
     if (!row) return;
     row.remove();
 
     var list = document.getElementById('usersAccessList');
     var empty = document.getElementById('usersAccessEmpty');
     if (list && empty) {
-      var remaining = list.querySelectorAll('.users-access-modal__row');
+      var remaining = list.querySelectorAll('.profile-access-modal__row');
       empty.style.display = remaining.length === 0 ? '' : 'none';
     }
+  }
+
+  /* ----------------------------------------------------------
+     Fix select dropdowns inside the modal.
+     CSS makes .select { position:static } so the dropdown's
+     containing block is .modal__container (not .select).
+     .modal__body overflow:hidden does NOT clip it because
+     .modal__container is an ancestor of .modal__body.
+     JS positions the dropdown correctly relative to the container.
+     ---------------------------------------------------------- */
+  function _fixDropdown(selectEl) {
+    var trigger   = selectEl.querySelector('.select__trigger');
+    var dropdown  = selectEl.querySelector('.select__dropdown');
+    if (!trigger || !dropdown) return;
+
+    var modal     = document.getElementById('users-access-modal');
+    var container = modal && modal.querySelector('.modal__container');
+
+    new MutationObserver(function () {
+      if (selectEl.classList.contains('select--open') && container) {
+        var tr = trigger.getBoundingClientRect();
+        var cr = container.getBoundingClientRect();
+        /* Position dropdown below trigger, in container's coordinate space */
+        dropdown.style.cssText =
+          'position:absolute;' +
+          'top:'   + (tr.bottom - cr.top)  + 'px;' +
+          'left:'  + (tr.left   - cr.left) + 'px;' +
+          'width:' + tr.width + 'px;' +
+          'right:auto;' +
+          'z-index:100;';
+      } else {
+        dropdown.style.cssText = '';
+      }
+    }).observe(selectEl, { attributes: true, attributeFilter: ['class'] });
+  }
+
+  function _initDropdownFix() {
+    var modal = document.getElementById('users-access-modal');
+    if (!modal) return;
+    modal.querySelectorAll('.select').forEach(_fixDropdown);
   }
 
   function _init() {
@@ -1670,6 +1710,8 @@ const UsersAccessModal = (() => {
 
     var list = document.getElementById('usersAccessList');
     if (list) list.addEventListener('click', _onDeleteClick);
+
+    _initDropdownFix();
   }
 
   document.addEventListener('DOMContentLoaded', _init);

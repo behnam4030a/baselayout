@@ -385,11 +385,16 @@
 .preview-image-wrap {
   flex: 1;
   min-height: 0;
-  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
-.preview-image-wrap img {
+.preview-iframe {
+  flex: 1;
+  min-height: 0;
   width: 100%;
+  border: none;
   border-radius: var(--radius-card);
   display: block;
 }
@@ -586,22 +591,65 @@
    Result View Modal (rvm__)
    =================================================== */
 
-/* Icon holder override: dark inverted style */
+/* Dark container — #222323 with 4px inner padding (Figma) */
+#result-view-modal .modal__container {
+  background: var(--sidebar-bg, #222323);
+  padding: 4px;
+}
+
+/* Header: transparent so dark container shows through */
+#result-view-modal .modal__header {
+  background: transparent;
+  padding: 24px;
+}
+
+/* Title: 20px SemiBold white */
+#result-view-modal .modal__title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #fff;
+}
+
+/* Subtitle: 14px regular, sidebar-text color */
+#result-view-modal .modal__subtitle {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--sidebar-text, #cfd0d2);
+  line-height: 2;
+  white-space: normal;
+}
+
+/* Close button: white on dark bg */
+#result-view-modal .modal__close {
+  color: #fff;
+}
+
+/* Icon holder: dark inverted style */
 #result-view-modal .modal__icon-holder {
   background: #2c2d2d;
   border: 1px solid #454546;
 }
-/* Grow content to fill body, push actions to bottom */
+
+/* White body area inside dark container */
+#result-view-modal .modal__body {
+  background: var(--card-bg, #fff);
+  border-radius: var(--radius-card, 8px);
+  padding: 24px;
+  gap: 24px;
+  justify-content: flex-start;
+}
+
+/* Content: flex-1 so it pushes actions to bottom */
 #result-view-modal .modal__content {
   flex: 1;
   min-height: 0;
   align-items: stretch;
 }
 
+/* ── Warning bar ── */
 .rvm__warning {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
   gap: 12px;
   padding: 16px;
   background: #fff9f5;
@@ -611,6 +659,7 @@
   font-size: 14px;
   line-height: 1.5;
   flex-shrink: 0;
+  text-align: right;
 }
 .rvm__spinner {
   width: 24px;
@@ -620,6 +669,7 @@
 }
 @keyframes rvm-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
+/* ── Download button ── */
 .rvm__dl-btn {
   display: flex;
   align-items: center;
@@ -643,12 +693,13 @@
   flex: 1;
   align-items: center;
   gap: 8px;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 500;
   color: var(--text-2);
 }
 .rvm__dl-icon { width: 18px; height: 18px; flex-shrink: 0; color: var(--text-2); }
 
+/* ── Pro section ── */
 .rvm__pro {
   background: #eaf8f5;
   border-radius: var(--radius-card);
@@ -697,26 +748,72 @@
 .rvm__pro--purchased .rvm__upgrade-btn { display: none; }
 .rvm__pro--purchased .rvm__purchased-badge { display: block; }
 
+/* ── Back button (actions row at bottom of body) ── */
+.rvm__actions {
+  flex-shrink: 0;
+  width: 100%;
+}
+.rvm__back-btn {
+  width: 100%;
+  justify-content: center;
+}
+
 /* ===================================================
    Upgrade Modal
    =================================================== */
 
-/* Header/Container: page-bg (#f6f8fa) — same as Figma container bg */
-#upgrade-modal {
-  --modal-header-bg: var(--page-bg);
-  --modal-header-fg: var(--text-1);
-  --modal-icon-holder-bg: var(--card-bg);
-  --modal-icon-holder-stroke: var(--stroke);
-  --modal-close-color: var(--text-2);
-}
-#upgrade-modal .modal__subtitle { color: var(--text-2); }
-#upgrade-modal .modal__icon-holder svg { color: var(--brand); }
-#upgrade-modal .modal__content { align-items: unset; }
-
+/* Container: light page-bg with brand border + shadow (Figma) */
 .modal--upgrade .modal__container {
+  background: var(--page-bg, #f6f8fa);
+  padding: 4px;
   border: 2px solid #eaf8f5;
   box-shadow: 0 0 10px 5px rgba(38,168,140,0.2);
 }
+
+/* Header: transparent — inherits container's #f6f8fa bg */
+#upgrade-modal .modal__header {
+  background: transparent;
+  padding: 24px;
+}
+
+/* Title */
+#upgrade-modal .modal__title {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-1);
+}
+
+/* Subtitle */
+#upgrade-modal .modal__subtitle {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-2);
+  line-height: 2;
+}
+
+/* Icon holder: white with light stroke */
+#upgrade-modal .modal__icon-holder {
+  background: var(--card-bg);
+  border-color: var(--stroke);
+}
+#upgrade-modal .modal__icon-holder svg { color: var(--brand); }
+
+/* Close button */
+#upgrade-modal .modal__close { color: var(--text-2); }
+
+/* Body: white card inside light container */
+#upgrade-modal .modal__body {
+  background: var(--card-bg, #fff);
+  border-radius: var(--radius-card, 8px);
+  padding: 24px;
+  gap: 24px;
+  justify-content: flex-start;
+}
+
+/* Content: stretch items */
+#upgrade-modal .modal__content { align-items: stretch; }
+
+/* ── Exam list section ── */
 .upgrade-exam-section {
   display: flex;
   flex-direction: column;
@@ -730,12 +827,11 @@
 }
 .upgrade-exam-row {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   padding: 12px 16px;
   background: var(--page-bg);
   border-radius: var(--radius-card);
   width: 100%;
-  gap: 10px;
   justify-content: space-between;
 }
 .upgrade-exam-name {
@@ -743,6 +839,8 @@
   color: var(--text-1);
   line-height: 1.5;
 }
+
+/* ── Price display shared component ── */
 .upgrade-price-display {
   display: flex;
   align-items: center;
@@ -763,11 +861,15 @@
 }
 .upgrade-toman--bold { color: var(--text-1); }
 .upgrade-price-amount--bold { font-weight: 500; }
+
+/* ── Actions section ── */
 .upgrade-actions-section {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
+
+/* ── Dashed price table ── */
 .upgrade-price-table {
   display: flex;
   flex-direction: column;
@@ -798,22 +900,22 @@
   font-weight: 500;
   line-height: 1.5;
 }
+
+/* ── Discount trigger: link-style text button ── */
 .upgrade-discount-trigger {
-  height: 45px;
-  padding: 0 16px;
   background: none;
   border: none;
-  border-radius: var(--radius-btn);
+  padding: 0;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 400;
   font-family: inherit;
-  color: var(--brand);
+  color: #22967d;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  line-height: 2;
   flex-shrink: 0;
 }
+
+/* ── Discount input wrap ── */
 .upgrade-discount-wrap {
   display: flex;
   align-items: center;
@@ -824,14 +926,73 @@
 .upgrade-discount-input-wrap {
   flex: 1;
   min-width: 0;
-  width: auto;
+  background-color: var(--page-bg);
 }
-.upgrade-wallet-label {
+.upgrade-discount-input-wrap {}
+/* ── Wallet info: label + price in a row ── */
+.upgrade-wallet-info {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 8px;
 }
-.upgrade-price-divider { border-top: 2px dashed var(--stroke); }
+
+/* ── Wallet toggle switch ── */
+.upm-switch {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  width: 56px;
+  height: 36px;
+  padding: 8px;
+  cursor: pointer;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  user-select: none;
+}
+.upm-switch input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  margin: 0;
+}
+.upm-switch__track {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 360px;
+  background: #e2e4e6;
+  border: 1px solid #e2e4e6;
+  transition: background 0.2s, border-color 0.2s;
+}
+.upm-switch__track::after {
+  content: '';
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: white;
+  border: 2px solid #ccc;
+  top: 50%;
+  left: 1px;
+  transform: translateY(-50%);
+  transition: transform 0.2s, border-color 0.2s;
+}
+.upm-switch input:checked ~ .upm-switch__track {
+  background: var(--brand, #26a88c);
+  border-color: #eaf8f5;
+}
+.upm-switch input:checked ~ .upm-switch__track::after {
+  transform: translateY(-50%) translateX(15px);
+  border-color: var(--brand, #26a88c);
+}
+
+/* ── Divider ── */
+.upgrade-price-divider {
+  width: 100%;
+  height: 1px;
+  border-bottom: 2px dashed var(--stroke);
+}
 /* ============================================
    Responsive
    ============================================ */
@@ -1003,22 +1164,7 @@
     justify-content: center;
   }
 
-  /* ── Upgrade Modal: full-screen on mobile (like result-view-modal) ── */
-  #upgrade-modal .modal__container {
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    bottom: 8px;
-    left: 8px;
-    width: auto;
-    max-width: none;
-    max-height: none;
-    border-radius: var(--radius-card);
-    animation-name: modal-slide-in-bottom;
-  }
-  #upgrade-modal.modal--closing .modal__container {
-    animation-name: modal-slide-out-bottom;
-  }
+  /* Upgrade Modal is modal--centered: handled by modal.css centered mobile rules */
 }
 
 /* ── Result Tests: Row Cursor ───────────────────── */

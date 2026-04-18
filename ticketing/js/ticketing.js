@@ -431,7 +431,7 @@ const TicketingPage = (() => {
       });
       inputEl.addEventListener('input', function () {
         this.style.height = 'auto';
-        this.style.height = Math.min(this.scrollHeight, 120) + 'px';
+        this.style.height = this.scrollHeight + 'px';
       });
     }
 

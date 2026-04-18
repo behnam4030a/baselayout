@@ -194,7 +194,9 @@
   height: 1px;
   background: var(--stroke);
 }
-
+#req-filter-modal .checkbox{
+  justify-content: space-between;
+}
 
 /* ======================================================
    REQUESTS — Mobile Responsive (≤768px)

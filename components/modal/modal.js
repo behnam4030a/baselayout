@@ -241,6 +241,17 @@
     if (!panel) return;
     if (panel.classList.contains('modal__expanded--open')) return;
 
+    /* بستن همه پنل‌های expanded دیگر در همان مودال */
+    var parentModal = panel.closest('.modal');
+    if (parentModal) {
+      var openPanels = parentModal.querySelectorAll('.modal__expanded--open');
+      for (var i = 0; i < openPanels.length; i++) {
+        if (openPanels[i] !== panel) {
+          closePanel(openPanels[i].id);
+        }
+      }
+    }
+
     panel.classList.remove('modal__expanded--closing');
     panel.classList.add('modal__expanded--open');
   }

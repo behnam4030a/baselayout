@@ -157,6 +157,28 @@
           sel.addRange(range);
         });
       }
+
+      // تگ‌های متغیر — درج در موقعیت cursor
+      var varBox = document.querySelector('.ms-sms-vars__box');
+      if (varBox) {
+        // جلوگیری از از دست رفتن فوکوس فیلد هنگام کلیک روی تگ
+        varBox.addEventListener('mousedown', function (e) {
+          if (e.target.closest('.tag')) e.preventDefault();
+        });
+
+        varBox.addEventListener('click', function (e) {
+          var tag = e.target.closest('.tag');
+          if (!tag) return;
+          var textEl = tag.querySelector('.tag__text');
+          if (!textEl) return;
+          var varText = textEl.textContent.trim();
+
+          field.focus();
+          document.execCommand('insertText', false, varText);
+          _applyHighlight(field);
+          _updateCount(field, charCount);
+        });
+      }
     }
 
     function open(rowName) {
